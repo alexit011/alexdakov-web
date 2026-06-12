@@ -1,0 +1,2698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Dakov — Mockup v13 · Imágenes IA integradas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    :root {
+      --navy-base: #090C17;
+      --navy-alt: #0A0B17;
+      --navy-deep: #070A14;
+      --navy-card: #14213D;
+      --navy-card-hover: #1B2A4D;
+      --bg-dark-deep: #04060F;
+      --text: #F0EBE0;
+      --text-secondary: #A09B92;
+      --text-tertiary: #6E6960;
+      --gold: #C9A961;
+      --gold-hover: #B69465;
+      --gold-soft: rgba(201,169,97,0.12);
+      --gold-glow: rgba(201,169,97,0.06);
+      --gold-dashed: rgba(201,169,97,0.45);
+      --navy-glow: rgba(70,120,180,0.10);
+      --border: rgba(240,235,224,0.08);
+      --border-strong: rgba(240,235,224,0.16);
+      --z-base: 1;
+      --z-content: 10;
+      --z-header: 100;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--navy-base);
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 2px;
+    }
+
+    /* === IMAGE PLACEHOLDER === */
+    .img-placeholder {
+      position: relative;
+      border: 1.5px dashed var(--gold-dashed);
+      background:
+        repeating-linear-gradient(45deg, transparent 0 12px, rgba(201,169,97,0.025) 12px 13px),
+        linear-gradient(135deg, #04060d 0%, #14213d 50%, #0A1020 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      overflow: hidden;
+    }
+    .img-placeholder::before {
+      content: attr(data-id);
+      position: absolute;
+      top: 16px; left: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      font-weight: 600;
+      text-transform: uppercase;
+      background: rgba(10,16,32,0.6);
+      padding: 6px 12px;
+      border: 1px solid var(--gold-dashed);
+      border-radius: 2px;
+    }
+    .img-placeholder::after {
+      content: '';
+      position: absolute;
+      top: 32px; left: 32px; right: 32px; bottom: 32px;
+      border: 1px solid rgba(240,235,224,0.06);
+      pointer-events: none;
+    }
+    .img-spec { position: relative; z-index: 2; text-align: center; max-width: 340px; }
+    .img-spec-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 17px;
+      margin-bottom: 14px;
+      letter-spacing: 0.3px;
+      line-height: 1.3;
+    }
+    .img-spec-text {
+      font-size: 12px;
+      line-height: 1.65;
+      color: rgba(240,235,224,0.5);
+      letter-spacing: 0.3px;
+      font-weight: 300;
+    }
+    .img-spec-text strong { color: var(--text); font-weight: 500; }
+    .img-spec-meta {
+      margin-top: 16px;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      opacity: 0.7;
+    }
+
+    /* === HEADER === */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 28px 64px;
+      z-index: var(--z-header);
+      transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s;
+    }
+    .header.scrolled {
+      background: rgba(10,16,32,0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      padding: 20px 64px;
+    }
+
+    /* === LOGO WORDMARK refinado (no más script genérico) === */
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 28px;
+      color: var(--text);
+      letter-spacing: 0.5px;
+      line-height: 1;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 6px;
+      display: inline-block;
+    }
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .logo:hover::after { width: 100%; }
+    .logo-mark {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      vertical-align: middle;
+      margin: 0 8px 4px;
+    }
+
+    /* === HAMBURGUESA estilo Kwik === */
+    .hamburger {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      width: 48px;
+      height: 48px;
+      transition: opacity 0.3s;
+    }
+    .hamburger:hover { opacity: 0.7; }
+    .hamburger span {
+      width: 28px;
+      height: 1px;
+      background: var(--text);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s, background 0.3s;
+      transform-origin: center;
+    }
+    .hamburger.open span { background: var(--gold); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* === OVERLAY NAV FULLSCREEN === */
+    .overlay-nav {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 10, 20, 0.96);
+      backdrop-filter: blur(40px) saturate(180%);
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px;
+    }
+    .overlay-nav.open { opacity: 1; pointer-events: auto; }
+    .overlay-nav-inner { text-align: center; }
+    .overlay-nav-eyebrow {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 48px;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s 0.3s, transform 0.6s 0.3s;
+    }
+    .overlay-nav.open .overlay-nav-eyebrow { opacity: 1; transform: translateY(0); }
+    .overlay-nav ul { list-style: none; padding: 0; margin: 0; }
+    .overlay-nav li {
+      margin: 12px 0;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .overlay-nav.open li { opacity: 1; transform: translateY(0); }
+    .overlay-nav.open li:nth-child(1) { transition-delay: 0.4s; }
+    .overlay-nav.open li:nth-child(2) { transition-delay: 0.5s; }
+    .overlay-nav.open li:nth-child(3) { transition-delay: 0.6s; }
+    .overlay-nav.open li:nth-child(4) { transition-delay: 0.7s; }
+    .overlay-nav.open li:nth-child(5) { transition-delay: 0.8s; }
+    .overlay-nav a {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      transition: color 0.3s, padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-block;
+      position: relative;
+    }
+    .overlay-nav a:hover {
+      color: var(--gold);
+      padding-left: 24px;
+    }
+    .overlay-nav a::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+      color: var(--gold);
+      font-style: normal;
+    }
+    .overlay-nav a:hover::before { opacity: 1; }
+    .overlay-nav-footer {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 32px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      opacity: 0;
+      transition: opacity 0.6s 0.9s;
+    }
+    .overlay-nav.open .overlay-nav-footer { opacity: 0.7; }
+    .overlay-nav-footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      transition: color 0.3s;
+      font-family: inherit;
+      font-style: normal;
+    }
+    .overlay-nav-footer a:hover { color: var(--gold); padding-left: 0; }
+    .overlay-nav-footer a::before { display: none; }
+
+    /* === HERO === */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 720px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 64px;
+      overflow: hidden;
+    }
+    .hero-img { position: absolute; inset: 0; z-index: var(--z-base); }
+    .hero-img .img-spec { max-width: 420px; }
+    .hero-vignette {
+      position: absolute; inset: 0; z-index: 2;
+      background:
+        linear-gradient(to right, rgba(10,16,32,0.92) 0%, rgba(10,16,32,0.65) 45%, rgba(10,16,32,0.2) 100%),
+        linear-gradient(to bottom, rgba(10,16,32,0.2) 0%, transparent 30%, rgba(10,16,32,0.5) 100%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: var(--z-content); max-width: 720px; }
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 36px;
+      font-weight: 500;
+    }
+    .hero-eyebrow::before { content: ''; }
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(56px, 8vw, 112px);
+      font-weight: 500;
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      margin-bottom: 36px;
+      color: var(--text);
+    }
+    .hero-headline .word { display: inline-block; will-change: transform, opacity; }
+    .hero-headline em { font-style: italic; color: var(--gold); font-weight: 400; }
+    .hero-subhead {
+      font-size: clamp(16px, 1.4vw, 19px);
+      line-height: 1.7;
+      color: var(--text);
+      opacity: 0.88;
+      margin-bottom: 52px;
+      max-width: 560px;
+      font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--gold);
+      color: var(--navy-base);
+      padding: 22px 44px;
+      border-radius: 100px;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.25s, gap 0.25s;
+      cursor: pointer;
+      min-height: 44px;
+    }
+    .hero-cta:hover { background: var(--gold-hover); transform: translateY(-2px); gap: 18px; }
+    .hero-cta svg { width: 18px; height: 14px; }
+    .hero-secondary {
+      color: var(--text);
+      opacity: 0.7;
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: opacity 0.25s, color 0.25s, gap 0.25s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 4px;
+      border-bottom: 1px solid rgba(240,235,224,0.3);
+      min-height: 44px;
+    }
+    .hero-secondary:hover { opacity: 1; color: var(--gold); gap: 14px; }
+    .hero-secondary svg { width: 14px; height: 10px; }
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.5;
+      z-index: var(--z-content);
+      text-align: center;
+    }
+    .scroll-down-line {
+      width: 1px; height: 40px;
+      background: var(--gold);
+      margin: 8px auto 0;
+      transform-origin: top;
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleY(0.3); opacity: 0.3; }
+      50% { transform: scaleY(1); opacity: 1; }
+    }
+
+    /* === TRUSTED STRIP === */
+    .trusted-strip {
+      padding: 56px 64px;
+      background: var(--navy-deep);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .trusted-strip::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 50%;
+      transform: translateX(-50%);
+      width: 80px; height: 1px; background: var(--gold);
+    }
+    .trusted-label {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 36px;
+      font-weight: 500;
+    }
+    /* === MARQUEE infinito horizontal === */
+    .trusted-marquee {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 1500px;
+      margin: 0 auto;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    }
+    .trusted-track {
+      display: flex;
+      gap: 80px;
+      align-items: center;
+      width: max-content;
+      animation: marqueeScroll 55s linear infinite;
+      will-change: transform;
+    }
+    .trusted-marquee:hover .trusted-track { animation-play-state: paused; }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .trusted-track { animation: none; }
+      .trusted-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+    }
+    .trusted-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: rgba(160, 155, 146, 0.65);
+      letter-spacing: 0.3px;
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      font-weight: 400;
+      cursor: default;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .trusted-logo:hover { color: var(--gold); }
+
+    /* === LOGOS SVG / PNG (técnica CSS mask para colorear dinámicamente) === */
+    .trusted-logo-svg {
+      display: inline-block;
+      background-color: rgba(160, 155, 146, 0.65);
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      -webkit-mask-size: contain;
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: contain;
+      transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      vertical-align: middle;
+    }
+    .trusted-logo:hover .trusted-logo-svg { background-color: var(--gold); }
+    .logo-un      { -webkit-mask-image: url('/assets/logos/un.svg');      mask-image: url('/assets/logos/un.svg');      width: 50px;  height: 50px; }
+    .logo-nike    { -webkit-mask-image: url('/assets/logos/nike.svg');    mask-image: url('/assets/logos/nike.svg');    width: 90px;  height: 32px; }
+    .logo-ted     { -webkit-mask-image: url('/assets/logos/ted.svg');     mask-image: url('/assets/logos/ted.svg');     width: 92px;  height: 36px; }
+    .logo-redbull { -webkit-mask-image: url('/assets/logos/redbull.svg'); mask-image: url('/assets/logos/redbull.svg'); width: 124px; height: 46px; }
+    .logo-4yfn    { -webkit-mask-image: url('/assets/logos/4yfn.png');    mask-image: url('/assets/logos/4yfn.png');    width: 60px;  height: 50px; }
+
+    /* === LOGOS PNG REALES (filter blanco+opacidad por defecto, color full en hover) === */
+    .trusted-logo-img {
+      height: 46px;
+      width: auto;
+      flex-shrink: 0;
+      display: block;
+      filter: brightness(0) invert(1);
+      opacity: 0.55;
+      transition: filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .trusted-logo:hover .trusted-logo-img {
+      filter: none;
+      opacity: 1;
+    }
+    /* Logos de baja resolución: se renderizan más pequeños para evitar pixelado */
+    .trusted-logo .trusted-logo-img--sm { height: 38px; }
+    @media (max-width: 768px) {
+      .trusted-logo-img { height: 36px; }
+      .trusted-logo .trusted-logo-img--sm { height: 30px; }
+    }
+
+    /* === BLOQUES === */
+    .block {
+      padding: 56px 64px;
+      position: relative;
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .block-base { background: var(--navy-base); }
+    .block-alt { background: var(--navy-alt); }
+    .block-deep { background: var(--navy-deep); }
+    .block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at var(--glow-x, 80%) var(--glow-y, 30%), rgba(201,169,97,0.04), transparent 50%),
+        radial-gradient(circle at var(--glow-x2, 20%) var(--glow-y2, 70%), rgba(70,120,180,0.06), transparent 50%);
+    }
+    .block-divider-top {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2;
+    }
+    .block-divider-top.in-view { width: 180px; }
+    .block-divider-top::after {
+      content: '';
+      position: absolute;
+      top: -3px; left: 50%;
+      transform: translateX(-50%) scale(0);
+      width: 7px;
+      height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;
+    }
+    .block-divider-top.in-view::after { transform: translateX(-50%) scale(1); }
+    .block-divider-top::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+      opacity: 0.5;
+    }
+    .block-divider-top.in-view::before { width: 360px; }
+    .block-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 20px;
+      display: block;
+      position: relative;
+      z-index: 2;
+    }
+    .block-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 80px;
+      max-width: 820px;
+      color: var(--text);
+      position: relative;
+      z-index: 2;
+    }
+    .block-title em { font-style: italic; color: var(--gold); }
+    .block-intro {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin-bottom: 64px;
+      font-weight: 300;
+      position: relative;
+      z-index: 2;
+    }
+    .block-intro em { color: var(--gold); font-style: normal; }
+
+    /* === 01 POR QUÉ ALEX === */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      position: relative;
+      z-index: 2;
+    }
+    .why-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(22px, 2.2vw, 30px);
+      line-height: 1.5;
+      color: var(--text);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      padding-left: 32px;
+      border-left: 2px solid var(--gold);
+      margin-bottom: 48px;
+    }
+    .why-body {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+    .why-body p { margin-bottom: 24px; }
+    .why-body strong { color: var(--text); font-weight: 500; }
+    .why-list { margin: 32px 0; padding-left: 0; list-style: none; }
+    .why-list li {
+      padding-left: 32px;
+      position: relative;
+      margin-bottom: 14px;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+    .why-list li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 12px;
+      width: 16px; height: 1px;
+      background: var(--gold);
+    }
+    .why-portrait { aspect-ratio: 4/5; min-height: 600px; }
+    .why-portrait-photo {
+      aspect-ratio: 4/5;
+      min-height: 600px;
+      overflow: hidden;
+      position: relative;
+      /* Máscara difuminada: los bordes se funden con el fondo oscuro */
+      -webkit-mask-image:
+        radial-gradient(130% 120% at 50% 45%, #000 48%, transparent 85%),
+        linear-gradient(to bottom, transparent 0%, #000 15%, #000 78%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-image:
+        radial-gradient(130% 120% at 50% 45%, #000 48%, transparent 85%),
+        linear-gradient(to bottom, transparent 0%, #000 15%, #000 78%, transparent 100%);
+      mask-composite: intersect;
+    }
+    .why-portrait-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+      filter: grayscale(0.25) brightness(0.88) contrast(1.08) saturate(0.85);
+      transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .why-portrait-photo:hover img { filter: grayscale(0) brightness(1) contrast(1) saturate(1); }
+    .why-portrait-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at center, transparent 35%, rgba(9, 12, 23, 0.45) 78%, rgba(9, 12, 23, 0.85) 100%),
+        linear-gradient(to bottom, rgba(9, 12, 23, 0.35) 0%, transparent 25%, transparent 70%, rgba(9, 12, 23, 0.55) 100%);
+      mix-blend-mode: multiply;
+      z-index: 1;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .why-portrait-photo:hover .why-portrait-overlay { opacity: 0.45; }
+
+    /* === TESTIMONIOS — GRID 3 CARDS estático (sin carousel, sin position absolute, sin solape) === */
+    .testimonios-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .testimonio-card {
+      padding: 48px 36px;
+      border: 1px solid var(--border);
+      background: var(--navy-card);
+      transition: border-color 0.4s, background 0.4s, transform 0.4s;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .testimonio-card:hover {
+      border-color: var(--gold);
+      background: var(--navy-card-hover);
+      transform: translateY(-4px);
+    }
+    .testimonio-card-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      color: var(--gold);
+      line-height: 0.4;
+      margin-bottom: 28px;
+      letter-spacing: -0.05em;
+      display: block;
+      opacity: 0.7;
+    }
+    .testimonio-card-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 32px;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      flex-grow: 1;
+    }
+    .testimonio-card-author-line {
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+    .testimonio-card-author-line::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 0;
+      width: 32px; height: 1px;
+      background: var(--gold);
+    }
+    .testimonio-card-author {
+      font-size: 11px;
+      color: var(--text);
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .testimonio-card-role {
+      font-size: 11px;
+      color: var(--text-secondary);
+      letter-spacing: 0.5px;
+      line-height: 1.5;
+    }
+    .testimonio-dot {
+      width: 32px; height: 2px;
+      background: rgba(240,235,224,0.2);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, width 0.3s;
+      padding: 0;
+      min-height: 12px;
+      position: relative;
+    }
+    .testimonio-dot::after { content: ''; position: absolute; inset: -8px -2px; }
+    .testimonio-dot.active { background: var(--gold); width: 48px; }
+    .testimonio-dot:hover:not(.active) { background: var(--text-secondary); }
+
+    /* === PROCESO === */
+    .proceso-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      position: relative;
+      z-index: 2;
+    }
+    .paso {
+      padding: 40px 32px;
+      border: 1px solid var(--border);
+      background: var(--navy-card);
+      position: relative;
+      transition: border-color 0.4s, background 0.4s, transform 0.4s;
+    }
+    .paso:hover {
+      border-color: var(--gold);
+      background: var(--navy-card-hover);
+      transform: translateY(-4px);
+    }
+    .paso-numero {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .paso-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+    .paso-desc { font-size: 13px; line-height: 1.7; color: var(--text-secondary); font-weight: 300; }
+
+    /* === ABOUT con triptych prominente arriba === */
+    .triptych {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 80px;
+    }
+    .triptych .img-placeholder {
+      aspect-ratio: 4/5;
+      min-height: 460px;
+    }
+    .triptych-photo {
+      position: relative;
+      aspect-ratio: 4/5;
+      min-height: 460px;
+      overflow: hidden;
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      transition: border-color 0.4s, transform 0.4s;
+    }
+    .triptych-photo:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+    .triptych-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.5) brightness(0.92) contrast(1.05);
+      transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .triptych-photo:hover img { filter: grayscale(0) brightness(1) contrast(1); }
+    .triptych-photo figcaption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px 24px;
+      background: linear-gradient(to top, rgba(7,10,20,0.95) 30%, rgba(7,10,20,0.5) 80%, transparent);
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text);
+      font-weight: 500;
+      text-align: center;
+    }
+    .triptych-photo figcaption::before {
+      content: '';
+      display: block;
+      width: 32px; height: 1px;
+      background: var(--gold);
+      margin: 0 auto 12px;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 80px;
+      align-items: start;
+      position: relative;
+      z-index: 2;
+    }
+    .about-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.6;
+      color: var(--text);
+      font-weight: 400;
+      letter-spacing: -0.005em;
+    }
+    .about-text .line { display: block; overflow: hidden; }
+    .about-text .line-inner { display: inline-block; will-change: transform, opacity; }
+    .about-text .gold-emphasis { color: var(--gold); }
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding-top: 16px;
+    }
+    .about-stat {
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+      transition: border-color 0.4s;
+    }
+    .about-stat:first-child { border-top: 2px solid var(--gold); }
+    .about-stat:hover { border-top-color: var(--gold); }
+    .about-stat-numero {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+    }
+    .about-stat-numero .small {
+      font-size: 24px;
+      color: var(--gold);
+      margin-left: 4px;
+    }
+    .about-stat-label {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .about-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 56px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 6px;
+      transition: gap 0.25s, color 0.25s;
+      cursor: pointer;
+      min-height: 44px;
+    }
+    .about-cta:hover { gap: 16px; color: var(--text); }
+    .about-cta svg { width: 16px; height: 12px; }
+
+    /* === SOSTENIBILIDAD (NUEVO) === */
+    .sost-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .sost-image {
+      aspect-ratio: 4/5;
+      min-height: 620px;
+    }
+    .sost-photo {
+      position: relative;
+      aspect-ratio: 4/5;
+      min-height: 620px;
+      overflow: hidden;
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+    }
+    .sost-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.3) brightness(0.95);
+      transition: filter 0.6s;
+    }
+    .sost-photo:hover img { filter: grayscale(0) brightness(1); }
+    .sost-photo figcaption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 24px;
+      background: linear-gradient(to top, rgba(7,10,20,0.95) 30%, rgba(7,10,20,0.4) 80%, transparent);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text);
+      text-align: center;
+    }
+    .sost-photo figcaption::before {
+      content: '';
+      display: block;
+      width: 32px; height: 1px;
+      background: var(--gold);
+      margin: 0 auto 12px;
+    }
+    .sost-content { }
+    .sost-lead {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(22px, 2.2vw, 30px);
+      line-height: 1.5;
+      color: var(--text);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 40px;
+      padding-left: 32px;
+      border-left: 2px solid var(--gold);
+    }
+    .sost-lead em { color: var(--gold); font-style: italic; }
+    .sost-body {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+    .sost-body p { margin-bottom: 24px; }
+    .sost-body strong { color: var(--text); font-weight: 500; }
+    .sost-impact {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .sost-stat-numero {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+    .sost-stat-numero .small {
+      font-size: 18px;
+      color: var(--gold);
+    }
+    .sost-stat-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      line-height: 1.5;
+    }
+    .sost-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 48px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 6px;
+      transition: gap 0.25s, color 0.25s;
+    }
+    .sost-cta:hover { gap: 16px; color: var(--text); }
+    .sost-cta svg { width: 16px; height: 12px; }
+
+    /* === SOST SPEAKING + TEDx video sub-sección === */
+    .sost-video-section {
+      margin-top: 120px;
+      position: relative;
+      z-index: 2;
+    }
+    .sost-sub-eyebrow {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .sost-sub-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3.2vw, 44px);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 40px;
+      max-width: 720px;
+    }
+    .sost-sub-title em { color: var(--gold); font-style: italic; }
+    .sost-video-wrap {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      transition: border-color 0.4s;
+    }
+    .sost-video-wrap:hover { border-color: var(--gold); }
+    .sost-video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      text-align: center;
+      background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(201,169,97,0.025) 12px 13px), linear-gradient(135deg, #04060d 0%, #14213d 50%, #0A1020 100%);
+      border: 1.5px dashed var(--gold-dashed);
+    }
+    .sost-video-play {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      transition: transform 0.4s, background 0.4s;
+    }
+    .sost-video-wrap:hover .sost-video-play {
+      transform: scale(1.08);
+      background: rgba(201,169,97,0.1);
+    }
+    .sost-video-play::after {
+      content: '';
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 12px 0 12px 20px;
+      border-color: transparent transparent transparent var(--gold);
+      margin-left: 6px;
+    }
+    .sost-video-placeholder-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 20px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .sost-video-placeholder-meta {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-top: 12px;
+    }
+    .sost-video-caption {
+      margin-top: 16px;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .sost-speaking {
+      margin-top: 120px;
+      position: relative;
+      z-index: 2;
+    }
+    .sost-topics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-top: 8px;
+    }
+    .sost-topic {
+      padding: 36px 32px;
+      border: 1px solid var(--border);
+      background: var(--navy-card);
+      transition: border-color 0.4s, background 0.4s, transform 0.4s;
+      cursor: pointer;
+      position: relative;
+    }
+    .sost-topic:hover {
+      border-color: var(--gold);
+      background: var(--navy-card-hover);
+      transform: translateY(-4px);
+    }
+    .sost-topic-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--gold);
+      margin-bottom: 24px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .sost-topic-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 14px;
+      letter-spacing: -0.005em;
+      line-height: 1.3;
+    }
+    .sost-topic-desc {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+    .sost-topic-meta {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+    .sost-topic-meta strong { color: var(--gold); font-weight: 500; }
+
+    /* === FINAL CTA === */
+    .final-cta {
+      padding: 56px 64px;
+      text-align: center;
+      position: relative;
+      background: var(--navy-deep);
+      overflow: hidden;
+    }
+    .final-cta-bg { position: absolute; inset: 0; z-index: 0; opacity: 0.35; }
+    .final-cta-bg .img-spec { max-width: 380px; }
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: radial-gradient(ellipse at 50% 50%, rgba(10,16,32,0.7), rgba(6,12,26,0.95) 80%);
+      pointer-events: none;
+    }
+    .final-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 72px);
+      font-weight: 500;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 32px;
+      letter-spacing: -0.02em;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 2;
+    }
+    .final-headline em { font-style: italic; color: var(--gold); }
+    .final-cta-button {
+      display: flex;
+      width: fit-content;
+      margin: 52px auto;
+      align-items: center;
+      gap: 14px;
+      background: var(--gold);
+      color: var(--navy-base);
+      padding: 24px 52px;
+      border-radius: 100px;
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.25s, gap 0.25s;
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+      min-height: 44px;
+    }
+    .final-cta-button:hover { background: var(--gold-hover); transform: translateY(-2px); gap: 18px; }
+    .final-cta-button svg { width: 18px; height: 14px; }
+
+    .page-footer {
+      background: var(--bg-dark-deep);
+      padding: 40px 64px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      letter-spacing: 2px;
+      border-top: 1px solid var(--border);
+      text-transform: uppercase;
+    }
+    .page-footer .gold { color: var(--gold); }
+
+    @media (max-width: 1024px) {
+      .hero { padding: 120px 32px 80px; }
+      .header { padding: 20px 32px; }
+      .header.scrolled { padding: 16px 32px; }
+      .logo { font-size: 22px; }
+      .hero-actions { gap: 16px; flex-direction: column; align-items: flex-start; }
+      .trusted-strip { padding: 40px 32px; }
+      .trusted-logos { gap: 24px; }
+      .trusted-logo { font-size: 14px; }
+      .block { padding: 56px 32px; min-height: auto; }
+      .block-title { margin-bottom: 56px; }
+      .why-grid { grid-template-columns: 1fr; gap: 48px; }
+      .why-quote { padding-left: 24px; }
+      .why-portrait { min-height: 480px; }
+      .testimonios-grid-3 { grid-template-columns: 1fr; gap: 16px; }
+      .testimonio-card { padding: 36px 28px; }
+      .proceso-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .paso { padding: 28px 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 56px; }
+      .triptych { grid-template-columns: 1fr; gap: 16px; }
+      .triptych .img-placeholder { min-height: 380px; }
+      .sost-grid { grid-template-columns: 1fr; gap: 48px; }
+      .sost-image { min-height: 460px; }
+      .sost-lead { padding-left: 24px; }
+      .sost-impact { grid-template-columns: 1fr; gap: 32px; }
+      .sost-topics-grid { grid-template-columns: 1fr; gap: 16px; }
+      .sost-video-section, .sost-speaking { margin-top: 80px; }
+      .sost-sub-title { font-size: 28px; margin-bottom: 32px; }
+      .final-cta { padding: 56px 32px; }
+      .overlay-nav { padding: 32px; }
+    }
+    @media (max-width: 600px) {
+      .proceso-grid { grid-template-columns: 1fr; }
+    }
+
+    /* === NUEVOS BLOQUES (Notion copies StoryBrand) === */
+
+    /* Credibility strip (debajo hero) */
+    .credibility-strip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(24px, 5vw, 80px);
+      padding: 40px 32px 56px;
+      background: var(--navy-deep);
+      flex-wrap: wrap;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .credibility-item {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(18px, 1.8vw, 24px);
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .credibility-item strong {
+      color: var(--gold);
+      font-weight: 600;
+      font-style: normal;
+      letter-spacing: -0.01em;
+    }
+    .credibility-sep {
+      color: var(--gold);
+      opacity: 0.4;
+      font-size: 22px;
+    }
+
+    /* Thinking Heads credential badge (debajo trusted strip) */
+    .thinking-heads-badge {
+      max-width: 760px;
+      margin: 32px auto 0;
+      padding: 24px 32px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .thinking-heads-badge .badge-eyebrow {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .thinking-heads-badge .badge-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(15px, 1.4vw, 18px);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .thinking-heads-badge .badge-text strong {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    /* Pilares 3-col */
+    .pilares-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      position: relative;
+      z-index: 2;
+    }
+    .pilar {
+      padding: 48px 36px;
+      border: 1px solid var(--border);
+      background: var(--navy-card);
+      transition: border-color 0.4s, background 0.4s, transform 0.4s;
+      display: flex;
+      flex-direction: column;
+    }
+    .pilar:hover {
+      border-color: var(--gold);
+      background: var(--navy-card-hover);
+      transform: translateY(-4px);
+    }
+    .pilar-numero {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      color: var(--gold);
+      line-height: 0.9;
+      margin-bottom: 20px;
+      letter-spacing: -0.03em;
+    }
+    .pilar-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 18px;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .pilar-body {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    /* Conferencias teaser grid */
+    .conferencias-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      position: relative;
+      z-index: 2;
+    }
+    .conferencia-card {
+      padding: 40px 36px;
+      border: 1px solid var(--border);
+      background: var(--navy-card);
+      transition: border-color 0.4s, background 0.4s, transform 0.4s;
+      position: relative;
+    }
+    .conferencia-card:hover {
+      border-color: var(--gold);
+      background: var(--navy-card-hover);
+      transform: translateY(-4px);
+    }
+    .conferencia-numero {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .conferencia-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .conferencia-hook {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+
+    /* Transformación tabla */
+    .transformacion-tabla {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      position: relative;
+      z-index: 2;
+      border: 1px solid var(--border);
+    }
+    .transformacion-header {
+      padding: 24px 32px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+    }
+    .transformacion-header.hoy {
+      color: var(--text-secondary);
+      background: var(--navy-base);
+    }
+    .transformacion-header.despues {
+      color: var(--gold);
+      background: var(--navy-card);
+    }
+    .transformacion-header.sep {
+      background: var(--navy-deep);
+      border-bottom: 1px solid var(--border);
+    }
+    .transformacion-row {
+      padding: 28px 32px;
+      font-size: 16px;
+      line-height: 1.6;
+      font-weight: 300;
+      border-bottom: 1px solid var(--border);
+    }
+    .transformacion-row.hoy {
+      background: var(--navy-base);
+      color: var(--text-secondary);
+    }
+    .transformacion-row.despues {
+      background: var(--navy-card);
+      color: var(--text);
+      font-weight: 400;
+    }
+    .transformacion-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      color: var(--gold);
+      font-size: 18px;
+      background: var(--navy-deep);
+      border-bottom: 1px solid var(--border);
+    }
+    .transformacion-tabla > *:nth-last-child(-n+3) { border-bottom: 0; }
+
+    /* Story teaser (Quién soy) */
+    .story-teaser {
+      max-width: 820px;
+      position: relative;
+      z-index: 2;
+    }
+    .story-teaser-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.75;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+    .story-teaser-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .story-teaser-closing {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 1.8vw, 26px);
+      line-height: 1.5;
+      color: var(--gold);
+      font-style: italic;
+      margin: 32px 0 24px;
+    }
+    /* Quién soy — layout texto + foto */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 72px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .story-grid .story-teaser { max-width: 720px; }
+    .story-grid .why-portrait-photo { min-height: 580px; }
+    @media (max-width: 1024px) {
+      .story-grid { grid-template-columns: 1fr; gap: 48px; }
+      .story-grid .why-portrait-photo { min-height: 460px; }
+    }
+
+    /* Testimonios 5 cards grid */
+    .testimonios-5-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* === Testimonios CARRUSEL (auto + flechas + arrastre) === */
+    .testimonios-carousel {
+      position: relative;
+      z-index: 2;
+      margin-left: -64px;
+      margin-right: -64px;
+    }
+    .testimonios-marquee {
+      position: relative;
+      overflow: hidden;
+      width: auto;
+      padding: 8px 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      cursor: grab;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+    }
+    .testimonios-marquee::-webkit-scrollbar { display: none; }
+    .testimonios-marquee.dragging { cursor: grabbing; }
+    .testimonios-marquee.dragging .testimonio-card { pointer-events: none; }
+    .testimonios-track {
+      display: flex;
+      align-items: stretch;
+      width: max-content;
+      padding: 0 64px;
+    }
+    .testimonios-track .testimonio-card {
+      width: 380px;
+      flex-shrink: 0;
+      margin-right: 24px;
+    }
+    /* Flechas de navegación manual */
+    .tcar-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid var(--border-strong);
+      background: rgba(10,16,32,0.82);
+      backdrop-filter: blur(8px);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: color 0.3s, border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .tcar-arrow:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: rgba(10,16,32,0.95);
+      transform: translateY(-50%) scale(1.06);
+    }
+    .tcar-arrow svg { width: 20px; height: 20px; }
+    .tcar-prev { left: 12px; }
+    .tcar-next { right: 12px; }
+    @media (max-width: 1024px) {
+      .testimonios-carousel { margin-left: -32px; margin-right: -32px; }
+      .testimonios-track { padding: 0 32px; }
+      .tcar-prev { left: 4px; }
+      .tcar-next { right: 4px; }
+    }
+    @media (max-width: 768px) {
+      .testimonios-track .testimonio-card { width: 300px; }
+      .tcar-arrow { width: 44px; height: 44px; }
+    }
+    .testimonio-objection {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 16px;
+      opacity: 0.7;
+      font-style: italic;
+    }
+
+    /* Pasos 3 grid */
+    .pasos-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      position: relative;
+      z-index: 2;
+    }
+    .paso-card {
+      padding: 48px 36px;
+      border: 1px solid var(--border);
+      background: var(--navy-card);
+      transition: border-color 0.4s, background 0.4s, transform 0.4s;
+      position: relative;
+    }
+    .paso-card:hover {
+      border-color: var(--gold);
+      background: var(--navy-card-hover);
+      transform: translateY(-4px);
+    }
+    .paso-card-numero {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      color: var(--gold);
+      line-height: 0.9;
+      margin-bottom: 24px;
+      letter-spacing: -0.03em;
+    }
+    .paso-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+    .paso-card-body {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    /* Final CTA bookend */
+    .final-cta-bookend {
+      position: relative;
+      z-index: 2;
+      margin-top: 0;
+      padding-top: 0;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.2;
+      color: var(--gold);
+      letter-spacing: -0.01em;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .final-cta-bookend em { color: var(--gold-hover); font-style: italic; }
+    .final-cta-microcopy {
+      position: relative;
+      z-index: 2;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-top: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .pilares-grid { grid-template-columns: 1fr; }
+      .conferencias-grid { grid-template-columns: 1fr; }
+      .conferencias-grid .conferencia-card.featured { grid-column: auto !important; }
+      .pasos-grid-3 { grid-template-columns: 1fr; }
+      .testimonios-5-grid { grid-template-columns: 1fr; gap: 20px; }
+      /* Tabla "antes/después" → pares legibles apilados en móvil */
+      .transformacion-tabla { grid-template-columns: 1fr; border: 0; }
+      .transformacion-header, .transformacion-arrow { display: none; }
+      .transformacion-row { border-bottom: 0; padding: 16px 20px; font-size: 15px; }
+      .transformacion-row::before { display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
+      .transformacion-row.hoy { margin-top: 16px; border: 1px solid var(--border); border-bottom: 0; }
+      .transformacion-row.hoy::before { content: "Antes"; color: var(--text-tertiary); }
+      .transformacion-row.despues { border: 1px solid var(--border); border-top: 0; border-left: 2px solid var(--gold); }
+      .transformacion-row.despues::before { content: "Despu\00e9s \2192"; color: var(--gold); }
+    }
+
+    /* === EN ESCENARIO — vídeo YouTube TEDx (facade) === */
+    .stage-video-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 920px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .yt-facade {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      border: 1px solid var(--border);
+      background-color: var(--navy-card);
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      overflow: hidden;
+      transition: border-color 0.4s, transform 0.4s;
+    }
+    .yt-facade::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(7,10,20,0.25) 30%, rgba(7,10,20,0.7) 100%);
+      transition: background 0.4s;
+      pointer-events: none;
+    }
+    .yt-facade:hover { border-color: var(--gold); }
+    .yt-facade:hover::after { background: radial-gradient(ellipse at center, rgba(7,10,20,0.1) 30%, rgba(7,10,20,0.55) 100%); }
+    .yt-play {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: rgba(10,16,32,0.55);
+      cursor: pointer;
+      z-index: 2;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), background 0.4s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+    .yt-facade:hover .yt-play { transform: translate(-50%, -50%) scale(1.08); background: rgba(201,169,97,0.18); }
+    .yt-play::after {
+      content: '';
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 13px 0 13px 22px;
+      border-color: transparent transparent transparent var(--gold);
+      margin-left: 6px;
+    }
+    .yt-badge {
+      position: absolute;
+      bottom: 20px; left: 20px;
+      z-index: 2;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text);
+      font-weight: 500;
+      background: rgba(7,10,20,0.7);
+      border: 1px solid var(--gold-dashed);
+      padding: 8px 14px;
+      border-radius: 2px;
+    }
+    .yt-facade iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+    /* === VOZ EN REDES — reels Instagram === */
+    .reels-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 36px;
+      max-width: 1080px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      align-items: start;
+      justify-items: center;
+    }
+    .reel-card {
+      display: flex;
+      justify-content: center;
+      min-width: 0;
+      width: 100%;
+      max-width: 340px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 55px -24px rgba(0,0,0,0.75);
+      background: var(--navy-card);
+      transition: border-color 0.4s, transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s;
+    }
+    .reel-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-6px);
+      box-shadow: 0 34px 70px -24px rgba(0,0,0,0.85);
+    }
+    .reel-card .instagram-media {
+      min-width: 0 !important;
+      width: 100% !important;
+      margin: 0 !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      filter: brightness(0.95) contrast(1.02);
+    }
+    .reels-cta-wrap { text-align: center; margin-top: 76px; position: relative; z-index: 2; }
+    .reels-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 6px;
+      transition: gap 0.25s, color 0.25s;
+      min-height: 44px;
+    }
+    .reels-cta:hover { gap: 16px; color: var(--text); }
+    .reels-cta svg { width: 16px; height: 12px; }
+
+    /* === SOCIAL ROW (logos redes) === */
+    .social-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 22px;
+      margin-top: 48px;
+      position: relative;
+      z-index: 2;
+      flex-wrap: wrap;
+    }
+    .social-link {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 1px solid var(--border-strong);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      background: rgba(20,33,61,0.35);
+      transition: color 0.35s, border-color 0.35s, background 0.35s, transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s;
+    }
+    .social-link svg { width: 24px; height: 24px; display: block; fill: currentColor; }
+    .social-link:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: var(--gold-soft);
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px -12px rgba(201,169,97,0.45);
+    }
+
+    @media (max-width: 1024px) {
+      .reels-grid { grid-template-columns: 1fr; gap: 32px; justify-items: center; }
+      .reel-card { max-width: 420px; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header" id="header">
+    <button class="hamburger" id="hamburger" aria-label="Abrir navegación" aria-expanded="false" aria-controls="overlay-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- OVERLAY NAV FULLSCREEN (estilo Kwik) -->
+  <nav class="overlay-nav" id="overlay-nav" aria-hidden="true">
+    <div class="overlay-nav-inner">
+      <div class="overlay-nav-eyebrow">— Navegación —</div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/conferencias">Conferencias</a></li>
+        <li><a href="/sostenibilidad">Sostenibilidad e Impacto</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="overlay-nav-footer">
+      <a href="https://instagram.com/alex_dakov" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/in/alex-dakov/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://aguanea.com" target="_blank" rel="noopener">AguaNEA</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-img" id="heroBg">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        aria-label="Alex Dakov en escenario"
+        style="width:100%; height:100%; object-fit:cover; object-position:center center; display:block; background:var(--navy-deep);">
+        <source src="/assets/hero_video.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-vignette"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">Conferencias de liderazgo y alto rendimiento</div>
+      <h1 class="hero-headline">
+        <span class="word">Los</span>
+        <span class="word">equipos</span>
+        <span class="word">de</span>
+        <span class="word">élite</span>
+        <span class="word">no</span>
+        <span class="word">nacen.</span><br>
+        <span class="word">Se</span>
+        <span class="word"><em>construyen.</em></span>
+      </h1>
+      <p class="hero-subhead">Lideré equipos donde fallar no era una opción —desde Cirque du Soleil a Red Bull haciendo eventos por medio mundo, para acabar fundando una startup de impacto. Ahora enseño a equipos a ir al siguiente nivel: con neurociencia del aprendizaje y 15 años construyendo equipos de élite allí donde más apretaba la presión.</p>
+      <div class="hero-actions">
+        <a href="/contacto" class="hero-cta">
+          Cuéntame tu evento
+          <svg viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h20M14 1l8 8-8 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/conferencias" class="hero-secondary">
+          Ver conferencias
+          <svg viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h20M14 1l8 8-8 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-down">Scroll<div class="scroll-down-line"></div></div>
+  </section>
+
+  <!-- CREDIBILITY STRIP (debajo hero) -->
+  <section class="credibility-strip" aria-label="Credenciales">
+    <div class="credibility-item"><strong>+100</strong> conferencias</div>
+    <div class="credibility-sep">·</div>
+    <div class="credibility-item"><strong>Miles</strong> de personas</div>
+    <div class="credibility-sep">·</div>
+    <div class="credibility-item"><strong>4</strong> continentes</div>
+  </section>
+
+  <!-- TRUSTED -->
+  <section class="trusted-strip">
+    <div class="trusted-label">— Marcas que ya me han subido a su escenario —</div>
+    <div class="trusted-marquee" aria-label="Han confiado en">
+      <div class="trusted-track">
+        <!-- Set 1 (visible) -->
+        <span class="trusted-logo" title="Nike"><img class="trusted-logo-img" src="/assets/logos/g_nike.png" alt="Nike"></span>
+        <span class="trusted-logo" title="Vodafone"><img class="trusted-logo-img" src="/assets/logos/g_vodafone.png" alt="Vodafone"></span>
+        <span class="trusted-logo" title="Marriott"><img class="trusted-logo-img" src="/assets/logos/g_marriott.png" alt="Marriott"></span>
+        <span class="trusted-logo" title="TEDx ESADE"><img class="trusted-logo-img" src="/assets/logos/g_tedxesade.png" alt="TEDx ESADE"></span>
+        <span class="trusted-logo" title="MWC Barcelona"><img class="trusted-logo-img" src="/assets/logos/g_mwc.png" alt="MWC Barcelona"></span>
+        <span class="trusted-logo" title="Soho House"><img class="trusted-logo-img" src="/assets/logos/g_sohohouse.png" alt="Soho House"></span>
+        <span class="trusted-logo" title="Henkel"><img class="trusted-logo-img" src="/assets/logos/g_henkel.png" alt="Henkel"></span>
+        <span class="trusted-logo" title="Bankinter"><img class="trusted-logo-img trusted-logo-img--sm" src="/assets/logos/g_bankinter.png" alt="Bankinter"></span>
+        <span class="trusted-logo" title="Oceanic Global"><img class="trusted-logo-img" src="/assets/logos/g_oceanicglobal.png" alt="Oceanic Global"></span>
+        <span class="trusted-logo" title="W Hotels"><img class="trusted-logo-img" src="/assets/logos/g_whotels.png" alt="W Hotels"></span>
+        <span class="trusted-logo" title="GRENKE"><img class="trusted-logo-img trusted-logo-img--sm" src="/assets/logos/g_grenke.png" alt="GRENKE"></span>
+        <span class="trusted-logo" title="Ron Barceló"><img class="trusted-logo-img trusted-logo-img--sm" src="/assets/logos/g_ronbarcelo.png" alt="Ron Barceló"></span>
+        <span class="trusted-logo" title="Cámara de Comercio de España"><img class="trusted-logo-img trusted-logo-img--sm" src="/assets/logos/g_camara.png" alt="Cámara de Comercio de España"></span>
+        <span class="trusted-logo" title="BforPlanet"><img class="trusted-logo-img" src="/assets/logos/g_bforplanet.png" alt="BforPlanet"></span>
+        <span class="trusted-logo" title="BIME"><img class="trusted-logo-img" src="/assets/logos/g_bime.png" alt="BIME"></span>
+        <span class="trusted-logo" title="Trivu"><img class="trusted-logo-img" src="/assets/logos/g_trivu.png" alt="Trivu"></span>
+        <!-- Set 2 (duplicado para loop seamless · aria-hidden para que screen readers no lo lean dos veces) -->
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img" src="/assets/logos/g_nike.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img" src="/assets/logos/g_vodafone.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img" src="/assets/logos/g_marriott.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img" src="/assets/logos/g_tedxesade.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img" src="/assets/logos/g_mwc.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img" src="/assets/logos/g_sohohouse.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img" src="/assets/logos/g_henkel.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img trusted-logo-img--sm" src="/assets/logos/g_bankinter.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img" src="/assets/logos/g_oceanicglobal.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img" src="/assets/logos/g_whotels.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img trusted-logo-img--sm" src="/assets/logos/g_grenke.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img trusted-logo-img--sm" src="/assets/logos/g_ronbarcelo.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img trusted-logo-img--sm" src="/assets/logos/g_camara.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img" src="/assets/logos/g_bforplanet.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img" src="/assets/logos/g_bime.png" alt=""></span>
+        <span class="trusted-logo" aria-hidden="true"><img class="trusted-logo-img" src="/assets/logos/g_trivu.png" alt=""></span>
+      </div>
+    </div>
+
+    <!-- Thinking Heads credential -->
+    <div class="thinking-heads-badge">
+      <div class="badge-eyebrow">— Reconocimiento —</div>
+      <div class="badge-text"><strong>Top 100 conferenciantes de España</strong> durante 4 años (Thinking Heads), compartiendo catálogo con figuras como Pau Gasol y ex presidentes de Gobierno.</div>
+    </div>
+  </section>
+
+  <!-- 01 EL PROBLEMA -->
+  <section class="block block-alt" data-block="01" style="--glow-x: 20%; --glow-y: 25%; --glow-x2: 85%; --glow-y2: 75%;">
+    <div class="block-divider-top"></div>
+    <span class="block-number">01 — El problema</span>
+    <h2 class="block-title">Contratas un conferenciante.<br>Tu equipo aplaude.<br>Y el lunes <em>todo sigue igual</em>.</h2>
+
+    <div class="why-grid">
+      <div>
+        <blockquote class="why-quote">
+          Lo has vivido. Una charla motivadora, frases bonitas, mucha energía en la sala… y a las 48 horas <span class="accent">nadie se acuerda</span>. Porque la mayoría de conferencias emocionan, pero no cambian nada.
+        </blockquote>
+        <div class="why-body">
+          <p>El problema no es tu equipo. Es que la motivación de verdad no se enciende con un buen rato —<strong>se diseña</strong> entendiendo cómo funciona el cerebro humano.</p>
+          <ul class="why-list">
+            <li>Gente que cumple, pero no vive el proyecto.</li>
+            <li>Reuniones donde nadie propone, nadie discute, nadie arde.</li>
+            <li>Inviertes en eventos o formación… pero el rendimiento no se mueve.</li>
+          </ul>
+          <p style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 19px; margin-top: 32px;">Y ahí es exactamente donde entro yo. ↓</p>
+        </div>
+      </div>
+
+      <figure class="why-portrait-photo">
+        <img src="/assets/IMG-02_tedx_real.jpg" alt="Alex Dakov en el escenario de TEDx ESADE" loading="lazy">
+        <span class="why-portrait-overlay" aria-hidden="true"></span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 02 PROMESA · 3 pilares -->
+  <section class="block block-base" data-block="02" style="--glow-x: 70%; --glow-y: 40%; --glow-x2: 25%; --glow-y2: 80%;">
+    <div class="block-divider-top"></div>
+    <span class="block-number">02 — Mi promesa</span>
+    <h2 class="block-title">No vengo a dar una charla.<br>Vengo a <em>transformar</em> a tu equipo.</h2>
+    <p class="block-intro">Subo a tu escenario con tres cosas que casi ningún conferenciante puede ofrecerte juntas:</p>
+
+    <div class="pilares-grid">
+      <article class="pilar">
+        <div class="pilar-numero">01</div>
+        <h3 class="pilar-title">He estado donde está tu equipo (y en sitios peores).</h3>
+        <p class="pilar-body">No teorizo sobre liderazgo: lo he ejercido donde un fallo se veía en directo. 15 años montando y dirigiendo equipos en empresas de élite. Producciones de Cirque du Soleil, Red Bull e incluso Naciones Unidas —en once ciudades de cuatro continentes, de Barcelona a Hong Kong— y después levantando una startup de impacto desde cero a varios millones. <strong style="color: var(--text); font-weight: 500;">Sé lo que es exigir lo máximo sin quemar a la gente. Sé lo que hace falta para crear equipos de élite.</strong></p>
+      </article>
+
+      <article class="pilar">
+        <div class="pilar-numero">02</div>
+        <h3 class="pilar-title">Neurociencia, no humo.</h3>
+        <p class="pilar-body">La motivación no es un subidón de una tarde: es química, hábito y propósito. Aplico lo que la neurociencia sabe sobre cómo aprende y se compromete el cerebro, para que tu equipo no salga animado… <strong style="color: var(--gold);">salga transformado</strong>.</p>
+      </article>
+
+      <article class="pilar">
+        <div class="pilar-numero">03</div>
+        <h3 class="pilar-title">Algo que sigue funcionando el lunes.</h3>
+        <p class="pilar-body">Las frases bonitas se olvidan; los sistemas se usan. Tu gente se va con <strong style="color: var(--text); font-weight: 500;">herramientas concretas</strong> para sostener el foco, la energía y el compromiso cuando yo ya no estoy en la sala.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 03 CONFERENCIAS TEASER -->
+  <section class="block block-alt" data-block="03" style="--glow-x: 15%; --glow-y: 35%; --glow-x2: 80%; --glow-y2: 70%;">
+    <div class="block-divider-top"></div>
+    <span class="block-number">03 — Las conferencias</span>
+    <h2 class="block-title">Conferencias diseñadas para mover a tu gente,<br>no solo para <em>entretenerla</em>.</h2>
+    <p class="block-intro">Elige el reto de tu equipo. <em>Del resto me encargo yo.</em></p>
+
+    <div class="conferencias-grid">
+      <article class="conferencia-card">
+        <div class="conferencia-numero">01</div>
+        <h3 class="conferencia-title">Equipos imparables</h3>
+        <p class="conferencia-hook">Cómo se construye un equipo de élite en cualquier sector.</p>
+      </article>
+      <article class="conferencia-card">
+        <div class="conferencia-numero">02</div>
+        <h3 class="conferencia-title">La motivación se diseña</h3>
+        <p class="conferencia-hook">La neurociencia de encender (y mantener) el compromiso.</p>
+      </article>
+      <article class="conferencia-card">
+        <div class="conferencia-numero">03</div>
+        <h3 class="conferencia-title">Liderar cuando fallar no es una opción</h3>
+        <p class="conferencia-hook">Decidir y rendir cuando la presión aprieta.</p>
+      </article>
+      <article class="conferencia-card">
+        <div class="conferencia-numero">04</div>
+        <h3 class="conferencia-title">Tu equipo y la IA: aliados, no rivales</h3>
+        <p class="conferencia-hook">Implementar la IA sin perder lo humano.</p>
+      </article>
+      <article class="conferencia-card featured" style="grid-column: span 2;">
+        <div class="conferencia-numero">05</div>
+        <h3 class="conferencia-title">Conferencia a medida</h3>
+        <p class="conferencia-hook">Cuéntame tu reto y creamos algo diseñado solo para tu equipo.</p>
+      </article>
+    </div>
+
+    <div style="text-align: center; margin-top: 56px; position: relative; z-index: 2;">
+      <a href="/conferencias" class="about-cta">
+        Ver todas las conferencias
+        <svg viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h20M14 1l8 8-8 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 04 LA TRANSFORMACIÓN -->
+  <section class="block block-base" data-block="04" style="--glow-x: 80%; --glow-y: 60%; --glow-x2: 20%; --glow-y2: 30%;">
+    <div class="block-divider-top"></div>
+    <span class="block-number">04 — La transformación</span>
+    <h2 class="block-title">De un equipo que cumple sin más…<br>a un equipo de élite que <em>sobresale</em>.</h2>
+    <p class="block-intro">Esto es lo que cambia cuando una conferencia se diseña de verdad:</p>
+
+    <div class="transformacion-tabla">
+      <div class="transformacion-header hoy">Hoy (lo de siempre)</div>
+      <div class="transformacion-header sep"></div>
+      <div class="transformacion-header despues">Después de tu evento</div>
+
+      <div class="transformacion-row hoy">Cumplen tareas, pero no viven el proyecto</div>
+      <div class="transformacion-arrow">→</div>
+      <div class="transformacion-row despues">Entienden su <strong>porqué</strong> y se mueven sin que estés encima</div>
+
+      <div class="transformacion-row hoy">La motivación dura lo que dura un café</div>
+      <div class="transformacion-arrow">→</div>
+      <div class="transformacion-row despues">La <strong>energía y el foco</strong> siguen vivos semanas después</div>
+
+      <div class="transformacion-row hoy">Nadie propone, nadie discute, nadie arde</div>
+      <div class="transformacion-arrow">→</div>
+      <div class="transformacion-row despues">Aparecen <strong>ideas, conversaciones valientes, iniciativa</strong></div>
+
+      <div class="transformacion-row hoy">Inviertes en eventos… y el lunes todo igual</div>
+      <div class="transformacion-arrow">→</div>
+      <div class="transformacion-row despues">Se llevan <strong>herramientas que usan cada día</strong></div>
+    </div>
+
+    <div style="text-align: center; margin-top: 56px; position: relative; z-index: 2;">
+      <a href="/contacto" class="about-cta">
+        Quiero esto para mi equipo
+        <svg viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h20M14 1l8 8-8 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 05 QUIÉN SOY (teaser) -->
+  <section class="block block-alt" data-block="05" id="about" style="--glow-x: 25%; --glow-y: 30%; --glow-x2: 75%; --glow-y2: 70%;">
+    <div class="block-divider-top"></div>
+    <span class="block-number">05 — Quién soy</span>
+    <h2 class="block-title">No empecé hablando de liderazgo.<br>Empecé entre <em>cables, focos y cuentas atrás</em>.</h2>
+
+    <div class="story-grid">
+      <div class="story-teaser">
+        <p class="story-teaser-text">Durante años produje shows de <strong>Cirque du Soleil, Red Bull y Space Ibiza</strong> —de Barcelona a Hong Kong, de Ibiza a Nueva York—. Ahí aprendí a dirigir equipos muy joven, con <strong>24 años</strong>, donde un error se veía en directo, ante miles de personas.</p>
+
+        <p class="story-teaser-text">Hasta que un viaje a lo más profundo del Amazonas lo cambió todo. Me di cuenta de cómo en la naturaleza todo vive conectado, y en ese preciso instante, decidí dar un giro a mi vida. Dejé atrás mi carrera en eventos, y decidí emprender montando mi propia startup.</p>
+
+        <p class="story-teaser-text">Volví con una idea fija: usar todo lo que sabía sobre equipos para hacer algo que de verdad importara. <strong>Fundé una startup de impacto desde cero y la llevé hasta varios millones.</strong></p>
+
+        <p class="story-teaser-closing">He liderado en el caos.<br>Por eso sé enseñar a tu equipo a brillar en el suyo.</p>
+
+        <a href="/sostenibilidad" class="about-cta">
+          Conoce mi historia
+          <svg viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h20M14 1l8 8-8 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <figure class="why-portrait-photo">
+        <img src="/assets/IMG-05_escenario_quien_soy.jpg" alt="Alex Dakov dando una conferencia en escenario" loading="lazy">
+        <span class="why-portrait-overlay" aria-hidden="true"></span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 06 TESTIMONIOS (5) -->
+  <section class="block block-base" data-block="06" id="testimonials" style="--glow-x: 15%; --glow-y: 35%; --glow-x2: 80%; --glow-y2: 70%;">
+    <div class="block-divider-top"></div>
+    <span class="block-number">06 — Testimonios</span>
+    <h2 class="block-title" style="text-align:center; margin-left:auto; margin-right:auto;">No te fíes solo de mí.<br><em>Pregúntales a ellos</em>.</h2>
+
+    <div class="testimonios-carousel">
+      <button class="tcar-arrow tcar-prev" id="tcarPrev" aria-label="Testimonio anterior" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="testimonios-marquee" id="testimoniosMarquee">
+        <div class="testimonios-track">
+        <article class="testimonio-card">
+          <span class="testimonio-card-mark">"</span>
+          <p class="testimonio-card-quote">Alex se subió al escenario y se metió a toda la sala en el bolsillo. Salimos con una energía y una motivación que no es fácil de provocar. De los mejores ponentes que hemos traído.</p>
+          <div class="testimonio-card-author-line">
+            <div class="testimonio-card-author">Marta</div>
+            <div class="testimonio-card-role">Nike</div>
+          </div>
+        </article>
+        <article class="testimonio-card">
+          <span class="testimonio-card-mark">"</span>
+          <p class="testimonio-card-quote">No fue una charla más: removió a la gente y nos hizo pensar. Días después se seguía hablando de ella en la oficina. Inspirador de verdad.</p>
+          <div class="testimonio-card-author-line">
+            <div class="testimonio-card-author">Alicia</div>
+            <div class="testimonio-card-role">Bankinter</div>
+          </div>
+        </article>
+        <article class="testimonio-card">
+          <span class="testimonio-card-mark">"</span>
+          <p class="testimonio-card-quote">Lo que más me sorprendió fue cómo conectó con una sala enorme y muy diversa. Tuvo a todo el mundo enganchado de principio a fin. Magnético.</p>
+          <div class="testimonio-card-author-line">
+            <div class="testimonio-card-author">Juan</div>
+            <div class="testimonio-card-role">Vodafone</div>
+          </div>
+        </article>
+        <article class="testimonio-card">
+          <span class="testimonio-card-mark">"</span>
+          <p class="testimonio-card-quote">Trabajar con él fue facilísimo. Profesional, cercano y se adaptó perfectamente al tono de nuestro evento. Todo fluyó.</p>
+          <div class="testimonio-card-author-line">
+            <div class="testimonio-card-author">Marco</div>
+            <div class="testimonio-card-role">Grenke</div>
+          </div>
+        </article>
+        <article class="testimonio-card">
+          <span class="testimonio-card-mark">"</span>
+          <p class="testimonio-card-quote">Cumplió todo lo que prometía y más. La valoración de los asistentes fue altísima y no dudaríamos en repetir. <strong style="color: var(--gold); font-style: normal; font-weight: 500;">Una apuesta segura.</strong></p>
+          <div class="testimonio-card-author-line">
+            <div class="testimonio-card-author">Laura</div>
+            <div class="testimonio-card-role">Henkel</div>
+          </div>
+        </article>
+        <article class="testimonio-card">
+          <span class="testimonio-card-mark">"</span>
+          <p class="testimonio-card-quote">Me esperaba una conferencia motivacional estándar y me encontré con algo hecho a medida para nuestro sector. Entendió el mundo del hotel, habló nuestro idioma y conectó con un equipo de mil culturas distintas.</p>
+          <div class="testimonio-card-author-line">
+            <div class="testimonio-card-author">Joao</div>
+            <div class="testimonio-card-role">Marriott</div>
+          </div>
+        </article>
+
+        <!-- Copia para el bucle infinito -->
+        <article class="testimonio-card" aria-hidden="true">
+          <span class="testimonio-card-mark">"</span>
+          <p class="testimonio-card-quote">Alex se subió al escenario y se metió a toda la sala en el bolsillo. Salimos con una energía y una motivación que no es fácil de provocar. De los mejores ponentes que hemos traído.</p>
+          <div class="testimonio-card-author-line">
+            <div class="testimonio-card-author">Marta</div>
+            <div class="testimonio-card-role">Nike</div>
+          </div>
+        </article>
+        <article class="testimonio-card" aria-hidden="true">
+          <span class="testimonio-card-mark">"</span>
+          <p class="testimonio-card-quote">No fue una charla más: removió a la gente y nos hizo pensar. Días después se seguía hablando de ella en la oficina. Inspirador de verdad.</p>
+          <div class="testimonio-card-author-line">
+            <div class="testimonio-card-author">Alicia</div>
+            <div class="testimonio-card-role">Bankinter</div>
+          </div>
+        </article>
+        <article class="testimonio-card" aria-hidden="true">
+          <span class="testimonio-card-mark">"</span>
+          <p class="testimonio-card-quote">Lo que más me sorprendió fue cómo conectó con una sala enorme y muy diversa. Tuvo a todo el mundo enganchado de principio a fin. Magnético.</p>
+          <div class="testimonio-card-author-line">
+            <div class="testimonio-card-author">Juan</div>
+            <div class="testimonio-card-role">Vodafone</div>
+          </div>
+        </article>
+        <article class="testimonio-card" aria-hidden="true">
+          <span class="testimonio-card-mark">"</span>
+          <p class="testimonio-card-quote">Trabajar con él fue facilísimo. Profesional, cercano y se adaptó perfectamente al tono de nuestro evento. Todo fluyó.</p>
+          <div class="testimonio-card-author-line">
+            <div class="testimonio-card-author">Marco</div>
+            <div class="testimonio-card-role">Grenke</div>
+          </div>
+        </article>
+        <article class="testimonio-card" aria-hidden="true">
+          <span class="testimonio-card-mark">"</span>
+          <p class="testimonio-card-quote">Cumplió todo lo que prometía y más. La valoración de los asistentes fue altísima y no dudaríamos en repetir. <strong style="color: var(--gold); font-style: normal; font-weight: 500;">Una apuesta segura.</strong></p>
+          <div class="testimonio-card-author-line">
+            <div class="testimonio-card-author">Laura</div>
+            <div class="testimonio-card-role">Henkel</div>
+          </div>
+        </article>
+        <article class="testimonio-card" aria-hidden="true">
+          <span class="testimonio-card-mark">"</span>
+          <p class="testimonio-card-quote">Me esperaba una conferencia motivacional estándar y me encontré con algo hecho a medida para nuestro sector. Entendió el mundo del hotel, habló nuestro idioma y conectó con un equipo de mil culturas distintas.</p>
+          <div class="testimonio-card-author-line">
+            <div class="testimonio-card-author">Joao</div>
+            <div class="testimonio-card-role">Marriott</div>
+          </div>
+        </article>
+        </div>
+      </div>
+      <button class="tcar-arrow tcar-next" id="tcarNext" aria-label="Testimonio siguiente" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- 07 EN ESCENARIO — vídeo TEDx -->
+  <section class="block block-alt" data-block="07" id="stage-video" style="--glow-x: 70%; --glow-y: 30%; --glow-x2: 25%; --glow-y2: 75%;">
+    <div class="block-divider-top"></div>
+    <span class="block-number">07 — En escenario</span>
+    <h2 class="block-title" style="text-align:center; margin-left:auto; margin-right:auto;">No te lo cuento.<br><em>Míralo</em>.</h2>
+    <p class="block-intro" style="text-align:center; margin-left:auto; margin-right:auto;">Mi charla TEDx en ESADE. La mejor prueba de lo que pasa cuando subo a un escenario.</p>
+
+    <div class="stage-video-wrap">
+      <div class="yt-facade" data-yt="4yKf1Ydq_c4" role="button" tabindex="0" aria-label="Reproducir la charla TEDx de Alex Dakov" style="background-image: url('https://i.ytimg.com/vi/4yKf1Ydq_c4/maxresdefault.jpg');">
+        <span class="yt-play" aria-hidden="true"></span>
+        <span class="yt-badge">TEDx · ESADE</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 VOZ EN REDES — reels Instagram -->
+  <section class="block block-base" data-block="08" id="redes" style="--glow-x: 20%; --glow-y: 35%; --glow-x2: 80%; --glow-y2: 70%;">
+    <div class="block-divider-top"></div>
+    <span class="block-number">08 — Voz en redes</span>
+    <h2 class="block-title" style="text-align:center; margin-left:auto; margin-right:auto;">No solo lleno salas.<br>También <em>feeds</em>.</h2>
+    <p class="block-intro" style="text-align:center; margin-left:auto; margin-right:auto;">Comparto ideas sobre liderazgo, equipos y alto rendimiento que llegan a cientos de miles de personas cada mes. Una muestra:</p>
+
+    <div class="reels-grid">
+      <div class="reel-card">
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYM-duYk0YT/?utm_source=ig_embed" data-instgrm-version="14">
+          <a href="https://www.instagram.com/reel/DYM-duYk0YT/" target="_blank" rel="noopener">Ver reel en Instagram</a>
+        </blockquote>
+      </div>
+      <div class="reel-card">
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYnCxPCjdBf/?utm_source=ig_embed" data-instgrm-version="14">
+          <a href="https://www.instagram.com/reel/DYnCxPCjdBf/" target="_blank" rel="noopener">Ver reel en Instagram</a>
+        </blockquote>
+      </div>
+      <div class="reel-card">
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DZNBdPHFD6J/?utm_source=ig_embed" data-instgrm-version="14">
+          <a href="https://www.instagram.com/reel/DZNBdPHFD6J/" target="_blank" rel="noopener">Ver reel en Instagram</a>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="reels-cta-wrap">
+      <a href="https://instagram.com/alex_dakov" target="_blank" rel="noopener" class="reels-cta">
+        Sígueme en Instagram — @alex_dakov
+        <svg viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h20M14 1l8 8-8 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <nav class="social-row" aria-label="Redes sociales de Alex Dakov">
+      <a class="social-link" href="https://instagram.com/alex_dakov" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      </a>
+      <a class="social-link" href="https://www.tiktok.com/@alex.dakov" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
+      <a class="social-link" href="https://www.linkedin.com/in/alex-dakov/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+      </a>
+      <a class="social-link" href="https://www.facebook.com/profile.php?id=100083413391216" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a class="social-link" href="https://www.youtube.com/@Alex_Dakov" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    </nav>
+  </section>
+
+  <!-- 09 CÓMO CONTRATAR -->
+  <section class="block block-alt" data-block="09" id="process" style="--glow-x: 60%; --glow-y: 20%; --glow-x2: 30%; --glow-y2: 80%;">
+    <div class="block-divider-top"></div>
+    <span class="block-number">09 — Cómo contratar</span>
+    <h2 class="block-title">Contratarme es así de <em>simple</em>.</h2>
+
+    <div class="pasos-grid-3">
+      <article class="paso-card">
+        <div class="paso-card-numero">01</div>
+        <h3 class="paso-card-title">Me escribes</h3>
+        <p class="paso-card-body">Cuéntame tu evento, tu equipo y el reto que tienes. <strong style="color: var(--gold); font-weight: 500;">Sin compromiso.</strong></p>
+      </article>
+      <article class="paso-card">
+        <div class="paso-card-numero">02</div>
+        <h3 class="paso-card-title">Lo diseñamos juntos</h3>
+        <p class="paso-card-body">Adapto la conferencia a tu sector, tu público y tu momento. Hablamos hasta que <strong style="color: var(--text); font-weight: 500;">encaje como un guante</strong>.</p>
+      </article>
+      <article class="paso-card">
+        <div class="paso-card-numero">03</div>
+        <h3 class="paso-card-title">Subo a tu escenario</h3>
+        <p class="paso-card-body">Tu equipo sale encendido… y con <strong style="color: var(--gold); font-weight: 500;">herramientas para seguir así el lunes</strong>.</p>
+      </article>
+    </div>
+
+    <div style="text-align: center; margin-top: 56px; position: relative; z-index: 2;">
+      <a href="/contacto" class="about-cta">
+        Empezar por el paso 1
+        <svg viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h20M14 1l8 8-8 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta" id="book">
+    <div class="final-cta-bg">
+      <img src="/assets/IMG-04_cta_bokeh.png" alt="Stage atmosphere bokeh" style="width:100%; height:100%; object-fit:cover; opacity:0.55;">
+    </div>
+    <h2 class="final-headline">Tu equipo ya tiene el talento.<br>Solo falta <em>encenderlo</em>.</h2>
+    <p style="font-size: clamp(16px, 1.4vw, 19px); line-height: 1.7; color: var(--text-secondary); max-width: 680px; margin: -24px auto 0; font-weight: 300; position: relative; z-index: 2;">La próxima vez que subas a alguien a tu escenario, que no sea para aplaudir y olvidar. Que sea para <strong style="color: var(--text); font-weight: 500;">cambiar cómo trabaja tu gente</strong>. Cuéntame tu evento y diseñemos una conferencia que recuerden el lunes… y dentro de seis meses.</p>
+    <a href="/contacto" class="final-cta-button">
+      Escríbeme y cuéntame tu idea
+      <svg viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h20M14 1l8 8-8 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <div class="final-cta-bookend">Porque los equipos de élite no nacen. <em>Se construyen.</em></div>
+  </section>
+
+  <footer class="page-footer">
+    © 2026 <span class="gold">Alex Dakov</span>
+  </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    ScrollTrigger.create({ start: 'top -50', end: 99999, toggleClass: { className: 'scrolled', targets: '#header' } });
+
+    // === HAMBURGER MENU (estilo Kwik overlay) ===
+    (function() {
+      const burger = document.getElementById('hamburger');
+      const overlay = document.getElementById('overlay-nav');
+      const links = overlay.querySelectorAll('a');
+
+      function close() {
+        burger.classList.remove('open');
+        overlay.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      function toggle() {
+        const willOpen = !burger.classList.contains('open');
+        burger.classList.toggle('open', willOpen);
+        overlay.classList.toggle('open', willOpen);
+        burger.setAttribute('aria-expanded', willOpen);
+        overlay.setAttribute('aria-hidden', !willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      }
+      burger.addEventListener('click', toggle);
+      links.forEach(a => a.addEventListener('click', close));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    })();
+
+    if (!prefersReduced) {
+      const heroTl = gsap.timeline({ delay: 0.2 });
+      heroTl.from('.hero-eyebrow', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' });
+      heroTl.from('.hero-headline .word', { y: 80, opacity: 0, stagger: 0.1, duration: 1, ease: 'power3.out' }, '-=0.5');
+      heroTl.from('.hero-subhead', { y: 30, opacity: 0, duration: 0.8 }, '-=0.5');
+      heroTl.from('.hero-actions > *', { y: 20, opacity: 0, stagger: 0.1, duration: 0.6 }, '-=0.4');
+      heroTl.from('.scroll-down', { opacity: 0, duration: 0.6 }, '-=0.2');
+
+      gsap.to('#heroBg', {
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
+        y: 100, scale: 1.05
+      });
+      gsap.to('.hero-content', {
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
+        y: -80, opacity: 0.5
+      });
+
+      gsap.from('.trusted-logo', {
+        scrollTrigger: { trigger: '.trusted-strip', start: 'top 85%' },
+        y: 20, opacity: 0, stagger: 0.08, duration: 0.6, ease: 'power3.out'
+      });
+
+      function animateBlock(selector) {
+        gsap.from(`${selector} .block-title, ${selector} .block-number, ${selector} .block-intro`, {
+          scrollTrigger: { trigger: selector, start: 'top 75%' },
+          y: 50, opacity: 0, duration: 1, stagger: 0.12, ease: 'power3.out'
+        });
+        ScrollTrigger.create({
+          trigger: `${selector} .block-divider-top`,
+          start: 'top 85%',
+          onEnter: () => document.querySelector(`${selector} .block-divider-top`)?.classList.add('in-view')
+        });
+      }
+      ['[data-block="01"]','[data-block="02"]','[data-block="03"]','[data-block="04"]','[data-block="05"]','[data-block="06"]','[data-block="07"]','[data-block="08"]','[data-block="09"]'].forEach(animateBlock);
+
+      gsap.from('[data-block="07"] .stage-video-wrap', {
+        scrollTrigger: { trigger: '[data-block="07"] .stage-video-wrap', start: 'top 80%' },
+        y: 50, opacity: 0, duration: 1, ease: 'power3.out'
+      });
+      gsap.from('[data-block="08"] .reel-card, [data-block="08"] .reels-cta-wrap', {
+        scrollTrigger: { trigger: '[data-block="08"] .reels-grid', start: 'top 80%' },
+        y: 50, opacity: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out'
+      });
+
+      gsap.from('[data-block="01"] .why-quote', {
+        scrollTrigger: { trigger: '[data-block="01"] .why-grid', start: 'top 75%' },
+        x: -40, opacity: 0, duration: 1, ease: 'power3.out'
+      });
+      gsap.from('[data-block="01"] .why-body p, [data-block="01"] .why-list li', {
+        scrollTrigger: { trigger: '[data-block="01"] .why-body', start: 'top 80%' },
+        y: 30, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out'
+      });
+      gsap.from('[data-block="01"] .why-portrait', {
+        scrollTrigger: { trigger: '[data-block="01"] .why-grid', start: 'top 70%' },
+        x: 40, opacity: 0, duration: 1, ease: 'power3.out'
+      });
+
+      gsap.from('[data-block="02"] .testimonio-card', {
+        scrollTrigger: { trigger: '[data-block="02"] .testimonios-grid-3', start: 'top 80%' },
+        y: 60, opacity: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out'
+      });
+
+      gsap.from('[data-block="03"] .paso', {
+        scrollTrigger: { trigger: '[data-block="03"] .proceso-grid', start: 'top 80%' },
+        y: 50, opacity: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out'
+      });
+
+      gsap.from('[data-block="04"] .triptych > *', {
+        scrollTrigger: { trigger: '[data-block="04"] .triptych', start: 'top 80%' },
+        y: 60, opacity: 0, duration: 1, stagger: 0.15, ease: 'power3.out'
+      });
+      gsap.from('[data-block="04"] .about-text .line-inner', {
+        scrollTrigger: { trigger: '[data-block="04"] .about-text', start: 'top 75%' },
+        y: 100, opacity: 0, duration: 1.2, stagger: 0.1, ease: 'power3.out'
+      });
+      gsap.from('[data-block="04"] .about-stat', {
+        scrollTrigger: { trigger: '[data-block="04"] .about-stats', start: 'top 80%' },
+        y: 30, opacity: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out'
+      });
+
+      gsap.from('[data-block="05"] .sost-photo, [data-block="05"] .sost-image', {
+        scrollTrigger: { trigger: '[data-block="05"] .sost-grid', start: 'top 75%' },
+        x: -40, opacity: 0, duration: 1, ease: 'power3.out'
+      });
+      gsap.from('[data-block="05"] .story-teaser > *', {
+        scrollTrigger: { trigger: '[data-block="05"] .story-grid', start: 'top 75%' },
+        y: 30, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out'
+      });
+      gsap.from('[data-block="05"] .why-portrait-photo', {
+        scrollTrigger: { trigger: '[data-block="05"] .story-grid', start: 'top 72%' },
+        x: 40, opacity: 0, duration: 1, ease: 'power3.out'
+      });
+      gsap.from('[data-block="05"] .sost-lead, [data-block="05"] .sost-body p, [data-block="05"] .sost-impact > div, [data-block="05"] .sost-cta', {
+        scrollTrigger: { trigger: '[data-block="05"] .sost-content', start: 'top 75%' },
+        y: 40, opacity: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out'
+      });
+
+      // Sost video section
+      gsap.from('[data-block="05"] .sost-video-section .sost-sub-eyebrow, [data-block="05"] .sost-video-section .sost-sub-title, [data-block="05"] .sost-video-wrap, [data-block="05"] .sost-video-caption', {
+        scrollTrigger: { trigger: '[data-block="05"] .sost-video-section', start: 'top 80%' },
+        y: 40, opacity: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out'
+      });
+
+      // Sost speaking topics
+      gsap.from('[data-block="05"] .sost-speaking .sost-sub-eyebrow, [data-block="05"] .sost-speaking .sost-sub-title', {
+        scrollTrigger: { trigger: '[data-block="05"] .sost-speaking', start: 'top 80%' },
+        y: 40, opacity: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out'
+      });
+      gsap.from('[data-block="05"] .sost-topics-grid .sost-topic', {
+        scrollTrigger: { trigger: '[data-block="05"] .sost-topics-grid', start: 'top 80%' },
+        y: 60, opacity: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out'
+      });
+
+      gsap.from('.final-headline', {
+        scrollTrigger: { trigger: '.final-cta', start: 'top 75%' },
+        y: 40, opacity: 0, duration: 1, ease: 'power3.out'
+      });
+      gsap.from('.final-cta-button', {
+        scrollTrigger: { trigger: '.final-cta', start: 'top 75%' },
+        opacity: 0, duration: 1, delay: 0.2, ease: 'power3.out', clearProps: 'transform'
+      });
+    }
+
+    // Testimonio carrusel REMOVIDO en v12 — sustituido por grid estático de 3 cards
+
+    // === YouTube facade: carga el iframe solo al hacer clic (rendimiento) ===
+    (function() {
+      document.querySelectorAll('.yt-facade').forEach(function(facade) {
+        function play() {
+          const id = facade.getAttribute('data-yt');
+          if (!id || facade.dataset.loaded) return;
+          facade.dataset.loaded = '1';
+          const iframe = document.createElement('iframe');
+          iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1';
+          iframe.title = 'Charla TEDx — Alex Dakov';
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+          iframe.allowFullscreen = true;
+          facade.innerHTML = '';
+          facade.appendChild(iframe);
+        }
+        facade.addEventListener('click', play);
+        facade.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); }
+        });
+      });
+    })();
+
+    // === Carrusel de testimonios: auto + flechas + arrastre ===
+    (function() {
+      const marquee = document.getElementById('testimoniosMarquee');
+      if (!marquee) return;
+      const track = marquee.firstElementChild;
+      const cards = track.children; // 12 (6 + 6 duplicados)
+      const prev = document.getElementById('tcarPrev');
+      const next = document.getElementById('tcarNext');
+      const carousel = marquee.parentElement;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let step = 0, loopW = 0, anchor = 0;
+      function measure() {
+        if (cards.length < 7) return;
+        step = cards[1].offsetLeft - cards[0].offsetLeft;       // ancho de una tarjeta + separación
+        loopW = step * (cards.length / 2);                       // periodo = 6 tarjetas
+        anchor = cards[0].offsetLeft;
+      }
+      measure();
+
+      let pos = anchor;
+      let paused = false, hover = false, dragging = false, resumeT = null;
+      let tween = 0;                 // distancia pendiente del clic de flecha (con signo)
+      const SPEED = reduced ? 0 : 30; // px/s del avance automático
+      let last = null;
+
+      function pauseAuto(ms) {
+        paused = true;
+        clearTimeout(resumeT);
+        resumeT = setTimeout(() => { paused = false; }, ms || 2600);
+      }
+      function normalize() {
+        if (!loopW) return;
+        while (pos >= anchor + loopW) pos -= loopW;
+        while (pos < anchor) pos += loopW;
+      }
+      function frame(t) {
+        if (last == null) last = t;
+        const dt = (t - last) / 1000; last = t;
+        if (Math.abs(tween) > 0.5) {
+          let m = tween * 0.16;
+          if (Math.abs(m) < 2.5) m = Math.sign(tween) * 2.5;
+          if (Math.abs(m) > Math.abs(tween)) m = tween;
+          pos += m; tween -= m;
+        } else if (!paused && !hover && !dragging) {
+          pos += SPEED * dt;
+        }
+        normalize();
+        marquee.scrollLeft = pos;
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+
+      if (next) next.addEventListener('click', () => { pauseAuto(); tween += step; });
+      if (prev) prev.addEventListener('click', () => { pauseAuto(); tween -= step; });
+
+      carousel.addEventListener('mouseenter', () => { hover = true; });
+      carousel.addEventListener('mouseleave', () => { hover = false; });
+
+      // Arrastre con el ratón / dedo
+      let startX = 0, startPos = 0;
+      marquee.addEventListener('pointerdown', (e) => {
+        dragging = true; tween = 0;
+        startX = e.clientX; startPos = pos;
+        marquee.classList.add('dragging');
+        try { marquee.setPointerCapture(e.pointerId); } catch (err) {}
+      });
+      marquee.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        pos = startPos - (e.clientX - startX);
+      });
+      function endDrag() {
+        if (!dragging) return;
+        dragging = false;
+        marquee.classList.remove('dragging');
+        pauseAuto(2200);
+      }
+      marquee.addEventListener('pointerup', endDrag);
+      marquee.addEventListener('pointercancel', endDrag);
+
+      let rt = null;
+      window.addEventListener('resize', () => {
+        clearTimeout(rt);
+        rt = setTimeout(() => { const f = (pos - anchor); measure(); pos = anchor + f; normalize(); }, 150);
+      });
+    })();
+
+    window.addEventListener('resize', () => ScrollTrigger.refresh());
+  </script>
+  <!-- Instagram embeds (Bloque 08 — Voz en redes) -->
+  <script async src="https://www.instagram.com/embed.js"></script>
+
+</body>
+</html>

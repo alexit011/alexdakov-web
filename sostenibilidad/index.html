@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sostenibilidad e Impacto · Alex Dakov</title>
+  <meta name="description" content="La misión de Alex Dakov: Oceanic Global, ONU, AguaNEA, restauración de corales en Costa Rica.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-base: #090C17;
+      --navy-alt: #0A0B17;
+      --navy-deep: #070A14;
+      --navy-card: #14213D;
+      --navy-card-hover: #1B2A4D;
+      --bg-dark-deep: #04060F;
+      --text: #F0EBE0;
+      --text-secondary: #A09B92;
+      --text-tertiary: #6E6960;
+      --gold: #C9A961;
+      --gold-hover: #B69465;
+      --bronze: #8B6F47;
+      --gold-soft: rgba(201,169,97,0.12);
+      --gold-glow: rgba(201,169,97,0.06);
+      --gold-dashed: rgba(201,169,97,0.45);
+      --navy-glow: rgba(70,120,180,0.10);
+      --border: rgba(240,235,224,0.08);
+      --border-strong: rgba(240,235,224,0.16);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--navy-base);
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 64px;
+      z-index: 100;
+      transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s;
+    }
+    .header.scrolled {
+      background: rgba(9,12,23,0.82);
+      backdrop-filter: blur(20px) saturate(180%);
+      padding: 20px 64px;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 28px;
+      color: var(--text);
+      letter-spacing: 0.5px;
+      line-height: 1;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 6px;
+      display: inline-block;
+    }
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .logo:hover::after { width: 100%; }
+    .logo-mark {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      vertical-align: middle;
+      margin: 0 8px 4px;
+    }
+
+    /* HAMBURGER */
+    .hamburger {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      width: 48px;
+      height: 48px;
+      transition: opacity 0.3s;
+    }
+    .hamburger:hover { opacity: 0.7; }
+    .hamburger span {
+      width: 28px;
+      height: 1px;
+      background: var(--text);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s, background 0.3s;
+      transform-origin: center;
+    }
+    .hamburger.open span { background: var(--gold); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* OVERLAY NAV */
+    .overlay-nav {
+      position: fixed;
+      inset: 0;
+      background: rgba(7,10,20,0.96);
+      backdrop-filter: blur(40px) saturate(180%);
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px;
+    }
+    .overlay-nav.open { opacity: 1; pointer-events: auto; }
+    .overlay-nav-inner { text-align: center; }
+    .overlay-nav-eyebrow {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 48px;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s 0.3s, transform 0.6s 0.3s;
+    }
+    .overlay-nav.open .overlay-nav-eyebrow { opacity: 1; transform: translateY(0); }
+    .overlay-nav ul { list-style: none; padding: 0; margin: 0; }
+    .overlay-nav li {
+      margin: 12px 0;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .overlay-nav.open li { opacity: 1; transform: translateY(0); }
+    .overlay-nav.open li:nth-child(1) { transition-delay: 0.4s; }
+    .overlay-nav.open li:nth-child(2) { transition-delay: 0.5s; }
+    .overlay-nav.open li:nth-child(3) { transition-delay: 0.6s; }
+    .overlay-nav.open li:nth-child(4) { transition-delay: 0.7s; }
+    .overlay-nav a {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      transition: color 0.3s, padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-block;
+      position: relative;
+    }
+    .overlay-nav a:hover { color: var(--gold); padding-left: 24px; }
+    .overlay-nav a::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+      color: var(--gold);
+      font-style: normal;
+    }
+    .overlay-nav a:hover::before { opacity: 1; }
+    .overlay-nav a.active {
+      color: var(--gold);
+    }
+    .overlay-nav-footer {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 32px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      opacity: 0;
+      transition: opacity 0.6s 0.9s;
+    }
+    .overlay-nav.open .overlay-nav-footer { opacity: 0.7; }
+    .overlay-nav-footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      transition: color 0.3s;
+    }
+    .overlay-nav-footer a:hover { color: var(--gold); padding-left: 0; }
+    .overlay-nav-footer a::before { display: none; }
+
+    /* PAGE HERO (placeholder) */
+    .page-hero {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 160px 64px 80px;
+      position: relative;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 80% 20%, var(--navy-glow), transparent 50%),
+        radial-gradient(ellipse at 15% 80%, var(--gold-glow), transparent 50%),
+        var(--navy-base);
+    }
+    .page-eyebrow {
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 36px;
+      font-weight: 500;
+    }
+    .page-eyebrow::before { content: '— '; letter-spacing: -2px; }
+    .page-eyebrow::after { content: ' —'; letter-spacing: -2px; }
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 36px;
+      color: var(--text);
+      max-width: 900px;
+    }
+    .page-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+    .page-subtitle {
+      font-size: clamp(16px, 1.4vw, 19px);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 600px;
+      font-weight: 300;
+      margin-bottom: 80px;
+    }
+
+    /* COMING SOON */
+    .coming-soon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .coming-soon-line {
+      width: 80px;
+      height: 1px;
+      background: var(--gold);
+      position: relative;
+    }
+    .coming-soon-line::after {
+      content: '';
+      position: absolute;
+      top: -3px; left: 50%;
+      transform: translateX(-50%);
+      width: 7px;
+      height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .coming-soon-text {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .coming-soon-desc {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(18px, 1.8vw, 24px);
+      line-height: 1.5;
+      color: var(--text-secondary);
+      max-width: 560px;
+      font-weight: 400;
+    }
+    .coming-soon-link {
+      margin-top: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 6px;
+      transition: gap 0.25s, color 0.25s;
+    }
+    .coming-soon-link:hover { gap: 16px; color: var(--text); }
+    .coming-soon-link svg { width: 14px; height: 10px; }
+
+    /* FOOTER */
+    .page-footer {
+      background: var(--navy-deep);
+      padding: 40px 64px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+    }
+    .page-footer .gold { color: var(--gold); }
+
+    @media (max-width: 1024px) {
+      .header { padding: 20px 32px; }
+      .header.scrolled { padding: 16px 32px; }
+      .overlay-nav { padding: 32px; }
+      .page-hero { padding: 120px 32px 60px; }
+      .page-footer { padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header" id="header">
+    <a href="/" class="logo">Alex<span class="logo-mark"></span>Dakov</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir navegación" aria-expanded="false" aria-controls="overlay-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <nav class="overlay-nav" id="overlay-nav" aria-hidden="true">
+    <div class="overlay-nav-inner">
+      <div class="overlay-nav-eyebrow">— Navegación —</div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/conferencias" class="">Conferencias</a></li>
+        <li><a href="/sostenibilidad" class="active">Sostenibilidad e Impacto</a></li>
+        <li><a href="/contacto" class="">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="overlay-nav-footer">
+      <a href="https://instagram.com/alex_dakov" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/in/alex-dakov/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://aguanea.com" target="_blank" rel="noopener">AguaNEA</a>
+    </div>
+  </nav>
+
+  <style>
+    /* === Sostenibilidad page · contenido === */
+    .sost-hero {
+      padding: 180px 64px 24px;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .sost-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 6.5vw, 84px);
+      font-weight: 500;
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      margin-bottom: 36px;
+      color: var(--text);
+    }
+    .sost-hero-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+    .sost-hero-sub {
+      font-size: clamp(17px, 1.5vw, 22px);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 720px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    .sost-section {
+      padding: 80px 64px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .sost-section.alt { background: var(--navy-alt); max-width: none; padding: 36px 64px 100px; }
+    .sost-section-inner { max-width: 920px; margin: 0 auto; }
+    .sost-hero + .sost-section { padding-top: 36px; padding-bottom: 24px; }
+
+    .sost-eyebrow {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .sost-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 40px;
+      color: var(--text);
+    }
+    .sost-section-title em { font-style: italic; color: var(--gold); }
+    .sost-body p {
+      font-size: clamp(16px, 1.4vw, 19px);
+      line-height: 1.85;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+    .sost-body p strong { color: var(--text); font-weight: 500; }
+
+    .sost-amazon-quote {
+      margin: 80px auto;
+      max-width: 760px;
+      padding: 56px 56px;
+      border-left: 3px solid var(--gold);
+      background: rgba(201,169,97,0.04);
+    }
+    .sost-amazon-quote p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(22px, 2.2vw, 32px);
+      line-height: 1.45;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .sost-blocks {
+      display: grid;
+      gap: 32px;
+      margin-top: 48px;
+    }
+    .sost-block-card {
+      padding: 48px 48px;
+      border: 1px solid var(--border);
+      background: var(--navy-card);
+      transition: border-color 0.4s, background 0.4s, transform 0.4s;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+    .sost-block-card:hover {
+      border-color: var(--gold);
+      background: var(--navy-card-hover);
+      transform: translateY(-4px);
+    }
+    .sost-block-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .sost-block-card p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      font-weight: 300;
+      margin: 0;
+    }
+    .sost-block-card p strong { color: var(--text); font-weight: 500; }
+
+    /* Bloque "Lo que construí": 2 columnas (tarjetas | foto con efectos de la home) */
+    .sost-build-split {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 48px;
+      align-items: stretch;
+      margin-top: 48px;
+    }
+    .sost-build-split .sost-blocks { margin-top: 0; }
+    .sost-build-photo {
+      position: relative;
+      overflow: hidden;
+      min-height: 380px;
+    }
+    .sost-build-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 38%;
+      filter: grayscale(0.25) brightness(0.88) contrast(1.08) saturate(0.85);
+      transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      -webkit-mask-image:
+        radial-gradient(130% 120% at 50% 45%, #000 48%, transparent 85%),
+        linear-gradient(to bottom, transparent 0%, #000 15%, #000 78%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-image:
+        radial-gradient(130% 120% at 50% 45%, #000 48%, transparent 85%),
+        linear-gradient(to bottom, transparent 0%, #000 15%, #000 78%, transparent 100%);
+      mask-composite: intersect;
+    }
+    .sost-build-photo:hover img { filter: grayscale(0) brightness(1) contrast(1) saturate(1); }
+    @media (max-width: 860px) {
+      .sost-build-split { grid-template-columns: 1fr; gap: 32px; }
+      .sost-build-photo { min-height: 440px; }
+    }
+
+    .sost-cta-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 32px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 6px;
+      transition: gap 0.25s, color 0.25s;
+    }
+    .sost-cta-inline:hover { gap: 16px; color: var(--text); }
+    .sost-cta-inline svg { width: 16px; height: 12px; }
+
+    .sost-bridge {
+      padding: 36px 64px 120px;
+      background: var(--navy-deep);
+      text-align: center;
+    }
+    .sost-section:has(+ .sost-bridge) { padding-bottom: 30px; }
+    .sost-bridge-inner { max-width: 820px; margin: 0 auto; }
+    .sost-bridge p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 48px;
+    }
+    .sost-bridge p strong { color: var(--gold); font-style: normal; font-weight: 500; }
+    .sost-bridge-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--gold);
+      color: var(--navy-base);
+      padding: 22px 48px;
+      border-radius: 100px;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.25s, gap 0.25s;
+    }
+    .sost-bridge-cta:hover { background: var(--gold-hover); transform: translateY(-2px); gap: 18px; }
+    .sost-bridge-cta svg { width: 18px; height: 14px; }
+
+    @media (max-width: 1024px) {
+      .sost-hero { padding: 120px 32px 16px; }
+      .sost-section { padding: 60px 32px; }
+      .sost-hero + .sost-section { padding-top: 24px; padding-bottom: 16px; }
+      .sost-section.alt { padding: 32px 32px 80px; }
+      .sost-amazon-quote { padding: 32px 28px; margin: 60px auto; }
+      .sost-block-card { padding: 32px 28px; }
+      .sost-bridge { padding: 28px 32px 80px; }
+      .sost-section:has(+ .sost-bridge) { padding-bottom: 20px; }
+    }
+  </style>
+
+  <!-- HERO -->
+  <section class="sost-hero">
+    <div class="page-eyebrow">Sostenibilidad e Impacto</div>
+    <h1 class="sost-hero-title">Hay viajes de los que <em>no vuelves igual</em>.</h1>
+    <p class="sost-hero-sub">Este es el mío: cómo pasé de los escenarios más grandes del mundo a dedicar mi vida al océano y al planeta.</p>
+  </section>
+
+  <!-- MI OTRA VIDA -->
+  <section class="sost-section">
+    <div class="sost-eyebrow">Mi otra vida</div>
+    <div class="sost-body">
+      <p>Durante años viví entre <strong>focos y cuentas atrás</strong>. Empecé a dirigir equipos con 24 años en producciones de <strong>Cirque du Soleil, Red Bull y Space Ibiza</strong> —entre otros—. De Barcelona a Hong Kong, pasando por Los Ángeles, Miami, New York, Dubai o México. Tenía el trabajo que muchos soñaban.</p>
+      <p>Acabé dirigiendo decenas de festivales por el mundo. Con centenares de personas a mi cargo. Con menos de 30 años…</p>
+      <p>Hasta que fui a lo más profundo del Amazonas.</p>
+    </div>
+
+    <blockquote class="sost-amazon-quote">
+      <p>"Allí, rodeado de una selva donde absolutamente todo vive conectado, entendí que necesitaba un cambio, y en ese instante decidí transformar mi vida."</p>
+    </blockquote>
+
+    <div class="sost-body">
+      <p>Dejé atrás los eventos y me lancé a algo que de verdad me llenara el alma.</p>
+    </div>
+  </section>
+
+  <!-- LO QUE CONSTRUÍ -->
+  <section class="sost-section alt">
+    <div class="sost-section-inner">
+      <div class="sost-eyebrow">Lo que construí</div>
+      <h2 class="sost-section-title">Dos proyectos. Una misma <em>obsesión</em>.</h2>
+
+      <div class="sost-build-split">
+        <div class="sost-blocks">
+          <a class="sost-block-card" href="https://oceanic.global/" target="_blank" rel="noopener">
+            <h3>Oceanic Global</h3>
+            <p>Fui una de las primeras personas de su equipo. De <strong>limpiar playas en Ibiza</strong> a organizar el <strong>Día Mundial de los Océanos en la sede de las Naciones Unidas, en Nueva York</strong>.</p>
+          </a>
+
+          <a class="sost-block-card" href="https://aguanea.com" target="_blank" rel="noopener">
+            <h3>Agua NEA</h3>
+            <p>Fundé la <strong>primera marca de agua en lata en España</strong>, para proporcionar a la industria del hospitality una alternativa a los plásticos de un solo uso. Además creamos una marca de impacto, cuya misión es <strong>restaurar ecosistemas marinos</strong>. Hoy hemos sembrado <strong>más de 3.000 corales en Costa Rica</strong>, y vendemos agua en <strong>11 países</strong>.</p>
+          </a>
+        </div>
+
+        <figure class="sost-build-photo">
+          <img src="/assets/IMG-05_sost_buceo.jpg" alt="Alex Dakov buceando en el océano" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHARLAS DE IMPACTO -->
+  <section class="sost-section">
+    <div class="sost-eyebrow">Charlas de impacto</div>
+    <h2 class="sost-section-title">La historia que llevé a <em>escenarios de todo el mundo</em>.</h2>
+    <div class="sost-body">
+      <p>Durante años llevé esta historia a escenarios de todo el mundo —<strong>Nike, Vodafone, MWC</strong>— hablando de sostenibilidad, impacto y propósito; y del papel de cada uno de nosotros en el mayor reto de nuestra generación.</p>
+    </div>
+    <a href="/contacto" class="sost-cta-inline">
+      ¿Quieres una conferencia de sostenibilidad para tu evento?
+      <svg viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h20M14 1l8 8-8 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </section>
+
+  <footer class="page-footer">
+    © 2026 <span class="gold">Alex Dakov</span>
+  </footer>
+
+  <script>
+    // Header scroll blur
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Hamburger toggle
+    (function() {
+      const burger = document.getElementById('hamburger');
+      const overlay = document.getElementById('overlay-nav');
+      function close() {
+        burger.classList.remove('open');
+        overlay.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      function toggle() {
+        const willOpen = !burger.classList.contains('open');
+        burger.classList.toggle('open', willOpen);
+        overlay.classList.toggle('open', willOpen);
+        burger.setAttribute('aria-expanded', willOpen);
+        overlay.setAttribute('aria-hidden', !willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      }
+      burger.addEventListener('click', toggle);
+      overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    })();
+  </script>
+
+</body>
+</html>

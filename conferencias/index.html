@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conferencias · Alex Dakov</title>
+  <meta name="description" content="Speaking topics, formatos y catálogo de Alex Dakov como conferenciante de liderazgo desde la operación real.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-base: #090C17;
+      --navy-alt: #0A0B17;
+      --navy-deep: #070A14;
+      --navy-card: #14213D;
+      --navy-card-hover: #1B2A4D;
+      --bg-dark-deep: #04060F;
+      --text: #F0EBE0;
+      --text-secondary: #A09B92;
+      --text-tertiary: #6E6960;
+      --gold: #C9A961;
+      --gold-hover: #B69465;
+      --bronze: #8B6F47;
+      --gold-soft: rgba(201,169,97,0.12);
+      --gold-glow: rgba(201,169,97,0.06);
+      --gold-dashed: rgba(201,169,97,0.45);
+      --navy-glow: rgba(70,120,180,0.10);
+      --border: rgba(240,235,224,0.08);
+      --border-strong: rgba(240,235,224,0.16);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--navy-base);
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 64px;
+      z-index: 100;
+      transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s;
+    }
+    .header.scrolled {
+      background: rgba(9,12,23,0.82);
+      backdrop-filter: blur(20px) saturate(180%);
+      padding: 20px 64px;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 28px;
+      color: var(--text);
+      letter-spacing: 0.5px;
+      line-height: 1;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 6px;
+      display: inline-block;
+    }
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .logo:hover::after { width: 100%; }
+    .logo-mark {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      vertical-align: middle;
+      margin: 0 8px 4px;
+    }
+
+    /* HAMBURGER */
+    .hamburger {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      width: 48px;
+      height: 48px;
+      transition: opacity 0.3s;
+    }
+    .hamburger:hover { opacity: 0.7; }
+    .hamburger span {
+      width: 28px;
+      height: 1px;
+      background: var(--text);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s, background 0.3s;
+      transform-origin: center;
+    }
+    .hamburger.open span { background: var(--gold); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* OVERLAY NAV */
+    .overlay-nav {
+      position: fixed;
+      inset: 0;
+      background: rgba(7,10,20,0.96);
+      backdrop-filter: blur(40px) saturate(180%);
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px;
+    }
+    .overlay-nav.open { opacity: 1; pointer-events: auto; }
+    .overlay-nav-inner { text-align: center; }
+    .overlay-nav-eyebrow {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 48px;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s 0.3s, transform 0.6s 0.3s;
+    }
+    .overlay-nav.open .overlay-nav-eyebrow { opacity: 1; transform: translateY(0); }
+    .overlay-nav ul { list-style: none; padding: 0; margin: 0; }
+    .overlay-nav li {
+      margin: 12px 0;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .overlay-nav.open li { opacity: 1; transform: translateY(0); }
+    .overlay-nav.open li:nth-child(1) { transition-delay: 0.4s; }
+    .overlay-nav.open li:nth-child(2) { transition-delay: 0.5s; }
+    .overlay-nav.open li:nth-child(3) { transition-delay: 0.6s; }
+    .overlay-nav.open li:nth-child(4) { transition-delay: 0.7s; }
+    .overlay-nav a {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      transition: color 0.3s, padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-block;
+      position: relative;
+    }
+    .overlay-nav a:hover { color: var(--gold); padding-left: 24px; }
+    .overlay-nav a::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+      color: var(--gold);
+      font-style: normal;
+    }
+    .overlay-nav a:hover::before { opacity: 1; }
+    .overlay-nav a.active {
+      color: var(--gold);
+    }
+    .overlay-nav-footer {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 32px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      opacity: 0;
+      transition: opacity 0.6s 0.9s;
+    }
+    .overlay-nav.open .overlay-nav-footer { opacity: 0.7; }
+    .overlay-nav-footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      transition: color 0.3s;
+    }
+    .overlay-nav-footer a:hover { color: var(--gold); padding-left: 0; }
+    .overlay-nav-footer a::before { display: none; }
+
+    /* PAGE HERO (placeholder) */
+    .page-hero {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 160px 64px 80px;
+      position: relative;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 80% 20%, var(--navy-glow), transparent 50%),
+        radial-gradient(ellipse at 15% 80%, var(--gold-glow), transparent 50%),
+        var(--navy-base);
+    }
+    .page-eyebrow {
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 36px;
+      font-weight: 500;
+    }
+    .page-eyebrow::before { content: '— '; letter-spacing: -2px; }
+    .page-eyebrow::after { content: ' —'; letter-spacing: -2px; }
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 36px;
+      color: var(--text);
+      max-width: 900px;
+    }
+    .page-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+    .page-subtitle {
+      font-size: clamp(16px, 1.4vw, 19px);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 600px;
+      font-weight: 300;
+      margin-bottom: 80px;
+    }
+
+    /* COMING SOON */
+    .coming-soon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .coming-soon-line {
+      width: 80px;
+      height: 1px;
+      background: var(--gold);
+      position: relative;
+    }
+    .coming-soon-line::after {
+      content: '';
+      position: absolute;
+      top: -3px; left: 50%;
+      transform: translateX(-50%);
+      width: 7px;
+      height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .coming-soon-text {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .coming-soon-desc {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(18px, 1.8vw, 24px);
+      line-height: 1.5;
+      color: var(--text-secondary);
+      max-width: 560px;
+      font-weight: 400;
+    }
+    .coming-soon-link {
+      margin-top: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 6px;
+      transition: gap 0.25s, color 0.25s;
+    }
+    .coming-soon-link:hover { gap: 16px; color: var(--text); }
+    .coming-soon-link svg { width: 14px; height: 10px; }
+
+    /* FOOTER */
+    .page-footer {
+      background: var(--navy-deep);
+      padding: 40px 64px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+    }
+    .page-footer .gold { color: var(--gold); }
+
+    @media (max-width: 1024px) {
+      .header { padding: 20px 32px; }
+      .header.scrolled { padding: 16px 32px; }
+      .overlay-nav { padding: 32px; }
+      .page-hero { padding: 120px 32px 60px; }
+      .page-footer { padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header" id="header">
+    <a href="/" class="logo">Alex<span class="logo-mark"></span>Dakov</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir navegación" aria-expanded="false" aria-controls="overlay-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <nav class="overlay-nav" id="overlay-nav" aria-hidden="true">
+    <div class="overlay-nav-inner">
+      <div class="overlay-nav-eyebrow">— Navegación —</div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/conferencias" class="active">Conferencias</a></li>
+        <li><a href="/sostenibilidad" class="">Sostenibilidad e Impacto</a></li>
+        <li><a href="/contacto" class="">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="overlay-nav-footer">
+      <a href="https://instagram.com/alex_dakov" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/in/alex-dakov/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://aguanea.com" target="_blank" rel="noopener">AguaNEA</a>
+    </div>
+  </nav>
+
+  <style>
+    /* === Conferencias page · contenido === */
+    .conf-hero {
+      padding: 140px 64px 48px;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .conf-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 6vw, 76px);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 36px;
+      color: var(--text);
+    }
+    .conf-hero-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+    .conf-hero-intro {
+      font-size: clamp(17px, 1.5vw, 21px);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    .conf-list {
+      padding: 40px 64px 64px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      gap: 24px;
+    }
+    /* Fila destacada: cuadro "Equipos imparables" (2/3) + foto (1/3) con efectos de la home */
+    .conf-hero-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    .conf-hero-photo {
+      position: relative;
+      overflow: hidden;
+      min-height: 100%;
+    }
+    .conf-hero-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: grayscale(0.25) brightness(0.88) contrast(1.08) saturate(0.85);
+      transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      -webkit-mask-image:
+        radial-gradient(130% 120% at 50% 45%, #000 48%, transparent 85%),
+        linear-gradient(to bottom, transparent 0%, #000 15%, #000 78%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-image:
+        radial-gradient(130% 120% at 50% 45%, #000 48%, transparent 85%),
+        linear-gradient(to bottom, transparent 0%, #000 15%, #000 78%, transparent 100%);
+      mask-composite: intersect;
+    }
+    .conf-hero-photo:hover img { filter: grayscale(0) brightness(1) contrast(1) saturate(1); }
+    /* Variante con la foto en el primer tercio (izquierda) */
+    .conf-hero-row--rev { grid-template-columns: 1fr 2fr; }
+    @media (max-width: 860px) {
+      .conf-hero-row { grid-template-columns: 1fr; }
+      .conf-hero-row--rev { grid-template-columns: 1fr; }
+      .conf-hero-row--rev .conf-hero-photo { order: 1; }
+      .conf-hero-photo { min-height: 320px; }
+    }
+    .conf-item {
+      padding: 44px 56px;
+      border: 1px solid var(--border);
+      background: var(--navy-card);
+      transition: border-color 0.4s, background 0.4s, transform 0.4s;
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .conf-item:hover {
+      border-color: var(--gold);
+      background: var(--navy-card-hover);
+      transform: translateY(-4px);
+    }
+    .conf-item-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      color: var(--gold);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
+    .conf-item-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 2.4vw, 34px);
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    .conf-item-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(16px, 1.4vw, 20px);
+      line-height: 1.5;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+    .conf-meta {
+      margin-top: 8px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .conf-meta-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      padding-top: 2px;
+    }
+    .conf-meta-text {
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+    .conf-meta-text strong { color: var(--text); font-weight: 500; }
+    .conf-meta-text ul { padding-left: 0; list-style: none; margin: 0; }
+    .conf-meta-text ul li {
+      padding-left: 24px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .conf-meta-text ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 13px;
+      width: 12px; height: 1px;
+      background: var(--gold);
+    }
+
+    .conf-format {
+      padding: 44px 64px;
+      max-width: 1100px;
+      margin: 0 auto 40px;
+      background: var(--navy-deep);
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .conf-format-eyebrow {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .conf-format-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 1.6vw, 24px);
+      line-height: 1.6;
+      color: var(--text);
+      font-style: italic;
+    }
+    .conf-format-text strong {
+      color: var(--gold);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .conf-cta {
+      padding: 64px 64px 88px;
+      text-align: center;
+      background: var(--navy-deep);
+      position: relative;
+    }
+    .conf-cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 48px;
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .conf-cta-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+    .conf-cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--gold);
+      color: var(--navy-base);
+      padding: 22px 48px;
+      border-radius: 100px;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.25s, gap 0.25s;
+      min-height: 44px;
+    }
+    .conf-cta-button:hover {
+      background: var(--gold-hover);
+      transform: translateY(-2px);
+      gap: 18px;
+    }
+    .conf-cta-button svg { width: 18px; height: 14px; }
+
+    @media (max-width: 1024px) {
+      .conf-hero { padding: 100px 32px 40px; }
+      .conf-list { padding: 36px 32px 48px; gap: 18px; }
+      .conf-item { padding: 32px 28px; grid-template-columns: 1fr; gap: 24px; }
+      .conf-item-num { font-size: 56px; }
+      .conf-meta { grid-template-columns: 1fr; gap: 12px; }
+      .conf-format { padding: 32px; margin: 0 32px 32px; }
+      .conf-cta { padding: 56px 32px 72px; }
+    }
+  </style>
+
+  <section class="conf-hero">
+    <div class="page-eyebrow">Conferencias</div>
+    <h1 class="conf-hero-title">Cuatro formas de llevar a tu equipo<br>al <em>siguiente nivel</em>.</h1>
+    <p class="conf-hero-intro">Todas se adaptan a tu evento, tu sector y tu nivel de audiencia.</p>
+  </section>
+
+  <section class="conf-list" id="conferencias">
+    <!-- 1 — Equipos imparables + foto -->
+    <div class="conf-hero-row">
+    <article class="conf-item">
+      <div class="conf-item-num">01</div>
+      <div>
+        <h2 class="conf-item-title">Equipos imparables</h2>
+        <p class="conf-item-tagline">Cómo se construye un equipo de élite en cualquier sector — aprendizajes de montar equipos de alto rendimiento por todo el mundo.</p>
+        <div class="conf-meta">
+          <div class="conf-meta-label">Para quién</div>
+          <div class="conf-meta-text">Cualquier empresa que quiera pasar de "empleados" a equipo de verdad.</div>
+        </div>
+        <div class="conf-meta">
+          <div class="conf-meta-label">Se lleva</div>
+          <div class="conf-meta-text">
+            <ul>
+              <li>Las claves reales de un equipo de élite (las que no salen en los libros).</li>
+              <li>Cómo generar confianza y responsabilidad sin microgestionar.</li>
+              <li>Un mapa con accionables para ir al siguiente nivel.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+      <figure class="conf-hero-photo">
+        <img src="/assets/IMG-conf_pickpack.jpg" alt="Alex Dakov en el escenario de Pick&amp;Pack" loading="lazy">
+      </figure>
+    </div>
+
+    <!-- 2 — La motivación se diseña + foto (foto a la izquierda) -->
+    <div class="conf-hero-row conf-hero-row--rev">
+      <figure class="conf-hero-photo">
+        <img src="/assets/IMG-conf_motivacion.jpg" alt="Alex Dakov en el escenario de GRENKE" loading="lazy">
+      </figure>
+    <article class="conf-item">
+      <div class="conf-item-num">02</div>
+      <div>
+        <h2 class="conf-item-title">La motivación se diseña</h2>
+        <p class="conf-item-tagline">La neurociencia de por qué tu equipo brilla o se apaga —y cómo activarla a voluntad.</p>
+        <div class="conf-meta">
+          <div class="conf-meta-label">Para quién</div>
+          <div class="conf-meta-text">Líderes y equipos "apagados".</div>
+        </div>
+        <div class="conf-meta">
+          <div class="conf-meta-label">Se lleva</div>
+          <div class="conf-meta-text">
+            <ul>
+              <li>Por qué la motivación clásica (premios y teambuildings) fracasa.</li>
+              <li>Las 3 palancas neurológicas del compromiso.</li>
+              <li>Hábitos concretos para mantener la energía alta cada semana.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+    </div>
+
+    <!-- 3 — Liderar cuando el error no es una opción + foto -->
+    <div class="conf-hero-row">
+    <article class="conf-item">
+      <div class="conf-item-num">03</div>
+      <div>
+        <h2 class="conf-item-title">Liderar cuando el error no es una opción</h2>
+        <p class="conf-item-tagline">Transformar equipos en ambientes de alta presión. La excelencia como “leitmotiv”.</p>
+        <div class="conf-meta">
+          <div class="conf-meta-label">Para quién</div>
+          <div class="conf-meta-text">Mandos y equipos bajo presión, plazos o alta exigencia.</div>
+        </div>
+        <div class="conf-meta">
+          <div class="conf-meta-label">Se lleva</div>
+          <div class="conf-meta-text">
+            <ul>
+              <li>Cómo decidir con calma cuando todo arde.</li>
+              <li>Proteger al equipo sin bajar el listón.</li>
+              <li>Convertir la presión en foco, no en bloqueo.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+      <figure class="conf-hero-photo">
+        <img src="/assets/IMG-conf_error.jpg" alt="Alex Dakov en el escenario" loading="lazy">
+      </figure>
+    </div>
+
+    <!-- 4 — Tu equipo y la IA: aliados, no rivales + foto (foto a la izquierda) -->
+    <div class="conf-hero-row conf-hero-row--rev">
+      <figure class="conf-hero-photo">
+        <img src="/assets/IMG-conf_ia.jpg" alt="Alex Dakov en un panel de conferencia" loading="lazy">
+      </figure>
+    <article class="conf-item">
+      <div class="conf-item-num">04</div>
+      <div>
+        <h2 class="conf-item-title">Tu equipo y la IA: aliados, no rivales</h2>
+        <p class="conf-item-tagline">La IA no le va a quitar a nadie, que sepa integrarla.</p>
+        <div class="conf-meta">
+          <div class="conf-meta-label">Para quién</div>
+          <div class="conf-meta-text">Equipos que quieren subirse a la IA y no saben por dónde empezar.</div>
+        </div>
+        <div class="conf-meta">
+          <div class="conf-meta-label">Se lleva</div>
+          <div class="conf-meta-text">
+            <ul>
+              <li>Una mentalidad sana sobre la IA (ni miedo ni hype).</li>
+              <li>Cómo implementarla en dinámicas de equipo.</li>
+              <li>Un primer plan para empezar a integrar IA esta semana. Casos de uso de sencillos a más complejos.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+    </div>
+
+    <!-- 5 — Conferencia a medida -->
+    <article class="conf-item">
+      <div class="conf-item-num">05</div>
+      <div>
+        <h2 class="conf-item-title">Conferencia a medida</h2>
+        <p class="conf-item-tagline">Cuéntame tu reto y creamos una conferencia diseñada solo para tu equipo.</p>
+        <div class="conf-meta">
+          <div class="conf-meta-label">Para quién</div>
+          <div class="conf-meta-text">Empresas con un momento o desafío muy concreto (fusión, cambio, nueva etapa, kickoff especial).</div>
+        </div>
+        <div class="conf-meta">
+          <div class="conf-meta-label">Se lleva</div>
+          <div class="conf-meta-text">Una charla construida desde cero alrededor de su realidad, sin moldes.</div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- Formato común -->
+  <section class="conf-format">
+    <div class="conf-format-eyebrow">— Formato —</div>
+    <p class="conf-format-text"><strong>Keynote</strong> 45-60 min<br><strong>Charla tipo TED</strong> 20-40 min<br>Taller in-company · Adaptable a kickoff, convención o evento corporativo.</p>
+  </section>
+
+  <!-- CTA página -->
+  <section class="conf-cta">
+    <h2 class="conf-cta-title">¿Cuál encaja con <em>tu evento</em>?<br>Cuéntamelo.</h2>
+    <a href="/contacto" class="conf-cta-button">
+      Cuéntame tu evento
+      <svg viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h20M14 1l8 8-8 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </section>
+
+  <footer class="page-footer">
+    © 2026 <span class="gold">Alex Dakov</span>
+  </footer>
+
+  <script>
+    // Header scroll blur
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Hamburger toggle
+    (function() {
+      const burger = document.getElementById('hamburger');
+      const overlay = document.getElementById('overlay-nav');
+      function close() {
+        burger.classList.remove('open');
+        overlay.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      function toggle() {
+        const willOpen = !burger.classList.contains('open');
+        burger.classList.toggle('open', willOpen);
+        overlay.classList.toggle('open', willOpen);
+        burger.setAttribute('aria-expanded', willOpen);
+        overlay.setAttribute('aria-hidden', !willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      }
+      burger.addEventListener('click', toggle);
+      overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    })();
+  </script>
+
+</body>
+</html>

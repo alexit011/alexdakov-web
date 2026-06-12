@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto · Alex Dakov</title>
+  <meta name="description" content="Cuéntame tu evento. Respondo en menos de 48h con disponibilidad.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-base: #090C17;
+      --navy-alt: #0A0B17;
+      --navy-deep: #070A14;
+      --navy-card: #14213D;
+      --navy-card-hover: #1B2A4D;
+      --bg-dark-deep: #04060F;
+      --text: #F0EBE0;
+      --text-secondary: #A09B92;
+      --text-tertiary: #6E6960;
+      --gold: #C9A961;
+      --gold-hover: #B69465;
+      --bronze: #8B6F47;
+      --gold-soft: rgba(201,169,97,0.12);
+      --gold-glow: rgba(201,169,97,0.06);
+      --gold-dashed: rgba(201,169,97,0.45);
+      --navy-glow: rgba(70,120,180,0.10);
+      --border: rgba(240,235,224,0.08);
+      --border-strong: rgba(240,235,224,0.16);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--navy-base);
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 64px;
+      z-index: 100;
+      transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s;
+    }
+    .header.scrolled {
+      background: rgba(9,12,23,0.82);
+      backdrop-filter: blur(20px) saturate(180%);
+      padding: 20px 64px;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 28px;
+      color: var(--text);
+      letter-spacing: 0.5px;
+      line-height: 1;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 6px;
+      display: inline-block;
+    }
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .logo:hover::after { width: 100%; }
+    .logo-mark {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      vertical-align: middle;
+      margin: 0 8px 4px;
+    }
+
+    /* HAMBURGER */
+    .hamburger {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      width: 48px;
+      height: 48px;
+      transition: opacity 0.3s;
+    }
+    .hamburger:hover { opacity: 0.7; }
+    .hamburger span {
+      width: 28px;
+      height: 1px;
+      background: var(--text);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s, background 0.3s;
+      transform-origin: center;
+    }
+    .hamburger.open span { background: var(--gold); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* OVERLAY NAV */
+    .overlay-nav {
+      position: fixed;
+      inset: 0;
+      background: rgba(7,10,20,0.96);
+      backdrop-filter: blur(40px) saturate(180%);
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px;
+    }
+    .overlay-nav.open { opacity: 1; pointer-events: auto; }
+    .overlay-nav-inner { text-align: center; }
+    .overlay-nav-eyebrow {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 48px;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s 0.3s, transform 0.6s 0.3s;
+    }
+    .overlay-nav.open .overlay-nav-eyebrow { opacity: 1; transform: translateY(0); }
+    .overlay-nav ul { list-style: none; padding: 0; margin: 0; }
+    .overlay-nav li {
+      margin: 12px 0;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .overlay-nav.open li { opacity: 1; transform: translateY(0); }
+    .overlay-nav.open li:nth-child(1) { transition-delay: 0.4s; }
+    .overlay-nav.open li:nth-child(2) { transition-delay: 0.5s; }
+    .overlay-nav.open li:nth-child(3) { transition-delay: 0.6s; }
+    .overlay-nav.open li:nth-child(4) { transition-delay: 0.7s; }
+    .overlay-nav a {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      transition: color 0.3s, padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-block;
+      position: relative;
+    }
+    .overlay-nav a:hover { color: var(--gold); padding-left: 24px; }
+    .overlay-nav a::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+      color: var(--gold);
+      font-style: normal;
+    }
+    .overlay-nav a:hover::before { opacity: 1; }
+    .overlay-nav a.active {
+      color: var(--gold);
+    }
+    .overlay-nav-footer {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 32px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      opacity: 0;
+      transition: opacity 0.6s 0.9s;
+    }
+    .overlay-nav.open .overlay-nav-footer { opacity: 0.7; }
+    .overlay-nav-footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      transition: color 0.3s;
+    }
+    .overlay-nav-footer a:hover { color: var(--gold); padding-left: 0; }
+    .overlay-nav-footer a::before { display: none; }
+
+    /* PAGE HERO (placeholder) */
+    .page-hero {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 160px 64px 80px;
+      position: relative;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 80% 20%, var(--navy-glow), transparent 50%),
+        radial-gradient(ellipse at 15% 80%, var(--gold-glow), transparent 50%),
+        var(--navy-base);
+    }
+    .page-eyebrow {
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 36px;
+      font-weight: 500;
+    }
+    .page-eyebrow::before { content: '— '; letter-spacing: -2px; }
+    .page-eyebrow::after { content: ' —'; letter-spacing: -2px; }
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 36px;
+      color: var(--text);
+      max-width: 900px;
+    }
+    .page-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+    .page-subtitle {
+      font-size: clamp(16px, 1.4vw, 19px);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 600px;
+      font-weight: 300;
+      margin-bottom: 80px;
+    }
+
+    /* COMING SOON */
+    .coming-soon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .coming-soon-line {
+      width: 80px;
+      height: 1px;
+      background: var(--gold);
+      position: relative;
+    }
+    .coming-soon-line::after {
+      content: '';
+      position: absolute;
+      top: -3px; left: 50%;
+      transform: translateX(-50%);
+      width: 7px;
+      height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .coming-soon-text {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .coming-soon-desc {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(18px, 1.8vw, 24px);
+      line-height: 1.5;
+      color: var(--text-secondary);
+      max-width: 560px;
+      font-weight: 400;
+    }
+    .coming-soon-link {
+      margin-top: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 6px;
+      transition: gap 0.25s, color 0.25s;
+    }
+    .coming-soon-link:hover { gap: 16px; color: var(--text); }
+    .coming-soon-link svg { width: 14px; height: 10px; }
+
+    /* FOOTER */
+    .page-footer {
+      background: var(--navy-deep);
+      padding: 40px 64px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+    }
+    .page-footer .gold { color: var(--gold); }
+
+    @media (max-width: 1024px) {
+      .header { padding: 20px 32px; }
+      .header.scrolled { padding: 16px 32px; }
+      .overlay-nav { padding: 32px; }
+      .page-hero { padding: 120px 32px 60px; }
+      .page-footer { padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header" id="header">
+    <a href="/" class="logo">Alex<span class="logo-mark"></span>Dakov</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir navegación" aria-expanded="false" aria-controls="overlay-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <nav class="overlay-nav" id="overlay-nav" aria-hidden="true">
+    <div class="overlay-nav-inner">
+      <div class="overlay-nav-eyebrow">— Navegación —</div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/conferencias" class="">Conferencias</a></li>
+        <li><a href="/sostenibilidad" class="">Sostenibilidad e Impacto</a></li>
+        <li><a href="/contacto" class="active">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="overlay-nav-footer">
+      <a href="https://instagram.com/alex_dakov" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/in/alex-dakov/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://aguanea.com" target="_blank" rel="noopener">AguaNEA</a>
+    </div>
+  </nav>
+
+  <style>
+    /* === Contacto page · contenido === */
+    .contact-hero {
+      padding: 180px 64px 24px;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .contact-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 500;
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      margin-bottom: 32px;
+      color: var(--text);
+    }
+    .contact-hero-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+    .contact-hero-sub {
+      font-size: clamp(17px, 1.5vw, 21px);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 860px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    .contact-form-section {
+      padding: 32px 64px 50px;
+      max-width: 928px;
+      margin: 0 auto;
+    }
+    .contact-form { display: grid; gap: 24px; }
+    .contact-hp {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .contact-field { display: flex; flex-direction: column; gap: 8px; }
+    .contact-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .contact-label .opt { color: var(--text-tertiary); font-weight: 400; letter-spacing: 1.5px; }
+    .contact-input,
+    .contact-select,
+    .contact-textarea {
+      width: 100%;
+      padding: 16px 20px;
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      transition: border-color 0.3s, background 0.3s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .contact-input:focus,
+    .contact-select:focus,
+    .contact-textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: var(--navy-card-hover);
+    }
+    .contact-input::placeholder,
+    .contact-textarea::placeholder { color: var(--text-tertiary); font-style: italic; }
+    .contact-textarea { min-height: 140px; resize: vertical; line-height: 1.5; }
+    .contact-select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' fill='none' stroke='%23C9A961' stroke-width='1.5'%3E%3Cpath d='M1 1l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 20px center;
+      padding-right: 48px;
+    }
+    .contact-submit {
+      margin-top: 16px;
+      padding: 22px 40px;
+      background: var(--gold);
+      color: var(--navy-base);
+      border: none;
+      border-radius: 100px;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      min-height: 44px;
+      width: fit-content;
+      justify-self: center;
+      font-family: 'Inter', sans-serif;
+    }
+    .contact-submit:hover { background: var(--gold-hover); transform: translateY(-2px); }
+    .contact-submit svg { width: 18px; height: 14px; }
+    .contact-microcopy {
+      margin-top: 16px;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--text-tertiary);
+      text-align: center;
+    }
+
+    .contact-status {
+      display: none;
+      margin-top: 8px;
+      padding: 14px 18px;
+      font-size: 14px;
+      line-height: 1.5;
+      border: 1px solid var(--border);
+    }
+    .contact-status.show { display: block; }
+    .contact-status.ok {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: rgba(201, 169, 97, 0.08);
+    }
+    .contact-status.err {
+      color: #e88;
+      border-color: rgba(238, 136, 136, 0.5);
+      background: rgba(238, 136, 136, 0.08);
+    }
+
+    .contact-socials {
+      margin-top: 36px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+    .contact-socials-label {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      max-width: 420px;
+      line-height: 1.6;
+    }
+    /* Bloque de redes idéntico al de la home (.social-row) */
+    .social-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      z-index: 2;
+      flex-wrap: wrap;
+    }
+    .social-link {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      background: rgba(20,33,61,0.35);
+      transition: color 0.35s, border-color 0.35s, background 0.35s, transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s;
+    }
+    .social-link svg { width: 19px; height: 19px; display: block; fill: currentColor; }
+    .social-link:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: var(--gold-soft);
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px -12px rgba(201,169,97,0.45);
+    }
+
+    .contact-after {
+      padding: 50px 64px 100px;
+      background: var(--navy-alt);
+    }
+    .contact-after-inner { max-width: 1000px; margin: 0 auto; }
+    .contact-after-eyebrow {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .contact-after-eyebrow::before { content: '— '; letter-spacing: -2px; }
+    .contact-after-eyebrow::after { content: ' —'; letter-spacing: -2px; }
+    .contact-after-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3.4vw, 44px);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 56px;
+      color: var(--text);
+      text-align: center;
+    }
+    .contact-after-title em { font-style: italic; color: var(--gold); }
+    .contact-after-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .contact-after-step {
+      padding: 40px 32px;
+      border: 1px solid var(--border);
+      background: var(--navy-card);
+      transition: border-color 0.4s, transform 0.4s;
+    }
+    .contact-after-step:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+    .contact-after-step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .contact-after-step h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .contact-after-step p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      font-weight: 300;
+      margin: 0;
+    }
+    .contact-after-step p strong { color: var(--gold); font-weight: 500; }
+
+    .contact-bookend-section {
+      padding: 80px 64px 120px;
+      text-align: center;
+    }
+    /* bookend igual que la home */
+    .final-cta-bookend {
+      position: relative;
+      z-index: 2;
+      padding-top: 28px;
+      border-top: 1px solid rgba(201,169,97,0.4);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(20px, 2vw, 28px);
+      color: var(--gold);
+      letter-spacing: -0.01em;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .final-cta-bookend em { color: var(--gold-hover); font-style: italic; }
+
+    @media (max-width: 1024px) {
+      .contact-hero { padding: 120px 32px 16px; }
+      .contact-form-section { padding: 24px 32px 80px; }
+      .contact-after { padding: 80px 32px; }
+      .contact-after-grid { grid-template-columns: 1fr; }
+      .contact-bookend-section { padding: 60px 32px 100px; }
+    }
+  </style>
+
+  <!-- HERO -->
+  <section class="contact-hero">
+    <div class="page-eyebrow">Contacto</div>
+    <h1 class="contact-hero-title">Cuéntame tu <em>evento</em>.</h1>
+    <p class="contact-hero-sub">Cuéntame los detalles de tu evento y exploramos cómo trabajar juntos.</p>
+  </section>
+
+  <!-- FORMULARIO -->
+  <section class="contact-form-section">
+    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+      <!-- Web3Forms: la access_key vincula los envíos al email alexander.dakov@gmail.com -->
+      <input type="hidden" name="access_key" value="96908c57-9015-4449-8c1d-2b24b7842742">
+      <input type="hidden" name="subject" value="Nuevo contacto desde alexdakov.com">
+      <input type="hidden" name="from_name" value="Web alexdakov.com">
+
+      <!-- Anti-spam honeypot: oculto a humanos, los bots lo rellenan -->
+      <div class="contact-hp" aria-hidden="true">
+        <label for="contact-website">No rellenar este campo</label>
+        <input type="text" id="contact-website" name="botcheck" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="contact-field">
+        <label for="contact-nombre" class="contact-label">Nombre</label>
+        <input type="text" id="contact-nombre" name="nombre" class="contact-input" placeholder="Tu nombre" required>
+      </div>
+
+      <div class="contact-field">
+        <label for="contact-empresa" class="contact-label">Empresa u organización</label>
+        <input type="text" id="contact-empresa" name="empresa" class="contact-input" placeholder="Nombre de tu empresa" required>
+      </div>
+
+      <div class="contact-field">
+        <label for="contact-email" class="contact-label">Email</label>
+        <input type="email" id="contact-email" name="email" class="contact-input" placeholder="tu@email.com" required>
+      </div>
+
+      <div class="contact-field">
+        <label for="contact-tipo" class="contact-label">Tipo de evento</label>
+        <select id="contact-tipo" name="tipo" class="contact-select" required>
+          <option value="">Selecciona uno…</option>
+          <option value="kickoff">Kickoff</option>
+          <option value="convencion">Convención</option>
+          <option value="congreso">Congreso</option>
+          <option value="formacion">Formación interna</option>
+          <option value="otro">Otro</option>
+        </select>
+      </div>
+
+      <div class="contact-field">
+        <label for="contact-fecha" class="contact-label">Fecha aproximada <span class="opt">(opcional)</span></label>
+        <input type="text" id="contact-fecha" name="fecha" class="contact-input" placeholder="ej. marzo 2027 · Q4 · sin definir">
+      </div>
+
+      <div class="contact-field">
+        <label for="contact-mensaje" class="contact-label">¿Qué te gustaría transmitir?</label>
+        <textarea id="contact-mensaje" name="mensaje" class="contact-textarea" placeholder="Cuéntame el contexto, el reto de tu equipo, lo que te gustaría que pasara después de la charla… Lo que se te ocurra." required></textarea>
+      </div>
+
+      <button type="submit" class="contact-submit">
+        Enviar y empezar
+        <svg viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h20M14 1l8 8-8 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="contact-status" id="contact-status" role="status" aria-live="polite"></div>
+
+      <p class="contact-microcopy">Tus datos son solo para responderte. Nada de spam.</p>
+
+      <div class="contact-socials">
+        <span class="contact-socials-label">¿Prefieres escribirme directamente? También puedes contactarme por redes</span>
+        <nav class="social-row" aria-label="Redes sociales de Alex Dakov">
+          <a class="social-link" href="https://instagram.com/alex_dakov" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+          <a class="social-link" href="https://www.tiktok.com/@alexdakov" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          </a>
+          <a class="social-link" href="https://www.linkedin.com/in/alex-dakov/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+          </a>
+          <a class="social-link" href="https://www.facebook.com/alexdakov" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a class="social-link" href="https://www.youtube.com/@alexdakov" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </nav>
+      </div>
+    </form>
+  </section>
+
+
+  <!-- CIERRE — bookend (igual que la home) -->
+  <section class="contact-bookend-section">
+    <div class="final-cta-bookend">Porque los equipos de élite no nacen. <em>Se construyen.</em></div>
+  </section>
+
+  <footer class="page-footer">
+    © 2026 <span class="gold">Alex Dakov</span>
+  </footer>
+
+  <script>
+    // Header scroll blur
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Hamburger toggle
+    (function() {
+      const burger = document.getElementById('hamburger');
+      const overlay = document.getElementById('overlay-nav');
+      function close() {
+        burger.classList.remove('open');
+        overlay.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      function toggle() {
+        const willOpen = !burger.classList.contains('open');
+        burger.classList.toggle('open', willOpen);
+        overlay.classList.toggle('open', willOpen);
+        burger.setAttribute('aria-expanded', willOpen);
+        overlay.setAttribute('aria-hidden', !willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      }
+      burger.addEventListener('click', toggle);
+      overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    })();
+
+    // Envío del formulario a Web3Forms (AJAX, sin recargar) + anti-spam honeypot
+    (function() {
+      const form = document.querySelector('.contact-form');
+      if (!form) return;
+      const status = document.getElementById('contact-status');
+      const submitBtn = form.querySelector('.contact-submit');
+      const hp = form.querySelector('input[name="botcheck"]');
+
+      function showStatus(type, msg) {
+        status.className = 'contact-status show ' + type;
+        status.textContent = msg;
+      }
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        // Honeypot: si está relleno, es un bot → descartamos en silencio
+        if (hp && hp.value.trim() !== '') return;
+
+        // Validación nativa
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.6';
+        submitBtn.textContent = 'Enviando…';
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(form)
+          });
+          const data = await res.json();
+          if (res.ok && data.success) {
+            form.reset();
+            showStatus('ok', '¡Gracias! Tu mensaje ha llegado. Te respondo en pocos días.');
+            submitBtn.innerHTML = originalText;
+          } else {
+            showStatus('err', (data && data.message) ? data.message : 'No se pudo enviar. Inténtalo de nuevo o escríbeme por redes.');
+            submitBtn.innerHTML = originalText;
+          }
+        } catch (err) {
+          showStatus('err', 'No se pudo enviar. Revisa tu conexión o escríbeme por redes.');
+          submitBtn.innerHTML = originalText;
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
