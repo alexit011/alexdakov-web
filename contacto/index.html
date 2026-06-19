@@ -370,9 +370,12 @@
       if(window.__adAnalyticsLoaded)return;window.__adAnalyticsLoaded=true;
       var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-EBWBFNY0W7';document.head.appendChild(g);
       window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','G-EBWBFNY0W7');
-      (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,'clarity','script','x95217wrw7');
     };
     try{if(localStorage.getItem('ad_cookie_consent')==='accepted')window.__adLoadAnalytics();}catch(e){}
+  </script>
+  <!-- Microsoft Clarity (carga incondicional) -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "x95217wrw7");
   </script>
 </head>
 <body>
@@ -870,7 +873,7 @@
 
   <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Aviso de cookies" hidden>
     <div class="cookie-banner-inner">
-      <p class="cookie-text">Uso cookies propias y de terceros (Google Analytics y Microsoft Clarity) para entender como se usa la web y mejorarla. Puedes aceptarlas o rechazarlas.</p>
+      <p class="cookie-text">Uso cookies de analitica para entender como se usa la web y mejorarla. Puedes aceptar o rechazar las cookies opcionales (Google Analytics).</p>
       <div class="cookie-actions">
         <button class="cookie-btn cookie-reject" id="cookieReject" type="button">Rechazar</button>
         <button class="cookie-btn cookie-accept" id="cookieAccept" type="button">Aceptar</button>
