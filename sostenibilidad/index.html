@@ -348,21 +348,31 @@
       .page-footer { padding: 32px; }
     }
   </style>
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "x95217wrw7");
-  </script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBWBFNY0W7"></script>
+  
+  
+  
+  <!-- Consentimiento de cookies + analitica condicional -->
+  <style>
+    .cookie-banner{position:fixed;left:0;right:0;bottom:0;z-index:9999;display:flex;justify-content:center;padding:0 16px 16px;transform:translateY(20px);opacity:0;transition:opacity .4s,transform .4s;pointer-events:none}
+    .cookie-banner.show{transform:translateY(0);opacity:1;pointer-events:auto}
+    .cookie-banner-inner{max-width:700px;width:100%;background:rgba(9,12,23,.97);backdrop-filter:blur(20px);border:1px solid rgba(240,235,224,.16);border-radius:14px;padding:20px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;box-shadow:0 24px 60px -20px rgba(0,0,0,.75)}
+    .cookie-text{flex:1;min-width:240px;font-size:13px;line-height:1.6;color:#A09B92;font-family:'Inter',-apple-system,sans-serif}
+    .cookie-actions{display:flex;gap:10px}
+    .cookie-btn{cursor:pointer;border-radius:100px;padding:11px 22px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;font-family:'Inter',-apple-system,sans-serif;transition:background .25s,color .25s,border-color .25s;border:1px solid rgba(240,235,224,.16)}
+    .cookie-reject{background:transparent;color:#A09B92}
+    .cookie-reject:hover{color:#F0EBE0;border-color:#A09B92}
+    .cookie-accept{background:#C9A961;color:#090C17;border-color:#C9A961}
+    .cookie-accept:hover{background:#B69465}
+    @media(max-width:600px){.cookie-banner-inner{flex-direction:column;align-items:stretch}.cookie-btn{flex:1}}
+  </style>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-EBWBFNY0W7');
+    window.__adLoadAnalytics=function(){
+      if(window.__adAnalyticsLoaded)return;window.__adAnalyticsLoaded=true;
+      var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-EBWBFNY0W7';document.head.appendChild(g);
+      window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','G-EBWBFNY0W7');
+      (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,'clarity','script','x95217wrw7');
+    };
+    try{if(localStorage.getItem('ad_cookie_consent')==='accepted')window.__adLoadAnalytics();}catch(e){}
   </script>
 </head>
 <body>
@@ -711,5 +721,24 @@
     })();
   </script>
 
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Aviso de cookies" hidden>
+    <div class="cookie-banner-inner">
+      <p class="cookie-text">Uso cookies propias y de terceros (Google Analytics y Microsoft Clarity) para entender como se usa la web y mejorarla. Puedes aceptarlas o rechazarlas.</p>
+      <div class="cookie-actions">
+        <button class="cookie-btn cookie-reject" id="cookieReject" type="button">Rechazar</button>
+        <button class="cookie-btn cookie-accept" id="cookieAccept" type="button">Aceptar</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var KEY='ad_cookie_consent',b=document.getElementById('cookieBanner');if(!b)return;
+      var c;try{c=localStorage.getItem(KEY)}catch(e){}
+      if(!c){b.hidden=false;setTimeout(function(){b.classList.add('show')},500)}
+      function done(v){try{localStorage.setItem(KEY,v)}catch(e){}b.classList.remove('show');setTimeout(function(){b.hidden=true},400)}
+      document.getElementById('cookieAccept').addEventListener('click',function(){done('accepted');if(window.__adLoadAnalytics)window.__adLoadAnalytics()});
+      document.getElementById('cookieReject').addEventListener('click',function(){done('rejected')});
+    })();
+  </script>
 </body>
 </html>
