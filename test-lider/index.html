@@ -7,6 +7,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Microsoft Clarity (incondicional, igual que el resto de alexdakov.com) -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","x95217wrw7");
+</script>
+<!-- Google Analytics 4 con Consent Mode v2 (analítica solo tras consentimiento) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EBWBFNY0W7"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+if(localStorage.getItem('tlp_consent')==='granted'){gtag('consent','update',{analytics_storage:'granted'});}
+gtag('js',new Date());gtag('config','G-EBWBFNY0W7');
+function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}catch(e){}try{if(window.clarity)window.clarity('event',n);}catch(e){}}
+</script>
 <style>
   :root{
     --bg:#090c17; --bg2:#0f1626; --navy:#14213d; --gold:#c9a961; --gold-soft:#d8c089;
@@ -46,6 +59,12 @@
   .nav{margin-top:24px}
   .back{background:none;border:none;color:var(--muted);font-family:var(--sans);font-weight:300;font-size:14px;letter-spacing:.02em;cursor:pointer;padding:8px 2px;transition:.2s}
   .back:hover{color:var(--gold)}
+  .consent{position:fixed;left:0;right:0;bottom:0;background:rgba(9,12,23,.97);border-top:1px solid var(--line);padding:14px 20px;display:none;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;font-size:13px;color:var(--muted);z-index:50}
+  .consent button{font-family:var(--sans);font-weight:400;font-size:13px;cursor:pointer;border-radius:2px;padding:8px 18px;border:1px solid var(--line);transition:.2s}
+  .consent .acc{background:var(--gold);color:#1a1305;border:none}
+  .consent .acc:hover{background:var(--gold-soft)}
+  .consent .rej{background:transparent;color:var(--muted)}
+  .consent .rej:hover{color:var(--cream)}
   .field label{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
   .field input{width:100%;background:var(--bg2);border:1px solid var(--line-soft);border-radius:3px;color:var(--cream);
     font-family:var(--sans);font-size:16px;font-weight:300;padding:14px 16px;transition:.2s;outline:none}
@@ -115,7 +134,7 @@
       '<p class="lead" style="margin-left:auto;margin-right:auto">Descubre en qué nivel de líder estás —del 1 al 5— y qué exactamente te separa del siguiente.</p>'+
       '<p class="fine" style="margin-bottom:34px">18 preguntas · 3 minutos · responde con honestidad</p>'+
       '<button class="btn" id="go">Empezar el test</button></div>';
-    document.getElementById('go').onclick=function(){idx=0;answers=[];lead={};order=Q.map(function(x){return shuf(x.o);});render();};
+    document.getElementById('go').onclick=function(){idx=0;answers=[];lead={};order=Q.map(function(x){return shuf(x.o);});if(typeof tlpTrack==='function')tlpTrack('test_start');render();};
   }
   function render(){
     if(idx>=Q.length)return capture();
@@ -128,7 +147,7 @@
     h+='</div>';
     app.innerHTML=h;
     var b=app.querySelectorAll('.opt');
-    for(var k=0;k<b.length;k++)b[k].onclick=function(){answers[idx]=+this.getAttribute('data-l');idx++;render();};
+    for(var k=0;k<b.length;k++)b[k].onclick=function(){answers[idx]=+this.getAttribute('data-l');if(typeof tlpTrack==='function')tlpTrack('question_answered',{question:idx+1});idx++;render();};
     var bk=document.getElementById('back');if(bk)bk.onclick=function(){idx--;render();};
   }
   function capture(){
@@ -153,6 +172,7 @@
       if(+a<14||+a>99){return showErr(err,'Introduce una edad válida.');}
       if(!re.test(e)){return showErr(err,'Ese email no parece válido. Revísalo, por favor.');}
       lead={name:n,age:a,city:c,email:e};
+      if(typeof tlpTrack==='function')tlpTrack('lead_submitted');
       /* === INTEGRACIÓN: aquí se envían los datos + el nivel a ManyChat (webhook). Se conecta en la fase de nurturing. === */
       result();
     };
@@ -165,6 +185,8 @@
     var top=l[0],sec=l[1],trans=(sec===top+1&&(counts[top]-counts[sec])<=2);
     var s=0;for(var i=1;i<=5;i++)s+=counts[i]*i;
     var mad=Math.round((s/Q.length-1)/4*100),r=R[top];
+    if(typeof tlpTrack==='function')tlpTrack('result_view',{level:top,madurez:mad});
+    try{if(window.clarity)window.clarity('set','nivel_lider',String(top));}catch(e){}
     var title=trans?('Nivel '+top+' · con un pie en el '+(top+1)):('Nivel '+top+' de 5');
     var hi=lead.name?'<p class="lvl-label">'+esc(lead.name)+', este es tu resultado</p>':'';
     function card(k,v){return '<div class="card"><div class="k">'+k+'</div><div class="v">'+v+'</div></div>';}
@@ -189,6 +211,17 @@
   function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   intro();
 })();
+</script>
+<div class="consent" id="consent">
+  <span>Usamos cookies de analítica para mejorar el test.</span>
+  <button class="acc" id="cAcc">Aceptar</button>
+  <button class="rej" id="cRej">Rechazar</button>
+</div>
+<script>
+(function(){var c=document.getElementById('consent');
+  if(!localStorage.getItem('tlp_consent'))c.style.display='flex';
+  document.getElementById('cAcc').onclick=function(){localStorage.setItem('tlp_consent','granted');if(typeof gtag==='function')gtag('consent','update',{analytics_storage:'granted'});c.style.display='none';};
+  document.getElementById('cRej').onclick=function(){localStorage.setItem('tlp_consent','denied');c.style.display='none';};})();
 </script>
 </body>
 </html>
