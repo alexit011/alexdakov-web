@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Test del Líder — Alex Dakov</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#090c17; --bg2:#0f1626; --navy:#14213d; --gold:#c9a961; --gold-soft:#d8c089;
+    --cream:#f0ebe0; --muted:#a09b92; --line:rgba(201,169,97,.22); --line-soft:rgba(240,235,224,.10);
+    --serif:"Playfair Display",Georgia,serif; --sans:"Inter",-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-weight:300;line-height:1.7;
+    -webkit-font-smoothing:antialiased;min-height:100vh;
+    background-image:radial-gradient(120% 80% at 50% -10%,rgba(201,169,97,.10),transparent 60%);}
+  .wrap{max-width:760px;margin:0 auto;padding:48px 24px 80px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+  .screen{animation:fade .5s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:400;margin:0 0 18px}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,7vw,72px);line-height:1.05;letter-spacing:-.02em;margin:0 0 20px}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(24px,3.6vw,34px);line-height:1.25;letter-spacing:-.01em;margin:0 0 28px}
+  p.lead{color:var(--muted);font-size:18px;max-width:520px;margin:0 0 14px}
+  p.fine{color:var(--muted);font-size:13px;opacity:.8}
+  .btn{font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:.02em;cursor:pointer;
+    background:var(--gold);color:#1a1305;border:none;border-radius:2px;padding:16px 34px;transition:.25s;}
+  .btn:hover{background:var(--gold-soft);transform:translateY(-1px)}
+  .btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--line)}
+  .btn.ghost:hover{background:rgba(201,169,97,.08);color:var(--gold-soft)}
+  .progress{height:2px;background:var(--line-soft);border-radius:0;overflow:hidden;margin-bottom:14px}
+  .progress > i{display:block;height:100%;background:var(--gold);transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .meta{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:30px}
+  .qnum{font-family:var(--serif);color:var(--gold);font-style:italic;font-size:15px;letter-spacing:0;text-transform:none;margin-bottom:6px}
+  .opts{display:flex;flex-direction:column;gap:12px}
+  .opt{font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.45;text-align:left;color:var(--cream);
+    background:var(--bg2);border:1px solid var(--line-soft);border-radius:3px;padding:18px 20px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:14px}
+  .opt:before{content:"";flex:0 0 auto;width:9px;height:9px;border-radius:50%;border:1px solid var(--muted);transition:.2s}
+  .opt:hover{border-color:var(--gold);background:#121b30;transform:translateX(3px)}
+  .opt:hover:before{border-color:var(--gold);background:var(--gold);box-shadow:0 0 10px rgba(201,169,97,.5)}
+  .field label{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .field input{width:100%;background:var(--bg2);border:1px solid var(--line-soft);border-radius:3px;color:var(--cream);
+    font-family:var(--sans);font-size:16px;font-weight:300;padding:14px 16px;transition:.2s;outline:none}
+  .field input:focus{border-color:var(--gold);background:#121b30}
+  .field input::placeholder{color:rgba(160,155,146,.5)}
+  .form{display:flex;flex-direction:column;gap:18px;max-width:460px}
+  .row{display:flex;gap:16px}
+  .lock{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;color:var(--gold);font-size:20px}
+  .err{color:#e0a878;font-size:14px;display:none}
+  .badge{width:84px;height:84px;border-radius:50%;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-size:38px;color:var(--gold);margin:0 auto 8px;background:radial-gradient(circle,rgba(201,169,97,.12),transparent 70%)}
+  .lvl-label{text-align:center;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .arch{font-family:var(--serif);font-size:clamp(30px,5vw,44px);text-align:center;color:var(--cream);margin:0 0 14px;letter-spacing:-.01em}
+  .tagline{font-family:var(--serif);font-style:italic;font-size:19px;text-align:center;color:var(--gold-soft);max-width:480px;margin:0 auto 30px;line-height:1.4}
+  .madurez{max-width:460px;margin:0 auto 32px}
+  .card{background:var(--bg2);border:1px solid var(--line-soft);border-left:2px solid var(--gold);border-radius:0 3px 3px 0;padding:16px 20px;margin-bottom:12px}
+  .card .k{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+  .card .v{font-size:16px;line-height:1.5;color:var(--cream)}
+  .cta{max-width:480px;margin:28px auto 0;border:1px solid var(--line);border-radius:4px;padding:26px;text-align:center;background:linear-gradient(180deg,rgba(201,169,97,.06),transparent)}
+  .cta h3{font-family:var(--serif);font-weight:500;font-size:22px;margin:0 0 8px;color:var(--cream)}
+  .cta p{color:var(--muted);font-size:15px;margin:0 0 18px}
+  .center{text-align:center}
+  .mt{margin-top:22px}
+  .results-body{max-width:480px;margin:0 auto}
+  @media(max-width:520px){.row{flex-direction:column}.wrap{padding:32px 18px 60px}}
+</style>
+</head>
+<body>
+<div class="wrap"><div id="app"></div></div>
+<script>
+(function(){
+  var Q=[
+   {q:"Tu equipo entrega un proyecto importante. ¿Qué es lo primero que haces?",o:[["Lo reviso entero yo; seguro hay algo que se les ha escapado",1],["Lo apruebo: si ha salido bien es porque estuve encima en cada paso",2],["Lo miro pensando en cómo lo habría rematado yo mejor",3],["Doy el crédito al equipo y celebro su victoria delante de todos",4],["Me pregunto qué han aprendido y cómo deja esto la cultura más fuerte",5]]},
+   {q:"Si eres brutalmente honesto, tu mayor miedo como líder es…",o:[["Que sin mí todo se venga abajo",1],["Perder el control y que se me escape de las manos",2],["Que alguien del equipo me supere y deje de necesitarme",3],["Que al soltar, los resultados bajen y sea culpa mía",4],["Que la misión pierda su alma a medida que crece",5]]},
+   {q:"Alguien de tu equipo comete un error grave. Tu reacción real:",o:[["Lo arreglo yo, más rápido que explicarlo",1],["Dejo claro quién la ha liado para que no se repita",2],["Me frustra: yo no habría cometido ese error",3],["Lo convierto en una conversación de aprendizaje",4],["Reviso qué falló en el sistema que permitió el error",5]]},
+   {q:"¿Qué llena de verdad tu semana?",o:[["Tareas urgentes que solo puedo hacer yo; no paro",1],["Supervisar, revisar y corregir lo que hace el equipo",2],["Las tareas más difíciles, porque las hago mejor que nadie",3],["1:1s, desarrollo y desbloquear a mi gente",4],["Pensar la visión, la cultura y formar a otros líderes",5]]},
+   {q:"Alguien propone una idea claramente mejor que la tuya delante de todos:",o:[["Apenas pasa; las decisiones las tomo yo",1],["La escucho, pero la decisión final sigue siendo mía",2],["Me cuesta reconocerlo, aunque sé que tiene razón",3],["La aplaudo y le doy el espacio para liderarla",4],["La uso para enseñar que las mejores ideas vienen de cualquiera",5]]},
+   {q:"Para ti, «un gran día de trabajo» es:",o:[["Apagué todos los fuegos y nada explotó",1],["Todo salió como yo había dicho que tenía que salir",2],["Resolví yo el problema que nadie más podía resolver",3],["Vi a alguien de mi equipo hacer algo que antes no podía",4],["El equipo avanzó sin que yo tuviera que estar",5]]},
+   {q:"Cuando delegas algo importante:",o:[["No delego; tardo menos haciéndolo yo",1],["Delego, pero reviso cada paso de cerca",2],["Delego lo pequeño; lo importante me lo quedo yo",3],["Delego el resultado y dejo que elijan el cómo",4],["Delego la decisión y formo para que decidan mejor que yo",5]]},
+   {q:"El equipo no llega a un objetivo. ¿De quién es la responsabilidad?",o:[["Mía, por no haber estado en todo",1],["Del equipo: no hicieron lo que les dije",2],["En parte mía, por no haberlo hecho yo directamente",3],["Compartida; lo revisamos juntos sin buscar culpables",4],["Mía como líder: si el sistema no produce, me toca rediseñarlo",5]]},
+   {q:"Tu mejor persona te dice que se plantea irse:",o:[["Entro en pánico: sin ella no llego",1],["Intento retenerla con más control o condiciones",2],["Me lo tomo como algo personal, casi una traición",3],["Le pregunto qué necesita para crecer y se lo intento dar",4],["Si su paso está fuera, la ayudo: los buenos líderes exportan talento",5]]},
+   {q:"¿Cómo tomas las decisiones difíciles?",o:[["Sobre la marcha, reaccionando a lo que arde",1],["Yo solo, rápido, y lo comunico como orden",2],["Confío en mi criterio porque suele ser el mejor",3],["Consulto al equipo y decido con su input",4],["Según los principios y la visión a largo plazo, aunque hoy cueste",5]]},
+   {q:"¿Qué es lo que más te quita el sueño?",o:[["No tener tiempo para nada, vivir ahogado",1],["Que algo se me escape si no estoy encima",2],["Que el crecimiento dependa solo de mí y no pueda escalar",3],["Cómo exigir y sostener sin quemar a la gente",4],["La sucesión: qué pasa el día que yo no esté",5]]},
+   {q:"Llega alguien nuevo al equipo. Lo primero que haces con él/ella:",o:[["No tengo tiempo; que aprenda sobre la marcha",1],["Le dejo muy claras las reglas y lo que espero",2],["Le enseño cómo lo hago yo para que lo copie",3],["Entiendo sus fortalezas y diseño cómo va a crecer aquí",4],["Le explico el porqué, la misión y la cultura antes que el qué",5]]},
+   {q:"Si tuvieras que definir tu rol en una frase:",o:[["Soy el que lo sostiene todo para que no se caiga",1],["Soy el que se asegura de que las cosas se hagan bien",2],["Soy el mejor jugador del equipo",3],["Soy el que hace crecer a los demás",4],["Soy el que construye líderes y una cultura que me sobrevivirá",5]]},
+   {q:"Te ofrecen 2 semanas desconectado del todo. ¿Qué sientes?",o:[["Imposible; se hunde sin mí",1],["Ansiedad: ¿quién controla que todo siga el rumbo?",2],["Me iría, pero nadie haría las cosas a mi nivel",3],["Tranquilidad; el equipo funciona sin mí",4],["Orgullo: que funcione sin mí es la prueba de que lo hice bien",5]]},
+   {q:"Cuando alguien de tu equipo brilla más que tú:",o:[["Casi no ocurre; lo visible lo hago yo",1],["Me incomoda si no fue bajo mi supervisión",2],["Compito en silencio para no quedar por debajo",3],["Lo celebro; su brillo es mi resultado",4],["Lo busco activamente: mi trabajo es crear gente mejor que yo",5]]},
+   {q:"Tu desarrollo como líder, hoy:",o:[["¿Desarrollo? No tengo ni un minuto",1],["Aprendo para controlar mejor y que no se me escape nada",2],["Me formo para seguir siendo el más competente de la sala",3],["Estudio cómo desarrollar y sacar lo mejor de otros",4],["Trabajo mi visión, mi propósito y cómo pensar en sistemas",5]]},
+   {q:"¿Qué legado te importaría dejar?",o:[["Sobrevivir a este trimestre ya sería un logro",1],["Que las cosas funcionen como deben mientras yo esté",2],["Que se me recuerde como un crack en lo mío",3],["Gente a la que ayudé a ser mejores profesionales",4],["Líderes que forman a otros líderes y una cultura que sigue sin mí",5]]},
+   {q:"La frase que más se parece a lo que te dices en secreto:",o:[["«No puedo con todo, pero si suelto, se cae»",1],["«Si quieres algo bien hecho, supervísalo tú»",2],["«Es que yo lo hago mejor y más rápido»",3],["«Mi trabajo ya no es hacer, es hacer crecer»",4],["«Esto tiene que poder funcionar sin mí»",5]]}
+  ];
+  var R={
+   1:{n:"El Apagafuegos",tag:"Eres el que sostiene todo para que no se caiga. Y por eso no avanzas.",def:"Trabajas en lo urgente, no delegas, vives ahogado de tiempo.",techo:"El miedo a que sin ti todo se derrumbe te tiene atrapado haciendo, no liderando.",unlock:"Deja de hacer y empieza a dirigir. Prioriza lo que solo tú puedes hacer y suelta el resto.",book:"Esencialismo · Greg McKeown"},
+   2:{n:"El Controlador",tag:"Consigues resultados a base de apretar. Pero tú eres el cuello de botella.",def:"Micromanagement, todo pasa por ti, el equipo no toma iniciativa.",techo:"Confundes control con liderazgo. Cuanto más aprietas, menos crece tu gente.",unlock:"Cambia control por confianza. Delega el resultado, no solo la tarea.",book:"Cambia el barco de rumbo · David Marquet"},
+   3:{n:"El Protagonista",tag:"Eres el mejor del equipo. Y ese es exactamente tu problema.",def:"Alto rendimiento, pero lo absorbes todo y te cuesta que otros brillen.",techo:"No puedes escalar porque todo depende de ti. El talento se va sin espacio para crecer.",unlock:"Del ego al servicio. Tu nuevo trabajo no es ganar tú, es hacer ganar a otros.",book:"Lo que te trajo aquí no te llevará allí · Marshall Goldsmith"},
+   4:{n:"El Multiplicador",tag:"Tu éxito ya no es lo que haces tú, es lo que hace tu gente.",def:"Delegas, desarrollas, das crédito, construyes autonomía.",techo:"Sostener cultura y exigencia a la vez según el equipo crece, sin quemar a nadie.",unlock:"De equipo a sistema. Empieza a construir líderes que construyan líderes.",book:"Multipliers · Liz Wiseman"},
+   5:{n:"El Arquitecto",tag:"Construyes líderes y una cultura que te trasciende.",def:"Piensas en sistemas, propósito y largo plazo; tu organización mejora sin ti.",techo:"Que la misión no pierda su alma al escalar, y la sucesión.",unlock:"El techo de un Arquitecto siempre se mueve. Juega el juego infinito.",book:"El juego infinito · Simon Sinek"}
+  };
+  var app=document.getElementById('app');
+  var idx=0,counts={1:0,2:0,3:0,4:0,5:0},order=[],lead={};
+  function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function bar(p){return '<div class="progress"><i style="width:'+p+'%"></i></div>';}
+  function intro(){
+    app.innerHTML='<div class="screen center">'+
+      '<p class="eyebrow">Test de liderazgo</p>'+
+      '<h1>El Test<br>del Líder</h1>'+
+      '<p class="lead" style="margin-left:auto;margin-right:auto">Descubre en qué nivel de líder estás —del 1 al 5— y qué exactamente te separa del siguiente.</p>'+
+      '<p class="fine" style="margin-bottom:34px">18 preguntas · 3 minutos · responde con honestidad</p>'+
+      '<button class="btn" id="go">Empezar el test</button></div>';
+    document.getElementById('go').onclick=function(){idx=0;counts={1:0,2:0,3:0,4:0,5:0};lead={};order=Q.map(function(x){return shuf(x.o);});render();};
+  }
+  function render(){
+    if(idx>=Q.length)return capture();
+    var p=Math.round(idx/Q.length*100),opts=order[idx];
+    var h='<div class="screen">'+bar(p)+'<div class="meta"><span>Pregunta '+(idx+1)+' / '+Q.length+'</span><span>'+p+'%</span></div>'+
+      '<h2>'+Q[idx].q+'</h2><div class="opts">';
+    for(var i=0;i<opts.length;i++)h+='<button class="opt" data-l="'+opts[i][1]+'">'+opts[i][0]+'</button>';
+    h+='</div></div>';
+    app.innerHTML=h;
+    var b=app.querySelectorAll('.opt');
+    for(var k=0;k<b.length;k++)b[k].onclick=function(){counts[+this.getAttribute('data-l')]++;idx++;render();};
+  }
+  function capture(){
+    app.innerHTML='<div class="screen">'+bar(100)+'<div class="meta"><span>Último paso</span><span>100%</span></div>'+
+      '<div class="center"><div class="lock">✦</div><h2 style="text-align:center;margin-bottom:10px">Tu resultado está listo</h2>'+
+      '<p class="lead" style="margin:0 auto 28px">Dime dónde te lo envío y desbloqueamos tu nivel + el plan para subir al siguiente.</p></div>'+
+      '<div class="form" style="margin:0 auto">'+
+        '<div class="field"><label>Nombre</label><input id="f_name" type="text" placeholder="Tu nombre"></div>'+
+        '<div class="row"><div class="field" style="flex:1"><label>Edad</label><input id="f_age" type="number" min="14" max="99" placeholder="35"></div>'+
+        '<div class="field" style="flex:2"><label>Ciudad</label><input id="f_city" type="text" placeholder="Tu ciudad"></div></div>'+
+        '<div class="field"><label>Email</label><input id="f_email" type="email" placeholder="tu@email.com"></div>'+
+        '<div class="err" id="f_err"></div>'+
+        '<button class="btn" id="reveal" style="margin-top:4px">Ver mi nivel de líder</button>'+
+        '<p class="fine center" style="margin:0">Sin spam. Solo contenido para subir de nivel. Baja cuando quieras.</p>'+
+      '</div></div>';
+    document.getElementById('reveal').onclick=function(){
+      var n=val('f_name'),a=val('f_age'),c=val('f_city'),e=val('f_email'),err=document.getElementById('f_err');
+      var re=/^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+      if(!n||!a||!c||!e){return showErr(err,'Completa todos los campos para ver tu resultado.');}
+      if(+a<14||+a>99){return showErr(err,'Introduce una edad válida.');}
+      if(!re.test(e)){return showErr(err,'Ese email no parece válido. Revísalo, por favor.');}
+      lead={name:n,age:a,city:c,email:e};
+      /* === INTEGRACIÓN: aquí se envían los datos + el nivel a ManyChat (webhook). Se conecta en la fase de nurturing. === */
+      result();
+    };
+  }
+  function val(id){return document.getElementById(id).value.trim();}
+  function showErr(el,m){el.textContent=m;el.style.display='block';}
+  function result(){
+    var l=[1,2,3,4,5].sort(function(a,b){return counts[b]-counts[a]||a-b;});
+    var top=l[0],sec=l[1],trans=(sec===top+1&&(counts[top]-counts[sec])<=2);
+    var s=0;for(var i=1;i<=5;i++)s+=counts[i]*i;
+    var mad=Math.round((s/Q.length-1)/4*100),r=R[top];
+    var title=trans?('Nivel '+top+' · con un pie en el '+(top+1)):('Nivel '+top+' de 5');
+    var hi=lead.name?'<p class="lvl-label">'+esc(lead.name)+', este es tu resultado</p>':'';
+    function card(k,v){return '<div class="card"><div class="k">'+k+'</div><div class="v">'+v+'</div></div>';}
+    app.innerHTML='<div class="screen">'+hi+
+      '<div class="badge">'+top+'</div>'+
+      '<p class="lvl-label">'+title+'</p>'+
+      '<div class="arch">'+r.n+'</div>'+
+      '<p class="tagline">'+r.tag+'</p>'+
+      '<div class="madurez"><div class="meta"><span>Madurez de liderazgo</span><span>'+mad+' / 100</span></div>'+bar(mad)+'</div>'+
+      '<div class="results-body">'+
+        card('Esto te define',r.def)+card('Tu techo ahora mismo',r.techo)+
+        card(top<5?'Lo que te desbloquea el nivel '+(top+1):'Tu siguiente frontera',r.unlock)+
+        card('Tu siguiente lectura',r.book)+
+        '<div class="cta"><h3>¿Quieres subir al nivel '+(top<5?top+1:5)+'?</h3>'+
+        '<p>Te enviamos a '+esc(lead.email)+' la serie de contenidos diseñada para tu nivel.</p>'+
+        '<button class="btn" id="cta">Empezar a subir de nivel</button></div>'+
+        '<div class="center mt"><button class="btn ghost" id="again">Repetir el test</button></div>'+
+      '</div></div>';
+    document.getElementById('again').onclick=intro;
+    document.getElementById('cta').onclick=function(){window.scrollTo(0,0);};
+  }
+  function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  intro();
+})();
+</script>
+</body>
+</html>
