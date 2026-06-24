@@ -41,6 +41,11 @@
   .opt:before{content:"";flex:0 0 auto;width:9px;height:9px;border-radius:50%;border:1px solid var(--muted);transition:.2s}
   .opt:hover{border-color:var(--gold);background:#121b30;transform:translateX(3px)}
   .opt:hover:before{border-color:var(--gold);background:var(--gold);box-shadow:0 0 10px rgba(201,169,97,.5)}
+  .opt.sel{border-color:var(--gold);background:#121b30}
+  .opt.sel:before{border-color:var(--gold);background:var(--gold);box-shadow:0 0 10px rgba(201,169,97,.5)}
+  .nav{margin-top:24px}
+  .back{background:none;border:none;color:var(--muted);font-family:var(--sans);font-weight:300;font-size:14px;letter-spacing:.02em;cursor:pointer;padding:8px 2px;transition:.2s}
+  .back:hover{color:var(--gold)}
   .field label{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
   .field input{width:100%;background:var(--bg2);border:1px solid var(--line-soft);border-radius:3px;color:var(--cream);
     font-family:var(--sans);font-size:16px;font-weight:300;padding:14px 16px;transition:.2s;outline:none}
@@ -100,7 +105,7 @@
    5:{n:"El Arquitecto",tag:"Construyes líderes y una cultura que te trasciende.",def:"Piensas en sistemas, propósito y largo plazo; tu organización mejora sin ti.",techo:"Que la misión no pierda su alma al escalar, y la sucesión.",unlock:"El techo de un Arquitecto siempre se mueve. Juega el juego infinito.",book:"El juego infinito · Simon Sinek"}
   };
   var app=document.getElementById('app');
-  var idx=0,counts={1:0,2:0,3:0,4:0,5:0},order=[],lead={};
+  var idx=0,answers=[],order=[],lead={};
   function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
   function bar(p){return '<div class="progress"><i style="width:'+p+'%"></i></div>';}
   function intro(){
@@ -110,18 +115,21 @@
       '<p class="lead" style="margin-left:auto;margin-right:auto">Descubre en qué nivel de líder estás —del 1 al 5— y qué exactamente te separa del siguiente.</p>'+
       '<p class="fine" style="margin-bottom:34px">18 preguntas · 3 minutos · responde con honestidad</p>'+
       '<button class="btn" id="go">Empezar el test</button></div>';
-    document.getElementById('go').onclick=function(){idx=0;counts={1:0,2:0,3:0,4:0,5:0};lead={};order=Q.map(function(x){return shuf(x.o);});render();};
+    document.getElementById('go').onclick=function(){idx=0;answers=[];lead={};order=Q.map(function(x){return shuf(x.o);});render();};
   }
   function render(){
     if(idx>=Q.length)return capture();
     var p=Math.round(idx/Q.length*100),opts=order[idx];
     var h='<div class="screen">'+bar(p)+'<div class="meta"><span>Pregunta '+(idx+1)+' / '+Q.length+'</span><span>'+p+'%</span></div>'+
       '<h2>'+Q[idx].q+'</h2><div class="opts">';
-    for(var i=0;i<opts.length;i++)h+='<button class="opt" data-l="'+opts[i][1]+'">'+opts[i][0]+'</button>';
-    h+='</div></div>';
+    for(var i=0;i<opts.length;i++){var sel=answers[idx]===opts[i][1]?' sel':'';h+='<button class="opt'+sel+'" data-l="'+opts[i][1]+'">'+opts[i][0]+'</button>';}
+    h+='</div>';
+    if(idx>0)h+='<div class="nav"><button class="back" id="back">&#8592; Anterior</button></div>';
+    h+='</div>';
     app.innerHTML=h;
     var b=app.querySelectorAll('.opt');
-    for(var k=0;k<b.length;k++)b[k].onclick=function(){counts[+this.getAttribute('data-l')]++;idx++;render();};
+    for(var k=0;k<b.length;k++)b[k].onclick=function(){answers[idx]=+this.getAttribute('data-l');idx++;render();};
+    var bk=document.getElementById('back');if(bk)bk.onclick=function(){idx--;render();};
   }
   function capture(){
     app.innerHTML='<div class="screen">'+bar(100)+'<div class="meta"><span>Último paso</span><span>100%</span></div>'+
@@ -135,7 +143,9 @@
         '<div class="err" id="f_err"></div>'+
         '<button class="btn" id="reveal" style="margin-top:4px">Ver mi nivel de líder</button>'+
         '<p class="fine center" style="margin:0">Sin spam. Solo contenido para subir de nivel. Baja cuando quieras.</p>'+
+        '<div class="nav center"><button class="back" id="backc">&#8592; Volver a las preguntas</button></div>'+
       '</div></div>';
+    var bc=document.getElementById('backc');if(bc)bc.onclick=function(){idx=Q.length-1;render();};
     document.getElementById('reveal').onclick=function(){
       var n=val('f_name'),a=val('f_age'),c=val('f_city'),e=val('f_email'),err=document.getElementById('f_err');
       var re=/^[^@\s]+@[^@\s]+\.[^@\s]+$/;
@@ -150,6 +160,7 @@
   function val(id){return document.getElementById(id).value.trim();}
   function showErr(el,m){el.textContent=m;el.style.display='block';}
   function result(){
+    var counts={1:0,2:0,3:0,4:0,5:0};answers.forEach(function(v){if(v)counts[v]++;});
     var l=[1,2,3,4,5].sort(function(a,b){return counts[b]-counts[a]||a-b;});
     var top=l[0],sec=l[1],trans=(sec===top+1&&(counts[top]-counts[sec])<=2);
     var s=0;for(var i=1;i<=5;i++)s+=counts[i]*i;
