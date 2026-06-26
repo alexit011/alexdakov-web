@@ -126,7 +126,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   var app=document.getElementById('app');
   var idx=0,answers=[],order=[],lead={},leadMiedo='',leadDolor='';
   /* === CABLEO: pega aquí la URL del webhook (Make) que envía a beehiiv. Vacío = el test no guarda lead todavía. === */
-  var LEAD_ENDPOINT='';
+  var LEAD_ENDPOINT='https://test-lider-beehiiv.alexdakov.workers.dev';
   function submitLead(){if(!LEAD_ENDPOINT)return;try{fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lead)});}catch(e){}}
   function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
   function bar(p){return '<div class="progress"><i style="width:'+p+'%"></i></div>';}
