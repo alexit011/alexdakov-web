@@ -124,7 +124,10 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
    5:{n:"El Arquitecto",tag:"Construyes líderes y una cultura que te trasciende.",def:"Piensas en sistemas, propósito y largo plazo; tu organización mejora sin ti.",techo:"Que la misión no pierda su alma al escalar, y la sucesión.",unlock:"El techo de un Arquitecto siempre se mueve. Juega el juego infinito.",book:"El juego infinito · Simon Sinek"}
   };
   var app=document.getElementById('app');
-  var idx=0,answers=[],order=[],lead={};
+  var idx=0,answers=[],order=[],lead={},leadMiedo='',leadDolor='';
+  /* === CABLEO: pega aquí la URL del webhook (Make) que envía a beehiiv. Vacío = el test no guarda lead todavía. === */
+  var LEAD_ENDPOINT='';
+  function submitLead(){if(!LEAD_ENDPOINT)return;try{fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lead)});}catch(e){}}
   function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
   function bar(p){return '<div class="progress"><i style="width:'+p+'%"></i></div>';}
   function intro(){
@@ -134,7 +137,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<p class="lead" style="margin-left:auto;margin-right:auto">Descubre en qué nivel de líder estás —del 1 al 5— y qué exactamente te separa del siguiente.</p>'+
       '<p class="fine" style="margin-bottom:34px">18 preguntas · 3 minutos · responde con honestidad</p>'+
       '<button class="btn" id="go">Empezar el test</button></div>';
-    document.getElementById('go').onclick=function(){idx=0;answers=[];lead={};order=Q.map(function(x){return shuf(x.o);});if(typeof tlpTrack==='function')tlpTrack('test_start');render();};
+    document.getElementById('go').onclick=function(){idx=0;answers=[];lead={};leadMiedo='';leadDolor='';order=Q.map(function(x){return shuf(x.o);});if(typeof tlpTrack==='function')tlpTrack('test_start');render();};
   }
   function render(){
     if(idx>=Q.length)return capture();
@@ -147,7 +150,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     h+='</div>';
     app.innerHTML=h;
     var b=app.querySelectorAll('.opt');
-    for(var k=0;k<b.length;k++)b[k].onclick=function(){answers[idx]=+this.getAttribute('data-l');if(typeof tlpTrack==='function')tlpTrack('question_answered',{question:idx+1});idx++;render();};
+    for(var k=0;k<b.length;k++)b[k].onclick=function(){answers[idx]=+this.getAttribute('data-l');var __t=(this.textContent||'').trim();if(idx===1)leadMiedo=__t;if(idx===10)leadDolor=__t;if(typeof tlpTrack==='function')tlpTrack('question_answered',{question:idx+1});idx++;render();};
     var bk=document.getElementById('back');if(bk)bk.onclick=function(){idx--;render();};
   }
   function capture(){
@@ -171,9 +174,11 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       if(!n||!a||!c||!e){return showErr(err,'Completa todos los campos para ver tu resultado.');}
       if(+a<14||+a>99){return showErr(err,'Introduce una edad válida.');}
       if(!re.test(e)){return showErr(err,'Ese email no parece válido. Revísalo, por favor.');}
-      lead={name:n,age:a,city:c,email:e};
+      var cc={1:0,2:0,3:0,4:0,5:0};answers.forEach(function(v){if(v)cc[v]++;});
+      var nv=[1,2,3,4,5].sort(function(x,y){return cc[y]-cc[x]||x-y;})[0];
+      lead={name:n,age:a,city:c,email:e,nivel:nv,miedo:leadMiedo,dolor:leadDolor};
+      submitLead();
       if(typeof tlpTrack==='function')tlpTrack('lead_submitted');
-      /* === INTEGRACIÓN: aquí se envían los datos + el nivel a ManyChat (webhook). Se conecta en la fase de nurturing. === */
       result();
     };
   }
