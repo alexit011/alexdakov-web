@@ -367,7 +367,7 @@
   </style>
   <script>
     window.__adLoadAnalytics=function(){
-      if(window.__adAnalyticsLoaded)return;window.__adAnalyticsLoaded=true;
+      if(window.__adAnalyticsLoaded)return;window.__adAnalyticsLoaded=true;/* Meta Pixel (gated on consent) */!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1019162761091060');fbq('track','PageView');/* TikTok Pixel (gated on consent) */!function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};ttq.load('D9BL66JC77U7PB56RCO0');ttq.page();}(window,document,'ttq');
       var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-EBWBFNY0W7';document.head.appendChild(g);
       window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','G-EBWBFNY0W7');
     };
@@ -873,7 +873,7 @@
 
   <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Aviso de cookies" hidden>
     <div class="cookie-banner-inner">
-      <p class="cookie-text">Uso cookies de analítica para entender cómo se usa la web y mejorarla. Puedes aceptar o rechazar las cookies opcionales (Google Analytics).</p>
+      <p class="cookie-text">Uso cookies de analítica y marketing para entender cómo se usa la web, mejorarla y medir mis campañas. Puedes aceptar o rechazar las cookies opcionales (Google Analytics, Meta y TikTok).</p>
       <div class="cookie-actions">
         <button class="cookie-btn cookie-reject" id="cookieReject" type="button">Rechazar</button>
         <button class="cookie-btn cookie-accept" id="cookieAccept" type="button">Aceptar</button>
