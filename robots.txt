@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /mediakit/
 
 # Crawlers de IA — acceso explícito
 User-agent: GPTBot
@@ -18,4 +19,3 @@ User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://alexdakov.com/sitemap.xml
-Disallow: /mediakit/
