@@ -1954,15 +1954,13 @@
       margin: 0 auto;
       position: relative;
       z-index: 2;
-      align-items: start;
-      justify-items: center;
+      align-items: stretch;
     }
     .reel-card {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       min-width: 0;
       width: 100%;
-      max-width: 340px;
       border-radius: 14px;
       overflow: hidden;
       border: 1px solid var(--border);
@@ -2049,6 +2047,36 @@
       color: var(--gold);
     }
     .reel-card-native .reel-meta .ig-mark svg { width: 14px; height: 14px; }
+    /* Footer estilo IG (likes / coment. / compartidos) */
+    .reel-card-footer {
+      background: var(--navy-card);
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 1px solid var(--border);
+    }
+    .reel-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .reel-actions svg { width: 22px; height: 22px; color: var(--text); }
+    .reel-actions a { color: var(--text); line-height: 0; }
+    .reel-actions a:hover svg { color: var(--gold); }
+    .reel-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.3;
+    }
+    .reel-stats .stat b {
+      color: var(--text);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
     .reels-cta-wrap { text-align: center; margin-top: 76px; position: relative; z-index: 2; }
     .reels-cta {
       display: inline-flex;
@@ -2577,44 +2605,61 @@
           <div class="play-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#F0EBE0"/></svg>
           </div>
-          <div class="reel-meta">
-            <span class="handle">@alex_dakov</span>
-            <span class="ig-mark">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-              Reel
-            </span>
-          </div>
         </a>
+        <div class="reel-card-footer">
+          <div class="reel-actions" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="reel-stats">
+            <span class="stat"><b>180.095</b> Me gusta</span>
+            <span class="stat"><b>2.967</b> coment.</span>
+            <span class="stat"><b>82.183</b> compartidos</span>
+          </div>
+        </div>
       </div>
+
       <div class="reel-card">
         <a class="reel-card-native" href="https://www.instagram.com/reel/DZqGPGBDO1X/" target="_blank" rel="noopener" aria-label="Ver reel en Instagram — Los mejores no se quedan donde mejor pagan, se quedan donde más crecen">
           <img src="/assets/reel-DZqGPGBDO1X.jpg" alt="Portada del reel: Los mejores no se quedan donde mejor pagan, se quedan donde más crecen" loading="lazy" decoding="async">
           <div class="play-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#F0EBE0"/></svg>
           </div>
-          <div class="reel-meta">
-            <span class="handle">@alex_dakov</span>
-            <span class="ig-mark">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-              Reel
-            </span>
-          </div>
         </a>
+        <div class="reel-card-footer">
+          <div class="reel-actions" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="reel-stats">
+            <span class="stat"><b>18.398</b> Me gusta</span>
+            <span class="stat"><b>151</b> coment.</span>
+            <span class="stat"><b>4.586</b> compartidos</span>
+          </div>
+        </div>
       </div>
+
       <div class="reel-card">
         <a class="reel-card-native" href="https://www.instagram.com/reel/DYzRjX2E6ol/" target="_blank" rel="noopener" aria-label="Ver reel en Instagram — Antes de ascender a alguien a un puesto de liderazgo, observa si tiene estas tres cosas">
           <img src="/assets/reel-DYzRjX2E6ol.jpg" alt="Portada del reel: Antes de ascender a alguien a un puesto de liderazgo, observa si tiene estas tres cosas" loading="lazy" decoding="async">
           <div class="play-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#F0EBE0"/></svg>
           </div>
-          <div class="reel-meta">
-            <span class="handle">@alex_dakov</span>
-            <span class="ig-mark">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-              Reel
-            </span>
-          </div>
         </a>
+        <div class="reel-card-footer">
+          <div class="reel-actions" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="reel-stats">
+            <span class="stat"><b>12.961</b> Me gusta</span>
+            <span class="stat"><b>102</b> coment.</span>
+            <span class="stat"><b>4.749</b> compartidos</span>
+          </div>
+        </div>
       </div>
     </div>
 
