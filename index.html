@@ -1984,6 +1984,71 @@
       border-radius: 0 !important;
       filter: brightness(0.95) contrast(1.02);
     }
+    /* Custom reel card (portada real subida a IG) */
+    .reel-card-native {
+      display: block;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      position: relative;
+      background: var(--navy-deep);
+      text-decoration: none;
+      color: var(--text);
+    }
+    .reel-card-native img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reel-card:hover .reel-card-native img { transform: scale(1.04); }
+    .reel-card-native::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(9,12,23,0.72) 100%);
+      pointer-events: none;
+    }
+    .reel-card-native .play-icon {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: rgba(9,12,23,0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1.5px solid rgba(240,235,224,0.4);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+      z-index: 2;
+    }
+    .reel-card:hover .play-icon {
+      background: var(--gold);
+      border-color: var(--gold);
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+    .reel-card-native .play-icon svg { width: 22px; height: 22px; margin-left: 3px; }
+    .reel-card:hover .play-icon svg path { fill: var(--navy-base); }
+    .reel-card-native .reel-meta {
+      position: absolute;
+      left: 16px; right: 16px; bottom: 14px;
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 2;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .reel-card-native .reel-meta .handle {
+      color: var(--text);
+      opacity: 0.92;
+    }
+    .reel-card-native .reel-meta .ig-mark {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--gold);
+    }
+    .reel-card-native .reel-meta .ig-mark svg { width: 14px; height: 14px; }
     .reels-cta-wrap { text-align: center; margin-top: 76px; position: relative; z-index: 2; }
     .reels-cta {
       display: inline-flex;
@@ -2507,19 +2572,49 @@
 
     <div class="reels-grid">
       <div class="reel-card">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DbEAV_6jrMg/?utm_source=ig_embed" data-instgrm-version="14">
-          <a href="https://www.instagram.com/reel/DbEAV_6jrMg/" target="_blank" rel="noopener">Ver reel en Instagram</a>
-        </blockquote>
+        <a class="reel-card-native" href="https://www.instagram.com/reel/DbEAV_6jrMg/" target="_blank" rel="noopener" aria-label="Ver reel en Instagram — No es que no valga, es que vale demasiado">
+          <img src="/assets/reel-DbEAV_6jrMg.jpg" alt="Portada del reel: No es que no valga, es que vale demasiado" loading="lazy" decoding="async">
+          <div class="play-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#F0EBE0"/></svg>
+          </div>
+          <div class="reel-meta">
+            <span class="handle">@alex_dakov</span>
+            <span class="ig-mark">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+              Reel
+            </span>
+          </div>
+        </a>
       </div>
       <div class="reel-card">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DZqGPGBDO1X/?utm_source=ig_embed" data-instgrm-version="14">
-          <a href="https://www.instagram.com/reel/DZqGPGBDO1X/" target="_blank" rel="noopener">Ver reel en Instagram</a>
-        </blockquote>
+        <a class="reel-card-native" href="https://www.instagram.com/reel/DZqGPGBDO1X/" target="_blank" rel="noopener" aria-label="Ver reel en Instagram — Los mejores no se quedan donde mejor pagan, se quedan donde más crecen">
+          <img src="/assets/reel-DZqGPGBDO1X.jpg" alt="Portada del reel: Los mejores no se quedan donde mejor pagan, se quedan donde más crecen" loading="lazy" decoding="async">
+          <div class="play-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#F0EBE0"/></svg>
+          </div>
+          <div class="reel-meta">
+            <span class="handle">@alex_dakov</span>
+            <span class="ig-mark">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+              Reel
+            </span>
+          </div>
+        </a>
       </div>
       <div class="reel-card">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYzRjX2E6ol/?utm_source=ig_embed" data-instgrm-version="14">
-          <a href="https://www.instagram.com/reel/DYzRjX2E6ol/" target="_blank" rel="noopener">Ver reel en Instagram</a>
-        </blockquote>
+        <a class="reel-card-native" href="https://www.instagram.com/reel/DYzRjX2E6ol/" target="_blank" rel="noopener" aria-label="Ver reel en Instagram — Antes de ascender a alguien a un puesto de liderazgo, observa si tiene estas tres cosas">
+          <img src="/assets/reel-DYzRjX2E6ol.jpg" alt="Portada del reel: Antes de ascender a alguien a un puesto de liderazgo, observa si tiene estas tres cosas" loading="lazy" decoding="async">
+          <div class="play-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#F0EBE0"/></svg>
+          </div>
+          <div class="reel-meta">
+            <span class="handle">@alex_dakov</span>
+            <span class="ig-mark">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+              Reel
+            </span>
+          </div>
+        </a>
       </div>
     </div>
 
@@ -2899,7 +2994,6 @@
     window.addEventListener('resize', () => ScrollTrigger.refresh());
   </script>
   <!-- Instagram embeds (Bloque 08 — Voz en redes) -->
-  <script async src="https://www.instagram.com/embed.js"></script>
 
   <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Aviso de cookies" hidden>
     <div class="cookie-banner-inner">
