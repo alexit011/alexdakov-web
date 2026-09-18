@@ -2841,9 +2841,13 @@
         scrollTrigger: { trigger: '[data-block="07"] .stage-video-wrap', start: 'top 80%' },
         y: 50, opacity: 0, duration: 1, ease: 'power3.out'
       });
-      gsap.from('[data-block="08"] .reel-card, [data-block="08"] .reels-cta-wrap', {
-        scrollTrigger: { trigger: '[data-block="08"] .reels-grid', start: 'top 80%' },
-        y: 50, opacity: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out'
+      gsap.from('[data-block="08"] .reel-card', {
+        scrollTrigger: { trigger: '[data-block="08"] .reels-grid', start: 'top 85%' },
+        opacity: 0, scale: 0.96, duration: 0.7, stagger: 0.08, ease: 'power2.out'
+      });
+      gsap.from('[data-block="08"] .reels-cta-wrap', {
+        scrollTrigger: { trigger: '[data-block="08"] .reels-cta-wrap', start: 'top 90%' },
+        y: 30, opacity: 0, duration: 0.8, ease: 'power3.out'
       });
 
       gsap.from('[data-block="01"] .why-quote', {
