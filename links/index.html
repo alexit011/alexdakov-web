@@ -331,5 +331,22 @@
 
     <footer><a href="https://alexdakov.com/">alexdakov.com</a></footer>
   </main>
+
+  <script>
+    // Origen dinámico: /links/?src=facebook|youtube|linkedin|tiktok|instagram (def. instagram).
+    // Propaga utm_source al form de beehiiv y a los enlaces internos, y lo manda a GA4.
+    (function(){
+      var ok = ['instagram','facebook','youtube','linkedin','tiktok','threads','x','email','other'];
+      var q = new URLSearchParams(location.search);
+      var src = (q.get('src') || q.get('utm_source') || '').toLowerCase();
+      if (ok.indexOf(src) < 0) src = 'instagram';
+      document.querySelectorAll('input[name="utm_source"]').forEach(function(i){ i.value = src; });
+      document.querySelectorAll('a.link').forEach(function(a){
+        try { var u = new URL(a.href); u.searchParams.set('utm_source', src); a.href = u.toString(); } catch(e){}
+      });
+      window.__linksSrc = src;
+      try { gtag('event', 'links_view', { src: src }); } catch(e){}
+    })();
+  </script>
 </body>
 </html>
