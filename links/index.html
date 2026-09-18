@@ -176,6 +176,12 @@
     }
     .nl button:hover { background: var(--gold-hover); transform: translateY(-1px); box-shadow: 0 12px 28px rgba(201,169,97,0.3); }
     .nl button:active { transform: translateY(0); }
+    .nl button:disabled { opacity: .7; cursor: wait; transform: none; }
+    .nl-msg { font-size: 13px; color: #E0A878; min-height: 0; display: none; }
+    .nl-msg.show { display: block; }
+    .nl-done { display: none; margin-top: 16px; padding: 14px 16px; border: 1px solid var(--gold-dashed); border-radius: 12px; background: rgba(9,12,23,0.5); font-size: 14px; line-height: 1.5; color: var(--text-secondary); }
+    .nl-done strong { color: var(--gold); font-weight: 600; display: block; margin-bottom: 2px; }
+    .nl-done.show { display: block; }
     .nl small {
       display: block; margin-top: 10px; text-align: center;
       font-size: 11.5px; color: var(--text-tertiary);
@@ -275,13 +281,15 @@
       </span>
       <h2 id="nl-title">Cada semana, una idea para liderar mejor.</h2>
       <p>Historias, herramientas y libros para construir equipos de alto rendimiento. Gratis. Los miércoles.</p>
-      <form action="https://alex-dakov.beehiiv.com/subscribe" method="get" target="_blank" rel="noopener" onsubmit="try{gtag('event','links_newsletter_submit',{page:'links'})}catch(e){}">
+      <form id="nl-form" novalidate>
         <input type="email" name="email" placeholder="Tu email" autocomplete="email" inputmode="email" required aria-label="Tu email">
         <input type="hidden" name="utm_source" value="instagram">
         <input type="hidden" name="utm_medium" value="links">
         <input type="hidden" name="utm_campaign" value="bio">
-        <button type="submit">Suscribirme</button>
+        <button type="submit" id="nl-btn">Suscribirme</button>
+        <div class="nl-msg" id="nl-msg" aria-live="polite"></div>
       </form>
+      <div class="nl-done" id="nl-done"><strong>Ya estás dentro.</strong> Revisa tu correo (y la carpeta de promociones): te llega el primer email en unos minutos.</div>
       <small>Sin spam. Te das de baja cuando quieras.</small>
     </section>
 
@@ -346,6 +354,29 @@
       });
       window.__linksSrc = src;
       try { gtag('event', 'links_view', { src: src }); } catch(e){}
+
+      // Alta inline en beehiiv vía el Worker (mismo que /newsletter y el Test): sin salir de /links.
+      var ENDPOINT = 'https://test-lider-beehiiv.alexdakov.workers.dev';
+      var f = document.getElementById('nl-form'), inp = f.querySelector('input[type="email"]'),
+          btn = document.getElementById('nl-btn'), msg = document.getElementById('nl-msg'), done = document.getElementById('nl-done');
+      f.addEventListener('submit', function(ev){
+        ev.preventDefault();
+        var email = (inp.value || '').trim(); msg.className = 'nl-msg'; msg.textContent = '';
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.className = 'nl-msg show'; msg.textContent = 'Revisa el email, parece que falta algo.'; inp.focus(); return; }
+        btn.disabled = true; var old = btn.textContent; btn.textContent = 'Un segundo…';
+        try { gtag('event', 'links_newsletter_submit', { page: 'links', src: src }); } catch(e){}
+        var ctrl = ('AbortController' in window) ? new AbortController() : null; var t = ctrl && setTimeout(function(){ ctrl.abort(); }, 9000);
+        fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ source: 'newsletter', email: email, utm_source: src, utm_medium: 'links', utm_campaign: 'bio', page: '/links/' }),
+          signal: ctrl ? ctrl.signal : undefined })
+          .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return r.ok && j.ok !== false; }); })
+          .then(function(ok){ clearTimeout(t); if (!ok) throw new Error('worker');
+            f.style.display = 'none'; done.className = 'nl-done show';
+            try { gtag('event', 'links_newsletter_subscribed', { page: 'links', src: src }); } catch(e){} })
+          .catch(function(){ clearTimeout(t); btn.disabled = false; btn.textContent = old;
+            msg.className = 'nl-msg show'; msg.textContent = 'No he podido registrarte ahora mismo. Inténtalo de nuevo en unos segundos.';
+            try { gtag('event', 'links_newsletter_error', { page: 'links' }); } catch(e){} });
+      });
     })();
   </script>
 </body>
