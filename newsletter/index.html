@@ -545,7 +545,6 @@ function nlTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}cat
 
   /* === CABLEO: mismo Worker que el Test del Líder; con source:"newsletter" solo mete en beehiiv (utm_source newsletter-landing). === */
   var ENDPOINT='https://test-lider-beehiiv.alexdakov.workers.dev';
-  var FALLBACK='https://alex-dakov.beehiiv.com/subscribe';
   var qs=new URLSearchParams(location.search);
   function utm(k){return qs.get(k)||'';}
   document.querySelectorAll('form.form').forEach(function(f){
@@ -565,9 +564,10 @@ function nlTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}cat
           else{throw new Error('worker');}
         })
         .catch(function(){clearTimeout(t);
-          /* Fallback: llevar a la página de alta de beehiiv con el email precargado */
-          nlTrack('newsletter_fallback');
-          location.href=FALLBACK+'?email='+encodeURIComponent(email)+'&utm_source=newsletter-landing';
+          /* Sin redirección a beehiiv: se queda en la página, avisa y permite reintentar. */
+          nlTrack('newsletter_error');
+          btn.disabled=false;btn.innerHTML=old;
+          msg.className='form-msg err';msg.textContent='No he podido registrarte ahora mismo. Inténtalo de nuevo en unos segundos.';
         });
     });
   });
