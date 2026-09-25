@@ -417,6 +417,7 @@
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ setMsg('Escribe un email válido, por favor.','err'); emailIn.focus(); return; }
     btn.disabled=true; var orig=btn.textContent; btn.textContent='Enviando…'; setMsg('');
     ga('newsletter_submit',{location:'preguntas'});
+    if(location.hostname.indexOf('alexdakov.com')===-1){ form.style.display='none'; setMsg('✓ (Vista previa) En alexdakov.com/preguntas/ esto te suscribe a Room Five al instante.','ok'); return; }
     var ctrl=('AbortController' in window)?new AbortController():null; var t=ctrl&&setTimeout(function(){ctrl.abort();},9000);
     fetch('https://test-lider-beehiiv.alexdakov.workers.dev', {
       method:'POST', headers:{'Content-Type':'application/json'},
