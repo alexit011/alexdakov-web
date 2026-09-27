@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Checklist de decisiones — Los 6 filtros antes de decidir | Alex Dakov</title>
+  <meta name="description" content="El sistema de 6 filtros de Alex Dakov para tomar mejores decisiones: propósito, claridad, análisis, riesgo, horizonte y aprendizaje. Checklist interactivo con veredicto en vivo.">
+  <link rel="canonical" href="https://alexdakov.com/checklist-decisiones/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alexdakov.com/checklist-decisiones/">
+  <meta property="og:title" content="Checklist de decisiones — Los 6 filtros antes de decidir">
+  <meta property="og:description" content="Pasa cualquier decisión importante por 6 filtros antes de decir que sí. Checklist interactivo de Alex Dakov.">
+  <meta property="og:image" content="https://alexdakov.com/assets/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Checklist de decisiones — Los 6 filtros antes de decidir">
+  <meta name="twitter:description" content="Pasa cualquier decisión importante por 6 filtros antes de decir que sí.">
+  <meta name="twitter:image" content="https://alexdakov.com/assets/og-home.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBWBFNY0W7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EBWBFNY0W7');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script>
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "x95217wrw7");
+  </script>
+
+  <style>
+    :root{
+      --navy:#090C17; --navy-alt:#070A14; --navy-deep:#04060F; --card:#14213D;
+      --card-soft:#101a30;
+      --cream:#F0EBE0; --taupe:#A09B92; --muted:#6E6960;
+      --gold:#C9A961; --gold-soft:rgba(201,169,97,.14); --gold-line:rgba(201,169,97,.32);
+      --red:#E08A7C; --red-bg:rgba(224,138,124,.12); --red-line:rgba(224,138,124,.4);
+      --green:#8FBF87;
+      --line:rgba(240,235,224,.10);
+      --maxw:720px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background:var(--navy); color:var(--cream);
+      font-family:"Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-size:16px; line-height:1.6; font-weight:400; -webkit-font-smoothing:antialiased;
+      padding:0 max(16px, env(safe-area-inset-left)) env(safe-area-inset-bottom) max(16px, env(safe-area-inset-right));
+    }
+    .serif{font-family:"Playfair Display", Georgia, serif;}
+    a{color:var(--gold); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    header.bar{position:sticky; top:0; z-index:20;
+      background:color-mix(in srgb, var(--navy) 86%, transparent);
+      -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line); margin:0 calc(-1 * max(16px, env(safe-area-inset-left)));
+      padding-left:max(16px, env(safe-area-inset-left)); padding-right:max(16px, env(safe-area-inset-right));}
+    .bar-in{max-width:var(--maxw); margin:0 auto; padding:12px 0; display:flex; align-items:center; gap:12px;}
+    .wordmark{font-family:"Inter",sans-serif; font-weight:600; letter-spacing:.22em; font-size:12px; text-transform:uppercase; color:var(--cream);}
+    .wordmark b{color:var(--gold); font-weight:600;}
+    .bar-share{margin-left:auto;}
+
+    .btn{font:inherit; font-weight:600; font-size:13.5px; cursor:pointer; border-radius:2px;
+      border:1px solid var(--gold-line); background:transparent; color:var(--cream);
+      padding:9px 16px; display:inline-flex; align-items:center; gap:8px; transition:all .18s ease; letter-spacing:.01em;}
+    .btn:hover{border-color:var(--gold); background:var(--gold-soft); text-decoration:none;}
+    .btn:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+    .btn.gold{background:var(--gold); color:#1a1305; border-color:var(--gold);}
+    .btn.gold:hover{background:#d8ba75; color:#1a1305;}
+    .btn.ghost-sm{font-size:12px; padding:7px 12px; letter-spacing:.04em;}
+    .btn svg{width:15px;height:15px}
+
+    main{max-width:var(--maxw); margin:0 auto;}
+    .doc{padding:36px 0 60px;}
+
+    .eyebrow{font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+    h1.title{font-weight:600; font-size:clamp(34px, 8vw, 56px); line-height:1.04; letter-spacing:-.01em; margin:.28em 0 .18em; color:var(--cream); text-wrap:balance;}
+    h1.title em{font-style:italic; color:var(--gold); font-weight:500;}
+    .lede{font-size:clamp(17px,4.6vw,21px); color:var(--taupe); margin:0 0 24px; max-width:40ch; line-height:1.45;}
+    .intro{max-width:60ch; color:var(--cream); font-size:16.5px; line-height:1.72;}
+    .intro em{font-style:italic; color:var(--gold);}
+    .sign{margin-top:14px; font-family:"Playfair Display",serif; font-style:italic; font-size:19px; color:var(--taupe);}
+
+    .rule{display:flex; align-items:center; justify-content:center; gap:12px; margin:34px 0;}
+    .rule::before,.rule::after{content:""; height:1px; width:90px; background:var(--gold-line);}
+    .rule .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);}
+
+    /* intro callout (the big idea) */
+    .callout{display:flex; gap:16px; align-items:flex-start; margin:28px 0; background:var(--card);
+      border:1px dashed var(--gold-line); border-radius:4px; padding:20px 22px;}
+    .callout .lbl{font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:10px;}
+    .callout h3{margin:0; font-family:"Playfair Display",serif; font-weight:600; font-size:20px; color:var(--cream);}
+    .callout p{margin:8px 0 0; color:var(--taupe); font-size:15.5px; line-height:1.7;}
+    .callout p strong{color:var(--cream);}
+    .callout .num{font-family:"Playfair Display",serif; font-size:34px; color:var(--gold); line-height:1; flex:0 0 auto;}
+
+    /* decision input */
+    .decision{margin:24px 0 4px;}
+    .decision label{display:block; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:9px;}
+    .decision input{width:100%; background:var(--card); border:1px solid var(--gold-line); color:var(--cream); font:inherit; font-size:16px; padding:14px 16px; border-radius:4px;}
+    .decision input::placeholder{color:var(--muted);}
+    .decision input:focus{outline:none; border-color:var(--gold);}
+
+    /* chips */
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin:26px 0 6px;}
+    .chip{font-size:12.5px; font-weight:500; color:var(--taupe); border:1px solid var(--line); background:transparent; border-radius:999px; padding:7px 13px; transition:.18s;}
+    .chip:hover{border-color:var(--gold); color:var(--cream); text-decoration:none;}
+    .chip b{color:var(--gold); font-family:"Playfair Display",serif; font-weight:600; margin-right:7px;}
+
+    /* section */
+    section.filter{margin-top:42px; scroll-margin-top:68px;}
+    .s-head{display:flex; gap:16px; align-items:baseline; padding-bottom:6px;}
+    .s-num{font-family:"Playfair Display",serif; font-size:clamp(28px,7vw,40px); color:var(--gold); line-height:.9; flex:0 0 auto;}
+    .s-head h2{margin:0; font-family:"Playfair Display",serif; font-weight:600; font-size:clamp(21px,5.2vw,29px); letter-spacing:-.01em; line-height:1.1; color:var(--cream);}
+    .s-sub{margin:2px 0 0; color:var(--taupe); font-size:14.5px; font-style:italic; line-height:1.55; border-left:2px solid var(--gold-line); padding-left:12px;}
+    .s-divider{height:1px;background:var(--gold-line);margin:14px 0 2px;}
+
+    /* checklist items */
+    .chk-list{list-style:none; margin:6px 0 0; padding:0;}
+    .chk{display:flex; gap:14px; align-items:flex-start; padding:13px 10px; border-bottom:1px solid var(--line); cursor:pointer; border-radius:4px; transition:background .15s;}
+    .chk:last-child{border-bottom:0}
+    .chk:hover{background:var(--card-soft);}
+    .box{flex:0 0 auto; width:24px; height:24px; margin-top:1px; border:1.5px solid var(--gold-line); border-radius:6px; background:transparent; display:grid; place-items:center; cursor:pointer; transition:.15s; padding:0; color:transparent;}
+    .box svg{width:14px; height:14px; stroke-width:3.2;}
+    .chk.done .box{background:var(--gold); border-color:var(--gold); color:#1a1305;}
+    .chk-text{flex:1 1 auto; font-size:16.5px; line-height:1.5; color:var(--cream);}
+    .chk.done .chk-text{color:var(--taupe);}
+    .chk-text .hint{display:block; margin-top:4px; font-style:italic; font-size:13.5px; color:var(--muted); line-height:1.5;}
+
+    /* red flags */
+    section.flags .s-head h2, section.flags .s-num{color:var(--red);}
+    .chk.flag .box{border-color:var(--red-line); border-radius:50%;}
+    .chk.flag.done .box{background:var(--red); border-color:var(--red); color:#2a0f0a;}
+    .chk.flag.done .chk-text{color:var(--red);}
+    .flag-alert{margin:6px 0 0; background:var(--red-bg); border:1px solid var(--red-line); border-radius:4px; padding:14px 16px; color:var(--red); font-weight:600; font-size:15px; display:none;}
+    .flag-alert.show{display:block; animation:pop .3s cubic-bezier(.2,.8,.25,1);}
+    @keyframes pop{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
+
+    /* verdict */
+    .verdict{margin-top:44px; border:1px solid var(--gold-line); border-radius:6px; padding:26px 24px; background:linear-gradient(180deg,var(--card) 0%, var(--card-soft) 100%); text-align:center; scroll-margin-top:68px;}
+    .verdict .eyebrow{display:block;}
+    .vbar{height:8px; background:rgba(240,235,224,.08); border-radius:99px; overflow:hidden; margin:16px 0 10px;}
+    .vbar span{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--gold),#e6cf88); border-radius:99px; transition:width .4s ease, background .3s;}
+    .vcount{font-family:"Playfair Display",serif; font-size:15px; color:var(--taupe);}
+    .vcount b{color:var(--gold); font-size:18px;}
+    .vmsg{font-family:"Playfair Display",serif; font-size:clamp(19px,4.6vw,24px); line-height:1.3; margin:12px 0 4px; color:var(--cream);}
+    .verdict.stop{border-color:var(--red-line);}
+    .verdict.stop .vmsg{color:var(--red);}
+    .verdict.stop .vbar span{background:var(--red);}
+    .verdict.go .vbar span{background:linear-gradient(90deg,#a9cf9f,var(--green));}
+    .reset{margin-top:16px;}
+
+    /* floating progress pill */
+    .pill{position:fixed; left:50%; bottom:calc(18px + env(safe-area-inset-bottom,0px)); transform:translateX(-50%);
+      background:var(--card); border:1px solid var(--gold-line); color:var(--cream); font-size:13px; font-weight:600;
+      padding:9px 16px; border-radius:999px; box-shadow:0 8px 26px rgba(0,0,0,.5); z-index:30; cursor:pointer;
+      display:flex; align-items:center; gap:9px; transition:border-color .3s, background .3s;}
+    .pill .pdot{width:9px; height:9px; border-radius:50%; background:var(--gold); flex:0 0 auto;}
+    .pill.stop{border-color:var(--red-line);} .pill.stop .pdot{background:var(--red);}
+    .pill.go .pdot{background:var(--green);}
+    .pill b{font-family:"Playfair Display",serif; font-weight:600;}
+
+    /* quick filters */
+    .quick{margin-top:44px;}
+    .quick-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;}
+    .qf{background:var(--card); border:1px dashed var(--gold-line); border-radius:4px; padding:18px; }
+    .qf .qe{font-size:24px; line-height:1;}
+    .qf p{margin:8px 0 0; font-size:15px; line-height:1.5; color:var(--cream);}
+    .qf p em{color:var(--taupe); font-style:italic;}
+    @media (max-width:540px){ .quick-grid{grid-template-columns:1fr;} }
+
+    /* closing quotes */
+    .quotes{margin-top:36px; text-align:center;}
+    .quotes blockquote{margin:10px 0; font-family:"Playfair Display",serif; font-style:italic; font-size:clamp(19px,5vw,25px); color:var(--gold); line-height:1.35;}
+    .quotes .small{font-family:"Inter",sans-serif; font-style:normal; font-size:15px; color:var(--taupe); letter-spacing:.02em;}
+
+    /* newsletter */
+    .news{margin-top:56px; background:linear-gradient(180deg, var(--card) 0%, var(--card-soft) 100%); border:1px solid var(--gold-line); border-radius:6px; padding:38px 26px; text-align:center;}
+    .news .eyebrow{display:block;}
+    .news h2{font-family:"Playfair Display",serif; font-weight:600; font-size:clamp(26px,6.4vw,36px); line-height:1.08; margin:12px 0 6px; color:var(--cream);}
+    .news h2 em{font-style:italic; color:var(--gold);}
+    .news p{color:var(--taupe); max-width:44ch; margin:0 auto 22px; font-size:16px; line-height:1.6;}
+    .news p strong{color:var(--cream); font-weight:600;}
+    form.subscribe{display:flex; gap:10px; max-width:440px; margin:0 auto; flex-wrap:wrap;}
+    form.subscribe input[type=email]{flex:1 1 200px; min-width:0; background:var(--navy); border:1px solid var(--gold-line); color:var(--cream); font:inherit; font-size:15px; padding:13px 15px; border-radius:3px;}
+    form.subscribe input[type=email]::placeholder{color:var(--muted);}
+    form.subscribe input[type=email]:focus{outline:none; border-color:var(--gold);}
+    form.subscribe button{flex:0 0 auto; padding:13px 22px; font-size:15px;}
+    .news .fineprint{margin:14px auto 0; font-size:12.5px; color:var(--muted); max-width:40ch;}
+    .news-msg{min-height:22px; margin-top:14px; font-size:14.5px; font-weight:500;}
+    .news-msg.ok{color:var(--gold);} .news-msg.err{color:#e0a3a3;}
+
+    /* share */
+    .share{margin-top:44px; text-align:center; padding:34px 22px 8px; border-top:1px solid var(--line);}
+    .share .eyebrow{display:block;}
+    .share h2{font-family:"Playfair Display",serif; font-weight:600; font-size:clamp(23px,5.6vw,30px); margin:10px 0 6px; color:var(--cream);}
+    .share p{margin:0 auto 20px; color:var(--taupe); max-width:40ch; font-size:15.5px;}
+    .share-grid{display:flex; flex-wrap:wrap; gap:10px; justify-content:center;}
+    .share-grid .btn{font-size:14px; padding:11px 17px;}
+    .btn.wa{border-color:transparent; background:#25D366; color:#04310f;}
+    .btn.wa:hover{background:#20c15c; color:#04310f;}
+    .hint2{margin-top:14px; font-size:13px; color:var(--muted); min-height:18px;}
+
+    footer.foot{margin-top:40px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:12.5px; text-align:center;}
+    footer.foot a{color:var(--taupe);}
+
+    .toast{position:fixed; left:50%; bottom:calc(70px + env(safe-area-inset-bottom,0px)); transform:translateX(-50%) translateY(20px);
+      background:var(--gold); color:#1a1305; font-size:13.5px; font-weight:600; padding:11px 18px; border-radius:3px;
+      box-shadow:0 10px 30px rgba(0,0,0,.5); opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; z-index:50;}
+    .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important; scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <span class="wordmark">ALEX <b>DAKOV</b></span>
+    <button class="btn bar-share" id="shareTop" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5 15.4 17.5M15.4 6.5 8.6 10.5"/></svg>
+      Compartir
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="doc">
+    <p class="eyebrow">Guía de liderazgo · Decisiones</p>
+    <h1 class="title serif">Los 6 filtros antes de una <em>gran decisión</em></h1>
+    <p class="lede">El sistema que uso para decidir mejor cuando la decisión importa de verdad.</p>
+    <p class="intro">Las malas decisiones rara vez se toman por falta de inteligencia. Se toman por falta de un <em>sistema claro</em>. Muchas veces buscamos convencernos, y se nos olvida que lo más importante para ganar es no equivocarse. Este sistema no es perfecto, pero está diseñado para minimizar tu probabilidad de fallo.</p>
+    <p class="sign serif">— Alex</p>
+
+    <div class="callout">
+      <span class="num serif">🧭</span>
+      <div>
+        <div class="lbl">Cómo usar esto</div>
+        <h3 class="serif">Marca con honestidad, no para convencerte</h3>
+        <p>Pasa cualquier decisión importante por estos 6 filtros antes de decir que sí. Marca cada casilla con honestidad —no para tener razón, sino para encontrar la verdad. <strong>Regla de oro: si un filtro enciende una bandera roja 🚩, para. No sigas.</strong></p>
+      </div>
+    </div>
+
+    <div class="decision">
+      <label for="decInput">¿Qué decisión estás sopesando?</label>
+      <input id="decInput" type="text" placeholder="Ej: aceptar la ronda, contratar a esa persona, lanzar el producto…" autocomplete="off">
+    </div>
+
+    <nav class="chips" aria-label="Filtros">
+      <a class="chip" href="#f1"><b>01</b>Propósito</a>
+      <a class="chip" href="#f2"><b>02</b>Claridad</a>
+      <a class="chip" href="#f3"><b>03</b>Análisis</a>
+      <a class="chip" href="#f4"><b>04</b>Riesgo</a>
+      <a class="chip" href="#f5"><b>05</b>Horizonte</a>
+      <a class="chip" href="#f6"><b>06</b>Aprendizaje</a>
+      <a class="chip" href="#flags">🚩 Banderas</a>
+    </nav>
+
+    <!-- 1 -->
+    <section class="filter" id="f1">
+      <div class="s-head"><span class="s-num serif">01</span><div><h2 class="serif">🎯 Propósito</h2></div></div>
+      <p class="s-sub">¿Esto es realmente para mí? Si no está alineado con tus valores, no sigas con el resto. Aquí se cae la mayoría de las malas decisiones.</p>
+      <div class="s-divider"></div>
+      <ul class="chk-list">
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Está alineado con mis valores y con quien quiero llegar a ser? <span class="hint">Si es "no", para aquí.</span></span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Aprovecha mi habilidad única y me hace más fuerte? <span class="hint">"¿Alarga mi zancada?"</span></span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿A quién beneficia esto?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Hay un propósito mayor que yo mismo?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Es un "HELL YEAH 🎸" o un "podría estar bien"? <span class="hint">Si no es un "HELL YEAH", es un No.</span></span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">Si digo SÍ a esto, ¿tengo claro a qué le estoy diciendo NO? <span class="hint">Siempre hay un coste oculto: defínelo.</span></span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">Dentro de 10 años… ¿estaré orgulloso de esta decisión?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Busco agradar a alguien? Y si es así… ¿para qué?</span></li>
+      </ul>
+    </section>
+
+    <!-- 2 -->
+    <section class="filter" id="f2">
+      <div class="s-head"><span class="s-num serif">02</span><div><h2 class="serif">🧠 Claridad</h2></div></div>
+      <p class="s-sub">¿Estoy en estado de decidir? No es solo qué decides, es desde dónde decides. El mismo problema se ve distinto según tu estado emocional.</p>
+      <div class="s-divider"></div>
+      <ul class="chk-list">
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿He dormido bien? <span class="hint">Nunca tomes una decisión grande habiendo dormido mal.</span></span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Decido sin estrés agudo ni presión emocional?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿He tomado perspectiva —deporte, respirar, dejar pasar un día— antes de decidir?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Busco la verdad, o busco tener razón?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Estoy huyendo hacia adelante, o sosteniendo el proceso con paciencia?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Tengo miedo de no tomar la decisión, o de una consecuencia derivada?</span></li>
+      </ul>
+    </section>
+
+    <!-- 3 -->
+    <section class="filter" id="f3">
+      <div class="s-head"><span class="s-num serif">03</span><div><h2 class="serif">🔍 Análisis</h2></div></div>
+      <p class="s-sub">¿Lo he validado o me lo estoy creyendo? Valida, valida, valida. Deja que te reten. No decidas desde el subconsciente y luego busques datos para respaldarlo.</p>
+      <div class="s-divider"></div>
+      <ul class="chk-list">
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿He contrastado la idea con alguien que me conozca y que me rete sin miedo?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿He contrastado la idea con alguien que NO me conozca y que me rete sin miedo?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Conozco el mejor resultado, el peor y la probabilidad de cada uno? <span class="hint">Escribe con detalle el peor resultado posible.</span></span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Miro los KPIs y milestones intermedios, o solo el resultado final? <span class="hint">Los puntos intermedios son los que más cuestan y nunca los valoramos.</span></span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿He aplicado la regla del 10x y sigo queriendo hacerlo? <span class="hint">Todo cuesta 10 veces más —en tiempo y dinero— de lo que planeas.</span></span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿He hecho due diligence extrema —números, contratos, referencias— o doy por hecho que "está bien"?</span></li>
+      </ul>
+    </section>
+
+    <!-- 4 -->
+    <section class="filter" id="f4">
+      <div class="s-head"><span class="s-num serif">04</span><div><h2 class="serif">🛡️ Riesgo</h2></div></div>
+      <p class="s-sub">⚠️ Filtro innegociable. No corras riesgos que te saquen de la partida, por muy alta que sea la recompensa.</p>
+      <div class="s-divider"></div>
+      <ul class="chk-list">
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿He mirado el PEOR escenario a la cara y puedo vivir con él?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Este riesgo NO me deja fuera de juego si sale mal?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Tengo colchón suficiente para absorber el error?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿La balanza (probabilidad × ganancia) vs (probabilidad × pérdida) está a mi favor?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Sé lo que estoy haciendo, o entro en territorio desconocido? <span class="hint">Riesgo = no saber lo que haces.</span></span></li>
+      </ul>
+    </section>
+
+    <!-- 5 -->
+    <section class="filter" id="f5">
+      <div class="s-head"><span class="s-num serif">05</span><div><h2 class="serif">⏳ Horizonte</h2></div></div>
+      <p class="s-sub">¿Dónde me deja esto en 5 años? Sentarte en una mesa te cierra las demás durante 3-5 años. Elige la mesa correcta.</p>
+      <div class="s-divider"></div>
+      <ul class="chk-list">
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Tiene sentido a 1 año? ¿A 5? ¿A 10?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Es transaccional (puntual) o transformacional (puerta de entrada a algo mayor)?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿He asumido el coste de oportunidad: qué puertas cierro al elegir esta?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Estoy dispuesto a vivir las acciones diarias que exige, no solo a querer el resultado?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Estoy dispuesto a transformarme en esa persona?</span></li>
+      </ul>
+    </section>
+
+    <!-- 6 -->
+    <section class="filter" id="f6">
+      <div class="s-head"><span class="s-num serif">06</span><div><h2 class="serif">📈 Aprendizaje</h2></div></div>
+      <p class="s-sub">¿Compro tiempo o lo pago con errores? La educación compra tiempo: empieza sobre los hombros de otros.</p>
+      <div class="s-divider"></div>
+      <ul class="chk-list">
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿He aprendido lo suficiente antes de decidir, o estoy improvisando?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿He triangulado mi visión con gente que sintetiza mejor que yo?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿Puedo explicar con claridad POR QUÉ tomo esta decisión?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">¿He estudiado por qué otros fracasaron haciendo algo parecido?</span></li>
+        <li class="chk"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">Decida lo que decida, ¿tengo claro qué aprendizaje voy a extraer?</span></li>
+      </ul>
+    </section>
+
+    <!-- VERDICT -->
+    <div class="verdict" id="verdict">
+      <span class="eyebrow">Tu veredicto</span>
+      <div class="vbar"><span id="vbarFill"></span></div>
+      <div class="vcount"><b id="vNum">0</b> de <span id="vTotal">35</span> filtros marcados</div>
+      <p class="vmsg serif" id="vMsg">Empieza a marcar los filtros que cumples.</p>
+      <button class="btn ghost-sm reset" id="resetBtn" type="button">Empezar una nueva decisión</button>
+    </div>
+
+    <!-- RED FLAGS -->
+    <section class="filter flags" id="flags">
+      <div class="s-head"><span class="s-num serif">🚩</span><div><h2 class="serif">Banderas rojas</h2></div></div>
+      <p class="s-sub">Si aparece una, PARA. No importa cuánto brille la oportunidad. Estas son líneas rojas, no sugerencias. Marca las que se cumplan.</p>
+      <div class="s-divider"></div>
+      <ul class="chk-list">
+        <li class="chk flag"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">El riesgo puede dejarme fuera de juego. <span class="hint">No merece la pena.</span></span></li>
+        <li class="chk flag"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">He dormido mal o estoy bajo estrés agudo. <span class="hint">Espera, no decidas hoy.</span></span></li>
+        <li class="chk flag"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">Estoy persiguiendo un "vestido rojo" —una idea brillante del momento. <span class="hint">Enfríalo unas semanas.</span></span></li>
+        <li class="chk flag"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">Decido rápido solo para evitar la incomodidad de la duda. <span class="hint">Esa prisa es la señal.</span></span></li>
+        <li class="chk flag"><button class="box" type="button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></button><span class="chk-text">Necesito tener razón más que encontrar la verdad. <span class="hint">Revisa tus motivaciones reales.</span></span></li>
+      </ul>
+      <div class="flag-alert" id="flagAlert"></div>
+    </section>
+
+    <!-- QUICK -->
+    <section class="quick" id="quick">
+      <div class="s-head"><span class="s-num serif">⚡</span><div><h2 class="serif">Los 4 filtros de 5 segundos</h2></div></div>
+      <p class="s-sub">Cuando no tengas tiempo para todo lo anterior, pásala por estos cuatro.</p>
+      <div class="quick-grid">
+        <div class="qf"><div class="qe">🔥</div><p>If it's not a <strong>HELL YEAH</strong>, it's a no.</p></div>
+        <div class="qf"><div class="qe">🚣</div><p>Will it make the boat go faster? <em>¿Esto hace que el barco vaya más rápido?</em></p></div>
+        <div class="qf"><div class="qe">👤</div><p>¿Qué pensaría alguien que admiro —no un amigo ni un familiar— de esta decisión?</p></div>
+        <div class="qf"><div class="qe">🧩</div><p>More complex = more mistakes. <em>Ante la duda, simplifica.</em></p></div>
+      </div>
+    </section>
+
+    <div class="quotes">
+      <blockquote>"El objetivo no es tener razón, sino encontrar la verdad."</blockquote>
+      <blockquote class="small">Pain + Reflection = Progress</blockquote>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <section class="news" id="newsletter">
+      <span class="eyebrow">Newsletter · Room Five</span>
+      <h2 class="serif">Liderar no se improvisa. <em>Se entrena.</em></h2>
+      <p>Cada miércoles te mando una <strong>historia, una idea y una herramienta</strong> para liderar mejor y construir equipos de alto rendimiento. Sin relleno, en 4 minutos. Únete a <strong>+1.100 líderes</strong> que ya la leen.</p>
+      <form class="subscribe" id="subForm" novalidate>
+        <input type="email" id="subEmail" name="email" placeholder="tu@email.com" autocomplete="email" required aria-label="Tu email">
+        <button class="btn gold" type="submit" id="subBtn">Únete gratis</button>
+      </form>
+      <div class="news-msg" id="subMsg" role="status" aria-live="polite"></div>
+      <p class="fineprint">Un email a la semana. Cero spam. Te das de baja cuando quieras.</p>
+    </section>
+
+    <!-- SHARE -->
+    <section class="share" id="share">
+      <span class="eyebrow">Compartir</span>
+      <h2 class="serif">Pásaselo a quien tenga que decidir</h2>
+      <p>Si te ha servido, a alguien de tu equipo —o a otro líder ante una decisión difícil— seguro que también.</p>
+      <div class="share-grid">
+        <a class="btn wa" id="waBtn" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.2 4.3 4.4-1.2A10 10 0 1 0 12 2Zm5.6 14.2c-.24.67-1.4 1.28-1.93 1.32-.5.05-1.12.07-1.8-.11-.42-.13-.95-.3-1.64-.6-2.9-1.25-4.78-4.15-4.92-4.35-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36l.55.01c.18.01.42-.07.65.5.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.3.38-.42.5-.14.14-.29.29-.12.57.16.29.73 1.2 1.57 1.94 1.08.96 1.99 1.26 2.28 1.4.29.14.45.12.62-.07.17-.19.71-.83.9-1.12.19-.29.38-.24.64-.14.26.09 1.67.79 1.96.93.29.14.48.21.55.33.07.12.07.67-.17 1.34Z"/></svg>
+          WhatsApp
+        </a>
+        <a class="btn" id="mailBtn" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Email
+        </a>
+        <button class="btn" id="igBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </button>
+        <button class="btn" id="copyBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg>
+          Copiar enlace
+        </button>
+      </div>
+      <div class="hint2" id="hint"></div>
+    </section>
+
+    <footer class="foot">
+      <a href="https://alexdakov.com">alexdakov.com</a> · Liderazgo y equipos de alto rendimiento
+    </footer>
+  </div>
+</main>
+
+<div class="pill" id="pill" title="Ver tu veredicto"><span class="pdot" id="pdot"></span><span><b id="pNum">0</b>/<span id="pTotal">35</span></span></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var SHARE_URL = "https://alexdakov.com/checklist-decisiones/";
+  var SHARE_TITLE = "Checklist de decisiones";
+  var SHARE_TEXT = "Los 6 filtros antes de una gran decisión — el checklist de Alex Dakov para decidir mejor:";
+  var STORE_KEY = "adk-checklist-decision-v1";
+
+  function ga(name, params){ try{ if(window.gtag) gtag('event', name, params||{}); }catch(e){} }
+
+  var toast=document.getElementById('toast'), toastT;
+  function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(function(){toast.classList.remove('show');},1900); }
+  function copy(text, okMsg){
+    var done=function(){ showToast(okMsg||'Copiado ✓'); };
+    try{
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, function(){legacy(text,done);}); }
+      else { legacy(text,done); }
+    }catch(e){ legacy(text,done); }
+  }
+  function legacy(text, done){
+    try{ var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); done(); }
+    catch(e){ showToast('Copia manual: '+text); }
+  }
+
+  /* ---- checklist state ---- */
+  var allChk = Array.prototype.slice.call(document.querySelectorAll('.chk'));
+  var filterChk = allChk.filter(function(c){ return c.className.indexOf('flag')===-1; });
+  var flagChk = allChk.filter(function(c){ return c.className.indexOf('flag')!==-1; });
+  var TOTAL = filterChk.length;
+  document.getElementById('vTotal').textContent = TOTAL;
+  document.getElementById('pTotal').textContent = TOTAL;
+  allChk.forEach(function(c,i){ c.setAttribute('data-id', i); });
+
+  var decInput = document.getElementById('decInput');
+  var verdict = document.getElementById('verdict'), vMsg=document.getElementById('vMsg'), vNum=document.getElementById('vNum'), vFill=document.getElementById('vbarFill');
+  var pill=document.getElementById('pill'), pNum=document.getElementById('pNum'), pdot=document.getElementById('pdot');
+  var flagAlert=document.getElementById('flagAlert');
+
+  function save(){
+    try{
+      var checked=[]; allChk.forEach(function(c){ if(c.classList.contains('done')) checked.push(c.getAttribute('data-id')); });
+      localStorage.setItem(STORE_KEY, JSON.stringify({d:decInput.value||'', c:checked}));
+    }catch(e){}
+  }
+  function load(){
+    try{
+      var raw=localStorage.getItem(STORE_KEY); if(!raw) return;
+      var o=JSON.parse(raw); if(o.d) decInput.value=o.d;
+      if(o.c && o.c.length){ var set={}; o.c.forEach(function(id){set[id]=1;}); allChk.forEach(function(c){ if(set[c.getAttribute('data-id')]) c.classList.add('done'); }); }
+    }catch(e){}
+  }
+
+  function render(){
+    var n=0; filterChk.forEach(function(c){ if(c.classList.contains('done')) n++; });
+    var flags=0; flagChk.forEach(function(c){ if(c.classList.contains('done')) flags++; });
+    vNum.textContent=n; pNum.textContent=n;
+    var pct = TOTAL ? n/TOTAL : 0;
+    vFill.style.width=(pct*100).toFixed(0)+'%';
+
+    verdict.classList.remove('stop','go'); pill.classList.remove('stop','go');
+    if(flags>0){
+      verdict.classList.add('stop'); pill.classList.add('stop');
+      vMsg.textContent='🚩 Para. Has encendido '+flags+(flags===1?' bandera roja':' banderas rojas')+'. No decidas hoy: resuélvelo antes.';
+      flagAlert.textContent='🚩 '+flags+(flags===1?' bandera roja encendida':' banderas rojas encendidas')+'. Regla de oro: para. No sigas.';
+      flagAlert.classList.add('show');
+    } else {
+      flagAlert.classList.remove('show'); flagAlert.textContent='';
+      if(n===0){ vMsg.textContent='Empieza a marcar los filtros que cumples.'; }
+      else if(pct>=0.85){ verdict.classList.add('go'); pill.classList.add('go'); vMsg.textContent='🟢 Luz verde. Has pasado casi todos los filtros — decide con convicción.'; }
+      else if(pct>=0.5){ vMsg.textContent='🟡 Buen camino, pero quedan filtros sin marcar. ¿Puedes cerrarlos… o alguno es un "no"?'; }
+      else { vMsg.textContent='🟠 Todavía es pronto. Te faltan demasiados filtros: sigue validando antes de decidir.'; }
+    }
+  }
+
+  function toggle(c){ c.classList.toggle('done'); render(); save(); ga('checklist_toggle',{done:c.classList.contains('done')}); }
+  allChk.forEach(function(c){
+    var box=c.querySelector('.box');
+    c.addEventListener('click', function(e){ if(e.target.tagName==='A') return; toggle(c); });
+    box.addEventListener('click', function(e){ e.stopPropagation(); toggle(c); });
+  });
+  decInput.addEventListener('input', save);
+
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    allChk.forEach(function(c){ c.classList.remove('done'); }); decInput.value='';
+    try{ localStorage.removeItem(STORE_KEY); }catch(e){}
+    render(); ga('checklist_reset'); showToast('Listo para una nueva decisión');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+  pill.addEventListener('click', function(){ verdict.scrollIntoView({behavior:'smooth', block:'center'}); });
+
+  /* chips smooth scroll */
+  document.querySelectorAll('.chip').forEach(function(a){
+    a.addEventListener('click', function(e){ var el=document.querySelector(a.getAttribute('href')); if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); } });
+  });
+
+  /* share */
+  document.getElementById('waBtn').href='https://wa.me/?text='+encodeURIComponent(SHARE_TEXT+' '+SHARE_URL);
+  document.getElementById('mailBtn').href='mailto:?subject='+encodeURIComponent('Checklist para tomar mejores decisiones')+'&body='+encodeURIComponent(SHARE_TEXT+'\n\n'+SHARE_URL);
+  document.getElementById('waBtn').addEventListener('click', function(){ ga('share_click',{method:'whatsapp'}); });
+  document.getElementById('mailBtn').addEventListener('click', function(){ ga('share_click',{method:'email'}); });
+  document.getElementById('copyBtn').addEventListener('click', function(){ copy(SHARE_URL,'Enlace copiado ✓'); ga('share_click',{method:'copy'}); });
+  document.getElementById('igBtn').addEventListener('click', function(){ copy(SHARE_URL,'Enlace copiado ✓'); document.getElementById('hint').textContent='Enlace copiado — pégalo en tu historia o en un DM de Instagram.'; ga('share_click',{method:'instagram'}); });
+  document.getElementById('shareTop').addEventListener('click', function(){
+    if(navigator.share){ navigator.share({title:SHARE_TITLE, text:SHARE_TEXT, url:SHARE_URL}).then(function(){ga('share_click',{method:'native'});}).catch(function(){}); }
+    else { copy(SHARE_URL,'Enlace copiado ✓'); document.getElementById('share').scrollIntoView({behavior:'smooth', block:'center'}); }
+  });
+
+  /* newsletter → beehiiv (inline, sin salir de la web) */
+  var params=new URLSearchParams(location.search);
+  var src=params.get('src')||params.get('utm_source')||'checklist';
+  var form=document.getElementById('subForm'), emailIn=document.getElementById('subEmail'), sBtn=document.getElementById('subBtn'), msg=document.getElementById('subMsg');
+  function setMsg(t, cls){ msg.textContent=t; msg.className='news-msg'+(cls?' '+cls:''); }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var email=(emailIn.value||'').trim();
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ setMsg('Escribe un email válido, por favor.','err'); emailIn.focus(); return; }
+    sBtn.disabled=true; var orig=sBtn.textContent; sBtn.textContent='Enviando…'; setMsg('');
+    ga('newsletter_submit',{location:'checklist'});
+    if(location.hostname.indexOf('alexdakov.com')===-1){ form.style.display='none'; setMsg('✓ (Vista previa) En alexdakov.com esto te suscribe a Room Five al instante.','ok'); return; }
+    var ctrl=('AbortController' in window)?new AbortController():null; var t=ctrl&&setTimeout(function(){ctrl.abort();},9000);
+    fetch('https://test-lider-beehiiv.alexdakov.workers.dev', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ source:'newsletter', email:email, utm_source:src, utm_medium:'checklist', utm_campaign:'checklist-decisiones', page:'/checklist-decisiones/' }),
+      signal: ctrl?ctrl.signal:undefined
+    }).then(function(r){ return r.json().catch(function(){return {};}).then(function(j){ return r.ok && j.ok!==false; }); })
+      .then(function(ok){ clearTimeout(t); if(!ok) throw new Error('worker');
+        form.style.display='none'; setMsg('✓ Ya estás dentro. Revisa tu correo — te he mandado la bienvenida.','ok'); ga('newsletter_subscribed',{location:'checklist'}); })
+      .catch(function(){ clearTimeout(t); sBtn.disabled=false; sBtn.textContent=orig; setMsg('No he podido registrarte ahora mismo. Inténtalo de nuevo en unos segundos.','err'); ga('newsletter_error',{location:'checklist'}); });
+  });
+
+  /* init */
+  load(); render();
+})();
+</script>
+</body>
+</html>
