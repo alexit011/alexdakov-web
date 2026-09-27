@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Conversaciones difíciles — la guía para líderes | Alex Dakov</title>
+  <meta name="description" content="El método de Alex Dakov para las conversaciones que evitamos: Antes, Durante y Después, con 7 guiones exactos listos para usar. Feedback, malas noticias, decir que no y más.">
+  <link rel="canonical" href="https://alexdakov.com/conversaciones-dificiles/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alexdakov.com/conversaciones-dificiles/">
+  <meta property="og:title" content="Conversaciones difíciles — la guía para líderes">
+  <meta property="og:description" content="El método Antes · Durante · Después + 7 guiones exactos para las conversaciones que más se evitan. Por Alex Dakov.">
+  <meta property="og:image" content="https://alexdakov.com/assets/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Conversaciones difíciles — la guía para líderes">
+  <meta name="twitter:description" content="El método Antes · Durante · Después + 7 guiones exactos. Por Alex Dakov.">
+  <meta name="twitter:image" content="https://alexdakov.com/assets/og-home.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBWBFNY0W7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EBWBFNY0W7');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script>
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "x95217wrw7");
+  </script>
+
+  <style>
+    :root{
+      --navy:#090C17; --navy-alt:#070A14; --navy-deep:#04060F; --card:#14213D;
+      --card-soft:#101a30;
+      --cream:#F0EBE0; --taupe:#A09B92; --muted:#6E6960;
+      --gold:#C9A961; --gold-soft:rgba(201,169,97,.14); --gold-line:rgba(201,169,97,.32);
+      --line:rgba(240,235,224,.10);
+      --maxw:720px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background:var(--navy); color:var(--cream);
+      font-family:"Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-size:16px; line-height:1.6; font-weight:400; -webkit-font-smoothing:antialiased;
+      padding:0 max(16px, env(safe-area-inset-left)) env(safe-area-inset-bottom) max(16px, env(safe-area-inset-right));
+    }
+    .serif{font-family:"Playfair Display", Georgia, serif;}
+    a{color:var(--gold); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    header.bar{position:sticky; top:0; z-index:20;
+      background:color-mix(in srgb, var(--navy) 86%, transparent);
+      -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line); margin:0 calc(-1 * max(16px, env(safe-area-inset-left)));
+      padding-left:max(16px, env(safe-area-inset-left)); padding-right:max(16px, env(safe-area-inset-right));}
+    .bar-in{max-width:var(--maxw); margin:0 auto; padding:12px 0; display:flex; align-items:center; gap:12px;}
+    .wordmark{font-family:"Inter",sans-serif; font-weight:600; letter-spacing:.22em; font-size:12px; text-transform:uppercase; color:var(--cream);}
+    .wordmark b{color:var(--gold); font-weight:600;}
+    .bar-share{margin-left:auto;}
+
+    .btn{font:inherit; font-weight:600; font-size:13.5px; cursor:pointer; border-radius:2px;
+      border:1px solid var(--gold-line); background:transparent; color:var(--cream);
+      padding:9px 16px; display:inline-flex; align-items:center; gap:8px; transition:all .18s ease; letter-spacing:.01em;}
+    .btn:hover{border-color:var(--gold); background:var(--gold-soft); text-decoration:none;}
+    .btn:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+    .btn.gold{background:var(--gold); color:#1a1305; border-color:var(--gold);}
+    .btn.gold:hover{background:#d8ba75; color:#1a1305;}
+    .btn svg{width:15px;height:15px}
+
+    main{max-width:var(--maxw); margin:0 auto;}
+    .doc{padding:40px 0 60px;}
+
+    .eyebrow{font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+    h1.title{font-weight:600; font-size:clamp(38px, 9vw, 62px); line-height:1.03; letter-spacing:-.01em; margin:.28em 0 .18em; color:var(--cream); text-wrap:balance;}
+    h1.title em{font-style:italic; color:var(--gold); font-weight:500;}
+    .lede{font-size:clamp(17px,4.6vw,21px); color:var(--taupe); margin:0 0 26px; max-width:40ch; line-height:1.45;}
+    .intro{max-width:60ch; color:var(--cream); font-size:17px; line-height:1.72;}
+    .intro em{font-style:italic; color:var(--gold);}
+    .intro + .intro{margin-top:14px;}
+    .sign{margin-top:16px; font-family:"Playfair Display",serif; font-style:italic; font-size:19px; color:var(--taupe);}
+
+    .rule{display:flex; align-items:center; justify-content:center; gap:12px; margin:34px 0;}
+    .rule::before,.rule::after{content:""; height:1px; width:90px; background:var(--gold-line);}
+    .rule .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);}
+
+    /* callout */
+    .callout{display:flex; gap:16px; align-items:flex-start; margin:26px 0; background:var(--card);
+      border:1px dashed var(--gold-line); border-radius:4px; padding:20px 22px;}
+    .callout .ico{font-size:24px; line-height:1; flex:0 0 auto;}
+    .callout .lbl{font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:8px;}
+    .callout h3{margin:0 0 6px; font-family:"Playfair Display",serif; font-weight:600; font-size:20px; color:var(--cream);}
+    .callout p{margin:0; color:var(--taupe); font-size:15.5px; line-height:1.65;}
+    .callout p strong{color:var(--cream);}
+    .callout ul{margin:6px 0 0; padding-left:18px; color:var(--taupe); font-size:15.5px; line-height:1.7;}
+    .callout ul li::marker{color:var(--gold);}
+    .callout.tip{background:transparent; border-style:solid; border-color:var(--gold-line);}
+    .callout.tip .ico{color:var(--gold);}
+    .callout.tip p{font-family:"Playfair Display",serif; font-style:italic; font-size:18px; color:var(--cream);}
+
+    /* chips */
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin:30px 0 6px;}
+    .chip{font-size:12.5px; font-weight:500; color:var(--taupe); border:1px solid var(--line); background:transparent; border-radius:999px; padding:7px 13px; transition:.18s;}
+    .chip:hover{border-color:var(--gold); color:var(--cream); text-decoration:none;}
+    .chip b{color:var(--gold); font-family:"Playfair Display",serif; font-weight:600; margin-right:7px;}
+
+    /* section */
+    section.blk{margin-top:46px; scroll-margin-top:74px;}
+    .s-head{display:flex; gap:16px; align-items:baseline; padding-bottom:14px; border-bottom:1px solid var(--gold-line);}
+    .s-num{font-family:"Playfair Display",serif; font-size:clamp(30px,7vw,42px); color:var(--gold); line-height:.9; flex:0 0 auto;}
+    .s-head h2{margin:0; font-family:"Playfair Display",serif; font-weight:600; font-size:clamp(23px,5.6vw,31px); letter-spacing:-.01em; line-height:1.08; color:var(--cream);}
+    .s-head .s-sub{margin:5px 0 0; color:var(--taupe); font-size:14px;}
+
+    h3.sub{font-family:"Playfair Display",serif; font-weight:600; font-size:clamp(19px,4.6vw,23px); color:var(--cream); margin:30px 0 4px; letter-spacing:-.005em;}
+    h4.mini{font-weight:600; font-size:15px; color:var(--gold); margin:20px 0 8px; letter-spacing:.01em;}
+    p.body{color:var(--cream); font-size:16.5px; line-height:1.72; margin:10px 0; max-width:62ch;}
+    p.body.dim{color:var(--taupe);}
+    p.body strong{color:var(--cream); font-weight:600;}
+
+    /* phrase card (frases exactas, copiables) */
+    .phrase{position:relative; margin:14px 0; background:var(--card); border:1px dashed var(--gold-line); border-radius:4px; padding:18px 46px 18px 20px; cursor:pointer; transition:border-color .15s, background .15s;}
+    .phrase:hover{border-color:var(--gold);}
+    .phrase p{margin:0; font-family:"Playfair Display",serif; font-style:italic; font-size:18px; line-height:1.5; color:var(--cream);}
+    .phrase .p-copy{position:absolute; top:12px; right:12px; border:0; background:transparent; color:var(--muted); cursor:pointer; font:inherit; font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:5px 7px; border-radius:3px; opacity:0; transition:opacity .15s, color .15s;}
+    .phrase:hover .p-copy{opacity:1;} .phrase .p-copy:hover{color:var(--gold);} .phrase .p-copy.done{opacity:1;color:var(--gold);}
+    @media (hover:none){ .phrase .p-copy{opacity:.5;} }
+    .phrase .g-tag{display:block; font-family:"Inter",sans-serif; font-style:normal; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:8px;}
+
+    /* minas list */
+    .minas{list-style:none; margin:14px 0 0; padding:0;}
+    .minas li{display:flex; gap:14px; padding:14px 0; border-bottom:1px solid var(--line);}
+    .minas li:last-child{border-bottom:0;}
+    .minas .m-ico{font-size:20px; flex:0 0 auto; width:26px; text-align:center;}
+    .minas .m-name{color:var(--cream); font-weight:600;}
+    .minas .m-how{color:var(--taupe); font-size:15px; display:block; margin-top:2px;}
+
+    /* steps (ordenados con nº dorado) */
+    ol.steps{list-style:none; counter-reset:st; margin:14px 0 0; padding:0;}
+    ol.steps li{counter-increment:st; position:relative; padding:12px 0 12px 44px; border-bottom:1px solid var(--line); color:var(--cream); font-size:16px; line-height:1.6;}
+    ol.steps li:last-child{border-bottom:0;}
+    ol.steps li::before{content:counter(st); position:absolute; left:0; top:11px; width:28px; height:28px; border:1px solid var(--gold-line); color:var(--gold); font-family:"Playfair Display",serif; font-size:15px; display:grid; place-items:center; border-radius:50%;}
+    ol.steps li strong{color:var(--cream);}
+    ol.steps li .em{color:var(--taupe);}
+
+    ul.bullets{margin:12px 0 0; padding-left:20px; color:var(--cream); font-size:16px; line-height:1.7;}
+    ul.bullets li{margin:6px 0;} ul.bullets li::marker{color:var(--gold);}
+    ul.bullets strong{color:var(--cream);}
+
+    /* two mini cards */
+    .cards2{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0;}
+    @media (max-width:520px){ .cards2{grid-template-columns:1fr;} }
+    .mcard{background:var(--card-soft); border:1px solid var(--line); border-radius:4px; padding:16px 18px;}
+    .mcard .mc-h{font-weight:600; color:var(--gold); font-size:14px; margin-bottom:6px;}
+    .mcard p{margin:0; color:var(--taupe); font-size:14.5px; line-height:1.55;}
+
+    /* checklist resumen */
+    .summary{background:var(--card); border:1px solid var(--gold-line); border-radius:6px; padding:26px 24px; margin-top:20px;}
+    .summary .sum-col{margin-bottom:18px;} .summary .sum-col:last-child{margin-bottom:0;}
+    .summary h4{font-family:"Playfair Display",serif; font-weight:600; color:var(--cream); font-size:18px; margin:0 0 8px;}
+    .checklist{list-style:none; margin:0; padding:0;}
+    .checklist li{position:relative; padding:6px 0 6px 30px; color:var(--taupe); font-size:15px; line-height:1.5;}
+    .checklist li::before{content:""; position:absolute; left:0; top:9px; width:16px; height:16px; border:1px solid var(--gold-line); border-radius:3px;}
+
+    /* newsletter */
+    .news{margin-top:60px; background:linear-gradient(180deg, var(--card) 0%, var(--card-soft) 100%); border:1px solid var(--gold-line); border-radius:6px; padding:38px 26px; text-align:center;}
+    .news .eyebrow{display:block;}
+    .news h2{font-family:"Playfair Display",serif; font-weight:600; font-size:clamp(26px,6.4vw,36px); line-height:1.08; margin:12px 0 6px; color:var(--cream);}
+    .news h2 em{font-style:italic; color:var(--gold);}
+    .news p{color:var(--taupe); max-width:44ch; margin:0 auto 22px; font-size:16px; line-height:1.6;}
+    .news p strong{color:var(--cream); font-weight:600;}
+    form.subscribe{display:flex; gap:10px; max-width:440px; margin:0 auto; flex-wrap:wrap;}
+    form.subscribe input[type=email]{flex:1 1 200px; min-width:0; background:var(--navy); border:1px solid var(--gold-line); color:var(--cream); font:inherit; font-size:15px; padding:13px 15px; border-radius:3px;}
+    form.subscribe input[type=email]::placeholder{color:var(--muted);}
+    form.subscribe input[type=email]:focus{outline:none; border-color:var(--gold);}
+    form.subscribe button{flex:0 0 auto; padding:13px 22px; font-size:15px;}
+    .news .fineprint{margin:14px auto 0; font-size:12.5px; color:var(--muted); max-width:40ch;}
+    .news-msg{min-height:22px; margin-top:14px; font-size:14.5px; font-weight:500;}
+    .news-msg.ok{color:var(--gold);} .news-msg.err{color:#e0a3a3;}
+
+    /* share */
+    .share{margin-top:44px; text-align:center; padding:34px 22px 8px; border-top:1px solid var(--line);}
+    .share .eyebrow{display:block;}
+    .share h2{font-family:"Playfair Display",serif; font-weight:600; font-size:clamp(23px,5.6vw,30px); margin:10px 0 6px; color:var(--cream);}
+    .share p{margin:0 auto 20px; color:var(--taupe); max-width:42ch; font-size:15.5px;}
+    .share-grid{display:flex; flex-wrap:wrap; gap:10px; justify-content:center;}
+    .share-grid .btn{font-size:14px; padding:11px 17px;}
+    .btn.wa{border-color:transparent; background:#25D366; color:#04310f;}
+    .btn.wa:hover{background:#20c15c; color:#04310f;}
+    .hint{margin-top:14px; font-size:13px; color:var(--muted); min-height:18px;}
+
+    footer.foot{margin-top:40px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:12.5px; text-align:center;}
+    footer.foot a{color:var(--taupe);}
+
+    .toast{position:fixed; left:50%; bottom:calc(20px + env(safe-area-inset-bottom,0px)); transform:translateX(-50%) translateY(20px);
+      background:var(--gold); color:#1a1305; font-size:13.5px; font-weight:600; padding:11px 18px; border-radius:3px;
+      box-shadow:0 10px 30px rgba(0,0,0,.5); opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; z-index:50;}
+    .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important; scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <span class="wordmark">ALEX <b>DAKOV</b></span>
+    <button class="btn bar-share" id="shareTop" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5 15.4 17.5M15.4 6.5 8.6 10.5"/></svg>
+      Compartir
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="doc">
+    <p class="eyebrow">Guía de referencia · Liderazgo & Comunicación</p>
+    <h1 class="title serif">Conversaciones <em>difíciles</em></h1>
+    <p class="lede">Un método para gestionar las conversaciones de las que normalmente huimos. Antes → Durante → Después.</p>
+    <p class="intro">La mayoría evita estas conversaciones hasta que explotan… o las tiene tan mal que habría sido mejor callarse. Es normal: si nadie te ha enseñado, no sabes cómo gestionarlas. Llegar hasta aquí ya te da herramientas que muchos no tienen.</p>
+    <p class="intro">Este método nace de una síntesis de decenas de libros, de lo que hacen los <em>negociadores del FBI</em>, de lo que enseñan en un MBA de Harvard y de las tácticas de los mejores líderes del mundo — traducido a frases que puedes usar hoy.</p>
+
+    <div class="callout tip">
+      <span class="ico">🔑</span>
+      <div><p>La clave: no necesitas tener razón. Ni ganar. Ni quedar bien. Necesitas un método para deshacer un nudo, quitar un bloqueo y —sobre todo— <strong style="color:var(--gold)">avanzar</strong>.</p></div>
+    </div>
+
+    <div class="callout">
+      <span class="ico">🧭</span>
+      <div>
+        <div class="lbl">Cómo usar esta guía</div>
+        <p>Lee cada herramienta una vez. Escoge las que necesites y arma tu guion. Cinco minutos antes de la conversación, repasa tus herramientas. Las <strong>frases en cursiva</strong> puedes copiarlas con un toque.</p>
+      </div>
+    </div>
+    <p class="sign serif">— Alex Dakov</p>
+
+    <nav class="chips" aria-label="Secciones">
+      <a class="chip" href="#s1"><b>01</b>Antes</a>
+      <a class="chip" href="#s2"><b>02</b>Durante</a>
+      <a class="chip" href="#s3"><b>03</b>7 guiones exactos</a>
+      <a class="chip" href="#s4"><b>04</b>Después</a>
+      <a class="chip" href="#resumen"><b>★</b>Resumen exprés</a>
+    </nav>
+
+    <!-- ANTES -->
+    <section class="blk" id="s1">
+      <div class="s-head"><span class="s-num serif">01</span><div><h2 class="serif">Antes · Preparación</h2><p class="s-sub">Entra sabiendo qué quieres, no sabiendo qué temes. La conversación se gana aquí.</p></div></div>
+
+      <h3 class="sub serif">Por qué el cerebro del otro se cierra</h3>
+      <p class="body">Cuando una conversación se tuerce no es porque el otro sea idiota. Es porque su cerebro detectó una amenaza. Y un cerebro amenazado no razona: <strong>se defiende</strong>.</p>
+
+      <h4 class="mini">Las 5 minas que disparan la amenaza</h4>
+      <p class="body dim">Una conversación incómoda es un campo minado: si pisas donde no debes, todo explota en un segundo. Protégete de las minas y todo fluye.</p>
+      <ul class="minas">
+        <li><span class="m-ico">👑</span><div><span class="m-name">Estatus</span><span class="m-how">Nunca puede sentir que la dejas por debajo, ni que ella es peor o tú mejor.</span></div></li>
+        <li><span class="m-ico">🔮</span><div><span class="m-name">Certeza</span><span class="m-how">Sé muy claro con el siguiente paso: lo que no definas juega en tu contra.</span></div></li>
+        <li><span class="m-ico">🕹️</span><div><span class="m-name">Autonomía</span><span class="m-how">Sentir que le quitas el control. Nunca puede sentir que lo pierde.</span></div></li>
+        <li><span class="m-ico">🤝</span><div><span class="m-name">Relación</span><span class="m-how">Nunca puede sentir que uno gana todo y el otro pierde todo.</span></div></li>
+        <li><span class="m-ico">⚖️</span><div><span class="m-name">Justicia</span><span class="m-how">Cuida que lo que digas nunca pueda enmarcarse como injusto.</span></div></li>
+      </ul>
+
+      <h3 class="sub serif">Prepara estas tres cosas</h3>
+      <ul class="bullets">
+        <li><strong>Las 3 conversaciones ocultas</strong> → toda conversación difícil es a la vez los <em>hechos</em>, las <em>emociones</em> que nadie dice y la <em>identidad</em> que impacta ("¿esto me hace mal jefe?"). Prepárate para las tres.</li>
+        <li><strong>Separa intención de impacto</strong> → te hizo daño (impacto), pero seguramente no quería (intención). Habla del impacto, pregunta por la intención. Nunca al revés.</li>
+        <li><strong>Dato vs. historia</strong> → "no contesta" es el dato; "me ignora" es la película que te cuentas. Entra con el dato.</li>
+      </ul>
+
+      <h3 class="sub serif">Regúlate tú primero</h3>
+      <p class="body dim">No puedes frenar a nadie si tú estás activado.</p>
+      <ul class="bullets">
+        <li><strong>Respira:</strong> inhala en 4, exhala en 6 (la exhalación larga apaga el estrés).</li>
+        <li><strong>Define tu objetivo en una frase:</strong> "Salgo de aquí habiendo conseguido ___."</li>
+        <li>Si no tienes claro el objetivo → <strong>no entres a la conversación.</strong></li>
+      </ul>
+      <div class="callout tip"><span class="ico">💡</span><div><p>Entra sabiendo qué quieres. No sabiendo qué temes.</p></div></div>
+    </section>
+
+    <!-- DURANTE -->
+    <section class="blk" id="s2">
+      <div class="s-head"><span class="s-num serif">02</span><div><h2 class="serif">Durante · En la conversación</h2><p class="s-sub">Que el otro se sienta a salvo y entendido. Nadie se mueve por tener razón.</p></div></div>
+
+      <h3 class="sub serif">Los primeros 60 segundos: abrir sin que se cierren</h3>
+      <p class="body">La gente no se pone a la defensiva por el contenido, sino por <strong>sentirse insegura</strong>. Tu primer trabajo es que se sienta a salvo — y de tu lado.</p>
+
+      <h4 class="mini">1 · Propósito mutuo — deja claro que estás con él, no enfrente</h4>
+      <div class="phrase"><span class="g-tag">Dilo así</span><p>"Te cuento esto precisamente porque me importa que te vaya bien. No para señalarte."</p><button class="p-copy" type="button">copiar</button></div>
+
+      <h4 class="mini">2 · La técnica del contraste — di tú primero lo peor que pueden pensar de ti</h4>
+      <div class="phrase"><span class="g-tag">Dilo así</span><p>"Probablemente pienses que vengo a echarte la bronca. Y que es injusto sacarlo justo ahora."</p><button class="p-copy" type="button">copiar</button></div>
+
+      <h4 class="mini">3 · Auditoría de acusaciones — aclara primero lo que NO quieres decir</h4>
+      <div class="phrase"><span class="g-tag">Dilo así</span><p>"No quiero que pienses que no valoro tu trabajo —lo valoro, y mucho. Lo que quiero es que esto en concreto lo afinemos juntos."</p><button class="p-copy" type="button">copiar</button></div>
+      <div class="callout tip"><span class="ico">💡</span><div><p>Hechos antes que juicios. Seguridad antes que verdad.</p></div></div>
+
+      <h3 class="sub serif">Empatía táctica</h3>
+      <p class="body">A nadie lo convences a la fuerza. Haces que se sienta entendido — y entonces se mueve.</p>
+
+      <h4 class="mini">🏷️ Etiquetado — nombra la emoción que ves, sin juzgarla</h4>
+      <p class="body dim">El cerebro la procesa y baja. Empieza por <em>"parece que…"</em>, nunca por <em>"yo creo que…"</em>.</p>
+      <div class="phrase"><span class="g-tag">Dilo así</span><p>"Parece que esto te ha frustrado." · "Da la sensación de que sientes que no se te ha valorado."</p><button class="p-copy" type="button">copiar</button></div>
+
+      <h4 class="mini">❓ Preguntas calibradas — una pregunta genera colaboración; una orden, resistencia</h4>
+      <p class="body dim">Empieza por <em>"qué"</em> o <em>"cómo"</em>, nunca por <em>"por qué"</em> (suena a acusación).</p>
+      <div class="phrase"><span class="g-tag">Dilo así</span><p>"¿Qué necesitarías para que esto…?" · Ante una exigencia injusta: "¿Cómo se supone que tengo que hacer eso?"</p><button class="p-copy" type="button">copiar</button></div>
+
+      <h4 class="mini">🎯 Dos remates que cambian la conversación</h4>
+      <ul class="bullets">
+        <li><strong>Busca el "así es", no el "tienes razón"</strong> → el "tienes razón" se dice para que les dejes en paz. El "así es" llega cuando de verdad se sienten entendidos.</li>
+        <li><strong>No temas el "no"</strong> → <em>"¿Sería una locura plantearlo de otra forma?"</em> El "no" te da control y, paradójicamente, te acerca el acuerdo.</li>
+      </ul>
+      <div class="callout tip"><span class="ico">💡</span><div><p>La gente no se mueve cuando tiene razón. Se mueve cuando se siente entendida.</p></div></div>
+
+      <h3 class="sub serif">La temperatura</h3>
+      <p class="body">Cuando entra la emoción, baja la temperatura. <strong>No cedas.</strong> Calma no es debilidad: es la herramienta más rara y poderosa de la sala. Si todos suben, tú bajas — el volumen del que se mantiene tranquilo acaba marcando el de todos.</p>
+      <h4 class="mini">Los tres momentos calientes</h4>
+      <ul class="bullets">
+        <li><strong>Si callan o evaden</strong> → "Noto que hay algo que no estás diciendo. Me ayudaría oírlo." Y aguanta el silencio: incomoda al que se oculta, no a ti.</li>
+        <li><strong>Si explotan</strong> → etiqueta ("veo que esto te ha tocado") y ofrece pausa: "tomamos cinco minutos y seguimos". No es rendirse: protege la conversación.</li>
+        <li><strong>Si te atacan</strong> → separa la pelota de la persona: "Más allá del tono, el punto es importante. Vamos a él."</li>
+      </ul>
+
+      <h4 class="mini">Di lo duro sin que suene a ataque — la secuencia de 4 pasos</h4>
+      <p class="body dim">La trampa: meter un juicio disfrazado de hecho. "Eres un desastre" no es un hecho, es una etiqueta — y las etiquetas inician peleas de egos.</p>
+      <ol class="steps">
+        <li><strong>Observación</strong> — el hecho, sin juicio. <span class="em">"Las últimas tres entregas llegaron tarde."</span> (No: "siempre llegas tarde".)</li>
+        <li><strong>Sentimiento</strong> — <span class="em">"Me genera preocupación."</span></li>
+        <li><strong>Necesidad</strong> — <span class="em">"Necesito fiarme de los plazos."</span></li>
+        <li><strong>Petición</strong> — concreta y en positivo. <span class="em">"¿Acordamos avisar en cuanto un plazo peligre?"</span></li>
+      </ol>
+      <div class="callout tip"><span class="ico">💡</span><div><p>Quien controla la temperatura controla la conversación.</p></div></div>
+
+      <h3 class="sub serif">El feedback que duele</h3>
+      <p class="body">Decir lo que no funciona sin hundir a la persona. El feedback malo se va por las ramas o ataca. El bueno es concreto, va al comportamiento y deja intacto el ego.</p>
+      <h4 class="mini">El modelo SCI — Situación · Comportamiento · Impacto</h4>
+      <ul class="bullets">
+        <li>📍 <strong>Situación</strong> → "En la reunión de ayer con el cliente…"</li>
+        <li>👁️ <strong>Comportamiento</strong> → observable, sin interpretar. "…interrumpiste a María tres veces."</li>
+        <li>💥 <strong>Impacto</strong> → "…y el cliente percibió tensión en el equipo."</li>
+      </ul>
+      <h4 class="mini">Sinceridad radical</h4>
+      <p class="body dim">El buen feedback vive en el cruce de dos cosas: <strong style="color:var(--cream)">te importa la persona + le dices la verdad directa.</strong> Si eliminas una:</p>
+      <div class="cards2">
+        <div class="mcard"><div class="mc-h">❤️ Cariño sin franqueza</div><p>Te callas y la persona nunca mejora.</p></div>
+        <div class="mcard"><div class="mc-h">🗡️ Franqueza sin cariño</div><p>Agresividad: tienes razón pero nadie te quiere escuchar.</p></div>
+      </div>
+      <p class="body"><strong>Pide permiso antes de dar feedback</strong> ("¿te doy una observación que te va a ayudar?") y mira siempre hacia el futuro: "la próxima vez, prueba a…". Nadie cambia lo que ya hizo; sí lo que hará.</p>
+      <div class="callout tip"><span class="ico">💡</span><div><p>A los buenos no los pierdes por exigirles. Los pierdes por callarte.</p></div></div>
+    </section>
+
+    <!-- 7 GUIONES -->
+    <section class="blk" id="s3">
+      <div class="s-head"><span class="s-num serif">03</span><div><h2 class="serif">7 guiones exactos</h2><p class="s-sub">Frases exactas para las 7 conversaciones que más se evitan. Coge la que te toca y copia.</p></div></div>
+
+      <div class="phrase"><span class="g-tag">1 · Al que no rinde</span><p>"Quiero que sigas creciendo aquí, por eso te lo digo claro. Estos dos proyectos no llegaron a tu nivel. ¿Cómo lo ves tú? ¿Qué te falta?"</p><button class="p-copy" type="button">copiar</button></div>
+      <div class="phrase"><span class="g-tag">2 · Decir NO a tu jefe</span><p>"Quiero hacerlo bien, no solo rápido. Tengo A y B en marcha. Si entra esto, ¿cuál pausamos? Dime tú la prioridad. ¿Qué criterio sigo para diferenciar lo que más mueve la aguja?"</p><button class="p-copy" type="button">copiar</button></div>
+      <div class="phrase"><span class="g-tag">3 · Renegociar un deadline</span><p>"Prefiero avisarte hoy que fallarte el viernes. Con calidad, está el martes que viene. ¿Te encaja, o ajustamos el alcance de la entrega?"</p><button class="p-copy" type="button">copiar</button></div>
+      <div class="phrase"><span class="g-tag">4 · Dar una mala noticia</span><p>"Tengo que darte una noticia que no te va a gustar, y prefiero dártela yo a la cara. [La noticia]. Te cuento el porqué y respondo lo que necesites."</p><button class="p-copy" type="button">copiar</button></div>
+      <div class="phrase"><span class="g-tag">5 · Mediar entre dos</span><p>"Os necesito a los dos. [A], cuéntame qué necesitas. [B], repíteme lo que has entendido de [A] antes de dar tu versión."</p><button class="p-copy" type="button">copiar</button></div>
+      <div class="phrase"><span class="g-tag">6 · Pedir perdón (sin "pero")</span><p>"Me equivoqué en [X]. Entiendo el efecto que tuvo en ti. No busco excusa. Esto es lo que voy a hacer distinto."</p><button class="p-copy" type="button">copiar</button></div>
+      <div class="phrase"><span class="g-tag">7 · La personal · "Me dolió"</span><p>"Te lo digo porque la relación me importa. Cuando pasó [hecho], me sentí [emoción]. Igual no era tu intención —por eso lo hablo."</p><button class="p-copy" type="button">copiar</button></div>
+    </section>
+
+    <!-- DESPUES -->
+    <section class="blk" id="s4">
+      <div class="s-head"><span class="s-num serif">04</span><div><h2 class="serif">Después · Cierre y seguimiento</h2><p class="s-sub">Que el acuerdo no se evapore y la relación quede intacta.</p></div></div>
+
+      <h3 class="sub serif">Cuando algo se descontrola</h3>
+      <ul class="bullets">
+        <li><strong>La pausa estratégica</strong> → "Esto es importante y lo estamos hablando en caliente. Lo retomo en una hora y lo hago bien." Un cerebro amenazado necesita ~20 min para volver a razonar.</li>
+        <li><strong>Si aparecen mensajes hostiles</strong> → método <strong>BIAF</strong>: Breve, Informativo (solo hechos), Amable, Firme. No busca ganar: busca terminar.</li>
+        <li><strong>Con un manipulador que busca tu reacción</strong> → no te justifiques. Repite el límite como disco rayado: "Entiendo tu punto. Mi respuesta sigue siendo la misma."</li>
+      </ul>
+
+      <h3 class="sub serif">Cierra por escrito (que no se evapore)</h3>
+      <p class="body dim">Lo que no se escribe, se olvida. Manda dos líneas el mismo día:</p>
+      <ul class="bullets">
+        <li><strong>Qué hemos hablado:</strong> [una frase]</li>
+        <li><strong>Me comprometo yo a:</strong> [acción + fecha]</li>
+        <li><strong>Tú a:</strong> [acción + fecha]</li>
+        <li><strong>Sabremos que está resuelto cuando:</strong> [señal concreta]</li>
+      </ul>
+
+      <h3 class="sub serif">Repara y haz seguimiento</h3>
+      <p class="body">Una conversación dura deja herida aunque salga bien.</p>
+      <ul class="bullets">
+        <li>En las horas siguientes, ten un gesto normal (un café, una pregunta cualquiera): dice <em>"era el tema, no tú"</em>.</li>
+        <li>A los días: "¿Cómo va lo que hablamos? ¿Necesitas algo de mi parte?"</li>
+      </ul>
+      <div class="callout tip"><span class="ico">💡</span><div><p>Ganar la discusión y perder a la persona es perder dos veces.</p></div></div>
+    </section>
+
+    <!-- RESUMEN -->
+    <section class="blk" id="resumen">
+      <div class="s-head"><span class="s-num serif">★</span><div><h2 class="serif">Resumen exprés</h2><p class="s-sub">El guion de un vistazo. Repásalo 5 minutos antes de entrar.</p></div></div>
+      <div class="summary">
+        <div class="sum-col">
+          <h4>🧠 Antes</h4>
+          <ul class="checklist">
+            <li>Mi objetivo, en una frase.</li>
+            <li>Qué emoción / identidad hay debajo.</li>
+            <li>Qué es dato y qué es mi historia.</li>
+            <li>Respira (exhala largo).</li>
+          </ul>
+        </div>
+        <div class="sum-col">
+          <h4>💬 Durante</h4>
+          <ul class="checklist">
+            <li>Seguridad: propósito mutuo + contraste. Adelántate a su objeción.</li>
+            <li>Etiqueta emociones: "parece que…". Pregunta calibrada, no orden.</li>
+            <li>Si suben, yo bajo. Pausa si hace falta.</li>
+            <li>Feedback con SCI, no etiquetas.</li>
+          </ul>
+        </div>
+        <div class="sum-col">
+          <h4>✅ Después</h4>
+          <ul class="checklist">
+            <li>Cierre por escrito el mismo día.</li>
+            <li>Repara con un gesto normal.</li>
+            <li>Seguimiento en unos días.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout tip" style="margin-top:20px"><span class="ico">🏆</span><div><p>No vas a ganar. Vais a entenderos. <strong style="color:var(--gold)">Eso es la victoria.</strong></p></div></div>
+    </section>
+
+    <div class="rule"><span class="dot"></span></div>
+
+    <div class="callout">
+      <span class="ico">💌</span>
+      <div>
+        <div class="lbl">Una última cosa</div>
+        <p>Coge la conversación que llevas más tiempo evitando y encárala ahora. Prepárala: escribe el guion con estas herramientas. Eso ya te pone por delante de casi todo el mundo.</p>
+      </div>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <section class="news" id="newsletter">
+      <span class="eyebrow">Newsletter · Room Five</span>
+      <h2 class="serif">Liderar no se improvisa. <em>Se entrena.</em></h2>
+      <p>Cada miércoles te mando una <strong>historia, una idea y una herramienta</strong> para liderar mejor y construir equipos de alto rendimiento. Sin relleno, en 4 minutos. Únete a <strong>+1.100 líderes</strong> que ya la leen.</p>
+      <form class="subscribe" id="subForm" novalidate>
+        <input type="email" id="subEmail" name="email" placeholder="tu@email.com" autocomplete="email" required aria-label="Tu email">
+        <button class="btn gold" type="submit" id="subBtn">Únete gratis</button>
+      </form>
+      <div class="news-msg" id="subMsg" role="status" aria-live="polite"></div>
+      <p class="fineprint">Un email a la semana. Cero spam. Te das de baja cuando quieras.</p>
+    </section>
+
+    <!-- SHARE -->
+    <section class="share" id="share">
+      <span class="eyebrow">Compartir</span>
+      <h2 class="serif">Pásaselo a otro líder</h2>
+      <p>Todos tenemos una conversación pendiente. Si esto te ha servido, mándaselo a quien lo necesita.</p>
+      <div class="share-grid">
+        <a class="btn wa" id="waBtn" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.2 4.3 4.4-1.2A10 10 0 1 0 12 2Zm5.6 14.2c-.24.67-1.4 1.28-1.93 1.32-.5.05-1.12.07-1.8-.11-.42-.13-.95-.3-1.64-.6-2.9-1.25-4.78-4.15-4.92-4.35-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36l.55.01c.18.01.42-.07.65.5.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.3.38-.42.5-.14.14-.29.29-.12.57.16.29.73 1.2 1.57 1.94 1.08.96 1.99 1.26 2.28 1.4.29.14.45.12.62-.07.17-.19.71-.83.9-1.12.19-.29.38-.24.64-.14.26.09 1.67.79 1.96.93.29.14.48.21.55.33.07.12.07.67-.17 1.34Z"/></svg>
+          WhatsApp
+        </a>
+        <a class="btn" id="mailBtn" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Email
+        </a>
+        <button class="btn" id="igBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </button>
+        <button class="btn" id="copyBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg>
+          Copiar enlace
+        </button>
+      </div>
+      <div class="hint" id="hint"></div>
+    </section>
+
+    <footer class="foot">
+      <a href="https://alexdakov.com">alexdakov.com</a> · Liderazgo y equipos de alto rendimiento
+    </footer>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var SHARE_URL = "https://alexdakov.com/conversaciones-dificiles/";
+  var SHARE_TITLE = "Conversaciones difíciles — la guía para líderes";
+  var SHARE_TEXT = "La guía de Alex Dakov para las conversaciones difíciles: método Antes · Durante · Después + 7 guiones exactos.";
+
+  function ga(name, params){ try{ if(window.gtag) gtag('event', name, params||{}); }catch(e){} }
+
+  var toast=document.getElementById('toast'), toastT;
+  function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(function(){toast.classList.remove('show');},1900); }
+  function copy(text, okMsg){
+    var done=function(){ showToast(okMsg||'Copiado ✓'); };
+    try{
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, function(){legacy(text,done);}); }
+      else { legacy(text,done); }
+    }catch(e){ legacy(text,done); }
+  }
+  function legacy(text, done){
+    try{ var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); done(); }
+    catch(e){ showToast('Copia manual: '+text); }
+  }
+
+  /* copiar frases exactas */
+  document.querySelectorAll('.phrase').forEach(function(ph){
+    var p=ph.querySelector('p'); var txt=p.textContent.trim(); var btn=ph.querySelector('.p-copy');
+    function doCopy(e){ e.stopPropagation(); copy(txt,'Frase copiada ✓'); btn.classList.add('done'); btn.textContent='copiado ✓'; ga('phrase_copy'); setTimeout(function(){btn.classList.remove('done'); btn.textContent='copiar';},1500); }
+    btn.addEventListener('click', doCopy);
+    ph.addEventListener('click', function(e){ if(e.target!==btn) doCopy(e); });
+  });
+
+  /* chips smooth scroll */
+  document.querySelectorAll('.chip').forEach(function(a){
+    a.addEventListener('click', function(e){ var el=document.querySelector(a.getAttribute('href')); if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); } });
+  });
+
+  /* share */
+  document.getElementById('waBtn').href='https://wa.me/?text='+encodeURIComponent(SHARE_TEXT+' '+SHARE_URL);
+  document.getElementById('mailBtn').href='mailto:?subject='+encodeURIComponent('Guía: conversaciones difíciles')+'&body='+encodeURIComponent(SHARE_TEXT+'\n\n'+SHARE_URL);
+  document.getElementById('waBtn').addEventListener('click', function(){ ga('share_click',{method:'whatsapp'}); });
+  document.getElementById('mailBtn').addEventListener('click', function(){ ga('share_click',{method:'email'}); });
+  document.getElementById('copyBtn').addEventListener('click', function(){ copy(SHARE_URL,'Enlace copiado ✓'); ga('share_click',{method:'copy'}); });
+  document.getElementById('igBtn').addEventListener('click', function(){ copy(SHARE_URL,'Enlace copiado ✓'); document.getElementById('hint').textContent='Enlace copiado — pégalo en tu historia o en un DM de Instagram.'; ga('share_click',{method:'instagram'}); });
+  document.getElementById('shareTop').addEventListener('click', function(){
+    if(navigator.share){ navigator.share({title:SHARE_TITLE, text:SHARE_TEXT, url:SHARE_URL}).then(function(){ga('share_click',{method:'native'});}).catch(function(){}); }
+    else { copy(SHARE_URL,'Enlace copiado ✓'); document.getElementById('share').scrollIntoView({behavior:'smooth', block:'center'}); }
+  });
+
+  /* newsletter → beehiiv (via Worker, inline, sin salir de la web) */
+  var params=new URLSearchParams(location.search);
+  var src=params.get('src')||params.get('utm_source')||'conversaciones';
+  var form=document.getElementById('subForm'), emailIn=document.getElementById('subEmail'), btn=document.getElementById('subBtn'), msg=document.getElementById('subMsg');
+  function setMsg(t, cls){ msg.textContent=t; msg.className='news-msg'+(cls?' '+cls:''); }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var email=(emailIn.value||'').trim();
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ setMsg('Escribe un email válido, por favor.','err'); emailIn.focus(); return; }
+    btn.disabled=true; var orig=btn.textContent; btn.textContent='Enviando…'; setMsg('');
+    ga('newsletter_submit',{location:'conversaciones'});
+    if(location.hostname.indexOf('alexdakov.com')===-1){ form.style.display='none'; setMsg('✓ (Vista previa) En alexdakov.com esto te suscribe a Room Five al instante.','ok'); return; }
+    var ctrl=('AbortController' in window)?new AbortController():null; var t=ctrl&&setTimeout(function(){ctrl.abort();},9000);
+    fetch('https://test-lider-beehiiv.alexdakov.workers.dev', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ source:'newsletter', email:email, utm_source:src, utm_medium:'conversaciones', utm_campaign:'conversaciones-dificiles', page:'/conversaciones-dificiles/' }),
+      signal: ctrl?ctrl.signal:undefined
+    }).then(function(r){ return r.json().catch(function(){return {};}).then(function(j){ return r.ok && j.ok!==false; }); })
+      .then(function(ok){ clearTimeout(t); if(!ok) throw new Error('worker');
+        form.style.display='none'; setMsg('✓ Ya estás dentro. Revisa tu correo — te he mandado la bienvenida.','ok'); ga('newsletter_subscribed',{location:'conversaciones'}); })
+      .catch(function(){ clearTimeout(t); btn.disabled=false; btn.textContent=orig; setMsg('No he podido registrarte ahora mismo. Inténtalo de nuevo en unos segundos.','err'); ga('newsletter_error',{location:'conversaciones'}); });
+  });
+})();
+</script>
+</body>
+</html>
