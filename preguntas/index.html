@@ -430,7 +430,7 @@
     var ctrl=('AbortController' in window)?new AbortController():null; var t=ctrl&&setTimeout(function(){ctrl.abort();},9000);
     fetch('https://test-lider-beehiiv.alexdakov.workers.dev', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ source:'newsletter', email:email, utm_source:src, utm_medium:'preguntas', utm_campaign:'preguntas-conectar', page:'/preguntas/' }),
+      body: JSON.stringify({ source:'newsletter', email:email, lm_source:'preguntas-conectar', utm_source:src, utm_medium:'preguntas', utm_campaign:'preguntas-conectar', page:'/preguntas/' }),
       signal: ctrl?ctrl.signal:undefined
     }).then(function(r){ return r.json().catch(function(){return {};}).then(function(j){ return r.ok && j.ok!==false; }); })
       .then(function(ok){ clearTimeout(t); if(!ok) throw new Error('worker');
