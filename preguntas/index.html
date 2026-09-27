@@ -417,7 +417,7 @@
 
   /* newsletter → beehiiv (via Worker, inline, sin salir de la web) */
   var params=new URLSearchParams(location.search);
-  var src=params.get('src')||params.get('utm_source')||'preguntas';
+  var src=params.get('src')||params.get('utm_source')||'conexion';
   var form=document.getElementById('subForm'), emailIn=document.getElementById('subEmail'), btn=document.getElementById('subBtn'), msg=document.getElementById('subMsg');
   function setMsg(t, cls){ msg.textContent=t; msg.className='news-msg'+(cls?' '+cls:''); }
   form.addEventListener('submit', function(e){
@@ -425,17 +425,17 @@
     var email=(emailIn.value||'').trim();
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ setMsg('Escribe un email válido, por favor.','err'); emailIn.focus(); return; }
     btn.disabled=true; var orig=btn.textContent; btn.textContent='Enviando…'; setMsg('');
-    ga('newsletter_submit',{location:'preguntas'});
+    ga('newsletter_submit',{location:'conexion'});
     if(location.hostname.indexOf('alexdakov.com')===-1){ form.style.display='none'; setMsg('✓ (Vista previa) En alexdakov.com/preguntas/ esto te suscribe a Room Five al instante.','ok'); return; }
     var ctrl=('AbortController' in window)?new AbortController():null; var t=ctrl&&setTimeout(function(){ctrl.abort();},9000);
     fetch('https://test-lider-beehiiv.alexdakov.workers.dev', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ source:'newsletter', email:email, lm_source:'preguntas-conectar', utm_source:src, utm_medium:'preguntas', utm_campaign:'preguntas-conectar', page:'/preguntas/' }),
+      body: JSON.stringify({ source:'newsletter', email:email, lm_source:'conexion', utm_source:src, utm_medium:'conexion', utm_campaign:'conexion', page:'/preguntas/' }),
       signal: ctrl?ctrl.signal:undefined
     }).then(function(r){ return r.json().catch(function(){return {};}).then(function(j){ return r.ok && j.ok!==false; }); })
       .then(function(ok){ clearTimeout(t); if(!ok) throw new Error('worker');
-        form.style.display='none'; setMsg('✓ Ya estás dentro. Revisa tu correo — te he mandado la bienvenida.','ok'); ga('newsletter_subscribed',{location:'preguntas'}); })
-      .catch(function(){ clearTimeout(t); btn.disabled=false; btn.textContent=orig; setMsg('No he podido registrarte ahora mismo. Inténtalo de nuevo en unos segundos.','err'); ga('newsletter_error',{location:'preguntas'}); });
+        form.style.display='none'; setMsg('✓ Ya estás dentro. Revisa tu correo — te he mandado la bienvenida.','ok'); ga('newsletter_subscribed',{location:'conexion'}); })
+      .catch(function(){ clearTimeout(t); btn.disabled=false; btn.textContent=orig; setMsg('No he podido registrarte ahora mismo. Inténtalo de nuevo en unos segundos.','err'); ga('newsletter_error',{location:'conexion'}); });
   });
 })();
 </script>
