@@ -367,7 +367,7 @@
         try { gtag('event', 'links_newsletter_submit', { page: 'links', src: src }); } catch(e){}
         var ctrl = ('AbortController' in window) ? new AbortController() : null; var t = ctrl && setTimeout(function(){ ctrl.abort(); }, 9000);
         fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ source: 'newsletter', email: email, utm_source: src, utm_medium: 'links', utm_campaign: 'bio', page: '/links/' }),
+          body: JSON.stringify({ source: 'newsletter', lm_source: 'links-bio', email: email, utm_source: src, utm_medium: 'links', utm_campaign: 'bio', page: '/links/' }),
           signal: ctrl ? ctrl.signal : undefined })
           .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return r.ok && j.ok !== false; }); })
           .then(function(ok){ clearTimeout(t); if (!ok) throw new Error('worker');
