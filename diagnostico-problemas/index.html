@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Diagnóstico de líder — ¿Dónde se rompe tu liderazgo? | Alex Dakov</title>
+  <meta name="description" content="Diagnóstico interactivo de liderazgo: 30 preguntas en 3 procesos (selección, formación y gestión) para descubrir dónde está tu cuello de botella y cómo arreglarlo.">
+  <link rel="canonical" href="https://alexdakov.com/diagnostico-problemas/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alexdakov.com/diagnostico-problemas/">
+  <meta property="og:title" content="Diagnóstico de líder — ¿Dónde se rompe tu liderazgo?">
+  <meta property="og:description" content="30 preguntas, 3 procesos, 5 minutos. Descubre en cuál de tus procesos como líder estás fallando y cómo arreglarlo.">
+  <meta property="og:image" content="https://alexdakov.com/assets/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Diagnóstico de líder — ¿Dónde se rompe tu liderazgo?">
+  <meta name="twitter:description" content="30 preguntas, 3 procesos, 5 minutos. Descubre dónde está tu cuello de botella como líder.">
+  <meta name="twitter:image" content="https://alexdakov.com/assets/og-home.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBWBFNY0W7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EBWBFNY0W7');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script>
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "x95217wrw7");
+  </script>
+
+  <style>
+    :root{
+      --navy:#090C17; --navy-alt:#070A14; --card:#14213D; --card-soft:#101a30;
+      --cream:#F0EBE0; --taupe:#A09B92; --muted:#6E6960;
+      --gold:#C9A961; --gold-soft:rgba(201,169,97,.14); --gold-line:rgba(201,169,97,.32);
+      --red:#E08A7C; --red-bg:rgba(224,138,124,.12); --red-line:rgba(224,138,124,.4);
+      --amber:#E0B564; --amber-bg:rgba(224,181,100,.13);
+      --green:#8FBF87; --green-bg:rgba(143,191,135,.13);
+      --line:rgba(240,235,224,.10);
+      --track:rgba(240,235,224,.09);
+      --maxw:720px; --barh:49px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    html,body{margin:0}
+    body{
+      background:var(--navy); color:var(--cream);
+      font-family:"Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-size:16px; line-height:1.6; font-weight:400; -webkit-font-smoothing:antialiased;
+      padding:0 max(16px, env(safe-area-inset-left)) env(safe-area-inset-bottom) max(16px, env(safe-area-inset-right));
+    }
+    .serif{font-family:"Playfair Display", Georgia, serif;}
+    a{color:var(--gold); text-decoration:none} a:hover{text-decoration:underline}
+    [hidden]{display:none!important}
+
+    header.bar{position:sticky; top:0; z-index:40;
+      background:color-mix(in srgb, var(--navy) 86%, transparent);
+      -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line); margin:0 calc(-1 * max(16px, env(safe-area-inset-left)));
+      padding-left:max(16px, env(safe-area-inset-left)); padding-right:max(16px, env(safe-area-inset-right));}
+    .bar-in{max-width:var(--maxw); margin:0 auto; padding:12px 0; display:flex; align-items:center; gap:12px;}
+    .wordmark{font-weight:600; letter-spacing:.22em; font-size:12px; text-transform:uppercase; color:var(--cream);}
+    .wordmark b{color:var(--gold); font-weight:600;}
+    .bar-share{margin-left:auto;}
+
+    .btn{font:inherit; font-weight:600; font-size:13.5px; cursor:pointer; border-radius:2px;
+      border:1px solid var(--gold-line); background:transparent; color:var(--cream);
+      padding:9px 16px; display:inline-flex; align-items:center; justify-content:center; gap:8px; transition:all .18s ease; letter-spacing:.01em;}
+    .btn:hover{border-color:var(--gold); background:var(--gold-soft); text-decoration:none;}
+    .btn:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+    .btn.gold{background:var(--gold); color:#1a1305; border-color:var(--gold);}
+    .btn.gold:hover{background:#d8ba75; color:#1a1305;}
+    .btn.gold:disabled{opacity:.55; cursor:not-allowed;}
+    .btn.ghost-sm{font-size:12px; padding:7px 12px; letter-spacing:.04em;}
+    .btn.block{width:100%;}
+    .btn svg{width:15px;height:15px}
+
+    main{max-width:var(--maxw); margin:0 auto;}
+    .doc{padding:34px 0 30px;}
+    .screen{animation:fade .45s ease both;}
+    @keyframes fade{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
+
+    .eyebrow{font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+    h1.title{font-weight:600; font-size:clamp(34px, 8vw, 56px); line-height:1.04; letter-spacing:-.01em; margin:.28em 0 .18em; color:var(--cream); text-wrap:balance;}
+    h1.title em{font-style:italic; color:var(--gold); font-weight:500;}
+    .lede{font-size:clamp(17px,4.6vw,21px); color:var(--taupe); margin:0 0 22px; max-width:42ch; line-height:1.45;}
+    .intro{max-width:60ch; color:var(--cream); font-size:16.5px; line-height:1.72;}
+    .intro em{font-style:italic; color:var(--gold);}
+    .sign{margin-top:14px; font-family:"Playfair Display",serif; font-style:italic; font-size:19px; color:var(--taupe);}
+
+    .callout{display:flex; gap:16px; align-items:flex-start; margin:26px 0; background:var(--card);
+      border:1px dashed var(--gold-line); border-radius:4px; padding:20px 22px;}
+    .callout .num{font-family:"Playfair Display",serif; font-size:30px; line-height:1; flex:0 0 auto;}
+    .callout .lbl{font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:8px;}
+    .callout h3{margin:0; font-family:"Playfair Display",serif; font-weight:600; font-size:19px; color:var(--cream);}
+    .callout p{margin:8px 0 0; color:var(--taupe); font-size:15px; line-height:1.7;}
+    .callout p strong{color:var(--cream);}
+
+    /* processes preview */
+    .proc-list{list-style:none; margin:24px 0 8px; padding:0; display:flex; flex-direction:column; gap:10px;}
+    .proc-list li{display:flex; gap:14px; align-items:center; padding:14px 16px; border:1px solid var(--line); border-radius:4px; background:var(--card-soft);}
+    .proc-list .pn{font-family:"Playfair Display",serif; font-size:20px; color:var(--gold); flex:0 0 auto; width:26px;}
+    .proc-list b{font-weight:600; font-size:16px; color:var(--cream); display:block;}
+    .proc-list span{color:var(--taupe); font-size:13.5px;}
+
+    .field{margin:26px 0 4px;}
+    .field label{display:block; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:9px;}
+    .field input{width:100%; background:var(--card); border:1px solid var(--gold-line); color:var(--cream); font:inherit; font-size:16px; padding:14px 16px; border-radius:4px;}
+    .field input::placeholder{color:var(--muted);}
+    .field input:focus{outline:none; border-color:var(--gold);}
+
+    .meta{display:flex; gap:22px; margin-top:22px; color:var(--taupe); font-size:13.5px;}
+    .meta b{color:var(--cream); font-family:"Playfair Display",serif; font-weight:600;}
+
+    /* ---- live ring tracker ---- */
+    .tracker{position:sticky; top:calc(var(--barh) + env(safe-area-inset-top,0px)); z-index:20;
+      margin:0 calc(-1 * max(16px, env(safe-area-inset-left))); padding:14px max(16px, env(safe-area-inset-left)) 13px;
+      background:color-mix(in srgb, var(--navy) 92%, transparent);
+      -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+    .rings{max-width:var(--maxw); margin:0 auto; display:flex; gap:10px; justify-content:center;}
+    .rcell{flex:1; max-width:150px; display:flex; flex-direction:column; align-items:center; gap:5px;}
+    .ring{position:relative; width:60px; height:60px;}
+    .ring svg{transform:rotate(-90deg); display:block;}
+    .ring .rt{fill:none; stroke:var(--track); stroke-width:7;}
+    .ring .rv{fill:none; stroke-width:7; stroke-linecap:round; transition:stroke-dashoffset .6s cubic-bezier(.22,1,.36,1), stroke .3s;}
+    .ring .pct{position:absolute; inset:0; display:grid; place-items:center; font-family:"Playfair Display",serif; font-weight:600; font-size:15px; font-variant-numeric:tabular-nums;}
+    .rcell small{font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--taupe); font-weight:600;}
+
+    /* ---- tabs ---- */
+    .tabs{display:flex; gap:8px; margin:22px 0 20px;}
+    .tab{flex:1; position:relative; font:inherit; font-weight:600; font-size:13.5px; color:var(--taupe);
+      background:var(--card); border:1px solid var(--line); border-radius:4px; padding:12px 6px 11px; cursor:pointer; transition:.18s; text-align:center;}
+    .tab .tn{font-family:"Playfair Display",serif; display:block; font-size:11px; color:var(--muted); margin-bottom:2px; letter-spacing:.04em;}
+    .tab[aria-selected=true]{color:#1a1305; background:var(--gold); border-color:var(--gold);}
+    .tab[aria-selected=true] .tn{color:rgba(26,19,5,.7);}
+    .tab.done::after{content:"✓"; position:absolute; top:6px; right:8px; font-size:11px; color:var(--green); font-weight:700;}
+    .tab[aria-selected=true].done::after{color:#245c40;}
+    .tab:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+
+    .phead{display:flex; gap:16px; align-items:baseline; padding-bottom:4px;}
+    .phead .pnum{font-family:"Playfair Display",serif; font-size:clamp(26px,7vw,38px); color:var(--gold); line-height:.9; flex:0 0 auto;}
+    .phead h2{margin:0; font-family:"Playfair Display",serif; font-weight:600; font-size:clamp(21px,5.2vw,28px); letter-spacing:-.01em; line-height:1.1; color:var(--cream);}
+    .phead .pcount{margin-left:auto; align-self:center; font-size:12.5px; color:var(--taupe); font-variant-numeric:tabular-nums; white-space:nowrap;}
+    .phead .pcount b{color:var(--gold); font-weight:600;}
+    .psub{margin:2px 0 0; color:var(--taupe); font-size:14.5px; font-style:italic; border-left:2px solid var(--gold-line); padding-left:12px;}
+    .p-divider{height:1px; background:var(--gold-line); margin:14px 0 4px;}
+
+    /* question cards */
+    .qlist{list-style:none; margin:8px 0 0; padding:0; display:flex; flex-direction:column; gap:10px;}
+    .q{background:var(--card); border:1px solid var(--line); border-radius:6px; padding:16px 16px 14px; transition:border-color .2s;}
+    .q.answered{border-color:var(--gold-line);}
+    .q .qi{display:flex; gap:12px; align-items:flex-start;}
+    .q .qn{font-family:"Playfair Display",serif; font-size:15px; color:var(--gold); font-weight:600; flex:0 0 auto; width:20px; line-height:1.5;}
+    .q p{margin:0; font-size:16px; line-height:1.45; color:var(--cream);}
+    .yn{display:flex; gap:8px; margin-top:13px; padding-left:32px;}
+    .yn button{flex:1; font:inherit; font-weight:600; font-size:13.5px; color:var(--taupe); background:var(--navy);
+      border:1px solid var(--line); border-radius:4px; padding:11px 6px; cursor:pointer; transition:.15s;}
+    .yn button:hover{border-color:var(--gold-line); color:var(--cream);}
+    .yn button:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+    .yn button.sel-si{background:var(--gold); color:#1a1305; border-color:var(--gold);}
+    .yn button.sel-medio{background:var(--amber-bg); color:var(--amber); border-color:var(--amber);}
+    .yn button.sel-no{background:var(--card-soft); color:var(--cream); border-color:var(--taupe);}
+    @media (max-width:420px){ .yn{padding-left:0;} }
+
+    .nav{display:flex; gap:10px; margin-top:22px;}
+    .nav .btn{flex:1;}
+    .finish{margin-top:12px;}
+    .note{text-align:center; color:var(--taupe); font-size:13.5px; margin-top:16px;}
+
+    /* ---- email gate (styled as newsletter) ---- */
+    .gate{margin-top:6px; background:linear-gradient(180deg, var(--card) 0%, var(--card-soft) 100%);
+      border:1px solid var(--gold-line); border-radius:6px; padding:36px 26px; text-align:center;}
+    .gate .lockrow{font-size:26px; margin-bottom:6px;}
+    .gate h2{font-family:"Playfair Display",serif; font-weight:600; font-size:clamp(25px,6.2vw,34px); line-height:1.1; margin:6px 0 10px; color:var(--cream);}
+    .gate h2 em{font-style:italic; color:var(--gold);}
+    .gate p{color:var(--taupe); max-width:46ch; margin:0 auto 22px; font-size:16px; line-height:1.6;}
+    .gate p strong{color:var(--cream);}
+    form.subscribe{display:flex; gap:10px; max-width:460px; margin:0 auto; flex-wrap:wrap;}
+    form.subscribe input[type=email]{flex:1 1 200px; min-width:0; background:var(--navy); border:1px solid var(--gold-line); color:var(--cream); font:inherit; font-size:15px; padding:14px 15px; border-radius:3px;}
+    form.subscribe input[type=email]::placeholder{color:var(--muted);}
+    form.subscribe input[type=email]:focus{outline:none; border-color:var(--gold);}
+    form.subscribe button{flex:0 0 auto; padding:14px 22px; font-size:15px;}
+    .gate .fineprint{margin:14px auto 0; font-size:12.5px; color:var(--muted); max-width:42ch;}
+    .gate-msg{min-height:20px; margin-top:14px; font-size:14.5px; font-weight:500;}
+    .gate-msg.ok{color:var(--gold);} .gate-msg.err{color:#e0a3a3;}
+    .gate .preview-rings{display:flex; gap:14px; justify-content:center; margin:0 0 20px; filter:blur(6px); opacity:.7;}
+    .gate .preview-rings .ring{width:52px; height:52px;}
+    .gate-back{margin-top:16px;}
+
+    /* ---- result ---- */
+    .verdict{font-family:"Playfair Display",serif; font-weight:600; font-size:clamp(27px,6.6vw,38px); line-height:1.08; margin:10px 0 0; color:var(--cream); text-wrap:balance;}
+    .verdict em{font-style:italic; color:var(--gold);}
+    .maturity{color:var(--taupe); margin-top:12px; font-size:15.5px;}
+    .maturity b{color:var(--cream); font-family:"Playfair Display",serif; font-weight:600;}
+    .bigrings{display:flex; gap:12px; justify-content:center; margin:30px 0 6px; flex-wrap:wrap;}
+    .bigcell{flex:1; min-width:96px; max-width:160px; display:flex; flex-direction:column; align-items:center; gap:9px;}
+    .bigcell .ring{width:104px; height:104px;}
+    .bigcell .ring .pct{font-size:24px;}
+    .bigcell .plabel{font-size:14px; font-weight:600; color:var(--cream);}
+    .band{font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; padding:3px 10px; border-radius:999px;}
+    .band.red{color:var(--red); background:var(--red-bg);}
+    .band.amber{color:var(--amber); background:var(--amber-bg);}
+    .band.green{color:var(--green); background:var(--green-bg);}
+
+    .breakdown{display:flex; flex-direction:column; gap:12px; margin:32px 0 6px;}
+    .bd{background:var(--card); border:1px solid var(--line); border-radius:6px; padding:18px 20px; border-left:3px solid var(--edge,var(--gold));}
+    .bd .bdtop{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+    .bd .bdtop h3{font-family:"Playfair Display",serif; font-weight:600; font-size:19px; margin:0; color:var(--cream);}
+    .bd .bdscore{font-family:"Playfair Display",serif; font-weight:600; font-size:21px; font-variant-numeric:tabular-nums;}
+    .bd .bdmsg{color:var(--taupe); font-size:14.5px; margin:6px 0 0; line-height:1.6;}
+    .gaps{margin:14px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px;}
+    .gaps li{display:flex; gap:10px; font-size:14px; color:var(--cream); align-items:flex-start; line-height:1.5;}
+    .gaps li .arw{color:var(--gold); flex:0 0 auto; font-weight:700;}
+    .gaps .allgood{color:var(--green);}
+    .gaps .gtag{font-size:9.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:2px 7px; border-radius:999px; margin-left:auto; white-space:nowrap; align-self:flex-start;}
+    .gaps .gno{color:var(--red); background:var(--red-bg);} .gaps .gmed{color:var(--amber); background:var(--amber-bg);}
+    .moretag{color:var(--muted); font-size:12.5px; margin-top:10px;}
+
+    .subok{margin-top:34px; text-align:center; background:linear-gradient(180deg, var(--card) 0%, var(--card-soft) 100%); border:1px solid var(--gold-line); border-radius:6px; padding:28px 24px;}
+    .subok .eyebrow{display:block;}
+    .subok h3{font-family:"Playfair Display",serif; font-weight:600; font-size:22px; margin:10px 0 6px; color:var(--cream);}
+    .subok h3 em{font-style:italic; color:var(--gold);}
+    .subok p{color:var(--taupe); font-size:14.5px; margin:0 auto; max-width:40ch;}
+
+    /* share */
+    .share{margin-top:40px; text-align:center; padding:34px 22px 8px; border-top:1px solid var(--line);}
+    .share .eyebrow{display:block;}
+    .share h2{font-family:"Playfair Display",serif; font-weight:600; font-size:clamp(23px,5.6vw,30px); margin:10px 0 6px; color:var(--cream);}
+    .share p{margin:0 auto 20px; color:var(--taupe); max-width:40ch; font-size:15.5px;}
+    .share-grid{display:flex; flex-wrap:wrap; gap:10px; justify-content:center;}
+    .share-grid .btn{font-size:14px; padding:11px 17px;}
+    .btn.wa{border-color:transparent; background:#25D366; color:#04310f;}
+    .btn.wa:hover{background:#20c15c; color:#04310f;}
+    .hint2{margin-top:14px; font-size:13px; color:var(--muted); min-height:18px;}
+
+    footer.foot{margin-top:36px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:12.5px; text-align:center;}
+    footer.foot a{color:var(--taupe);}
+
+    .toast{position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom,0px)); transform:translateX(-50%) translateY(20px);
+      background:var(--gold); color:#1a1305; font-size:13.5px; font-weight:600; padding:11px 18px; border-radius:3px;
+      box-shadow:0 10px 30px rgba(0,0,0,.5); opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; z-index:50;}
+    .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important; scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <span class="wordmark">ALEX <b>DAKOV</b></span>
+    <button class="btn bar-share" id="shareTop" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5 15.4 17.5M15.4 6.5 8.6 10.5"/></svg>
+      Compartir
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="doc">
+
+    <!-- ===== SCREEN 1: INTRO ===== -->
+    <section class="screen" id="s-intro">
+      <p class="eyebrow">Diagnóstico de liderazgo</p>
+      <h1 class="title serif">¿Dónde se <em>rompe</em> tu liderazgo?</h1>
+      <p class="lede">30 preguntas. 5 minutos. Descubre en cuál de los 3 procesos clave estás fallando —y cómo arreglarlo.</p>
+      <p class="intro">Los problemas de un líder casi nunca son de actitud. Son de <em>proceso</em>. Un equipo que no rinde suele venir de una mala <em>selección</em>, una <em>formación</em> inexistente o una <em>gestión</em> que depende de ti para todo. Este diagnóstico te dice en cuál de los tres estás perdiendo, para que trabajes lo que de verdad mueve la aguja.</p>
+      <p class="sign serif">— Alex</p>
+
+      <div class="callout">
+        <span class="num serif">🧭</span>
+        <div>
+          <div class="lbl">Cómo funciona</div>
+          <h3 class="serif">Responde con honestidad, no para quedar bien</h3>
+          <p>Vas a puntuar 10 hábitos en cada uno de los 3 procesos. Responde <strong>No · A veces · Sí</strong> con sinceridad —nadie te ve—. Al final verás tu porcentaje en cada proceso y cuál es tu cuello de botella.</p>
+        </div>
+      </div>
+
+      <ul class="proc-list" aria-hidden="true">
+        <li><span class="pn serif">1</span><div><b>Selección</b><span>A quién eliges y contratas</span></div></li>
+        <li><span class="pn serif">2</span><div><b>Formación</b><span>Cómo haces crecer a tu equipo</span></div></li>
+        <li><span class="pn serif">3</span><div><b>Gestión</b><span>Cómo diriges el día a día</span></div></li>
+      </ul>
+
+      <div class="field">
+        <label for="name">¿Cómo te llamas?</label>
+        <input type="text" id="name" placeholder="Tu nombre" autocomplete="given-name" enterkeyhint="go">
+      </div>
+      <div style="margin-top:16px"><button class="btn gold block" id="start" type="button">Empezar mi diagnóstico</button></div>
+      <div class="meta"><span><b>3</b> procesos</span><span><b>30</b> preguntas</span><span><b>5</b> min</span></div>
+    </section>
+
+    <!-- ===== SCREEN 2: TEST ===== -->
+    <section class="screen" id="s-test" hidden>
+      <div class="tracker"><div class="rings" id="rings"></div></div>
+      <div class="tabs" id="tabs" role="tablist"></div>
+      <div class="phead">
+        <span class="pnum serif" id="pnum">01</span>
+        <h2 class="serif" id="pname"></h2>
+        <span class="pcount"><b id="pdone">0</b>/10</span>
+      </div>
+      <p class="psub" id="psub"></p>
+      <div class="p-divider"></div>
+      <ul class="qlist" id="qlist"></ul>
+      <div class="nav">
+        <button class="btn" id="prev" type="button">← Anterior</button>
+        <button class="btn" id="next" type="button">Siguiente →</button>
+      </div>
+      <button class="btn gold block finish" id="tofinish" type="button" hidden>Ver mi diagnóstico →</button>
+      <p class="note" id="note">Responde los 30 puntos para desbloquear tu diagnóstico.</p>
+    </section>
+
+    <!-- ===== SCREEN 3: EMAIL GATE ===== -->
+    <section class="screen" id="s-gate" hidden>
+      <div class="gate">
+        <div class="preview-rings" id="prerings" aria-hidden="true"></div>
+        <div class="lockrow">🔒</div>
+        <h2 class="serif" id="gate-h">Tu diagnóstico está <em>listo</em>.</h2>
+        <p>Déjame tu email para ver tu resultado completo —tu puntuación en los 3 procesos y qué tienes que trabajar— y entrar en la newsletter <strong>Room Five</strong>.</p>
+        <form class="subscribe" id="gateForm" novalidate>
+          <input type="email" id="gateEmail" name="email" placeholder="tu@email.com" autocomplete="email" required aria-label="Tu email">
+          <button class="btn gold" type="submit" id="gateBtn">Ver mi diagnóstico</button>
+        </form>
+        <div class="gate-msg" id="gateMsg" role="status" aria-live="polite"></div>
+        <p class="fineprint">Un email a la semana. Cero spam. Te das de baja cuando quieras.</p>
+        <button class="btn ghost-sm gate-back" id="gateBack" type="button">← Revisar respuestas</button>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 4: RESULT ===== -->
+    <section class="screen" id="s-result" hidden>
+      <p class="eyebrow">Tu diagnóstico</p>
+      <p class="verdict serif" id="verdict"></p>
+      <p class="maturity" id="maturity"></p>
+      <div class="bigrings" id="bigrings"></div>
+      <div class="breakdown" id="breakdown"></div>
+
+      <div class="subok">
+        <span class="eyebrow">Newsletter · Room Five</span>
+        <h3 class="serif">Ya estás dentro. <em>Ahora, a entrenarlo.</em></h3>
+        <p>Cada miércoles te mando una historia, una idea y una herramienta para liderar mejor. Empieza a trabajar tu cuello de botella esta semana.</p>
+      </div>
+
+      <!-- SHARE -->
+      <section class="share" id="share">
+        <span class="eyebrow">Compartir</span>
+        <h2 class="serif">Pásaselo a otro líder</h2>
+        <p>Si te ha servido, mándaselo a alguien de tu equipo o a otro líder. Se hace en 5 minutos.</p>
+        <div class="share-grid">
+          <a class="btn wa" id="waBtn" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.2 4.3 4.4-1.2A10 10 0 1 0 12 2Zm5.6 14.2c-.24.67-1.4 1.28-1.93 1.32-.5.05-1.12.07-1.8-.11-.42-.13-.95-.3-1.64-.6-2.9-1.25-4.78-4.15-4.92-4.35-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36l.55.01c.18.01.42-.07.65.5.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.3.38-.42.5-.14.14-.29.29-.12.57.16.29.73 1.2 1.57 1.94 1.08.96 1.99 1.26 2.28 1.4.29.14.45.12.62-.07.17-.19.71-.83.9-1.12.19-.29.38-.24.64-.14.26.09 1.67.79 1.96.93.29.14.48.21.55.33.07.12.07.67-.17 1.34Z"/></svg>
+            WhatsApp
+          </a>
+          <a class="btn" id="mailBtn" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Email
+          </a>
+          <button class="btn" id="igBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+            Instagram
+          </button>
+          <button class="btn" id="copyBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg>
+            Copiar enlace
+          </button>
+        </div>
+        <div class="hint2" id="hint"></div>
+        <div style="margin-top:22px"><button class="btn ghost-sm" id="restart" type="button">Volver a empezar</button></div>
+      </section>
+    </section>
+
+    <footer class="foot">
+      <a href="https://alexdakov.com">alexdakov.com</a> · Liderazgo y equipos de alto rendimiento
+    </footer>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var SHARE_URL = "https://alexdakov.com/diagnostico-problemas/";
+  var SHARE_TITLE = "Diagnóstico de líder";
+  var SHARE_TEXT = "¿Dónde se rompe tu liderazgo? Hice el diagnóstico de Alex Dakov (5 min) y te dice en cuál de tus 3 procesos estás fallando:";
+  var STORE_KEY = "adk-diagnostico-v1";
+
+  function ga(name, params){ try{ if(window.gtag) gtag('event', name, params||{}); }catch(e){} }
+  function $(s){ return document.querySelector(s); }
+
+  /* ---- toast + copy ---- */
+  var toast=$('#toast'), toastT;
+  function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(function(){toast.classList.remove('show');},1900); }
+  function copy(text, okMsg){
+    var done=function(){ showToast(okMsg||'Copiado ✓'); };
+    try{
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, function(){legacy(text,done);}); }
+      else { legacy(text,done); }
+    }catch(e){ legacy(text,done); }
+  }
+  function legacy(text, done){
+    try{ var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); done(); }
+    catch(e){ showToast('Copia manual: '+text); }
+  }
+
+  /* ---- data ---- */
+  var PILLARS=[
+    {key:"seleccion", name:"Selección", sub:"A quién eliges y contratas."},
+    {key:"formacion", name:"Formación", sub:"Cómo haces crecer a tu equipo."},
+    {key:"gestion",   name:"Gestión",   sub:"Cómo diriges el día a día."}
+  ];
+  var Q={
+    seleccion:[
+      {t:"Antes de abrir una vacante, escribo la misión del puesto y los resultados que espero.", s:"Definir misión y resultados del puesto antes de abrir la vacante"},
+      {t:"Tengo definidas las 3-5 competencias innegociables del rol.", s:"Definir las 3-5 competencias innegociables"},
+      {t:"Uso un proceso de entrevistas estructurado (las mismas preguntas clave a todos).", s:"Estructurar las entrevistas (mismas preguntas a todos)"},
+      {t:"Incluyo una prueba práctica o caso real, no solo una entrevista de charla.", s:"Añadir una prueba práctica o caso real"},
+      {t:"Verifico referencias reales antes de decidir.", s:"Verificar referencias antes de decidir"},
+      {t:"Contrato por valores y encaje cultural, no solo por currículum.", s:"Contratar por valores y encaje, no solo CV"},
+      {t:"Tengo claro cuánto me cuesta una mala contratación y no contrato “por tapar el hueco”.", s:"No contratar por urgencia / “tapar el hueco”"},
+      {t:"Involucro a mi equipo en la decisión final del candidato.", s:"Involucrar al equipo en la decisión final"},
+      {t:"Tengo un onboarding definido para los primeros 30-60-90 días.", s:"Diseñar un onboarding 30-60-90 días"},
+      {t:"Reviso en frío mis últimas contrataciones para aprender qué falló y qué acerté.", s:"Revisar tus contrataciones para aprender"}
+    ],
+    formacion:[
+      {t:"Cada persona de mi equipo tiene un plan de desarrollo con objetivos claros.", s:"Un plan de desarrollo por persona"},
+      {t:"Doy feedback concreto de forma continua, no solo en la evaluación anual.", s:"Feedback continuo, no solo anual"},
+      {t:"Nunca pospongo una conversación difícil: la tengo a tiempo.", s:"No posponer las conversaciones difíciles"},
+      {t:"Dedico tiempo real a hacer coaching o mentoring a mi gente.", s:"Reservar tiempo para coaching/mentoring"},
+      {t:"Cuando delego, dejo claro qué es “bien hecho”, no solo la tarea.", s:"Delegar dejando claro el resultado esperado"},
+      {t:"Explico por qué importa cada tarea y por qué he elegido a esa persona.", s:"Explicar el porqué al delegar"},
+      {t:"Tengo identificado quién puede crecer o promocionar, y cómo.", s:"Mapear quién puede crecer y cómo"},
+      {t:"Mi equipo sabe resolver problemas sin depender de mí para todo.", s:"Que el equipo resuelva sin depender de ti"},
+      {t:"Reconozco y celebro los logros de forma explícita.", s:"Reconocer y celebrar los logros"},
+      {t:"Invierto en mi propio desarrollo como líder, no solo en el del equipo.", s:"Invertir en tu propio desarrollo como líder"}
+    ],
+    gestion:[
+      {t:"Tengo agendados 1:1s recurrentes con cada persona y no los cancelo.", s:"Agendar 1:1s recurrentes (y no cancelarlos)"},
+      {t:"Cada persona tiene objetivos o KPIs claros y medibles.", s:"Objetivos/KPIs claros por persona"},
+      {t:"Mis reuniones terminan siempre con acciones y responsables definidos.", s:"Cerrar reuniones con acciones y responsables"},
+      {t:"Tengo sistemas y procesos documentados: el equipo funciona sin mí presente.", s:"Documentar sistemas y procesos"},
+      {t:"Trabajo “en” el sistema, no solo apagando fuegos del día a día.", s:"Trabajar en el sistema, no solo en tareas"},
+      {t:"Tengo visibilidad del progreso sin perseguir a nadie (panel, KPIs).", s:"Tener visibilidad sin perseguir (panel/KPIs)"},
+      {t:"Cuando algo falla, ataco la causa raíz, no solo el síntoma.", s:"Atacar la causa raíz, no el síntoma"},
+      {t:"No soy el cuello de botella: el equipo puede avanzar sin esperarme.", s:"Dejar de ser el cuello de botella"},
+      {t:"Protejo tiempo para pensar y para la estrategia.", s:"Proteger tiempo para pensar y estrategia"},
+      {t:"Reviso y mejoro mis sistemas de forma periódica.", s:"Revisar y mejorar tus sistemas periódicamente"}
+    ]
+  };
+  var BANDS={
+    seleccion:{low:"Estás contratando a ciegas: sin proceso, las malas contrataciones son cuestión de suerte.",
+      mid:"Tienes las bases, pero se te cuelan decisiones por intuición o por prisa.",
+      high:"Seleccionas como un PRO: proceso, criterio y encaje. Aquí no está tu problema."},
+    formacion:{low:"Tu equipo no crece porque no hay un sistema para hacerlo crecer.",
+      mid:"Desarrollas a tu gente a ratos; falta constancia y un plan por persona.",
+      high:"Haces crecer a tu equipo con intención. Este proceso está sólido."},
+    gestion:{low:"Vives apagando fuegos. Eres el cuello de botella de tu propio equipo.",
+      mid:"Gestionas bien el día a día, pero aún dependen demasiado de ti.",
+      high:"Diriges desde el sistema, no desde el caos. Gestión de nivel PRO."}
+  };
+  var C = 2 * Math.PI * 30;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+  var state={ name:"", active:0, answers:{seleccion:arr(),formacion:arr(),gestion:arr()} };
+  function arr(){ return [null,null,null,null,null,null,null,null,null,null]; }
+
+  try{ var saved=JSON.parse(localStorage.getItem(STORE_KEY)||"null"); if(saved&&saved.answers){ state.name=saved.name||""; state.answers=saved.answers; } }catch(e){}
+  function persist(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({name:state.name,answers:state.answers})); }catch(e){} }
+
+  function score(k){ var a=state.answers[k],s=0; for(var i=0;i<a.length;i++){ if(a[i]==="si") s+=10; else if(a[i]==="medio") s+=5; } return s; }
+  function answered(k){ var a=state.answers[k],n=0; for(var i=0;i<a.length;i++){ if(a[i]!==null) n++; } return n; }
+  function allDone(){ return answered("seleccion")===10 && answered("formacion")===10 && answered("gestion")===10; }
+  function bandColor(v){ return v<50?"var(--red)":(v<80?"var(--amber)":"var(--green)"); }
+  function bandName(v){ return v<50?"red":(v<80?"amber":"green"); }
+  function bandKey(v){ return v<50?"low":(v<80?"mid":"high"); }
+  function bandLabel(v){ return v<50?"En rojo":(v<80?"En construcción":"Nivel PRO"); }
+
+  function ringSVG(id){
+    return '<div class="ring"><svg viewBox="0 0 72 72" width="100%" height="100%">'+
+      '<circle class="rt" cx="36" cy="36" r="30"></circle>'+
+      '<circle class="rv" id="'+id+'" cx="36" cy="36" r="30" stroke="var(--gold)" stroke-dasharray="'+C+'" stroke-dashoffset="'+C+'"></circle>'+
+      '</svg><span class="pct" id="'+id+'-p">0%</span></div>';
+  }
+  function paintRing(prefix,k){
+    var v=score(k), off=C*(1-v/100);
+    var el=document.getElementById(prefix+k); if(el){ el.style.strokeDashoffset=off; el.setAttribute("stroke",bandColor(v)); }
+    var p=document.getElementById(prefix+k+"-p"); if(p){ p.textContent=v+"%"; p.style.color=bandColor(v); }
+  }
+  function paintTracker(){ PILLARS.forEach(function(p){ paintRing("r-",p.key); }); }
+
+  /* build tracker + tabs */
+  var ringsEl=$('#rings'), tabsEl=$('#tabs');
+  PILLARS.forEach(function(p,i){
+    var cell=document.createElement('div'); cell.className='rcell';
+    cell.innerHTML=ringSVG("r-"+p.key)+'<small>'+p.name+'</small>'; ringsEl.appendChild(cell);
+    var t=document.createElement('button'); t.className='tab'; t.type='button'; t.setAttribute('role','tab'); t.dataset.i=i;
+    t.innerHTML='<span class="tn">Proceso '+(i+1)+'</span>'+p.name;
+    t.addEventListener('click', function(){ setActive(+this.dataset.i); });
+    tabsEl.appendChild(t);
+  });
+
+  function renderPillar(){
+    var p=PILLARS[state.active];
+    $('#pnum').textContent="0"+(state.active+1);
+    $('#pname').textContent=p.name;
+    $('#psub').textContent=p.sub;
+    tabsEl.querySelectorAll('.tab').forEach(function(t,i){
+      t.setAttribute('aria-selected', i===state.active?'true':'false');
+      t.classList.toggle('done', answered(PILLARS[i].key)===10);
+    });
+    var list=$('#qlist'); list.innerHTML="";
+    Q[p.key].forEach(function(q,idx){
+      var val=state.answers[p.key][idx];
+      var li=document.createElement('li'); li.className='q'+(val!==null?' answered':'');
+      li.innerHTML='<div class="qi"><span class="qn serif">'+(idx+1)+'</span><p>'+q.t+'</p></div>'+
+        '<div class="yn">'+
+        '<button type="button" data-v="no" class="'+(val==="no"?"sel-no":"")+'">No</button>'+
+        '<button type="button" data-v="medio" class="'+(val==="medio"?"sel-medio":"")+'">A veces</button>'+
+        '<button type="button" data-v="si" class="'+(val==="si"?"sel-si":"")+'">Sí</button>'+
+        '</div>';
+      li.querySelectorAll('.yn button').forEach(function(b){
+        b.addEventListener('click', function(){
+          state.answers[p.key][idx]=this.dataset.v; persist(); renderPillar(); paintRing("r-",p.key); refreshFinish();
+          ga('diagnostic_answer',{pillar:p.key, value:this.dataset.v});
+          if(answered(p.key)===10 && state.active<2){ setTimeout(function(){ setActive(state.active+1); }, 380); }
+        });
+      });
+      list.appendChild(li);
+    });
+    $('#pdone').textContent=answered(p.key);
+    $('#prev').disabled=state.active===0;
+    $('#next').disabled=state.active===2;
+  }
+  function refreshFinish(){ var d=allDone(); $('#tofinish').hidden=!d; $('#note').hidden=d; }
+  function setActive(i){ state.active=Math.max(0,Math.min(2,i)); renderPillar(); try{ $('#s-test').scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){ window.scrollTo(0,0); } }
+
+  /* screens */
+  function show(id){
+    ['s-intro','s-test','s-gate','s-result'].forEach(function(s){ $('#'+s).hidden = (s!==id); });
+    var el=$('#'+id); el.style.animation='none'; void el.offsetWidth; el.style.animation='';
+    window.scrollTo(0,0);
+  }
+
+  /* intro */
+  var nameInput=$('#name'); nameInput.value=state.name;
+  $('#start').addEventListener('click', function(){
+    state.name=(nameInput.value||"").trim(); persist();
+    paintTracker(); renderPillar(); refreshFinish(); show('s-test'); ga('diagnostic_start');
+    setTimeout(paintTracker,60);
+  });
+  nameInput.addEventListener('keydown', function(e){ if(e.key==='Enter') $('#start').click(); });
+  $('#prev').addEventListener('click', function(){ setActive(state.active-1); });
+  $('#next').addEventListener('click', function(){ setActive(state.active+1); });
+
+  /* go to gate */
+  $('#tofinish').addEventListener('click', function(){
+    var n=state.name?(', '+state.name):'';
+    $('#gate-h').innerHTML='Tu diagnóstico está <em>listo</em>'+n+'.';
+    var pr=$('#prerings'); pr.innerHTML=ringSVG("pre-seleccion")+ringSVG("pre-formacion")+ringSVG("pre-gestion");
+    PILLARS.forEach(function(p){ paintRing("pre-",p.key); });
+    show('s-gate'); ga('diagnostic_complete');
+  });
+  $('#gateBack').addEventListener('click', function(){ show('s-test'); setTimeout(paintTracker,60); });
+
+  /* email gate → beehiiv worker (inline) */
+  var params=new URLSearchParams(location.search);
+  var src=params.get('src')||params.get('utm_source')||'diagnostico';
+  var gForm=$('#gateForm'), gEmail=$('#gateEmail'), gBtn=$('#gateBtn'), gMsg=$('#gateMsg');
+  function setGMsg(t,cls){ gMsg.textContent=t; gMsg.className='gate-msg'+(cls?' '+cls:''); }
+  function reveal(){ buildResult(); show('s-result'); ga('diagnostic_result_view'); }
+  gForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var email=(gEmail.value||'').trim();
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ setGMsg('Escribe un email válido para desbloquearlo.','err'); gEmail.focus(); return; }
+    gBtn.disabled=true; var orig=gBtn.textContent; gBtn.textContent='Enviando…'; setGMsg('');
+    ga('newsletter_submit',{location:'diagnostico'});
+    if(location.hostname.indexOf('alexdakov.com')===-1){ setGMsg('✓ (Vista previa) En alexdakov.com esto te suscribe a Room Five y abre tu diagnóstico.','ok'); setTimeout(reveal,700); return; }
+    var ctrl=('AbortController' in window)?new AbortController():null; var t=ctrl&&setTimeout(function(){ctrl.abort();},9000);
+    fetch('https://test-lider-beehiiv.alexdakov.workers.dev', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ source:'newsletter', email:email, utm_source:src, utm_medium:'diagnostico', utm_campaign:'diagnostico-problemas', page:'/diagnostico-problemas/' }),
+      signal: ctrl?ctrl.signal:undefined
+    }).then(function(r){ return r.json().catch(function(){return {};}).then(function(j){ return r.ok && j.ok!==false; }); })
+      .then(function(ok){ clearTimeout(t); if(!ok) throw new Error('worker');
+        ga('newsletter_subscribed',{location:'diagnostico'}); reveal(); })
+      .catch(function(){ clearTimeout(t); gBtn.disabled=false; gBtn.textContent=orig; setGMsg('No he podido registrarte ahora mismo. Inténtalo de nuevo en unos segundos.','err'); ga('newsletter_error',{location:'diagnostico'}); });
+  });
+  gEmail.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); gForm.requestSubmit?gForm.requestSubmit():gBtn.click(); } });
+
+  /* result */
+  function countUp(el,target){
+    if(reduce){ el.textContent=target+'%'; return; }
+    var t0=null, dur=900;
+    function step(ts){ if(!t0)t0=ts; var k=Math.min(1,(ts-t0)/dur); el.textContent=Math.round(target*(1-Math.pow(1-k,3)))+'%'; if(k<1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  function buildResult(){
+    var scores=PILLARS.map(function(p){ return {p:p, v:score(p.key)}; });
+    var lowest=scores.slice().sort(function(a,b){return a.v-b.v;})[0];
+    var avg=Math.round((scores[0].v+scores[1].v+scores[2].v)/3);
+    $('#verdict').innerHTML='Tu cuello de botella está en <em>'+lowest.p.name+'</em>.';
+    $('#maturity').innerHTML='Madurez global de tu liderazgo: <b>'+avg+'%</b> · '+bandLabel(avg);
+
+    var br=$('#bigrings'); br.innerHTML="";
+    scores.forEach(function(sc){
+      var cell=document.createElement('div'); cell.className='bigcell';
+      cell.innerHTML=ringSVG("big-"+sc.p.key)+'<span class="plabel">'+sc.p.name+'</span><span class="band '+bandName(sc.v)+'">'+bandLabel(sc.v)+'</span>';
+      br.appendChild(cell);
+    });
+    setTimeout(function(){
+      scores.forEach(function(sc){
+        var el=document.getElementById("big-"+sc.p.key);
+        if(el){ el.style.strokeDashoffset=C*(1-sc.v/100); el.setAttribute('stroke',bandColor(sc.v)); }
+        var pe=document.getElementById("big-"+sc.p.key+"-p"); if(pe){ countUp(pe,sc.v); pe.style.color=bandColor(sc.v); }
+      });
+    },80);
+
+    var bd=$('#breakdown'); bd.innerHTML="";
+    scores.forEach(function(sc){
+      var gaps=[];
+      state.answers[sc.p.key].forEach(function(a,i){ if(a==="no") gaps.push({s:Q[sc.p.key][i].s, lvl:"no"}); });
+      state.answers[sc.p.key].forEach(function(a,i){ if(a==="medio") gaps.push({s:Q[sc.p.key][i].s, lvl:"medio"}); });
+      var showGaps=gaps.slice(0,3);
+      var gapHtml = gaps.length===0
+        ? '<li class="allgood"><span class="arw">✓</span><span>Lo tienes todo cubierto en este proceso. ¡Crack!</span></li>'
+        : showGaps.map(function(g){ var tag=g.lvl==="no"?'<span class="gtag gno">Aún no</span>':'<span class="gtag gmed">A veces</span>'; return '<li><span class="arw">→</span><span>'+g.s+'</span>'+tag+'</li>'; }).join("");
+      var more = gaps.length>3 ? '<div class="moretag">+ '+(gaps.length-3)+' puntos más por trabajar en este proceso</div>' : '';
+      var card=document.createElement('div'); card.className='bd'; card.style.setProperty('--edge', bandColor(sc.v));
+      card.innerHTML='<div class="bdtop"><h3 class="serif">'+sc.p.name+'</h3><span class="bdscore" style="color:'+bandColor(sc.v)+'">'+sc.v+'%</span></div>'+
+        '<p class="bdmsg">'+BANDS[sc.p.key][bandKey(sc.v)]+'</p>'+
+        '<ul class="gaps">'+gapHtml+'</ul>'+more;
+      bd.appendChild(card);
+    });
+  }
+
+  $('#restart').addEventListener('click', function(){
+    state.answers={seleccion:arr(),formacion:arr(),gestion:arr()}; state.active=0; persist();
+    paintTracker(); renderPillar(); refreshFinish(); show('s-intro'); ga('diagnostic_restart');
+  });
+
+  /* share */
+  $('#waBtn').href='https://wa.me/?text='+encodeURIComponent(SHARE_TEXT+' '+SHARE_URL);
+  $('#mailBtn').href='mailto:?subject='+encodeURIComponent('Diagnóstico de líder — ¿dónde se rompe tu liderazgo?')+'&body='+encodeURIComponent(SHARE_TEXT+'\n\n'+SHARE_URL);
+  $('#waBtn').addEventListener('click', function(){ ga('share_click',{method:'whatsapp'}); });
+  $('#mailBtn').addEventListener('click', function(){ ga('share_click',{method:'email'}); });
+  $('#copyBtn').addEventListener('click', function(){ copy(SHARE_URL,'Enlace copiado ✓'); ga('share_click',{method:'copy'}); });
+  $('#igBtn').addEventListener('click', function(){ copy(SHARE_URL,'Enlace copiado ✓'); $('#hint').textContent='Enlace copiado — pégalo en tu historia o en un DM de Instagram.'; ga('share_click',{method:'instagram'}); });
+  $('#shareTop').addEventListener('click', function(){
+    if(navigator.share){ navigator.share({title:SHARE_TITLE, text:SHARE_TEXT, url:SHARE_URL}).then(function(){ga('share_click',{method:'native'});}).catch(function(){}); }
+    else { copy(SHARE_URL,'Enlace copiado ✓'); }
+  });
+
+  /* init */
+  paintTracker(); renderPillar(); refreshFinish();
+})();
+</script>
+</body>
+</html>
