@@ -597,27 +597,47 @@
   var gForm=$('#gateForm'), gEmail=$('#gateEmail'), gBtn=$('#gateBtn'), gMsg=$('#gateMsg'), optin=$('#optin');
   function setGMsg(t,cls){ gMsg.textContent=t; gMsg.className='gate-msg'+(cls?' '+cls:''); }
   function reveal(){ buildResult(); show('s-result'); ga('diagnostic_result_view',{subscribed:state.subscribed}); }
+  function postDiagnostico(cb){
+    var res=computeResult();
+    state.subscribed=optin.checked;
+    var payload={ source:'diagnostico', email:state.email, name:state.name, newsletter:optin.checked,
+      madurez:res.madurez, madurezBand:res.madurezBand, cuello:res.cuello,
+      pillars:res.pillars.map(function(p){ return {key:p.key,name:p.name,pct:p.pct,band:p.band,msg:p.msg,gaps:p.gaps.slice(0,4)}; }),
+      answers:state.answers, utm_source:src, page:'/diagnostico-problemas/' };
+    if(location.hostname.indexOf('alexdakov.com')===-1){ cb(true); return; } // vista previa: no POST
+    var ctrl=('AbortController' in window)?new AbortController():null; var t=ctrl&&setTimeout(function(){ctrl.abort();},9000);
+    fetch('https://test-lider-beehiiv.alexdakov.workers.dev', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload), signal: ctrl?ctrl.signal:undefined
+    }).then(function(r){ return r.json().catch(function(){return {};}); })
+      .then(function(j){ clearTimeout(t); if(optin.checked && j && j.beehiiv) ga('newsletter_subscribed',{location:'diagnostico'}); cb(true); })
+      .catch(function(){ clearTimeout(t); cb(false); });
+  }
   gForm.addEventListener('submit', function(e){
     e.preventDefault();
     var email=(gEmail.value||'').trim();
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ setGMsg('Escribe un email válido para desbloquearlo.','err'); gEmail.focus(); return; }
     state.email=email;
-    if(!optin.checked){ state.subscribed=false; reveal(); return; }
-    gBtn.disabled=true; var orig=gBtn.textContent; gBtn.textContent='Enviando…'; setGMsg('');
-    ga('newsletter_submit',{location:'diagnostico'});
-    if(location.hostname.indexOf('alexdakov.com')===-1){ state.subscribed=true; setGMsg('✓ (Vista previa) En alexdakov.com esto te suscribe a Room Five.','ok'); setTimeout(reveal,650); return; }
-    var ctrl=('AbortController' in window)?new AbortController():null; var t=ctrl&&setTimeout(function(){ctrl.abort();},9000);
-    fetch('https://test-lider-beehiiv.alexdakov.workers.dev', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ source:'newsletter', email:email, utm_source:src, utm_medium:'diagnostico', utm_campaign:'diagnostico-problemas', page:'/diagnostico-problemas/' }),
-      signal: ctrl?ctrl.signal:undefined
-    }).then(function(r){ return r.json().catch(function(){return {};}).then(function(j){ return r.ok && j.ok!==false; }); })
-      .then(function(ok){ clearTimeout(t); if(!ok) throw new Error('worker');
-        state.subscribed=true; ga('newsletter_subscribed',{location:'diagnostico'}); reveal(); })
-      .catch(function(){ clearTimeout(t); gBtn.disabled=false; gBtn.textContent=orig; setGMsg('No he podido suscribirte ahora mismo. Prueba de nuevo, o quita la casilla para ver tu diagnóstico igualmente.','err'); ga('newsletter_error',{location:'diagnostico'}); });
+    gBtn.disabled=true; gBtn.textContent='Preparando tu diagnóstico…'; setGMsg('');
+    ga('diagnostico_submit',{location:'diagnostico', newsletter:optin.checked});
+    var done=false, finish=function(){ if(done) return; done=true; reveal(); };
+    var fs=setTimeout(finish, 9500);
+    postDiagnostico(function(){ clearTimeout(fs); finish(); });
   });
   gEmail.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); (gForm.requestSubmit?gForm.requestSubmit():gBtn.click()); } });
 
+  function computeResult(){
+    var scores=PILLARS.map(function(p){ return {p:p, v:score(p.key)}; });
+    var lowest=scores.slice().sort(function(a,b){return a.v-b.v;})[0];
+    var avg=Math.round((scores[0].v+scores[1].v+scores[2].v)/3);
+    var pillars=scores.map(function(sc){
+      var gaps=[];
+      state.answers[sc.p.key].forEach(function(a,i){ if(a==="no") gaps.push(Q[sc.p.key][i].s); });
+      state.answers[sc.p.key].forEach(function(a,i){ if(a==="medio") gaps.push(Q[sc.p.key][i].s); });
+      return {key:sc.p.key, name:sc.p.name, pct:sc.v, band:bandLabel(sc.v), msg:BANDS[sc.p.key][bandKey(sc.v)], gaps:gaps};
+    });
+    return {madurez:avg, madurezBand:bandLabel(avg), cuello:lowest.p.name, pillars:pillars};
+  }
   function countUp(el,target){
     if(reduce){ el.textContent=target+'%'; return; }
     var t0=null, dur=900;
