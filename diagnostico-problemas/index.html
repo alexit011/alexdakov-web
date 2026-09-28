@@ -104,12 +104,14 @@
     .callout p{margin:8px 0 0; color:var(--taupe); font-size:15px; line-height:1.7;}
     .callout p strong{color:var(--cream);}
 
-    /* processes preview */
-    .proc-list{list-style:none; margin:24px 0 8px; padding:0; display:flex; flex-direction:column; gap:10px;}
-    .proc-list li{display:flex; gap:14px; align-items:center; padding:14px 16px; border:1px solid var(--line); border-radius:4px; background:var(--card-soft);}
-    .proc-list .pn{font-family:"Playfair Display",serif; font-size:20px; color:var(--gold); flex:0 0 auto; width:26px;}
-    .proc-list b{font-weight:600; font-size:16px; color:var(--cream); display:block;}
-    .proc-list span{color:var(--taupe); font-size:13.5px;}
+    /* processes preview — 3 circles in a row */
+    .proc-grid{display:flex; gap:14px; margin:28px 0 10px; justify-content:center; align-items:flex-start;}
+    .proc-grid .pc{flex:1; max-width:180px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:11px;}
+    .proc-grid .circle{width:88px; height:88px; border-radius:50%; border:1.5px solid var(--gold-line); background:var(--card);
+      display:grid; place-items:center; font-family:"Playfair Display",serif; font-size:36px; color:var(--gold); font-weight:600; line-height:1;}
+    .proc-grid b{font-weight:600; font-size:15.5px; color:var(--cream); display:block;}
+    .proc-grid span{color:var(--taupe); font-size:12.5px; line-height:1.4; display:block; margin-top:2px;}
+    @media (max-width:430px){ .proc-grid{gap:9px;} .proc-grid .circle{width:70px; height:70px; font-size:29px;} .proc-grid span{font-size:11.5px;} }
 
     .field{margin:26px 0 4px;}
     .field label{display:block; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:9px;}
@@ -283,11 +285,11 @@
         </div>
       </div>
 
-      <ul class="proc-list" aria-hidden="true">
-        <li><span class="pn serif">1</span><div><b>Selección</b><span>A quién eliges y contratas</span></div></li>
-        <li><span class="pn serif">2</span><div><b>Formación</b><span>Cómo haces crecer a tu equipo</span></div></li>
-        <li><span class="pn serif">3</span><div><b>Gestión</b><span>Cómo diriges el día a día</span></div></li>
-      </ul>
+      <div class="proc-grid" aria-hidden="true">
+        <div class="pc"><div class="circle serif">1</div><div><b>Selección</b><span>A quién eliges y contratas</span></div></div>
+        <div class="pc"><div class="circle serif">2</div><div><b>Formación</b><span>Cómo haces crecer a tu equipo</span></div></div>
+        <div class="pc"><div class="circle serif">3</div><div><b>Gestión</b><span>Cómo diriges el día a día</span></div></div>
+      </div>
 
       <div class="field">
         <label for="name">¿Cómo te llamas?</label>
