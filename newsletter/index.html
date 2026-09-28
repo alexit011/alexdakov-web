@@ -555,7 +555,7 @@ function nlTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}cat
       if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){msg.className='form-msg err';msg.textContent='Revisa el email, parece que falta algo.';inp.focus();return;}
       btn.disabled=true;var old=btn.innerHTML;btn.textContent='Un segundo…';
       nlTrack('newsletter_submit',{form:f.getAttribute('data-form')});
-      var payload={source:'newsletter',email:email,utm_source:utm('utm_source'),utm_medium:utm('utm_medium'),utm_campaign:utm('utm_campaign'),page:location.pathname,form:f.getAttribute('data-form')};
+      var payload={source:'newsletter',email:email,lm_source:'newsletter-landing',utm_source:utm('utm_source'),utm_medium:utm('utm_medium'),utm_campaign:utm('utm_campaign'),page:location.pathname,form:f.getAttribute('data-form')};
       var ctrl=('AbortController' in window)?new AbortController():null;var t=ctrl&&setTimeout(function(){ctrl.abort();},9000);
       fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:ctrl?ctrl.signal:undefined})
         .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {ok:r.ok&&j.ok!==false,j:j};});})
