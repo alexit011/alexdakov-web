@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Diagnóstico de líder — ¿Dónde se rompe tu liderazgo? | Alex Dakov</title>
-  <meta name="description" content="Diagnóstico interactivo de liderazgo: 30 preguntas en 3 procesos (selección, formación y gestión) para descubrir dónde está tu cuello de botella y cómo arreglarlo.">
+  <title>Diagnóstico de equipo — ¿dónde están los cuellos de botella? | Alex Dakov</title>
+  <meta name="description" content="Diagnóstico interactivo de liderazgo: 35 preguntas en 3 procesos (selección, formación y gestión) para descubrir dónde están los cuellos de botella de tu equipo y qué necesitas para arreglarlo.">
   <link rel="canonical" href="https://alexdakov.com/diagnostico-problemas/">
 
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://alexdakov.com/diagnostico-problemas/">
-  <meta property="og:title" content="Diagnóstico de líder — ¿Dónde se rompe tu liderazgo?">
-  <meta property="og:description" content="30 preguntas, 3 procesos, 5 minutos. Descubre en cuál de tus procesos como líder estás fallando y cómo arreglarlo.">
+  <meta property="og:title" content="Diagnóstico de equipo — ¿dónde están los cuellos de botella?">
+  <meta property="og:description" content="35 preguntas, 3 procesos, 5 minutos. Descubre en cuál de tus procesos como líder está el cuello de botella de tu equipo.">
   <meta property="og:image" content="https://alexdakov.com/assets/og-home.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Diagnóstico de líder — ¿Dónde se rompe tu liderazgo?">
-  <meta name="twitter:description" content="30 preguntas, 3 procesos, 5 minutos. Descubre dónde está tu cuello de botella como líder.">
+  <meta name="twitter:title" content="Diagnóstico de equipo — ¿dónde están los cuellos de botella?">
+  <meta name="twitter:description" content="35 preguntas, 3 procesos, 5 minutos. Descubre dónde está el cuello de botella de tu equipo.">
   <meta name="twitter:image" content="https://alexdakov.com/assets/og-home.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -89,10 +89,10 @@
     @keyframes fade{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
 
     .eyebrow{font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); font-weight:600;}
-    h1.title{font-weight:600; font-size:clamp(34px, 8vw, 56px); line-height:1.04; letter-spacing:-.01em; margin:.28em 0 .18em; color:var(--cream); text-wrap:balance;}
+    h1.title{font-weight:600; font-size:clamp(30px, 7vw, 50px); line-height:1.06; letter-spacing:-.01em; margin:.28em 0 .18em; color:var(--cream); text-wrap:balance;}
     h1.title em{font-style:italic; color:var(--gold); font-weight:500;}
-    .lede{font-size:clamp(17px,4.6vw,21px); color:var(--taupe); margin:0 0 22px; max-width:42ch; line-height:1.45;}
-    .intro{max-width:60ch; color:var(--cream); font-size:16.5px; line-height:1.72;}
+    .lede{font-size:clamp(17px,4.6vw,21px); color:var(--taupe); margin:0 0 18px; max-width:44ch; line-height:1.45;}
+    .intro{max-width:62ch; color:var(--cream); font-size:16.5px; line-height:1.72;}
     .intro em{font-style:italic; color:var(--gold);}
     .sign{margin-top:14px; font-family:"Playfair Display",serif; font-style:italic; font-size:19px; color:var(--taupe);}
 
@@ -104,14 +104,14 @@
     .callout p{margin:8px 0 0; color:var(--taupe); font-size:15px; line-height:1.7;}
     .callout p strong{color:var(--cream);}
 
-    /* processes preview — 3 circles in a row */
-    .proc-grid{display:flex; gap:14px; margin:28px 0 10px; justify-content:center; align-items:flex-start;}
-    .proc-grid .pc{flex:1; max-width:180px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:11px;}
-    .proc-grid .circle{width:88px; height:88px; border-radius:50%; border:1.5px solid var(--gold-line); background:var(--card);
-      display:grid; place-items:center; font-family:"Playfair Display",serif; font-size:36px; color:var(--gold); font-weight:600; line-height:1;}
-    .proc-grid b{font-weight:600; font-size:15.5px; color:var(--cream); display:block;}
-    .proc-grid span{color:var(--taupe); font-size:12.5px; line-height:1.4; display:block; margin-top:2px;}
-    @media (max-width:430px){ .proc-grid{gap:9px;} .proc-grid .circle{width:70px; height:70px; font-size:29px;} .proc-grid span{font-size:11.5px;} }
+    /* processes preview — 3 big circles in a row */
+    .proc-grid{display:flex; gap:16px; margin:30px 0 12px; justify-content:center; align-items:flex-start;}
+    .proc-grid .pc{flex:1; max-width:210px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px;}
+    .proc-grid .circle{width:176px; height:176px; border-radius:50%; border:1.5px solid var(--gold-line); background:var(--card);
+      display:grid; place-items:center; font-size:72px; line-height:1;}
+    .proc-grid b{font-weight:600; font-size:16px; color:var(--cream); display:block;}
+    .proc-grid span{color:var(--taupe); font-size:13px; line-height:1.4; display:block; margin-top:3px;}
+    @media (max-width:560px){ .proc-grid{gap:9px;} .proc-grid .circle{width:100px; height:100px; font-size:42px;} .proc-grid b{font-size:14px;} .proc-grid span{font-size:11.5px;} }
 
     .field{margin:26px 0 4px;}
     .field label{display:block; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:9px;}
@@ -160,9 +160,9 @@
     .q{background:var(--card); border:1px solid var(--line); border-radius:6px; padding:16px 16px 14px; transition:border-color .2s;}
     .q.answered{border-color:var(--gold-line);}
     .q .qi{display:flex; gap:12px; align-items:flex-start;}
-    .q .qn{font-family:"Playfair Display",serif; font-size:15px; color:var(--gold); font-weight:600; flex:0 0 auto; width:20px; line-height:1.5;}
+    .q .qn{font-family:"Playfair Display",serif; font-size:15px; color:var(--gold); font-weight:600; flex:0 0 auto; width:22px; line-height:1.5;}
     .q p{margin:0; font-size:16px; line-height:1.45; color:var(--cream);}
-    .yn{display:flex; gap:8px; margin-top:13px; padding-left:32px;}
+    .yn{display:flex; gap:8px; margin-top:13px; padding-left:34px;}
     .yn button{flex:1; font:inherit; font-weight:600; font-size:13.5px; color:var(--taupe); background:var(--navy);
       border:1px solid var(--line); border-radius:4px; padding:11px 6px; cursor:pointer; transition:.15s;}
     .yn button:hover{border-color:var(--gold-line); color:var(--cream);}
@@ -177,19 +177,23 @@
     .finish{margin-top:12px;}
     .note{text-align:center; color:var(--taupe); font-size:13.5px; margin-top:16px;}
 
-    /* ---- email gate (styled as newsletter) ---- */
+    /* ---- email gate ---- */
     .gate{margin-top:6px; background:linear-gradient(180deg, var(--card) 0%, var(--card-soft) 100%);
       border:1px solid var(--gold-line); border-radius:6px; padding:36px 26px; text-align:center;}
     .gate .lockrow{font-size:26px; margin-bottom:6px;}
     .gate h2{font-family:"Playfair Display",serif; font-weight:600; font-size:clamp(25px,6.2vw,34px); line-height:1.1; margin:6px 0 10px; color:var(--cream);}
     .gate h2 em{font-style:italic; color:var(--gold);}
-    .gate p{color:var(--taupe); max-width:46ch; margin:0 auto 22px; font-size:16px; line-height:1.6;}
+    .gate p{color:var(--taupe); max-width:48ch; margin:0 auto 12px; font-size:15.5px; line-height:1.65;}
+    .gate p.lead2{margin-bottom:22px;}
     .gate p strong{color:var(--cream);}
-    form.subscribe{display:flex; gap:10px; max-width:460px; margin:0 auto; flex-wrap:wrap;}
-    form.subscribe input[type=email]{flex:1 1 200px; min-width:0; background:var(--navy); border:1px solid var(--gold-line); color:var(--cream); font:inherit; font-size:15px; padding:14px 15px; border-radius:3px;}
-    form.subscribe input[type=email]::placeholder{color:var(--muted);}
-    form.subscribe input[type=email]:focus{outline:none; border-color:var(--gold);}
-    form.subscribe button{flex:0 0 auto; padding:14px 22px; font-size:15px;}
+    .gate-form{display:flex; flex-direction:column; gap:12px; max-width:460px; margin:0 auto; text-align:left;}
+    .gate-form input[type=email]{background:var(--navy); border:1px solid var(--gold-line); color:var(--cream); font:inherit; font-size:15px; padding:14px 15px; border-radius:3px; width:100%;}
+    .gate-form input[type=email]::placeholder{color:var(--muted);}
+    .gate-form input[type=email]:focus{outline:none; border-color:var(--gold);}
+    .optin{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:var(--taupe); cursor:pointer; line-height:1.45;}
+    .optin input{margin-top:2px; width:18px; height:18px; accent-color:var(--gold); flex:0 0 auto; cursor:pointer;}
+    .optin strong{color:var(--cream); font-weight:600;}
+    .gate-form button{padding:14px 22px; font-size:15px;}
     .gate .fineprint{margin:14px auto 0; font-size:12.5px; color:var(--muted); max-width:42ch;}
     .gate-msg{min-height:20px; margin-top:14px; font-size:14.5px; font-weight:500;}
     .gate-msg.ok{color:var(--gold);} .gate-msg.err{color:#e0a3a3;}
@@ -217,7 +221,7 @@
     .bd .bdtop{display:flex; align-items:center; justify-content:space-between; gap:10px;}
     .bd .bdtop h3{font-family:"Playfair Display",serif; font-weight:600; font-size:19px; margin:0; color:var(--cream);}
     .bd .bdscore{font-family:"Playfair Display",serif; font-weight:600; font-size:21px; font-variant-numeric:tabular-nums;}
-    .bd .bdmsg{color:var(--taupe); font-size:14.5px; margin:6px 0 0; line-height:1.6;}
+    .bd .bdmsg{color:var(--taupe); font-size:14.5px; margin:6px 0 0; line-height:1.62;}
     .gaps{margin:14px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px;}
     .gaps li{display:flex; gap:10px; font-size:14px; color:var(--cream); align-items:flex-start; line-height:1.5;}
     .gaps li .arw{color:var(--gold); flex:0 0 auto; font-weight:700;}
@@ -230,13 +234,13 @@
     .subok .eyebrow{display:block;}
     .subok h3{font-family:"Playfair Display",serif; font-weight:600; font-size:22px; margin:10px 0 6px; color:var(--cream);}
     .subok h3 em{font-style:italic; color:var(--gold);}
-    .subok p{color:var(--taupe); font-size:14.5px; margin:0 auto; max-width:40ch;}
+    .subok p{color:var(--taupe); font-size:14.5px; margin:0 auto; max-width:42ch; line-height:1.6;}
 
     /* share */
     .share{margin-top:40px; text-align:center; padding:34px 22px 8px; border-top:1px solid var(--line);}
     .share .eyebrow{display:block;}
     .share h2{font-family:"Playfair Display",serif; font-weight:600; font-size:clamp(23px,5.6vw,30px); margin:10px 0 6px; color:var(--cream);}
-    .share p{margin:0 auto 20px; color:var(--taupe); max-width:40ch; font-size:15.5px;}
+    .share p{margin:0 auto 20px; color:var(--taupe); max-width:46ch; font-size:15.5px;}
     .share-grid{display:flex; flex-wrap:wrap; gap:10px; justify-content:center;}
     .share-grid .btn{font-size:14px; padding:11px 17px;}
     .btn.wa{border-color:transparent; background:#25D366; color:#04310f;}
@@ -270,10 +274,10 @@
 
     <!-- ===== SCREEN 1: INTRO ===== -->
     <section class="screen" id="s-intro">
-      <p class="eyebrow">Diagnóstico de liderazgo</p>
-      <h1 class="title serif">¿Dónde se <em>rompe</em> tu liderazgo?</h1>
-      <p class="lede">30 preguntas. 5 minutos. Descubre en cuál de los 3 procesos clave estás fallando —y cómo arreglarlo.</p>
-      <p class="intro">Los problemas de un líder casi nunca son de actitud. Son de <em>proceso</em>. Un equipo que no rinde suele venir de una mala <em>selección</em>, una <em>formación</em> inexistente o una <em>gestión</em> que depende de ti para todo. Este diagnóstico te dice en cuál de los tres estás perdiendo, para que trabajes lo que de verdad mueve la aguja.</p>
+      <p class="eyebrow">Diagnóstico de equipo</p>
+      <h1 class="title serif">¿Dónde encuentro los <em>cuellos de botella</em> de mi equipo?</h1>
+      <p class="lede">35 preguntas. 5 minutos. Descubre en cuál de los 3 procesos clave estás fallando —y qué necesitas para arreglarlo.</p>
+      <p class="intro">La distancia entre un equipo mediocre y uno de alto rendimiento se mide por la <em>calidad de los procesos y sistemas</em> que ejecuta su líder. Aquí tienes una lista resumida con los principales, dividida en 3 etapas.</p>
       <p class="sign serif">— Alex</p>
 
       <div class="callout">
@@ -281,12 +285,12 @@
         <div>
           <div class="lbl">Cómo funciona</div>
           <h3 class="serif">Responde con honestidad, no para quedar bien</h3>
-          <p>Vas a puntuar 10 hábitos en cada uno de los 3 procesos. Responde <strong>No · A veces · Sí</strong> con sinceridad —nadie te ve—. Al final verás tu porcentaje en cada proceso y cuál es tu cuello de botella.</p>
+          <p>Vas a puntuar una serie de hábitos en cada uno de los 3 procesos. Responde <strong>No · A veces · Sí</strong> con sinceridad —nadie te ve—. Al final verás tu porcentaje en cada proceso y cuál es tu cuello de botella.</p>
         </div>
       </div>
 
       <div class="proc-grid" aria-hidden="true">
-        <div class="pc"><div class="circle">🎯</div><div><b>Selección</b><span>A quién eliges y contratas</span></div></div>
+        <div class="pc"><div class="circle">🎯</div><div><b>Selección</b><span>A quién eliges y cómo</span></div></div>
         <div class="pc"><div class="circle">🌱</div><div><b>Formación</b><span>Cómo haces crecer a tu equipo</span></div></div>
         <div class="pc"><div class="circle">⚙️</div><div><b>Gestión</b><span>Cómo diriges el día a día</span></div></div>
       </div>
@@ -296,7 +300,7 @@
         <input type="text" id="name" placeholder="Tu nombre" autocomplete="given-name" enterkeyhint="go">
       </div>
       <div style="margin-top:16px"><button class="btn gold block" id="start" type="button">Empezar mi diagnóstico</button></div>
-      <div class="meta"><span><b>3</b> procesos</span><span><b>30</b> preguntas</span><span><b>5</b> min</span></div>
+      <div class="meta"><span><b>3</b> procesos</span><span><b>35</b> preguntas</span><span><b>5</b> min</span></div>
     </section>
 
     <!-- ===== SCREEN 2: TEST ===== -->
@@ -306,7 +310,7 @@
       <div class="phead">
         <span class="pnum serif" id="pnum">01</span>
         <h2 class="serif" id="pname"></h2>
-        <span class="pcount"><b id="pdone">0</b>/10</span>
+        <span class="pcount"><b id="pdone">0</b>/<span id="ptot">10</span></span>
       </div>
       <p class="psub" id="psub"></p>
       <div class="p-divider"></div>
@@ -316,7 +320,7 @@
         <button class="btn" id="next" type="button">Siguiente →</button>
       </div>
       <button class="btn gold block finish" id="tofinish" type="button" hidden>Ver mi diagnóstico →</button>
-      <p class="note" id="note">Responde los 30 puntos para desbloquear tu diagnóstico.</p>
+      <p class="note" id="note"></p>
     </section>
 
     <!-- ===== SCREEN 3: EMAIL GATE ===== -->
@@ -325,13 +329,15 @@
         <div class="preview-rings" id="prerings" aria-hidden="true"></div>
         <div class="lockrow">🔒</div>
         <h2 class="serif" id="gate-h">Tu diagnóstico está <em>listo</em>.</h2>
-        <p>Déjame tu email para ver tu resultado completo —tu puntuación en los 3 procesos y qué tienes que trabajar— y entrar en la newsletter <strong>Room Five</strong>.</p>
-        <form class="subscribe" id="gateForm" novalidate>
+        <p>Tu puntuación en los 3 procesos y exactamente qué tienes que trabajar. ¿A qué email te lo mando?</p>
+        <p class="lead2">Además he creado una newsletter semanal donde comparto historias, herramientas y sistemas para mejorar en cada una de las áreas. Se llama <strong>Room Five</strong> y es un mail de 3 minutos cada miércoles. Si quieres recibirlo, solo tienes que marcar la casilla de abajo.</p>
+        <form class="gate-form" id="gateForm" novalidate>
           <input type="email" id="gateEmail" name="email" placeholder="tu@email.com" autocomplete="email" required aria-label="Tu email">
-          <button class="btn gold" type="submit" id="gateBtn">Ver mi diagnóstico</button>
+          <label class="optin"><input type="checkbox" id="optin"><span>Sí, quiero recibir la newsletter <strong>Room Five</strong> — un mail de 3 min cada miércoles.</span></label>
+          <button class="btn gold block" type="submit" id="gateBtn">Desbloquear mi diagnóstico</button>
         </form>
         <div class="gate-msg" id="gateMsg" role="status" aria-live="polite"></div>
-        <p class="fineprint">Un email a la semana. Cero spam. Te das de baja cuando quieras.</p>
+        <p class="fineprint">Cero spam, te vas cuando quieras.</p>
         <button class="btn ghost-sm gate-back" id="gateBack" type="button">← Revisar respuestas</button>
       </div>
     </section>
@@ -345,16 +351,16 @@
       <div class="breakdown" id="breakdown"></div>
 
       <div class="subok">
-        <span class="eyebrow">Newsletter · Room Five</span>
-        <h3 class="serif">Ya estás dentro. <em>Ahora, a entrenarlo.</em></h3>
-        <p>Cada miércoles te mando una historia, una idea y una herramienta para liderar mejor. Empieza a trabajar tu cuello de botella esta semana.</p>
+        <span class="eyebrow" id="subok-eyebrow">Room Five</span>
+        <h3 class="serif" id="subok-h"></h3>
+        <p id="subok-p"></p>
       </div>
 
       <!-- SHARE -->
       <section class="share" id="share">
         <span class="eyebrow">Compartir</span>
         <h2 class="serif">Pásaselo a otro líder</h2>
-        <p>Si te ha servido, mándaselo a alguien de tu equipo o a otro líder. Se hace en 5 minutos.</p>
+        <p>Comparte este diagnóstico con un amigo que también dirija equipos: le vas a ayudar a descubrir cuáles son sus cuellos de botella.</p>
         <div class="share-grid">
           <a class="btn wa" id="waBtn" href="#" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.2 4.3 4.4-1.2A10 10 0 1 0 12 2Zm5.6 14.2c-.24.67-1.4 1.28-1.93 1.32-.5.05-1.12.07-1.8-.11-.42-.13-.95-.3-1.64-.6-2.9-1.25-4.78-4.15-4.92-4.35-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36l.55.01c.18.01.42-.07.65.5.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.3.38-.42.5-.14.14-.29.29-.12.57.16.29.73 1.2 1.57 1.94 1.08.96 1.99 1.26 2.28 1.4.29.14.45.12.62-.07.17-.19.71-.83.9-1.12.19-.29.38-.24.64-.14.26.09 1.67.79 1.96.93.29.14.48.21.55.33.07.12.07.67-.17 1.34Z"/></svg>
@@ -390,14 +396,13 @@
 (function(){
   "use strict";
   var SHARE_URL = "https://alexdakov.com/diagnostico-problemas/";
-  var SHARE_TITLE = "Diagnóstico de líder";
-  var SHARE_TEXT = "¿Dónde se rompe tu liderazgo? Hice el diagnóstico de Alex Dakov (5 min) y te dice en cuál de tus 3 procesos estás fallando:";
-  var STORE_KEY = "adk-diagnostico-v1";
+  var SHARE_TITLE = "Diagnóstico de equipo";
+  var SHARE_TEXT = "¿Dónde están los cuellos de botella de tu equipo? Hice el diagnóstico de Alex Dakov (5 min) y te dice en cuál de tus 3 procesos está el problema:";
+  var STORE_KEY = "adk-diagnostico-v2";
 
   function ga(name, params){ try{ if(window.gtag) gtag('event', name, params||{}); }catch(e){} }
   function $(s){ return document.querySelector(s); }
 
-  /* ---- toast + copy ---- */
   var toast=$('#toast'), toastT;
   function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(function(){toast.classList.remove('show');},1900); }
   function copy(text, okMsg){
@@ -414,71 +419,87 @@
 
   /* ---- data ---- */
   var PILLARS=[
-    {key:"seleccion", name:"Selección", sub:"A quién eliges y contratas."},
+    {key:"seleccion", name:"Selección", sub:"A quién eliges y cómo."},
     {key:"formacion", name:"Formación", sub:"Cómo haces crecer a tu equipo."},
     {key:"gestion",   name:"Gestión",   sub:"Cómo diriges el día a día."}
   ];
   var Q={
     seleccion:[
-      {t:"Antes de abrir una vacante, escribo la misión del puesto y los resultados que espero.", s:"Definir misión y resultados del puesto antes de abrir la vacante"},
+      {t:"Antes de abrir una vacante, escribo la misión del puesto y los resultados que espero a 1 mes, 3, 6 y un año. Los resultados son objetivos y claramente medibles.", s:"Definir misión y resultados medibles (1/3/6/12 meses)"},
       {t:"Tengo definidas las 3-5 competencias innegociables del rol.", s:"Definir las 3-5 competencias innegociables"},
-      {t:"Uso un proceso de entrevistas estructurado (las mismas preguntas clave a todos).", s:"Estructurar las entrevistas (mismas preguntas a todos)"},
-      {t:"Incluyo una prueba práctica o caso real, no solo una entrevista de charla.", s:"Añadir una prueba práctica o caso real"},
+      {t:"Uso un proceso de entrevistas estructurado (las mismas preguntas clave a todos).", s:"Entrevistas estructuradas (mismas preguntas a todos)"},
+      {t:"Hago preguntas para descubrir el encaje en valores y actitud con el resto del equipo.", s:"Preguntar por encaje en valores y actitud"},
+      {t:"Incluyo una prueba práctica o caso real, no solo una entrevista conversacional.", s:"Incluir una prueba práctica o caso real"},
       {t:"Verifico referencias reales antes de decidir.", s:"Verificar referencias antes de decidir"},
-      {t:"Contrato por valores y encaje cultural, no solo por currículum.", s:"Contratar por valores y encaje, no solo CV"},
+      {t:"Contrato por valores y encaje cultural, no solo por experiencia y aptitudes.", s:"Contratar por valores, no solo por experiencia"},
       {t:"Tengo claro cuánto me cuesta una mala contratación y no contrato “por tapar el hueco”.", s:"No contratar por urgencia / “tapar el hueco”"},
+      {t:"Dedico un tiempo lógico y entrevisto a varios candidatos para no precipitarme ni elegir con prisa.", s:"Entrevistar a varios candidatos, sin prisa"},
       {t:"Involucro a mi equipo en la decisión final del candidato.", s:"Involucrar al equipo en la decisión final"},
       {t:"Tengo un onboarding definido para los primeros 30-60-90 días.", s:"Diseñar un onboarding 30-60-90 días"},
-      {t:"Reviso en frío mis últimas contrataciones para aprender qué falló y qué acerté.", s:"Revisar tus contrataciones para aprender"}
+      {t:"Reviso en frío mis últimas contrataciones para aprender en qué me equivoqué y en qué acerté.", s:"Revisar tus contrataciones para aprender"}
     ],
     formacion:[
       {t:"Cada persona de mi equipo tiene un plan de desarrollo con objetivos claros.", s:"Un plan de desarrollo por persona"},
-      {t:"Doy feedback concreto de forma continua, no solo en la evaluación anual.", s:"Feedback continuo, no solo anual"},
-      {t:"Nunca pospongo una conversación difícil: la tengo a tiempo.", s:"No posponer las conversaciones difíciles"},
-      {t:"Dedico tiempo real a hacer coaching o mentoring a mi gente.", s:"Reservar tiempo para coaching/mentoring"},
-      {t:"Cuando delego, dejo claro qué es “bien hecho”, no solo la tarea.", s:"Delegar dejando claro el resultado esperado"},
-      {t:"Explico por qué importa cada tarea y por qué he elegido a esa persona.", s:"Explicar el porqué al delegar"},
+      {t:"El plan se revisa mensualmente, y la persona puede ver fácilmente su evolución pasada y futura.", s:"Revisar el plan cada mes (evolución visible)"},
+      {t:"Doy feedback concreto de forma continua, no solo en evaluaciones anuales.", s:"Feedback continuo, no solo anual"},
+      {t:"Nunca pospongo una conversación difícil: siempre son mi prioridad.", s:"No posponer las conversaciones difíciles"},
+      {t:"Dedico tiempo real a hacer coaching o mentoring a mi gente. Conozco de verdad a la persona que hay detrás del empleado.", s:"Reservar tiempo para coaching/mentoring real"},
+      {t:"Cuando delego, dejo muy bien definido, de manera objetiva y medible, qué es “bien hecho”.", s:"Delegar definiendo qué es “bien hecho”"},
+      {t:"Explico por qué importa cada tarea y por qué he elegido a esa persona. Detallo el impacto de cada tarea en el resultado final.", s:"Explicar el porqué y el impacto de cada tarea"},
       {t:"Tengo identificado quién puede crecer o promocionar, y cómo.", s:"Mapear quién puede crecer y cómo"},
-      {t:"Mi equipo sabe resolver problemas sin depender de mí para todo.", s:"Que el equipo resuelva sin depender de ti"},
-      {t:"Reconozco y celebro los logros de forma explícita.", s:"Reconocer y celebrar los logros"},
-      {t:"Invierto en mi propio desarrollo como líder, no solo en el del equipo.", s:"Invertir en tu propio desarrollo como líder"}
+      {t:"Mi equipo sabe resolver problemas sin depender de mí.", s:"Que el equipo resuelva sin depender de ti"},
+      {t:"Reconozco y celebro los logros de mi equipo de forma explícita. Tengo rutinas para reconocer el esfuerzo, no solo los resultados.", s:"Reconocer el esfuerzo, no solo los resultados"},
+      {t:"Invierto en mi propio desarrollo como líder, no solo en el del equipo. Busco herramientas constantes para tener mejor desempeño e impacto.", s:"Invertir en tu propio desarrollo como líder"}
     ],
     gestion:[
       {t:"Tengo agendados 1:1s recurrentes con cada persona y no los cancelo.", s:"Agendar 1:1s recurrentes (y no cancelarlos)"},
-      {t:"Cada persona tiene objetivos o KPIs claros y medibles.", s:"Objetivos/KPIs claros por persona"},
+      {t:"Cada persona tiene objetivos o KPIs claros y medibles.", s:"Objetivos/KPIs claros y medibles por persona"},
       {t:"Mis reuniones terminan siempre con acciones y responsables definidos.", s:"Cerrar reuniones con acciones y responsables"},
-      {t:"Tengo sistemas y procesos documentados: el equipo funciona sin mí presente.", s:"Documentar sistemas y procesos"},
-      {t:"Trabajo “en” el sistema, no solo apagando fuegos del día a día.", s:"Trabajar en el sistema, no solo en tareas"},
-      {t:"Tengo visibilidad del progreso sin perseguir a nadie (panel, KPIs).", s:"Tener visibilidad sin perseguir (panel/KPIs)"},
-      {t:"Cuando algo falla, ataco la causa raíz, no solo el síntoma.", s:"Atacar la causa raíz, no el síntoma"},
+      {t:"Soy un ejemplo claro de los mismos valores que exijo a mi equipo (puntualidad, honestidad, etc.).", s:"Ser ejemplo de los valores que exiges"},
+      {t:"Tengo sistemas y procesos documentados para todas las tareas repetitivas: el equipo no me necesita para ellas.", s:"Documentar sistemas de las tareas repetitivas"},
+      {t:"Trabajo “en” el sistema, no solo apagando fuegos del día a día.", s:"Trabajar en el sistema, no apagando fuegos"},
+      {t:"Cuando algo falla, ataco la causa origen, no solo el síntoma.", s:"Atacar la causa origen, no el síntoma"},
+      {t:"Utilizo cada problema para crear un nuevo sistema que evite que se repita en el futuro.", s:"Convertir cada problema en un sistema nuevo"},
+      {t:"Tengo visibilidad del progreso individual y del equipo sin perseguir a nadie (paneles, KPIs).", s:"Visibilidad del progreso sin perseguir a nadie"},
       {t:"No soy el cuello de botella: el equipo puede avanzar sin esperarme.", s:"Dejar de ser el cuello de botella"},
-      {t:"Protejo tiempo para pensar y para la estrategia.", s:"Proteger tiempo para pensar y estrategia"},
-      {t:"Reviso y mejoro mis sistemas de forma periódica.", s:"Revisar y mejorar tus sistemas periódicamente"}
+      {t:"Dedico parte de mi tiempo cada semana a pensar y a la estrategia.", s:"Reservar tiempo semanal para pensar/estrategia"},
+      {t:"Reviso, audito y mejoro mis sistemas de forma periódica.", s:"Revisar, auditar y mejorar tus sistemas"}
     ]
   };
   var BANDS={
-    seleccion:{low:"Estás contratando a ciegas: sin proceso, las malas contrataciones son cuestión de suerte.",
-      mid:"Tienes las bases, pero se te cuelan decisiones por intuición o por prisa.",
-      high:"Seleccionas como un PRO: proceso, criterio y encaje. Aquí no está tu problema."},
-    formacion:{low:"Tu equipo no crece porque no hay un sistema para hacerlo crecer.",
-      mid:"Desarrollas a tu gente a ratos; falta constancia y un plan por persona.",
-      high:"Haces crecer a tu equipo con intención. Este proceso está sólido."},
-    gestion:{low:"Vives apagando fuegos. Eres el cuello de botella de tu propio equipo.",
-      mid:"Gestionas bien el día a día, pero aún dependen demasiado de ti.",
+    seleccion:{
+      low:"Contratas a ciegas: sin proceso, es todo suerte. El problema es que si no aciertas, eliges a personas que pueden ser un cáncer para el resto del equipo y para ti. Es difícil medir el coste de una mala contratación: no es solo el tiempo de formar, despedir y re-contratar, sino todo el tiempo que la persona equivocada os frena, a ti y al resto.",
+      mid:"Tienes las bases, pero se te cuelan decisiones por intuición o por prisa. Dedicar un tiempo a crear los procesos y sistemas que te faltan te puede ahorrar verdaderos dolores de cabeza. Un poco más de esfuerzo ahora te dará mucha calidad de vida en el futuro.",
+      high:"Seleccionas como un PRO: tienes un proceso claro, buenos criterios y un sistema definido. Aquí no está tu problema."},
+    formacion:{
+      low:"Tu equipo no crece porque no hay un sistema para hacerlo crecer. Un equipo sin estrategia es un equipo perdido: sin guía no hay rumbo, y mucho menos destino. Cada persona tiene que saber qué necesita ser, saber y hacer para ser un verdadero PRO; tu trabajo es definir ese plan, aterrizarlo a un calendario y darle lo que necesita para seguirlo.",
+      mid:"Desarrollas a tu gente a medias. Probablemente te falta constancia y un plan definido por persona. Cada persona tiene que saber qué necesita ser, saber y hacer para ser un verdadero PRO; tu trabajo es definir ese plan, aterrizarlo a un calendario y darle lo que necesita para seguirlo.",
+      high:"Haces crecer a tu equipo con intención. Sé paciente: los buenos sistemas tardan en dar sus frutos, pero llegan."},
+    gestion:{
+      low:"Vives apagando fuegos. Eres el cuello de botella de tu propio equipo: no pueden avanzar porque en realidad nunca has preparado el camino para que lo hagan. Tu trabajo es quitar obstáculos y crear sistemas para que el agua fluya por su cauce. No tienes que hacer que trabajen; tienes que deshacerte de todo lo que lo impide.",
+      mid:"Gestionas bien el día a día, pero aún dependen demasiado de ti. Las cosas fluyen, pero a trompicones. Necesitas reforzar los procesos y encontrar qué obstáculos impiden que el rendimiento aumente.",
       high:"Diriges desde el sistema, no desde el caos. Gestión de nivel PRO."}
   };
   var C = 2 * Math.PI * 30;
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  var TOTAL = PILLARS.reduce(function(n,p){ return n + Q[p.key].length; }, 0);
 
-  var state={ name:"", active:0, answers:{seleccion:arr(),formacion:arr(),gestion:arr()} };
-  function arr(){ return [null,null,null,null,null,null,null,null,null,null]; }
+  var state={ name:"", email:"", subscribed:false, active:0, answers:{} };
+  PILLARS.forEach(function(p){ state.answers[p.key]=nulls(Q[p.key].length); });
+  function nulls(n){ var a=[]; for(var i=0;i<n;i++) a.push(null); return a; }
 
-  try{ var saved=JSON.parse(localStorage.getItem(STORE_KEY)||"null"); if(saved&&saved.answers){ state.name=saved.name||""; state.answers=saved.answers; } }catch(e){}
+  try{
+    var saved=JSON.parse(localStorage.getItem(STORE_KEY)||"null");
+    if(saved&&saved.answers){
+      var okLen=PILLARS.every(function(p){ return saved.answers[p.key] && saved.answers[p.key].length===Q[p.key].length; });
+      if(okLen){ state.name=saved.name||""; state.answers=saved.answers; }
+    }
+  }catch(e){}
   function persist(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({name:state.name,answers:state.answers})); }catch(e){} }
 
-  function score(k){ var a=state.answers[k],s=0; for(var i=0;i<a.length;i++){ if(a[i]==="si") s+=10; else if(a[i]==="medio") s+=5; } return s; }
+  function score(k){ var a=state.answers[k], N=a.length, s=0; for(var i=0;i<N;i++){ if(a[i]==="si") s+=1; else if(a[i]==="medio") s+=0.5; } return Math.round(s/N*100); }
   function answered(k){ var a=state.answers[k],n=0; for(var i=0;i<a.length;i++){ if(a[i]!==null) n++; } return n; }
-  function allDone(){ return answered("seleccion")===10 && answered("formacion")===10 && answered("gestion")===10; }
+  function allDone(){ return PILLARS.every(function(p){ return answered(p.key)===Q[p.key].length; }); }
   function bandColor(v){ return v<50?"var(--red)":(v<80?"var(--amber)":"var(--green)"); }
   function bandName(v){ return v<50?"red":(v<80?"amber":"green"); }
   function bandKey(v){ return v<50?"low":(v<80?"mid":"high"); }
@@ -497,7 +518,6 @@
   }
   function paintTracker(){ PILLARS.forEach(function(p){ paintRing("r-",p.key); }); }
 
-  /* build tracker + tabs */
   var ringsEl=$('#rings'), tabsEl=$('#tabs');
   PILLARS.forEach(function(p,i){
     var cell=document.createElement('div'); cell.className='rcell';
@@ -508,14 +528,17 @@
     tabsEl.appendChild(t);
   });
 
+  $('#note').textContent='Responde los '+TOTAL+' puntos para desbloquear tu diagnóstico.';
+
   function renderPillar(){
     var p=PILLARS[state.active];
     $('#pnum').textContent="0"+(state.active+1);
     $('#pname').textContent=p.name;
     $('#psub').textContent=p.sub;
+    $('#ptot').textContent=Q[p.key].length;
     tabsEl.querySelectorAll('.tab').forEach(function(t,i){
       t.setAttribute('aria-selected', i===state.active?'true':'false');
-      t.classList.toggle('done', answered(PILLARS[i].key)===10);
+      t.classList.toggle('done', answered(PILLARS[i].key)===Q[PILLARS[i].key].length);
     });
     var list=$('#qlist'); list.innerHTML="";
     Q[p.key].forEach(function(q,idx){
@@ -531,7 +554,7 @@
         b.addEventListener('click', function(){
           state.answers[p.key][idx]=this.dataset.v; persist(); renderPillar(); paintRing("r-",p.key); refreshFinish();
           ga('diagnostic_answer',{pillar:p.key, value:this.dataset.v});
-          if(answered(p.key)===10 && state.active<2){ setTimeout(function(){ setActive(state.active+1); }, 380); }
+          if(answered(p.key)===Q[p.key].length && state.active<2){ setTimeout(function(){ setActive(state.active+1); }, 380); }
         });
       });
       list.appendChild(li);
@@ -543,14 +566,12 @@
   function refreshFinish(){ var d=allDone(); $('#tofinish').hidden=!d; $('#note').hidden=d; }
   function setActive(i){ state.active=Math.max(0,Math.min(2,i)); renderPillar(); try{ $('#s-test').scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){ window.scrollTo(0,0); } }
 
-  /* screens */
   function show(id){
     ['s-intro','s-test','s-gate','s-result'].forEach(function(s){ $('#'+s).hidden = (s!==id); });
     var el=$('#'+id); el.style.animation='none'; void el.offsetWidth; el.style.animation='';
     window.scrollTo(0,0);
   }
 
-  /* intro */
   var nameInput=$('#name'); nameInput.value=state.name;
   $('#start').addEventListener('click', function(){
     state.name=(nameInput.value||"").trim(); persist();
@@ -561,7 +582,6 @@
   $('#prev').addEventListener('click', function(){ setActive(state.active-1); });
   $('#next').addEventListener('click', function(){ setActive(state.active+1); });
 
-  /* go to gate */
   $('#tofinish').addEventListener('click', function(){
     var n=state.name?(', '+state.name):'';
     $('#gate-h').innerHTML='Tu diagnóstico está <em>listo</em>'+n+'.';
@@ -571,32 +591,33 @@
   });
   $('#gateBack').addEventListener('click', function(){ show('s-test'); setTimeout(paintTracker,60); });
 
-  /* email gate → beehiiv worker (inline) */
+  /* email gate → beehiiv worker (only if opt-in checked) */
   var params=new URLSearchParams(location.search);
   var src=params.get('src')||params.get('utm_source')||'diagnostico';
-  var gForm=$('#gateForm'), gEmail=$('#gateEmail'), gBtn=$('#gateBtn'), gMsg=$('#gateMsg');
+  var gForm=$('#gateForm'), gEmail=$('#gateEmail'), gBtn=$('#gateBtn'), gMsg=$('#gateMsg'), optin=$('#optin');
   function setGMsg(t,cls){ gMsg.textContent=t; gMsg.className='gate-msg'+(cls?' '+cls:''); }
-  function reveal(){ buildResult(); show('s-result'); ga('diagnostic_result_view'); }
+  function reveal(){ buildResult(); show('s-result'); ga('diagnostic_result_view',{subscribed:state.subscribed}); }
   gForm.addEventListener('submit', function(e){
     e.preventDefault();
     var email=(gEmail.value||'').trim();
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ setGMsg('Escribe un email válido para desbloquearlo.','err'); gEmail.focus(); return; }
+    state.email=email;
+    if(!optin.checked){ state.subscribed=false; reveal(); return; }
     gBtn.disabled=true; var orig=gBtn.textContent; gBtn.textContent='Enviando…'; setGMsg('');
     ga('newsletter_submit',{location:'diagnostico'});
-    if(location.hostname.indexOf('alexdakov.com')===-1){ setGMsg('✓ (Vista previa) En alexdakov.com esto te suscribe a Room Five y abre tu diagnóstico.','ok'); setTimeout(reveal,700); return; }
+    if(location.hostname.indexOf('alexdakov.com')===-1){ state.subscribed=true; setGMsg('✓ (Vista previa) En alexdakov.com esto te suscribe a Room Five.','ok'); setTimeout(reveal,650); return; }
     var ctrl=('AbortController' in window)?new AbortController():null; var t=ctrl&&setTimeout(function(){ctrl.abort();},9000);
     fetch('https://test-lider-beehiiv.alexdakov.workers.dev', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ source:'newsletter', email:email, lm_source:'diagnostico-problemas', utm_source:src, utm_medium:'diagnostico', utm_campaign:'diagnostico-problemas', page:'/diagnostico-problemas/' }),
+      body: JSON.stringify({ source:'newsletter', email:email, utm_source:src, utm_medium:'diagnostico', utm_campaign:'diagnostico-problemas', page:'/diagnostico-problemas/' }),
       signal: ctrl?ctrl.signal:undefined
     }).then(function(r){ return r.json().catch(function(){return {};}).then(function(j){ return r.ok && j.ok!==false; }); })
       .then(function(ok){ clearTimeout(t); if(!ok) throw new Error('worker');
-        ga('newsletter_subscribed',{location:'diagnostico'}); reveal(); })
-      .catch(function(){ clearTimeout(t); gBtn.disabled=false; gBtn.textContent=orig; setGMsg('No he podido registrarte ahora mismo. Inténtalo de nuevo en unos segundos.','err'); ga('newsletter_error',{location:'diagnostico'}); });
+        state.subscribed=true; ga('newsletter_subscribed',{location:'diagnostico'}); reveal(); })
+      .catch(function(){ clearTimeout(t); gBtn.disabled=false; gBtn.textContent=orig; setGMsg('No he podido suscribirte ahora mismo. Prueba de nuevo, o quita la casilla para ver tu diagnóstico igualmente.','err'); ga('newsletter_error',{location:'diagnostico'}); });
   });
-  gEmail.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); gForm.requestSubmit?gForm.requestSubmit():gBtn.click(); } });
+  gEmail.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); (gForm.requestSubmit?gForm.requestSubmit():gBtn.click()); } });
 
-  /* result */
   function countUp(el,target){
     if(reduce){ el.textContent=target+'%'; return; }
     var t0=null, dur=900;
@@ -640,16 +661,26 @@
         '<ul class="gaps">'+gapHtml+'</ul>'+more;
       bd.appendChild(card);
     });
+
+    if(state.subscribed){
+      $('#subok-eyebrow').textContent='Newsletter · Room Five';
+      $('#subok-h').innerHTML='Ya estás dentro. <em>Ahora, a entrenarlo.</em>';
+      $('#subok-p').textContent='Revisa tu bandeja (y la carpeta de promociones): te espera la bienvenida. Cada miércoles te mando una idea concreta para liderar mejor. Empieza por tu cuello de botella esta semana.';
+    } else {
+      $('#subok-eyebrow').textContent='Tu siguiente paso';
+      $('#subok-h').innerHTML='Este es tu <em>punto de partida</em>.';
+      $('#subok-p').textContent='Empieza a trabajar tu cuello de botella esta semana: un solo hábito, no todos a la vez. Si quieres ideas cada miércoles para liderar mejor, te espero en la newsletter Room Five.';
+    }
   }
 
   $('#restart').addEventListener('click', function(){
-    state.answers={seleccion:arr(),formacion:arr(),gestion:arr()}; state.active=0; persist();
+    PILLARS.forEach(function(p){ state.answers[p.key]=nulls(Q[p.key].length); });
+    state.active=0; state.subscribed=false; persist();
     paintTracker(); renderPillar(); refreshFinish(); show('s-intro'); ga('diagnostic_restart');
   });
 
-  /* share */
   $('#waBtn').href='https://wa.me/?text='+encodeURIComponent(SHARE_TEXT+' '+SHARE_URL);
-  $('#mailBtn').href='mailto:?subject='+encodeURIComponent('Diagnóstico de líder — ¿dónde se rompe tu liderazgo?')+'&body='+encodeURIComponent(SHARE_TEXT+'\n\n'+SHARE_URL);
+  $('#mailBtn').href='mailto:?subject='+encodeURIComponent('Diagnóstico de equipo — ¿dónde están tus cuellos de botella?')+'&body='+encodeURIComponent(SHARE_TEXT+'\n\n'+SHARE_URL);
   $('#waBtn').addEventListener('click', function(){ ga('share_click',{method:'whatsapp'}); });
   $('#mailBtn').addEventListener('click', function(){ ga('share_click',{method:'email'}); });
   $('#copyBtn').addEventListener('click', function(){ copy(SHARE_URL,'Enlace copiado ✓'); ga('share_click',{method:'copy'}); });
@@ -659,7 +690,6 @@
     else { copy(SHARE_URL,'Enlace copiado ✓'); }
   });
 
-  /* init */
   paintTracker(); renderPillar(); refreshFinish();
 })();
 </script>
