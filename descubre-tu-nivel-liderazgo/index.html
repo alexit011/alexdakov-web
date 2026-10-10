@@ -342,7 +342,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<div class="center mt"><button class="btn ghost" id="again2">Repetir el test</button></div>'+
     '</div>';
     document.getElementById('again2').onclick=intro;
-    if(window.adkWaitlist)adkWaitlist(document.getElementById('wlMount'),{email:lead.email,name:lead.name,origen:'test-lider',title:'Y un extra: <em>sube de nivel con tu equipo de verdad</em>',focus:'Empezamos desde tu nivel actual'+(lead.top?': Nivel '+lead.top:'')+'.'});
+    if(window.adkWaitlist)adkWaitlist(document.getElementById('wlMount'),{email:lead.email,name:lead.name,origen:'test-lider',title:'Y un extra: <em>sube al máximo nivel con tu equipo.</em>',focus:'Empezamos desde tu nivel actual'+(lead.top?': Nivel '+lead.top:'')+'.'});
     window.scrollTo(0,0);
   }
   function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
@@ -402,12 +402,12 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   window.adkWaitlist=function(el,o){
     if(!el) return; o=o||{};
     var key="adk-waitlist-"+(o.origen||"web");
-    var title=o.title||'Da el salto <em>con tu equipo de verdad</em>';
+    var title=o.title||'Y un extra: <em>sube al máximo nivel con tu equipo.</em>';
     var focus=o.focus||'Empezamos por lo que más te está frenando hoy.';
     el.innerHTML='<div class="wl-box" role="region" aria-label="Lista de espera del programa">'+
       '<span class="wl-eyebrow">Programa · Lista de espera</span>'+
       '<h2 class="wl-title">'+title+'</h2>'+
-      '<p class="wl-p">Estoy preparando un programa para líderes que dirigen equipos reales y quieren pasar de restar a multiplicar. Plazas limitadas. Los de la lista de espera se enteran los primeros y entran en condiciones de fundador.</p>'+
+      '<p class="wl-p">Estoy preparando un programa para líderes que dirigen equipos reales y quieren pasar a ser líderes de élite que construyen equipos de alto rendimiento. Plazas limitadas. La lista de espera tendrá acceso prioritario y beneficios únicos.</p>'+
       '<ul class="wl-list"><li>Grupos reducidos y sesiones en directo conmigo.</li><li>Trabajo sobre tu equipo de verdad, no teoría.</li><li>'+esc(focus)+'</li></ul>'+
       '<div class="wl-act"></div></div>';
     var act=el.querySelector('.wl-act');
