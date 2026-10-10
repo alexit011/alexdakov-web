@@ -349,6 +349,7 @@
       <p class="maturity" id="maturity"></p>
       <div class="bigrings" id="bigrings"></div>
       <div class="breakdown" id="breakdown"></div>
+      <div id="wlMount"></div>
 
       <div class="subok">
         <span class="eyebrow" id="subok-eyebrow">Room Five</span>
@@ -596,7 +597,7 @@
   var src=params.get('src')||params.get('utm_source')||'diagnostico';
   var gForm=$('#gateForm'), gEmail=$('#gateEmail'), gBtn=$('#gateBtn'), gMsg=$('#gateMsg'), optin=$('#optin');
   function setGMsg(t,cls){ gMsg.textContent=t; gMsg.className='gate-msg'+(cls?' '+cls:''); }
-  function reveal(){ buildResult(); show('s-result'); ga('diagnostic_result_view',{subscribed:state.subscribed}); }
+  function reveal(){ buildResult(); try{ var _cu=computeResult(); if(window.adkWaitlist) adkWaitlist(document.getElementById('wlMount'),{email:state.email,name:state.name,origen:'diagnostico',title:'Desbloquea tu cuello de botella <em>con tu equipo de verdad</em>',focus:'Empezamos por tu cuello de botella: '+_cu.cuello+'.'}); }catch(e){} show('s-result'); ga('diagnostic_result_view',{subscribed:state.subscribed}); }
   function postDiagnostico(cb){
     var res=computeResult();
     state.subscribed=optin.checked;
@@ -713,5 +714,82 @@
   paintTracker(); renderPillar(); refreshFinish();
 })();
 </script>
+
+<!-- ===== Lista de espera del programa (bloque común lead magnets) ===== -->
+<style>
+  .wl-box{position:relative; margin:34px 0 8px; padding:28px 24px; border-radius:12px; text-align:left;
+    background:radial-gradient(120% 90% at 100% 0%, rgba(201,169,97,.16), transparent 55%), linear-gradient(160deg,#18264a,#14213D);
+    border:1px solid rgba(201,169,97,.38); box-shadow:0 18px 50px -24px rgba(201,169,97,.45); color:#F0EBE0;
+    font-family:"Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; overflow:hidden;}
+  .wl-box *{box-sizing:border-box}
+  .wl-eyebrow{display:block; font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:#C9A961; font-weight:600;}
+  .wl-title{font-family:"Playfair Display", Georgia, serif; font-weight:600; font-size:clamp(23px,5.2vw,30px); line-height:1.18; margin:10px 0 10px; color:#F0EBE0; text-wrap:balance;}
+  .wl-title em{font-style:italic; color:#C9A961; font-weight:500;}
+  .wl-p{margin:0; color:#A09B92; font-size:15px; line-height:1.6;}
+  .wl-list{margin:14px 0 20px; padding:0; list-style:none; display:grid; gap:8px;}
+  .wl-list li{padding-left:22px; position:relative; font-size:15px; line-height:1.5; color:#F0EBE0;}
+  .wl-list li:before{content:""; position:absolute; left:2px; top:.6em; width:8px; height:8px; border-radius:50%; background:#C9A961;}
+  .wl-row{display:flex; gap:8px; flex-wrap:wrap;}
+  .wl-row input{flex:1 1 220px; min-width:0; background:#090C17; border:1px solid rgba(201,169,97,.32); color:#F0EBE0; font:inherit; font-size:16px; padding:13px 15px; border-radius:4px;}
+  .wl-row input:focus{outline:none; border-color:#C9A961;}
+  .wl-btn{font:inherit; font-weight:600; font-size:15px; cursor:pointer; border-radius:3px; border:1px solid #C9A961; background:#C9A961; color:#1a1305; padding:14px 24px; transition:background .18s, transform .18s;
+    box-shadow:0 0 0 0 rgba(201,169,97,.5); animation:wlpulse 2.4s infinite;}
+  .wl-btn:hover{background:#d8ba75; transform:translateY(-1px);}
+  .wl-btn:disabled{opacity:.6; cursor:default; animation:none;}
+  .wl-btn:focus-visible,.wl-row input:focus-visible{outline:2px solid #C9A961; outline-offset:2px;}
+  @keyframes wlpulse{70%{box-shadow:0 0 0 14px rgba(201,169,97,0)} 100%{box-shadow:0 0 0 0 rgba(201,169,97,0)}}
+  .wl-who{font-size:12.5px; color:#6E6960; margin-top:10px;}
+  .wl-err{font-size:13.5px; color:#E08A7C; margin-top:8px; min-height:1em;}
+  .wl-ok{display:flex; gap:12px; align-items:flex-start; margin-top:4px; color:#8FBF87; font-weight:600; font-size:15.5px;}
+  .wl-ok b{display:inline-grid; place-items:center; flex:0 0 28px; height:28px; border-radius:50%; background:rgba(143,191,135,.16); color:#8FBF87;}
+  @media (prefers-reduced-motion:reduce){.wl-btn{animation:none}}
+</style>
+<script>
+(function(){
+  "use strict";
+  var WORKER="https://test-lider-beehiiv.alexdakov.workers.dev";
+  function esc(s){ return String(s||"").replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+  function ga(n,p){ try{ if(window.gtag) gtag('event',n,p||{}); }catch(e){} }
+  function done(key){ try{ return localStorage.getItem(key)==="1"; }catch(e){ return false; } }
+  function mark(key){ try{ localStorage.setItem(key,"1"); }catch(e){} }
+  // Pinta el recuadro en `el`. o = {email, name, origen, title, focus}
+  window.adkWaitlist=function(el,o){
+    if(!el) return; o=o||{};
+    var key="adk-waitlist-"+(o.origen||"web");
+    var title=o.title||'Da el salto <em>con tu equipo de verdad</em>';
+    var focus=o.focus||'Empezamos por lo que más te está frenando hoy.';
+    el.innerHTML='<div class="wl-box" role="region" aria-label="Lista de espera del programa">'+
+      '<span class="wl-eyebrow">Programa · Lista de espera</span>'+
+      '<h2 class="wl-title">'+title+'</h2>'+
+      '<p class="wl-p">Estoy preparando un programa para líderes que dirigen equipos reales y quieren pasar de restar a multiplicar. Plazas limitadas. Los de la lista de espera se enteran los primeros y entran en condiciones de fundador.</p>'+
+      '<ul class="wl-list"><li>Grupos reducidos y sesiones en directo conmigo.</li><li>Trabajo sobre tu equipo de verdad, no teoría.</li><li>'+esc(focus)+'</li></ul>'+
+      '<div class="wl-act"></div></div>';
+    var act=el.querySelector('.wl-act');
+    function okView(){ act.innerHTML='<div class="wl-ok"><b>✓</b><span>Hecho. Estás en la lista: te escribo antes que a nadie.</span></div>'; }
+    if(done(key)){ okView(); return; }
+    var hasEmail=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(o.email||"");
+    act.innerHTML=(hasEmail?'':'<div class="wl-row"><input type="email" class="wl-email" placeholder="tu@email.com" autocomplete="email" aria-label="Tu email"></div><div style="height:8px"></div>')+
+      '<button type="button" class="wl-btn">Apuntarme a la lista de espera</button>'+
+      (hasEmail?'<div class="wl-who">Te apunto con '+esc(o.email)+'</div>':'')+'<div class="wl-err" aria-live="polite"></div>';
+    var btn=act.querySelector('.wl-btn'), err=act.querySelector('.wl-err');
+    btn.addEventListener('click',function(){
+      var email=hasEmail?o.email:((act.querySelector('.wl-email')||{}).value||"").trim();
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ err.textContent="Escribe un email válido."; return; }
+      btn.disabled=true; btn.textContent="Apuntándote…"; err.textContent="";
+      ga('waitlist_submit',{origen:o.origen});
+      var fin=function(){ mark(key); okView(); };
+      if(location.hostname.indexOf('alexdakov.com')===-1){ fin(); return; }
+      fetch(WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+        source:'lista-espera', email:email, name:o.name||"", origen:o.origen||"", page:location.pathname,
+        utm_source:(new URLSearchParams(location.search)).get('utm_source')||""})})
+        .then(function(r){ return r.json().catch(function(){return {};}); })
+        .then(function(j){ if(j && j.ok){ fin(); } else { btn.disabled=false; btn.textContent="Apuntarme a la lista de espera"; err.textContent="No se ha podido apuntar. Prueba otra vez en un momento."; } })
+        .catch(function(){ btn.disabled=false; btn.textContent="Apuntarme a la lista de espera"; err.textContent="No se ha podido apuntar. Revisa tu conexión y prueba otra vez."; });
+    });
+  };
+})();
+</script>
+<!-- ===== /Lista de espera ===== -->
+
 </body>
 </html>
