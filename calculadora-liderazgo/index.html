@@ -137,12 +137,12 @@
     @keyframes pop{from{transform:scale(.2) translateY(8px); opacity:.2} to{transform:none; opacity:1}}
     .chart{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:18px; padding-top:6px;}
     .col{display:flex; flex-direction:column; gap:10px; min-width:0;}
-    .bar{position:relative; height:220px; border-radius:8px; background:repeating-linear-gradient(0deg, rgba(240,235,224,.035) 0 1px, transparent 1px 22px), rgba(240,235,224,.03); display:flex; align-items:flex-end; overflow:hidden;}
-    .bar i{display:block; width:100%; height:var(--h); border-radius:8px 8px 4px 4px; transform-origin:bottom; transition:height .8s cubic-bezier(.2,.8,.2,1); animation:rise 1.3s cubic-bezier(.2,.8,.2,1) both .35s;}
-    .col.bad .bar i{background:linear-gradient(180deg, #e9a094, #a9574b);}
-    .col.good .bar i{background:linear-gradient(180deg, #f6dfa6, #b8924a); box-shadow:0 0 40px rgba(201,169,97,.35);}
-    .col.good .bar i::after{content:""; position:absolute; inset:0; background:linear-gradient(100deg, transparent 30%, rgba(255,255,255,.28) 50%, transparent 70%); background-size:250% 100%; animation:shine 3.2s ease-in-out infinite 1.6s; border-radius:inherit;}
-    .col.good .bar i{position:relative;}
+    .vbar{position:relative; height:220px; border-radius:8px; background:repeating-linear-gradient(0deg, rgba(240,235,224,.035) 0 1px, transparent 1px 22px), rgba(240,235,224,.03); display:flex; align-items:flex-end; overflow:hidden;}
+    .vbar i{display:block; width:100%; height:var(--h); border-radius:8px 8px 4px 4px; transform-origin:bottom; transition:height .8s cubic-bezier(.2,.8,.2,1); animation:rise 1.3s cubic-bezier(.2,.8,.2,1) both .35s;}
+    .col.bad .vbar i{background:linear-gradient(180deg, #e9a094, #a9574b);}
+    .col.good .vbar i{background:linear-gradient(180deg, #f6dfa6, #b8924a); box-shadow:0 0 40px rgba(201,169,97,.35);}
+    .col.good .vbar i::after{content:""; position:absolute; inset:0; background:linear-gradient(100deg, transparent 30%, rgba(255,255,255,.28) 50%, transparent 70%); background-size:250% 100%; animation:shine 3.2s ease-in-out infinite 1.6s; border-radius:inherit;}
+    .col.good .vbar i{position:relative;}
     @keyframes rise{from{transform:scaleY(.03)} to{transform:none}}
     @keyframes shine{0%{background-position:150% 0} 60%,100%{background-position:-60% 0}}
     .payline{position:absolute; left:-6px; right:-6px; top:calc(6px + 220px - 220px * 0.5076); border-top:2px dashed var(--cream); z-index:2; pointer-events:none; animation:breathe 2.6s ease-in-out infinite;}
@@ -170,7 +170,7 @@
     .st span{font-size:14px; color:var(--taupe); line-height:1.45;} .st em{color:var(--gold); font-style:normal;}
     .pulse{box-shadow:0 0 0 0 rgba(201,169,97,.5); animation:pulse 2.4s infinite;}
     @keyframes pulse{70%{box-shadow:0 0 0 14px rgba(201,169,97,0)} 100%{box-shadow:0 0 0 0 rgba(201,169,97,0)}}
-    @media (max-width:560px){ .duo,.stats{grid-template-columns:1fr;} .gap{grid-template-columns:1fr;} .bar{height:180px;} .payline{top:calc(6px + 180px - 180px * 0.5076);} .chart{gap:12px;} .ex{padding:20px 16px;} }
+    @media (max-width:560px){ .duo,.stats{grid-template-columns:1fr;} .gap{grid-template-columns:1fr;} .vbar{height:180px;} .payline{top:calc(6px + 180px - 180px * 0.5076);} .chart{gap:12px;} .ex{padding:20px 16px;} }
 
     /* stepper */
     .steps{display:flex; gap:6px; margin:4px 0 26px;}
@@ -368,12 +368,12 @@
       <div class="chart" role="img" aria-label="Comparativa de lo que rinde el mismo sueldo">
         <div class="payline"><span>Lo que pagas · <b id="exPay2">2.000 €</b></span></div>
         <div class="col bad">
-          <div class="bar"><i style="--h:24.4%"></i></div>
+          <div class="vbar"><i style="--h:24.4%"></i></div>
           <div class="cv"><b id="exBad">960 €</b><span>te rinde con un líder que resta</span></div>
           <div class="tagx neg">Pierdes <b id="exLoss">1.040 €</b> al mes</div>
         </div>
         <div class="col good">
-          <div class="bar"><i style="--h:100%"></i></div>
+          <div class="vbar"><i style="--h:100%"></i></div>
           <div class="cv"><b id="exGood">3.940 €</b><span>te rinde con un líder que multiplica</span></div>
           <div class="tagx pos">Ganas <b id="exGain">1.940 €</b> más de lo que pagas</div>
         </div>
@@ -608,8 +608,8 @@
 
   function $(s){ return document.querySelector(s); }
   function ga(n,p){ try{ if(window.gtag) gtag('event',n,p||{}); }catch(e){} }
-  function fmt(n){ var c=CURS[st.cur]; try{ return new Intl.NumberFormat(c.loc,{style:"currency",currency:c.cur,maximumFractionDigits:0}).format(Math.round(n)).replace("US$","US$ "); }catch(e){ return Math.round(n)+" "+c.sym; } }
-  function fmtN(n){ return new Intl.NumberFormat("es-ES",{maximumFractionDigits:0}).format(Math.round(n)); }
+  function fmt(n){ var c=CURS[st.cur]; return st.cur==="usd" ? "US$ "+fmtN(n) : fmtN(n)+" €"; }
+  function fmtN(n){ var s=String(Math.abs(Math.round(n))).replace(/\B(?=(\d{3})+(?!\d))/g,"."); return (n<0?"-":"")+s; }
   function short(n){ var a=Math.abs(n); if(a>=1e6) return (n/1e6).toFixed(a>=1e7?0:1).replace(".",",")+" M"; if(a>=1e4) return fmtN(n/1000)+" mil"; return fmtN(n); }
   function parseMoney(v){ return parseInt(String(v).replace(/[^\d]/g,""),10)||0; }
   var toast=$('#toast'),tT; function showToast(m){ toast.textContent=m; toast.classList.add('show'); clearTimeout(tT); tT=setTimeout(function(){toast.classList.remove('show');},1900); }
@@ -622,7 +622,7 @@
   /* ---- ejemplo portada: 2.000 € × 1 o × 10 ---- */
   (function(){
     var SAL=2000, LO=0.48, HI=1.97, curN=1;
-    var eur=function(n){ return new Intl.NumberFormat("es-ES",{maximumFractionDigits:0}).format(Math.round(n))+" €"; };
+    var eur=function(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,".")+" €"; };
     var PERSON='<svg viewBox="0 0 24 30" fill="currentColor" aria-hidden="true"><circle cx="12" cy="7" r="5"/><path d="M2 29c0-6.6 4.5-11 10-11s10 4.4 10 11z"/></svg>';
     function tween(el, to, fmt){
       var from=+(el.dataset.v||to), t0=null, d=900; el.dataset.v=to;
