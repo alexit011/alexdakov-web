@@ -597,7 +597,7 @@
   var src=params.get('src')||params.get('utm_source')||'diagnostico';
   var gForm=$('#gateForm'), gEmail=$('#gateEmail'), gBtn=$('#gateBtn'), gMsg=$('#gateMsg'), optin=$('#optin');
   function setGMsg(t,cls){ gMsg.textContent=t; gMsg.className='gate-msg'+(cls?' '+cls:''); }
-  function reveal(){ buildResult(); try{ var _cu=computeResult(); if(window.adkWaitlist) adkWaitlist(document.getElementById('wlMount'),{email:state.email,name:state.name,origen:'diagnostico',title:'Y un extra: <em>sube al máximo nivel con tu equipo.</em>',focus:'Empezamos por tu cuello de botella: '+_cu.cuello+'.'}); }catch(e){} show('s-result'); ga('diagnostic_result_view',{subscribed:state.subscribed}); }
+  function reveal(){ buildResult(); try{ var _cu=computeResult(); if(window.adkWaitlist) adkWaitlist(document.getElementById('wlMount'),{email:state.email,name:state.name,origen:'diagnostico',title:'Y un extra: <em>sube al máximo nivel con tu equipo.</em>',focus:'Empezando por tu cuello de botella: '+_cu.cuello+'.'}); }catch(e){} show('s-result'); ga('diagnostic_result_view',{subscribed:state.subscribed}); }
   function postDiagnostico(cb){
     var res=computeResult();
     state.subscribed=optin.checked;
@@ -757,12 +757,12 @@
     if(!el) return; o=o||{};
     var key="adk-waitlist-"+(o.origen||"web");
     var title=o.title||'Y un extra: <em>sube al máximo nivel con tu equipo.</em>';
-    var focus=o.focus||'Empezamos por lo que más te está frenando hoy.';
+    var focus=o.focus||'Empezando por lo que más te está frenando hoy.'; var fl=(Array.isArray(focus)?focus:[focus]).map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
     el.innerHTML='<div class="wl-box" role="region" aria-label="Lista de espera del programa">'+
       '<span class="wl-eyebrow">Programa · Lista de espera</span>'+
       '<h2 class="wl-title">'+title+'</h2>'+
       '<p class="wl-p">Estoy preparando un programa para líderes que dirigen equipos reales y quieren pasar a ser líderes de élite que construyen equipos de alto rendimiento. Plazas limitadas. La lista de espera tendrá acceso prioritario y beneficios únicos.</p>'+
-      '<ul class="wl-list"><li>Grupos reducidos y sesiones en directo conmigo.</li><li>Trabajo sobre tu equipo de verdad, no teoría.</li><li>'+esc(focus)+'</li></ul>'+
+      '<ul class="wl-list"><li>Grupos reducidos y sesiones en directo conmigo.</li><li>Trabajo sobre tu equipo de verdad, no teoría.</li>'+fl+'</ul>'+
       '<div class="wl-act"></div></div>';
     var act=el.querySelector('.wl-act');
     function okView(){ act.innerHTML='<div class="wl-ok"><b>✓</b><span>Hecho. Estás en la lista: te escribo antes que a nadie.</span></div>'; }
