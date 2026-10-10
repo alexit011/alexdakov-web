@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Calculadora del líder multiplicador | Alex Dakov</title>
+  <meta name="description" content="Calcula cuánto dinero deja tu equipo encima de la mesa por cómo se dirige. Basado en la investigación Multipliers de Liz Wiseman: un líder que resta saca el 48% de su gente; uno que multiplica, el 95%.">
+  <link rel="canonical" href="https://alexdakov.com/calculadora-liderazgo/">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alexdakov.com/calculadora-liderazgo/">
+  <meta property="og:title" content="¿Cuánto dinero se deja tu equipo encima de la mesa?">
+  <meta property="og:description" content="Un líder que resta saca el 48% de su gente. Uno que multiplica, el 95%. Calcula cuánto vale esa diferencia en tu equipo.">
+  <meta property="og:image" content="https://alexdakov.com/assets/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="¿Cuánto dinero se deja tu equipo encima de la mesa?">
+  <meta name="twitter:description" content="Calcula cuánto vale en euros la diferencia entre restar y multiplicar el talento de tu equipo.">
+  <meta name="twitter:image" content="https://alexdakov.com/assets/og-home.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!--TRACKING-->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBWBFNY0W7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EBWBFNY0W7');
+  </script>
+  <script>
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "x95217wrw7");
+  </script>
+  <!--/TRACKING-->
+  <style>
+    /* Layout: columna editorial de 720px; pasos con stepper fijo arriba; resultado como "informe" con cifra protagonista */
+    :root{
+      --navy:#090C17; --card:#14213D; --card-soft:#101a30;
+      --cream:#F0EBE0; --taupe:#A09B92; --muted:#6E6960;
+      --gold:#C9A961; --gold-soft:rgba(201,169,97,.14); --gold-line:rgba(201,169,97,.32);
+      --red:#E08A7C; --red-bg:rgba(224,138,124,.12);
+      --green:#8FBF87; --green-bg:rgba(143,191,135,.13);
+      --line:rgba(240,235,224,.10); --track:rgba(240,235,224,.09);
+      --serif:"Playfair Display", Georgia, "Times New Roman", serif;
+      --sans:"Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --maxw:720px;
+      color-scheme:dark;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{background:var(--navy); color:var(--cream); font-family:var(--sans); font-size:16px; line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      padding:0 max(16px, env(safe-area-inset-left)) env(safe-area-inset-bottom) max(16px, env(safe-area-inset-right));}
+    a{color:var(--gold); text-decoration:none} a:hover{text-decoration:underline}
+    [hidden]{display:none!important}
+    header.bar{position:sticky; top:env(safe-area-inset-top,0px); z-index:40;
+      background:color-mix(in srgb, var(--navy) 88%, transparent); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line); margin:0 calc(-1 * max(16px, env(safe-area-inset-left)));
+      padding-left:max(16px, env(safe-area-inset-left)); padding-right:max(16px, env(safe-area-inset-right));}
+    .bar-in{max-width:var(--maxw); margin:0 auto; padding:12px 0; display:flex; align-items:center; gap:12px;}
+    .wordmark{font-weight:600; letter-spacing:.22em; font-size:12px; text-transform:uppercase;}
+    .wordmark b{color:var(--gold); font-weight:600;}
+    .bar-share{margin-left:auto;}
+    .btn{font:inherit; font-weight:600; font-size:13.5px; cursor:pointer; border-radius:2px; border:1px solid var(--gold-line);
+      background:transparent; color:var(--cream); padding:9px 16px; display:inline-flex; align-items:center; justify-content:center; gap:8px; transition:all .18s ease;}
+    .btn:hover{border-color:var(--gold); background:var(--gold-soft); text-decoration:none;}
+    .btn:focus-visible,.chip:focus-visible,.opt:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+    .btn.gold{background:var(--gold); color:#1a1305; border-color:var(--gold);}
+    .btn.gold:hover{background:#d8ba75;}
+    .btn.gold:disabled{opacity:.45; cursor:not-allowed;}
+    .btn.big{font-size:15px; padding:15px 26px;}
+    .btn svg{width:15px;height:15px}
+    main{max-width:var(--maxw); margin:0 auto;}
+    .doc{padding:34px 0 30px;}
+    .screen{animation:fade .45s ease both;}
+    @keyframes fade{from{opacity:.001; transform:translateY(8px)} to{opacity:1; transform:none}}
+    .eyebrow{font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+    h1.title{font-family:var(--serif); font-weight:600; font-size:clamp(31px,7vw,52px); line-height:1.06; margin:.28em 0 .2em; text-wrap:balance;}
+    h1.title em, h2 em, h3 em{font-style:italic; color:var(--gold); font-weight:500;}
+    h2.h{font-family:var(--serif); font-weight:600; font-size:clamp(24px,5.4vw,32px); line-height:1.15; margin:.25em 0 .3em; text-wrap:balance;}
+    .lede{font-size:clamp(17px,4.5vw,20px); color:var(--taupe); margin:0 0 18px; max-width:46ch; line-height:1.5;}
+    .intro{max-width:62ch; font-size:16.5px; line-height:1.72;}
+    .intro em{color:var(--gold);}
+    .sign{margin-top:14px; font-family:var(--serif); font-style:italic; font-size:19px; color:var(--taupe);}
+
+    /* intro: dos equipos */
+    .duo{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:28px 0;}
+    .tm{background:var(--card); border:1px solid var(--line); border-radius:4px; padding:20px 18px; min-width:0;}
+    .tm.good{border:1px dashed var(--gold-line);}
+    .tm .lbl{font-size:11px; letter-spacing:.2em; text-transform:uppercase; font-weight:600; color:var(--taupe);}
+    .tm.good .lbl{color:var(--gold);}
+    .tm .pct{font-family:var(--serif); font-size:clamp(42px,11vw,64px); line-height:1; margin:10px 0 6px; font-variant-numeric:lining-nums tabular-nums;}
+    .tm.bad .pct{color:var(--red);} .tm.good .pct{color:var(--gold);}
+    .tm .per{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--taupe); margin:-2px 0 2px;}
+    .x2{display:flex; align-items:center; gap:16px; margin:-12px 0 22px; padding:14px 18px; border-top:1px solid var(--gold-line); border-bottom:1px solid var(--gold-line);}
+    .x2 b{font-family:var(--serif); font-size:40px; line-height:1; color:var(--gold); font-weight:600;}
+    .x2 span{font-size:15.5px; color:var(--cream);}
+    .x2 span em{color:var(--gold);}
+    .x2.top{margin-top:-22px; border-top:0;}
+    .x2 b{min-width:2.6em;}
+    .tm p{margin:0; color:var(--taupe); font-size:14px; line-height:1.5;}
+    .dots{display:grid; grid-template-columns:repeat(10,1fr); gap:5px; margin:14px 0 4px;}
+    .dots i{aspect-ratio:1; border-radius:50%; background:var(--track); display:block;}
+    .tm.bad .dots i.on{background:var(--red);} .tm.good .dots i.on{background:var(--gold);}
+    .src{font-size:12.5px; color:var(--muted); margin-top:6px;}
+
+    /* ---- portada v5 ---- */
+    @property --ang{syntax:'<angle>'; inherits:false; initial-value:0deg;}
+    .duo{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:28px 0 18px;}
+    .tm{position:relative; background:linear-gradient(165deg, #182746, var(--card) 60%); border-radius:10px; padding:22px 20px; min-width:0; overflow:hidden; border:1px solid var(--line);}
+    .tm.bad{background:linear-gradient(165deg, #2a1d24, var(--card) 65%); border-color:rgba(224,138,124,.28);}
+    .tm.good{border:1px solid transparent; background:
+        linear-gradient(165deg, #1c2c50, #121d36 65%) padding-box,
+        conic-gradient(from var(--ang), rgba(201,169,97,.15), #C9A961, rgba(201,169,97,.15) 40%, rgba(201,169,97,.15) 60%, #f1d79a, rgba(201,169,97,.15)) border-box;
+      animation:spin 6s linear infinite; box-shadow:0 18px 50px -20px rgba(201,169,97,.45);}
+    @keyframes spin{to{--ang:360deg}}
+    .tm .lbl{font-size:11px; letter-spacing:.2em; text-transform:uppercase; font-weight:700; color:var(--red);}
+    .tm.good .lbl{color:var(--gold);}
+    .tm .pct{font-family:var(--serif); font-size:clamp(50px,13vw,76px); line-height:1; margin:12px 0 4px; font-variant-numeric:lining-nums tabular-nums;}
+    .tm.bad .pct{color:var(--red);} .tm.good .pct{color:var(--gold); text-shadow:0 0 28px rgba(201,169,97,.35);}
+    .tm .per{font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--taupe);}
+    .meter{height:6px; border-radius:6px; background:var(--track); margin:14px 0 14px; overflow:hidden;}
+    .meter i{display:block; height:100%; width:var(--w); border-radius:6px; transform-origin:left; animation:grow 1.2s cubic-bezier(.2,.8,.2,1) both .2s;}
+    .tm.bad .meter i{background:var(--red);} .tm.good .meter i{background:linear-gradient(90deg,#a8873f,#f1d79a);}
+    .tm p{margin:0; color:var(--taupe); font-size:14px; line-height:1.55;}
+    @keyframes grow{from{transform:scaleX(.02)} to{transform:none}}
+
+    .ex{position:relative; margin:8px 0 22px; padding:24px 22px 22px; border-radius:12px; background:radial-gradient(120% 90% at 100% 0%, rgba(201,169,97,.14), transparent 55%), #0f1830; border:1px solid var(--gold-line);}
+    .ex-head{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+    .seg{display:inline-flex; background:var(--navy); border:1px solid var(--line); border-radius:999px; padding:3px;}
+    .segb{font:inherit; font-size:13px; font-weight:600; border:0; background:transparent; color:var(--taupe); padding:7px 14px; border-radius:999px; cursor:pointer; transition:all .2s;}
+    .segb[aria-pressed=true]{background:var(--gold); color:#1a1305;}
+    .ex-title{font-family:var(--serif); font-weight:500; font-size:clamp(21px,5vw,27px); line-height:1.3; margin:14px 0 8px; text-wrap:balance;}
+    .ex-title b{color:var(--gold); font-weight:600; font-variant-numeric:lining-nums tabular-nums;}
+    .crowd{display:flex; flex-wrap:wrap; gap:6px; min-height:30px; margin:6px 0 18px;}
+    .crowd svg{width:24px; height:30px; color:var(--cream); animation:pop .45s cubic-bezier(.3,1.5,.5,1) both;}
+    @keyframes pop{from{transform:scale(.2) translateY(8px); opacity:.2} to{transform:none; opacity:1}}
+    .chart{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:18px; padding-top:6px;}
+    .col{display:flex; flex-direction:column; gap:10px; min-width:0;}
+    .bar{position:relative; height:220px; border-radius:8px; background:repeating-linear-gradient(0deg, rgba(240,235,224,.035) 0 1px, transparent 1px 22px), rgba(240,235,224,.03); display:flex; align-items:flex-end; overflow:hidden;}
+    .bar i{display:block; width:100%; height:var(--h); border-radius:8px 8px 4px 4px; transform-origin:bottom; transition:height .8s cubic-bezier(.2,.8,.2,1); animation:rise 1.3s cubic-bezier(.2,.8,.2,1) both .35s;}
+    .col.bad .bar i{background:linear-gradient(180deg, #e9a094, #a9574b);}
+    .col.good .bar i{background:linear-gradient(180deg, #f6dfa6, #b8924a); box-shadow:0 0 40px rgba(201,169,97,.35);}
+    .col.good .bar i::after{content:""; position:absolute; inset:0; background:linear-gradient(100deg, transparent 30%, rgba(255,255,255,.28) 50%, transparent 70%); background-size:250% 100%; animation:shine 3.2s ease-in-out infinite 1.6s; border-radius:inherit;}
+    .col.good .bar i{position:relative;}
+    @keyframes rise{from{transform:scaleY(.03)} to{transform:none}}
+    @keyframes shine{0%{background-position:150% 0} 60%,100%{background-position:-60% 0}}
+    .payline{position:absolute; left:-6px; right:-6px; top:calc(6px + 220px - 220px * 0.5076); border-top:2px dashed var(--cream); z-index:2; pointer-events:none; animation:breathe 2.6s ease-in-out infinite;}
+    .payline span{position:absolute; right:6px; top:-26px; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; background:var(--navy); color:var(--cream); padding:3px 9px; border-radius:999px; border:1px solid var(--line); white-space:nowrap;}
+    .payline b{color:var(--gold); font-variant-numeric:tabular-nums;}
+    @keyframes breathe{50%{opacity:.55}}
+    .cv b{display:block; font-family:var(--serif); font-size:clamp(26px,6.5vw,38px); line-height:1.05; font-variant-numeric:lining-nums tabular-nums;}
+    .col.bad .cv b{color:var(--red);} .col.good .cv b{color:var(--gold);}
+    .cv span{font-size:13px; color:var(--taupe); line-height:1.35; display:block; margin-top:3px;}
+    .tagx{font-size:12.5px; border-radius:6px; padding:7px 10px; line-height:1.35;}
+    .tagx b{font-variant-numeric:tabular-nums;}
+    .tagx.neg{background:var(--red-bg); color:var(--red);} .tagx.pos{background:var(--gold-soft); color:var(--gold);}
+    .gap{display:grid; grid-template-columns:1fr 1.3fr; gap:12px; margin:22px 0 16px;}
+    .gapn{background:var(--navy); border:1px solid var(--line); border-radius:10px; padding:14px 16px; min-width:0;}
+    .gapn span{display:block; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--taupe);}
+    .gapn b{display:block; font-family:var(--serif); font-size:clamp(26px,6vw,34px); color:var(--cream); line-height:1.15; margin-top:4px; font-variant-numeric:lining-nums tabular-nums;}
+    .gapn small{color:var(--muted); font-size:12.5px;}
+    .gapn.big{border-color:var(--gold); background:linear-gradient(160deg, rgba(201,169,97,.16), var(--navy) 70%);}
+    .gapn.big b{color:var(--gold); font-size:clamp(30px,7.5vw,44px);}
+    .bump{animation:bump .5s ease;}
+    @keyframes bump{40%{transform:scale(1.06)}}
+    .stats{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:0 0 14px;}
+    .st{display:flex; gap:14px; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; min-width:0;}
+    .st b{font-family:var(--serif); font-size:36px; line-height:1; color:var(--gold); flex:0 0 auto;}
+    .st span{font-size:14px; color:var(--taupe); line-height:1.45;} .st em{color:var(--gold); font-style:normal;}
+    .pulse{box-shadow:0 0 0 0 rgba(201,169,97,.5); animation:pulse 2.4s infinite;}
+    @keyframes pulse{70%{box-shadow:0 0 0 14px rgba(201,169,97,0)} 100%{box-shadow:0 0 0 0 rgba(201,169,97,0)}}
+    @media (max-width:560px){ .duo,.stats{grid-template-columns:1fr;} .gap{grid-template-columns:1fr;} .bar{height:180px;} .payline{top:calc(6px + 180px - 180px * 0.5076);} .chart{gap:12px;} .ex{padding:20px 16px;} }
+
+    /* stepper */
+    .steps{display:flex; gap:6px; margin:4px 0 26px;}
+    .steps div{flex:1; min-width:0;}
+    .steps b{display:block; height:3px; background:var(--track); border-radius:2px; transition:background .3s;}
+    .steps span{display:block; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:8px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+    .steps .on b{background:var(--gold);} .steps .on span{color:var(--gold);}
+    .steps .done b{background:var(--gold-line);}
+
+    .field{margin:24px 0 0;}
+    .field > label, .field > .flabel{display:block; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:10px;}
+    .field .help{font-size:13.5px; color:var(--taupe); margin:-4px 0 10px;}
+    select, input[type=text], input[type=email], input[type=number], input.money{width:100%; background:var(--card); border:1px solid var(--gold-line); color:var(--cream); font:inherit; font-size:16px; padding:14px 16px; border-radius:4px;}
+    select{appearance:none; background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%); background-position:calc(100% - 22px) 50%, calc(100% - 16px) 50%; background-size:6px 6px; background-repeat:no-repeat; padding-right:44px;}
+    select option{background:var(--card); color:var(--cream);}
+    input::placeholder{color:var(--muted);}
+    input:focus, select:focus{outline:none; border-color:var(--gold);}
+    .chips{display:flex; flex-wrap:wrap; gap:8px;}
+    .chip{font:inherit; font-size:14px; cursor:pointer; background:var(--card); color:var(--cream); border:1px solid var(--line); border-radius:999px; padding:9px 15px; transition:all .15s;}
+    .chip:hover{border-color:var(--gold-line);}
+    .chip[aria-pressed=true]{background:var(--gold-soft); border-color:var(--gold); color:var(--gold);}
+    .people{display:flex; align-items:center; gap:18px; background:var(--card); border:1px solid var(--line); border-radius:4px; padding:16px 18px;}
+    .people .n{font-family:var(--serif); font-size:44px; line-height:1; color:var(--gold); min-width:2.4ch; text-align:center; font-variant-numeric:lining-nums tabular-nums;}
+    .people .n small{display:block; font-family:var(--sans); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--taupe); margin-top:6px;}
+    .people .rng{flex:1; min-width:0;}
+    input[type=range]{width:100%; accent-color:var(--gold); height:28px; cursor:pointer;}
+    .rticks{display:flex; justify-content:space-between; font-size:11.5px; color:var(--muted); font-variant-numeric:tabular-nums;}
+    .moneywrap{position:relative;} .moneywrap .cur{position:absolute; right:16px; top:50%; transform:translateY(-50%); color:var(--gold); font-weight:600;}
+    input.money{font-variant-numeric:tabular-nums; font-size:20px; padding-right:48px;}
+    .presets{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+    .presets .chip{font-size:12.5px; padding:6px 11px;}
+    .mass{margin-top:22px; background:var(--card-soft); border:1px dashed var(--gold-line); border-radius:4px; padding:14px 18px; display:flex; justify-content:space-between; gap:12px; align-items:baseline; flex-wrap:wrap;}
+    .mass span{font-size:13px; color:var(--taupe);} .mass b{font-family:var(--serif); font-size:24px; color:var(--cream); font-variant-numeric:lining-nums tabular-nums;}
+    .nav{display:flex; gap:10px; justify-content:space-between; align-items:center; margin-top:32px;}
+    .nav .err{color:var(--red); font-size:13.5px;}
+
+    /* test */
+    .qprog{display:flex; align-items:center; gap:12px; font-size:13px; color:var(--taupe); margin-bottom:6px; font-variant-numeric:tabular-nums;}
+    .qprog .tr{flex:1; height:4px; background:var(--track); border-radius:3px; overflow:hidden;}
+    .qprog .tr i{display:block; height:100%; background:var(--gold); width:0; transition:width .3s;}
+    .disc{margin-top:26px;}
+    .disc h3{font-family:var(--serif); font-weight:600; font-size:19px; margin:0 0 2px; display:flex; gap:10px; align-items:baseline;}
+    .disc h3 .no{font-size:15px; color:var(--gold);}
+    .disc .vs{font-size:13px; color:var(--taupe); margin:0 0 10px;}
+    .q{background:var(--card); border:1px solid var(--line); border-radius:4px; padding:15px 16px; margin-top:10px;}
+    .q.ans{border-color:var(--gold-line);}
+    .q p{margin:0 0 12px; font-size:15.5px; line-height:1.5;}
+    /* escala 1-5 */
+    .lik{position:relative; padding-top:4px;}
+    .lkv{display:block; text-align:center; font-family:var(--serif); font-size:20px; font-weight:600; color:var(--muted); min-height:1.4em; margin-bottom:6px; transition:color .25s;}
+    .lkv.tick{animation:tick .35s ease;}
+    @keyframes tick{40%{transform:scale(1.15)}}
+    input.lk{-webkit-appearance:none; appearance:none; width:100%; height:34px; background:transparent; cursor:pointer; margin:0; --p:50%; --c:#6E6960;}
+    input.lk::-webkit-slider-runnable-track{height:8px; border-radius:8px; background:linear-gradient(90deg, var(--c) 0 var(--p), rgba(240,235,224,.10) var(--p));}
+    input.lk::-moz-range-track{height:8px; border-radius:8px; background:rgba(240,235,224,.10);}
+    input.lk::-moz-range-progress{height:8px; border-radius:8px; background:var(--c);}
+    input.lk::-webkit-slider-thumb{-webkit-appearance:none; width:28px; height:28px; margin-top:-10px; border-radius:50%; background:var(--navy); border:3px solid var(--c); box-shadow:0 4px 14px rgba(0,0,0,.45); transition:transform .15s, background .2s;}
+    input.lk::-moz-range-thumb{width:22px; height:22px; border-radius:50%; background:var(--navy); border:3px solid var(--c); box-shadow:0 4px 14px rgba(0,0,0,.45);}
+    .q.ans input.lk::-webkit-slider-thumb{background:var(--c);}
+    .q.ans input.lk::-moz-range-thumb{background:var(--c);}
+    input.lk:active::-webkit-slider-thumb{transform:scale(1.2);}
+    .q:not(.ans) input.lk::-webkit-slider-thumb{animation:nudge 2.2s ease-in-out infinite;}
+    @keyframes nudge{0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)}}
+    .lkl{display:grid; grid-template-columns:repeat(5,1fr); margin:4px -4px 0;}
+    .lkb{font:inherit; background:none; border:0; color:var(--muted); cursor:pointer; padding:6px 2px; display:flex; flex-direction:column; align-items:center; gap:5px; font-size:11.5px; line-height:1.2; text-align:center; transition:color .2s;}
+    .lkb i{width:6px; height:6px; border-radius:50%; background:rgba(240,235,224,.18); transition:all .2s;}
+    .lkb:hover{color:var(--cream);}
+    .lkb[aria-pressed=true]{color:var(--cream); font-weight:600;}
+    .lkb[aria-pressed=true] i{background:var(--gold); transform:scale(1.6);}
+    .q{transition:border-color .3s, box-shadow .3s;}
+    .q.ans{box-shadow:inset 3px 0 0 var(--gold);}
+
+    .opts{display:grid; grid-template-columns:repeat(3,1fr); gap:6px;}
+    .opt{font:inherit; font-size:13.5px; cursor:pointer; background:transparent; color:var(--taupe); border:1px solid var(--line); border-radius:3px; padding:9px 6px;}
+    .opt:hover{border-color:var(--gold-line); color:var(--cream);}
+    .opt[aria-pressed=true]{background:var(--gold); color:#1a1305; border-color:var(--gold); font-weight:600;}
+
+    /* gate */
+    .gate{background:var(--card); border:1px dashed var(--gold-line); border-radius:4px; padding:28px 24px; margin-top:6px;}
+    .lock{width:54px; height:54px; border-radius:50%; border:1px solid var(--gold-line); display:grid; place-items:center; color:var(--gold); margin-bottom:12px;}
+    .lock svg{width:24px; height:24px}
+    .teaser{display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 6px;}
+    .teaser div{flex:1 1 140px; background:var(--navy); border:1px solid var(--line); border-radius:3px; padding:12px 14px;}
+    .teaser span{display:block; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);}
+    .teaser b{display:block; font-family:var(--serif); font-size:24px; filter:blur(7px); user-select:none; color:var(--gold);}
+    .check{display:flex; gap:10px; align-items:flex-start; margin-top:16px; font-size:14px; color:var(--taupe); cursor:pointer;}
+    .check input{width:18px; height:18px; accent-color:var(--gold); margin-top:2px; flex:0 0 auto;}
+    .legal{font-size:12px; color:var(--muted); margin-top:12px;}
+    .gmsg{font-size:13.5px; margin-top:10px; min-height:1em;} .gmsg.err{color:var(--red);}
+
+    /* result */
+    .verdict{margin-top:6px;}
+    .big{font-family:var(--serif); font-weight:600; font-size:clamp(48px,14vw,92px); line-height:1; color:var(--gold); margin:14px 0 6px; font-variant-numeric:lining-nums tabular-nums; letter-spacing:-.01em;}
+    .big small{font-size:.32em; color:var(--taupe); font-weight:400; font-family:var(--sans); letter-spacing:0;}
+    .sub3{display:flex; gap:22px; flex-wrap:wrap; margin:14px 0 4px; color:var(--taupe); font-size:14px;}
+    .sub3 b{color:var(--cream); font-family:var(--serif); font-size:20px; font-variant-numeric:lining-nums tabular-nums; display:block;}
+    .panel{background:var(--card); border:1px solid var(--line); border-radius:4px; padding:22px 20px; margin-top:22px;}
+    .panel h3{font-family:var(--serif); font-weight:600; font-size:20px; margin:0 0 4px;}
+    .panel .note{color:var(--taupe); font-size:14px; margin:0 0 14px;}
+    .gaugebox{display:grid; grid-template-columns:minmax(0,260px) 1fr; gap:22px; align-items:center;}
+    .gauge{width:100%; max-width:260px; height:auto; display:block; margin:0 auto;}
+    .gauge text{font-family:var(--sans);}
+    .prof .tag{display:inline-block; font-size:11px; letter-spacing:.18em; text-transform:uppercase; font-weight:700; padding:5px 10px; border-radius:2px; background:var(--gold-soft); color:var(--gold);}
+    .prof .tag.r{background:var(--red-bg); color:var(--red);} .prof .tag.g{background:var(--green-bg); color:var(--green);}
+    .prof h4{font-family:var(--serif); font-size:24px; margin:10px 0 6px; font-weight:600;}
+    .prof p{margin:0; color:var(--taupe); font-size:15px;}
+    .bars{display:grid; gap:16px;}
+    .brow .top{display:flex; justify-content:space-between; gap:10px; font-size:14px; margin-bottom:6px; flex-wrap:wrap;}
+    .brow .top b{font-variant-numeric:tabular-nums; font-weight:600;}
+    .brow .tk{height:16px; background:var(--track); border-radius:2px; overflow:hidden;}
+    .brow .tk i{display:block; height:100%; border-radius:2px; transition:width .6s cubic-bezier(.2,.8,.2,1);}
+    .brow.bad i{background:var(--red);} .brow.you i{background:var(--cream);} .brow.good i{background:var(--gold);}
+    .brow.you .top span{color:var(--cream); font-weight:600;}
+    .whatif .row{display:flex; justify-content:space-between; gap:10px; align-items:baseline; flex-wrap:wrap;}
+    .whatif .row b{font-family:var(--serif); font-size:22px; color:var(--gold); font-variant-numeric:lining-nums tabular-nums;}
+    .whatif .out{margin-top:10px; font-size:15px; color:var(--taupe);} .whatif .out b{color:var(--cream);}
+    .weak{display:grid; gap:12px;}
+    .weak .w{border-left:2px solid var(--gold); padding:2px 0 2px 14px;}
+    .weak .w b{display:block; font-size:15.5px;} .weak .w span{display:block; font-size:14.5px; color:var(--taupe); margin-top:3px;}
+    .weak .w small{color:var(--red); font-size:12px; letter-spacing:.08em; text-transform:uppercase; font-weight:600;}
+    details.method{margin-top:22px; border-top:1px solid var(--line); padding-top:14px;}
+    details.method summary{cursor:pointer; color:var(--gold); font-weight:600; font-size:14px;}
+    details.method p, details.method li{color:var(--taupe); font-size:14px; line-height:1.65;}
+    .wait{margin-top:30px; background:linear-gradient(160deg, #18264a, var(--card)); border:1px solid var(--gold-line); border-radius:4px; padding:28px 24px;}
+    .wait ul{margin:12px 0 18px; padding:0; list-style:none; display:grid; gap:8px;}
+    .wait li{padding-left:22px; position:relative; font-size:15px;}
+    .wait li:before{content:""; position:absolute; left:2px; top:.62em; width:8px; height:8px; border-radius:50%; background:var(--gold);}
+    .okmsg{color:var(--green); font-weight:600; margin-top:10px;}
+    section.share{margin-top:34px; text-align:center;}
+    .share-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:8px; max-width:420px; margin:16px auto 0;}
+    .hint2{font-size:13px; color:var(--taupe); margin-top:10px; min-height:1em;}
+    .foot{text-align:center; color:var(--muted); font-size:13px; margin:46px 0 10px; padding-top:20px; border-top:1px solid var(--line);}
+    .toast{position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom,0px)); transform:translateX(-50%) translateY(10px); background:var(--cream); color:var(--navy);
+      padding:10px 18px; border-radius:3px; font-size:14px; font-weight:600; opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; z-index:50;}
+    .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+    @media (max-width:560px){
+      .duo{grid-template-columns:1fr;}
+      .gaugebox{grid-template-columns:1fr;}
+      .opts{grid-template-columns:1fr;}
+      .steps span{font-size:9.5px; letter-spacing:.06em;}
+      .people .n{font-size:36px;}
+    }
+    @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+  </style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <span class="wordmark">ALEX <b>DAKOV</b></span>
+    <button class="btn bar-share" id="shareTop" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5 15.4 17.5M15.4 6.5 8.6 10.5"/></svg>
+      Compartir
+    </button>
+  </div>
+</header>
+
+<main><div class="doc">
+
+  <!-- ===== INTRO ===== -->
+  <section class="screen" id="s-intro">
+    <span class="eyebrow">Calculadora · 4 minutos</span>
+    <h1 class="title">¿Cuánto dinero se deja tu equipo <em>encima de la mesa</em>?</h1>
+    <p class="lede">Pagas el sueldo entero de cada persona. La pregunta es si te rinde 0,48 o 1,97.</p>
+
+    <div class="duo" aria-label="Rendimiento por trabajador según el líder">
+      <div class="tm bad">
+        <span class="lbl">Líder que resta</span>
+        <div class="pct"><span data-count="0.48" data-dec="2">0,48</span></div>
+        <div class="per">por cada trabajador</div>
+        <div class="meter"><i style="--w:24%"></i></div>
+        <p>Lo decide todo, lo controla todo y tiene la respuesta para todo. Su gente trabaja a medio gas.</p>
+      </div>
+      <div class="tm good">
+        <span class="lbl">Líder que multiplica</span>
+        <div class="pct"><span data-count="1.97" data-dec="2">1,97</span></div>
+        <div class="per">por cada trabajador</div>
+        <div class="meter"><i style="--w:100%"></i></div>
+        <p>Reta, delega de verdad y hace pensar. Cada persona da más de lo que creía tener.</p>
+      </div>
+    </div>
+
+    <!-- EJEMPLO -->
+    <div class="ex" id="ex">
+      <div class="ex-head">
+        <span class="eyebrow">Hagamos la cuenta</span>
+        <div class="seg" role="group" aria-label="Número de personas">
+          <button type="button" class="segb" data-n="1" aria-pressed="true">1 persona</button>
+          <button type="button" class="segb" data-n="10" aria-pressed="false">10 personas</button>
+        </div>
+      </div>
+      <h2 class="ex-title">Pagas <b id="exPay">2.000 €</b> al mes en <span id="exWho">una persona</span>.<br>¿Cuánto te devuelve?</h2>
+      <div class="crowd" id="crowd" aria-hidden="true"></div>
+
+      <div class="chart" role="img" aria-label="Comparativa de lo que rinde el mismo sueldo">
+        <div class="payline"><span>Lo que pagas · <b id="exPay2">2.000 €</b></span></div>
+        <div class="col bad">
+          <div class="bar"><i style="--h:24.4%"></i></div>
+          <div class="cv"><b id="exBad">960 €</b><span>te rinde con un líder que resta</span></div>
+          <div class="tagx neg">Pierdes <b id="exLoss">1.040 €</b> al mes</div>
+        </div>
+        <div class="col good">
+          <div class="bar"><i style="--h:100%"></i></div>
+          <div class="cv"><b id="exGood">3.940 €</b><span>te rinde con un líder que multiplica</span></div>
+          <div class="tagx pos">Ganas <b id="exGain">1.940 €</b> más de lo que pagas</div>
+        </div>
+      </div>
+
+      <div class="gap">
+        <div class="gapn"><span>Diferencia entre un líder y otro</span><b id="exGapM">2.980 €</b><small>al mes</small></div>
+        <div class="gapn big"><span>En un año</span><b id="exGapY">35.760 €</b><small id="exGapWho">con una sola persona</small></div>
+      </div>
+      <button class="btn gold block" id="ex10" type="button">Ahora multiplícalo por 10 →</button>
+    </div>
+
+    <div class="stats">
+      <div class="st"><b>×4</b><span>Del 0,48 al 1,97: la misma gente y el mismo sueldo, cuatro veces más rendimiento.</span></div>
+      <div class="st"><b>+1</b><span>Por encima de 1 está la clave: en los equipos buenos la gente da <em>más del 100%</em>.</span></div>
+    </div>
+    <p class="src">Fuente: Liz Wiseman, <em>Multipliers</em>. Tras estudiar a más de 150 líderes, mide que quien resta obtiene de media 0,48 de cada trabajador y que el líder que multiplica consigue 1,97 veces más. Con líderes multiplicadores, muchos encuestados afirmaron aportar más del 100% de su capacidad. Esta calculadora usa 1,97 por trabajador como el potencial de un equipo de alto rendimiento.</p>
+
+    <div class="intro" style="margin-top:22px">
+      <p>He visto a muchos jefes con equipos buenos que rinden como equipos mediocres. El problema casi nunca es la gente: es <em>cómo se la dirige</em>. Ahora haz la cuenta con tu equipo de verdad: tu sector, tu gente y tus números.</p>
+      <div class="sign">— Alex</div>
+    </div>
+    <div class="nav" style="justify-content:flex-start"><button class="btn gold big pulse" id="start" type="button">Calcular lo que pierde mi equipo →</button></div>
+  </section>
+
+  <!-- ===== WIZARD ===== -->
+  <section class="screen" id="s-wiz" hidden>
+    <div class="steps" id="steps">
+      <div><b></b><span>1 · Tu equipo</span></div>
+      <div><b></b><span>2 · Los números</span></div>
+      <div><b></b><span>3 · Tu liderazgo</span></div>
+      <div><b></b><span>4 · Resultado</span></div>
+    </div>
+
+    <!-- step 1 -->
+    <div class="step" id="st1">
+      <span class="eyebrow">Paso 1 de 4</span>
+      <h2 class="h">Cuéntame <em>qué diriges</em></h2>
+      <div class="field"><label for="sector">Tu sector</label>
+        <select id="sector"><option value="">Elige tu sector…</option></select></div>
+      <div class="field"><span class="flabel">Tu cargo</span><div class="chips" id="cargo" role="group" aria-label="Tu cargo"></div></div>
+      <div class="field"><span class="flabel">¿Qué área diriges?</span><div class="chips" id="dept" role="group" aria-label="Área que diriges"></div></div>
+      <div class="field"><label for="peopleR">¿Cuántas personas diriges?</label>
+        <div class="people"><div class="n"><span id="peopleN">15</span><small>personas</small></div>
+          <div class="rng"><input type="range" id="peopleR" min="1" max="250" value="15" aria-label="Personas que diriges">
+            <div class="rticks"><span>1</span><span>50</span><span>100</span><span>150</span><span>200</span><span>250+</span></div></div></div></div>
+      <div class="nav"><span class="err" id="err1"></span><button class="btn gold" id="next1" type="button">Siguiente →</button></div>
+    </div>
+
+    <!-- step 2 -->
+    <div class="step" id="st2" hidden>
+      <span class="eyebrow">Paso 2 de 4</span>
+      <h2 class="h">Ahora, <em>los números</em></h2>
+      <p class="lede" style="font-size:16px">Aproximado vale. Nadie más que tú los ve.</p>
+      <div class="field"><span class="flabel">Moneda</span><div class="chips" id="cur" role="group" aria-label="Moneda"></div></div>
+      <div class="field"><span class="flabel">¿Tu área genera facturación directa?</span>
+        <p class="help">Ventas, una tienda, un restaurante, la empresa entera… Si es un área de soporte (almacén, administración, RRHH, obra) di que no: lo calculamos sobre lo que cuesta tu equipo.</p>
+        <div class="chips" id="fact" role="group" aria-label="¿Factura?"></div></div>
+      <div class="field" id="revField"><label for="rev">Facturación anual de tu área</label>
+        <p class="help">Si diriges la empresa entera, la facturación de la empresa.</p>
+        <div class="moneywrap"><input class="money" id="rev" inputmode="numeric" placeholder="1.200.000" autocomplete="off"><span class="cur" data-cur></span></div>
+        <div class="presets" id="revPresets"></div></div>
+      <div class="field"><label for="sal">Sueldo medio bruto anual por persona</label>
+        <p class="help">Una referencia: ajústala a tu realidad.</p>
+        <div class="moneywrap"><input class="money" id="sal" inputmode="numeric" autocomplete="off"><span class="cur" data-cur></span></div></div>
+      <div class="mass"><span>Lo que te cuesta tu equipo al año en sueldos</span><b id="massV">—</b></div>
+      <div class="nav"><button class="btn" id="back2" type="button">← Atrás</button><span class="err" id="err2"></span><button class="btn gold" id="next2" type="button">Siguiente →</button></div>
+    </div>
+
+    <!-- step 3 -->
+    <div class="step" id="st3" hidden>
+      <span class="eyebrow">Paso 3 de 4</span>
+      <h2 class="h">¿Restas o <em>multiplicas</em>?</h2>
+      <p class="lede" style="font-size:16px">10 frases sobre cómo diriges en el día a día. Desliza cada una de <b style="color:var(--cream)">Nunca</b> a <b style="color:var(--gold)">Siempre</b>, por lo que haces de verdad, no por lo que te gustaría hacer.</p>
+      <div class="qprog"><span id="qCount">0 de 10</span><div class="tr"><i id="qBar"></i></div></div>
+      <div id="test"></div>
+      <div class="nav"><button class="btn" id="back3" type="button">← Atrás</button><span class="err" id="err3"></span><button class="btn gold" id="next3" type="button" disabled>Ver mi resultado →</button></div>
+    </div>
+
+    <!-- step 4: gate -->
+    <div class="step" id="st4" hidden>
+      <span class="eyebrow">Paso 4 de 4</span>
+      <div class="gate">
+        <div class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+        <h2 class="h" style="margin-top:0">Tu resultado <em>está listo</em></h2>
+        <p style="color:var(--taupe);margin:0">Dime a dónde te lo mando y lo desbloqueas ahora mismo: cuánto pierdes al año, en qué punto estás y los 2 hábitos que más te están costando.</p>
+        <div class="teaser" aria-hidden="true">
+          <div><span>Pierdes al año</span><b>184.300 €</b></div>
+          <div><span>Por trabajador</span><b>0,61</b></div>
+          <div><span>Tu perfil</span><b>Restador</b></div>
+        </div>
+        <form id="gateForm" novalidate>
+          <div class="field" style="margin-top:18px"><label for="gName">Tu nombre</label><input type="text" id="gName" autocomplete="given-name" placeholder="Nombre"></div>
+          <div class="field" style="margin-top:14px"><label for="gEmail">Tu email</label><input type="email" id="gEmail" autocomplete="email" placeholder="tu@email.com"></div>
+          <label class="check"><input type="checkbox" id="optin"> <span>Quiero recibir también <b style="color:var(--cream)">Room Five</b>, mi newsletter de los miércoles sobre liderazgo. Te das de baja con un clic.</span></label>
+          <div class="nav" style="margin-top:20px"><button class="btn" id="back4" type="button">← Atrás</button><button class="btn gold" id="gateBtn" type="submit">Desbloquear mi resultado →</button></div>
+          <div class="gmsg" id="gMsg"></div>
+          <p class="legal">Solo uso tu email para mandarte el resultado y, si lo marcas, la newsletter. Nada de spam.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESULT ===== -->
+  <section class="screen" id="s-result" hidden>
+    <span class="eyebrow" id="rEyebrow">Tu resultado</span>
+    <div class="verdict">
+      <h2 class="h" id="rHead">Tu equipo se deja encima de la mesa</h2>
+      <div class="big" id="rBig">—</div>
+      <p class="lede" id="rLede" style="margin-bottom:6px"></p>
+      <div class="sub3">
+        <div><b id="rMonth">—</b>al mes</div>
+        <div><b id="r3y">—</b>en 3 años</div>
+        <div><b id="rPer">—</b>por persona de tu equipo</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="gaugebox">
+        <svg class="gauge" viewBox="0 0 240 150" role="img" aria-labelledby="gTitle">
+          <title id="gTitle">Lo que rinde cada trabajador de tu equipo</title>
+          <path d="M20 130 A100 100 0 0 1 220 130" fill="none" stroke="rgba(240,235,224,.09)" stroke-width="16" stroke-linecap="round" pathLength="100"/>
+          <path id="gArc" d="M20 130 A100 100 0 0 1 220 130" fill="none" stroke="#C9A961" stroke-width="16" stroke-linecap="round" pathLength="100" stroke-dasharray="0 100"/>
+          <g id="gMarks"></g>
+          <text x="120" y="112" text-anchor="middle" fill="#F0EBE0" font-size="40" font-family="Playfair Display, Georgia, serif" id="gVal">—</text>
+          <text x="120" y="134" text-anchor="middle" fill="#A09B92" font-size="10.5" letter-spacing="1.5">RINDE CADA TRABAJADOR</text>
+        </svg>
+        <div class="prof"><span class="tag" id="pTag">—</span><h4 id="pName">—</h4><p id="pTxt"></p></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Lo que <em>produce</em> el mismo equipo según cómo se dirija</h3>
+      <p class="note" id="barsNote"></p>
+      <div class="bars" id="bars"></div>
+    </div>
+
+    <div class="panel whatif">
+      <h3>¿Y si mejoras <em>un poco</em>?</h3>
+      <p class="note">Mueve la barra para ver cuánto recuperas en cada escenario. Pasar de 1 significa que tu gente da más de lo que le pagas.</p>
+      <div class="row"><span>Lo que rinde cada trabajador</span><b id="wfVal">—</b></div>
+      <input type="range" id="wf" min="48" max="197" step="1" aria-label="Rendimiento por trabajador en el escenario">
+      <div class="rticks"><span>0,48 · resta</span><span>1 · lo que pagas</span><span>1,97 · multiplica</span></div>
+      <p class="out" id="wfOut"></p>
+    </div>
+
+    <div class="panel">
+      <h3>Los 2 hábitos que <em>más te cuestan</em></h3>
+      <p class="note">Las áreas donde tus respuestas restan más. Por aquí empezaría yo.</p>
+      <div class="weak" id="weak"></div>
+      <details class="method">
+        <summary>Cómo calculamos esta cifra</summary>
+        <ul>
+          <li><b>Rendimiento por trabajador:</b> tus 10 respuestas te sitúan entre 0,48 (líder que resta) y 1,97 (equipo de alto rendimiento), según la escala de esta calculadora basada en <em>Multipliers</em> de Liz Wiseman.</li>
+          <li id="mLine"></li>
+          <li>Es una estimación orientativa para ponerle cifra al problema, no una auditoría de tu empresa.</li>
+        </ul>
+      </details>
+    </div>
+
+    <div class="wait" id="wait">
+      <span class="eyebrow">Programa · Lista de espera</span>
+      <h2 class="h">Recupera ese dinero <em>con el mismo equipo</em></h2>
+      <p style="color:var(--taupe);margin:0">Estoy preparando un programa para líderes que dirigen equipos reales y quieren pasar de restar a multiplicar. Plazas limitadas. Los de la lista de espera se enteran los primeros y entran en condiciones de fundador.</p>
+      <ul>
+        <li>Grupos reducidos y sesiones en directo conmigo.</li>
+        <li>Trabajo sobre tu equipo de verdad, no teoría.</li>
+        <li>Empezamos por tus 2 hábitos más débiles.</li>
+      </ul>
+      <button class="btn gold big" id="waitBtn" type="button">Apuntarme a la lista de espera</button>
+      <div class="okmsg" id="waitOk" hidden>Hecho. Estás en la lista: te escribo antes que a nadie.</div>
+    </div>
+
+    <section class="share">
+      <span class="eyebrow">Compartir</span>
+      <h2 class="h">Pásasela a otro líder</h2>
+      <p style="color:var(--taupe);margin:0 auto;max-width:46ch">¿Conoces a alguien que dirige un equipo y va siempre apagando fuegos? Que haga la cuenta.</p>
+      <div class="share-grid">
+        <a class="btn" id="waBtn" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn" id="mailBtn" href="#" target="_blank" rel="noopener">Email</a>
+        <button class="btn" id="igBtn" type="button">Instagram</button>
+        <button class="btn" id="copyBtn" type="button">Copiar enlace</button>
+      </div>
+      <div class="hint2" id="hint"></div>
+      <div style="margin-top:18px"><button class="btn" id="restart" type="button" style="font-size:12px">Volver a calcular</button></div>
+    </section>
+  </section>
+
+  <footer class="foot"><a href="https://alexdakov.com">alexdakov.com</a> · Liderazgo y equipos de alto rendimiento</footer>
+</div></main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+  "use strict";
+  var SHARE_URL="https://alexdakov.com/calculadora-liderazgo/";
+  var SHARE_TEXT="¿Cuánto dinero se deja tu equipo encima de la mesa por cómo se dirige? Hice la calculadora de Alex Dakov (4 min):";
+  var WORKER="https://test-lider-beehiiv.alexdakov.workers.dev";
+  var STORE="adk-calculadora-v1";
+  var LIVE=location.hostname.indexOf('alexdakov.com')!==-1;
+  var LOW=48, HIGH=197, REV_SHARE=0.5;
+
+  var SECTORS=["Hostelería y restauración","Industria y producción","Construcción y reformas","Salud y sanidad","Comercio y retail","Educación y formación","Logística y transporte","Consultoría y servicios","Ventas y comercial","Finanzas, seguros y asesoría","Turismo y ocio","Marketing y agencia","Automoción y talleres","Tecnología y software","Deporte y fitness","Agro y alimentación","Inmobiliaria","Legal","Belleza y bienestar","Sector público","Otro"];
+  var CARGOS=["Dueño o socio","Director o gerente","Mando intermedio","Encargado o supervisor","Otro"];
+  var DEPTS=[["Toda la empresa",1],["Ventas o comercial",1],["Tienda, sala o local",1],["Operaciones o producción",0],["Logística o almacén",0],["Obra o campo",0],["Atención al cliente",0],["Administración o finanzas",0],["RRHH",0],["Marketing",0],["Otro",0]];
+  var CURS={eur:{sym:"€",loc:"es-ES",cur:"EUR",sal:24000,pres:[250000,500000,1000000,3000000,10000000]},usd:{sym:"US$",loc:"es-ES",cur:"USD",sal:24000,pres:[250000,500000,1000000,3000000,10000000]}};
+
+  /* 5 disciplinas de Wiseman · 2 frases cada una (comportamiento multiplicador) */
+  var DISC=[
+    {k:"talento",n:"Atraer y usar el talento",vs:"Imán de talento frente a coleccionista de recursos",
+     tip:"Haz un mapa de tu equipo: en qué es brillante cada persona sin esfuerzo. Y dale una tarea esta semana que lo use.",
+     q:["Sé en qué es brillante cada persona de mi equipo y le doy trabajo que aprovecha ese talento.","Cuando alguien destaca, le ayudo a crecer aunque eso acabe sacándolo de mi equipo."]},
+    {k:"libertad",n:"Crear un clima seguro",vs:"Liberador frente a tirano",
+     tip:"En tu próxima reunión, habla el último. Y cuando alguien te traiga un error, agradécele que lo haya contado antes de nada.",
+     q:["Mi equipo me cuenta los errores pronto, sin miedo a cómo voy a reaccionar.","En las reuniones mi equipo habla más que yo."]},
+    {k:"reto",n:"Retar en vez de dar respuestas",vs:"Desafiador frente a sabelotodo",
+     tip:"Cambia una respuesta por una pregunta: «¿tú qué harías?». Y pon a tu equipo un objetivo que hoy le parezca un poco imposible.",
+     q:["En vez de dar la solución, planteo preguntas y retos que obligan a mi equipo a pensar.","Mi equipo tiene objetivos que le estiran, no solo tareas que cumplir."]},
+    {k:"debate",n:"Decidir con el equipo",vs:"Generador de debate frente a decisor solitario",
+     tip:"Antes de tu próxima decisión importante, pide a tu equipo dos opciones y que defienda la contraria. Luego decides tú, y explicas por qué.",
+     q:["Antes de decidir algo importante, escucho a mi equipo y dejo que discrepe.","Mi equipo entiende el porqué de las decisiones, aunque no las haya tomado él."]},
+    {k:"inversor",n:"Delegar de verdad",vs:"Inversor frente a micromanager",
+     tip:"Elige una tarea que hoy revisas tú y delega el resultado entero, no solo el trabajo. Si se atascan, ayuda a pensar pero devuelve el problema.",
+     q:["Cuando delego algo, delego también la responsabilidad del resultado y no estoy encima.","Si alguien se atasca, le ayudo a pensar, pero le devuelvo el problema en vez de resolverlo yo."]}
+  ];
+  var OPTS=[["Casi nunca",0],["A veces",0.5],["Casi siempre",1]];
+
+  var st={sector:"",cargo:"",dept:"",people:15,cur:"eur",fact:null,rev:0,sal:24000,ans:new Array(10).fill(null),name:"",email:"",step:1,unlocked:false,waited:false};
+  try{ var sv=JSON.parse(localStorage.getItem(STORE)||"null"); if(sv&&sv.ans&&sv.ans.length===10) Object.assign(st,sv); }catch(e){}
+  function persist(){ try{ localStorage.setItem(STORE, JSON.stringify(st)); }catch(e){} }
+
+  function $(s){ return document.querySelector(s); }
+  function ga(n,p){ try{ if(window.gtag) gtag('event',n,p||{}); }catch(e){} }
+  function fmt(n){ var c=CURS[st.cur]; try{ return new Intl.NumberFormat(c.loc,{style:"currency",currency:c.cur,maximumFractionDigits:0}).format(Math.round(n)).replace("US$","US$ "); }catch(e){ return Math.round(n)+" "+c.sym; } }
+  function fmtN(n){ return new Intl.NumberFormat("es-ES",{maximumFractionDigits:0}).format(Math.round(n)); }
+  function short(n){ var a=Math.abs(n); if(a>=1e6) return (n/1e6).toFixed(a>=1e7?0:1).replace(".",",")+" M"; if(a>=1e4) return fmtN(n/1000)+" mil"; return fmtN(n); }
+  function parseMoney(v){ return parseInt(String(v).replace(/[^\d]/g,""),10)||0; }
+  var toast=$('#toast'),tT; function showToast(m){ toast.textContent=m; toast.classList.add('show'); clearTimeout(tT); tT=setTimeout(function(){toast.classList.remove('show');},1900); }
+  function copy(t,m){ var d=function(){showToast(m||'Copiado');}; try{ navigator.clipboard.writeText(t).then(d,function(){legacy(t,d);}); }catch(e){ legacy(t,d);} }
+  function legacy(t,d){ try{ var a=document.createElement('textarea'); a.value=t; a.style.position='fixed'; a.style.opacity='0'; document.body.appendChild(a); a.select(); document.execCommand('copy'); a.remove(); d(); }catch(e){ showToast(t);} }
+
+  /* intro dots */
+  document.querySelectorAll('.dots').forEach(function(d){ var on=+d.dataset.on; for(var i=0;i<10;i++){ var x=document.createElement('i'); if(i<on) x.className='on'; d.appendChild(x);} });
+
+  /* ---- ejemplo portada: 2.000 € × 1 o × 10 ---- */
+  (function(){
+    var SAL=2000, LO=0.48, HI=1.97, curN=1;
+    var eur=function(n){ return new Intl.NumberFormat("es-ES",{maximumFractionDigits:0}).format(Math.round(n))+" €"; };
+    var PERSON='<svg viewBox="0 0 24 30" fill="currentColor" aria-hidden="true"><circle cx="12" cy="7" r="5"/><path d="M2 29c0-6.6 4.5-11 10-11s10 4.4 10 11z"/></svg>';
+    function tween(el, to, fmt){
+      var from=+(el.dataset.v||to), t0=null, d=900; el.dataset.v=to;
+      if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent=fmt(to); return; }
+      function f(ts){ if(!t0) t0=ts; var p=Math.min((ts-t0)/d,1), e=1-Math.pow(1-p,3); el.textContent=fmt(from+(to-from)*e); if(p<1) requestAnimationFrame(f); }
+      requestAnimationFrame(f);
+    }
+    function crowd(n){
+      var c=document.getElementById('crowd'); c.innerHTML="";
+      for(var i=0;i<n;i++){ var s=document.createElement('span'); s.innerHTML=PERSON; s.firstChild.style.animationDelay=(i*70)+'ms'; c.appendChild(s.firstChild); }
+    }
+    function set(n, anim){
+      curN=n; var pay=SAL*n, bad=pay*LO, good=pay*HI;
+      document.querySelectorAll('.segb').forEach(function(b){ b.setAttribute('aria-pressed', String(+b.dataset.n===n)); });
+      document.getElementById('exWho').textContent = n===1?"una persona":n+" personas";
+      document.getElementById('exGapWho').textContent = n===1?"con una sola persona":"con un equipo de "+n;
+      var M={exPay:pay, exPay2:pay, exBad:bad, exGood:good, exLoss:pay-bad, exGain:good-pay, exGapM:good-bad, exGapY:(good-bad)*12};
+      Object.keys(M).forEach(function(id){ var el=document.getElementById(id); if(anim) tween(el,M[id],eur); else { el.dataset.v=M[id]; el.textContent=eur(M[id]); } });
+      crowd(n);
+      var g=document.querySelector('.gapn.big'); g.classList.remove('bump'); void g.offsetWidth; g.classList.add('bump');
+      var btn=document.getElementById('ex10'); btn.textContent = n===1 ? "Ahora multiplícalo por 10 →" : "Ahora calcula tu equipo de verdad →";
+      ga('intro_example',{n:n});
+    }
+    document.querySelectorAll('.segb').forEach(function(b){ b.addEventListener('click', function(){ set(+b.dataset.n, true); }); });
+    document.getElementById('ex10').addEventListener('click', function(){
+      if(curN===1){ set(10,true); } else { document.getElementById('start').click(); }
+    });
+    set(1,false);
+  })();
+
+  /* chips helper */
+  function chips(el, items, key, onPick){
+    el.innerHTML="";
+    items.forEach(function(it){
+      var lab=Array.isArray(it)?it[0]:it, val=Array.isArray(it)&&it.length===3?it[2]:lab;
+      var b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=lab;
+      b.setAttribute('aria-pressed', String(st[key]===val));
+      b.addEventListener('click', function(){ st[key]=val; el.querySelectorAll('.chip').forEach(function(c){c.setAttribute('aria-pressed','false');}); b.setAttribute('aria-pressed','true'); if(onPick) onPick(it); persist(); });
+      el.appendChild(b);
+    });
+  }
+  var sel=$('#sector'); SECTORS.forEach(function(s){ var o=document.createElement('option'); o.value=s; o.textContent=s; sel.appendChild(o); });
+  sel.value=st.sector; sel.addEventListener('change',function(){ st.sector=sel.value; persist(); });
+  chips($('#cargo'), CARGOS, 'cargo');
+  chips($('#dept'), DEPTS.map(function(d){return d[0];}), 'dept', function(name){
+    var d=DEPTS.filter(function(x){return x[0]===name;})[0]; st.fact=d&&d[1]?"si":"no"; paintFact();
+  });
+  var pR=$('#peopleR'), pN=$('#peopleN');
+  function paintPeople(){ pR.value=Math.min(st.people,250); pN.textContent=st.people>=250?"250+":st.people; }
+  pR.addEventListener('input',function(){ st.people=+pR.value; paintPeople(); paintMass(); persist(); });
+  paintPeople();
+
+  /* step 2 */
+  function paintCur(){ document.querySelectorAll('[data-cur]').forEach(function(e){ e.textContent=CURS[st.cur].sym; }); paintPresets(); paintMass(); }
+  chips($('#cur'), [["Euros (€)",0,"eur"],["Dólares (US$)",0,"usd"]], 'cur', paintCur);
+  function paintFact(){
+    chips($('#fact'), [["Sí, factura",0,"si"],["No, es un área de soporte",0,"no"]], 'fact', paintFact2);
+    paintFact2();
+  }
+  function paintFact2(){ $('#revField').hidden = st.fact!=="si"; }
+  var rev=$('#rev'), sal=$('#sal');
+  function paintPresets(){
+    var box=$('#revPresets'); box.innerHTML="";
+    CURS[st.cur].pres.forEach(function(v){ var b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=short(v)+" "+CURS[st.cur].sym; b.addEventListener('click',function(){ st.rev=v; rev.value=fmtN(v); persist(); }); box.appendChild(b); });
+  }
+  function moneyInput(el,key){
+    el.addEventListener('input',function(){ var v=parseMoney(el.value); st[key]=v; el.value=v?fmtN(v):""; paintMass(); persist(); });
+  }
+  moneyInput(rev,'rev'); moneyInput(sal,'sal');
+  function paintMass(){ $('#massV').textContent = st.sal? fmt(st.sal*st.people) : "—"; }
+  if(st.rev) rev.value=fmtN(st.rev); sal.value=fmtN(st.sal||24000); if(!st.sal) st.sal=24000;
+  paintFact(); paintCur();
+
+  /* step 3: test · escala deslizante 1-5 */
+  var LK=["Nunca","Casi nunca","A veces","Casi siempre","Siempre"];
+  var LKC=["#E08A7C","#E3A07A","#E0B564","#D8BC7A","#C9A961"];
+  var test=$('#test');
+  function lkPaint(card, idx){
+    var a=st.ans[idx], r=card.querySelector('.lk'), out=card.querySelector('.lkv');
+    if(a===null){ card.classList.remove('ans'); out.textContent="Desliza para responder"; out.style.color=""; r.style.setProperty('--p','50%'); r.style.setProperty('--c','#6E6960'); card.querySelectorAll('.lkb').forEach(function(b){b.setAttribute('aria-pressed','false');}); return; }
+    var v=Math.round(a*4); r.value=v+1;
+    card.classList.add('ans'); out.textContent=LK[v]; out.style.color=LKC[v];
+    r.style.setProperty('--p',(v*25)+'%'); r.style.setProperty('--c',LKC[v]);
+    card.querySelectorAll('.lkb').forEach(function(b,i){ b.setAttribute('aria-pressed', String(i===v)); });
+    out.classList.remove('tick'); void out.offsetWidth; out.classList.add('tick');
+  }
+  function lkSet(card, idx, v, fromUser){
+    var first=st.ans[idx]===null;
+    st.ans[idx]=(v-1)/4; lkPaint(card, idx); paintQ(); persist();
+    if(fromUser){ ga('calc_answer',{q:idx+1, v:v}); }
+    return first;
+  }
+  function lkNext(idx){
+    var nxt=test.querySelectorAll('.q')[idx+1];
+    if(nxt && st.ans[idx+1]===null && window.innerWidth<700){ setTimeout(function(){ nxt.scrollIntoView({behavior:'smooth',block:'center'}); },350); }
+  }
+  DISC.forEach(function(d,di){
+    var w=document.createElement('div'); w.className='disc';
+    w.innerHTML='<h3><span class="no">'+(di+1)+'</span>'+d.n+'</h3><p class="vs">'+d.vs+'</p>';
+    d.q.forEach(function(q,qi){
+      var idx=di*2+qi, card=document.createElement('div'); card.className='q';
+      card.innerHTML='<p id="q'+idx+'">'+q+'</p>'+
+        '<div class="lik"><output class="lkv" aria-live="polite"></output>'+
+        '<input type="range" class="lk" min="1" max="5" step="1" value="3" id="lk'+idx+'" aria-labelledby="q'+idx+'">'+
+        '<div class="lkl">'+LK.map(function(t,i){ return '<button type="button" class="lkb" data-v="'+(i+1)+'" aria-pressed="false"><i></i><span>'+t+'</span></button>'; }).join("")+'</div></div>';
+      var r=card.querySelector('.lk'), first=false;
+      r.addEventListener('input',function(){ first=lkSet(card, idx, +r.value, false) || first; });
+      r.addEventListener('pointerdown',function(){ if(st.ans[idx]===null){ first=true; lkSet(card, idx, +r.value, false); } });
+      r.addEventListener('change',function(){ lkSet(card, idx, +r.value, true); if(first){ first=false; lkNext(idx); } });
+      card.querySelectorAll('.lkb').forEach(function(b){ b.addEventListener('click',function(){ var was=st.ans[idx]===null; lkSet(card, idx, +b.dataset.v, true); if(was) lkNext(idx); }); });
+      lkPaint(card, idx);
+      w.appendChild(card);
+    });
+    test.appendChild(w);
+  });
+  function answered(){ return st.ans.filter(function(a){return a!==null;}).length; }
+  function paintQ(){ var n=answered(); $('#qCount').textContent=n+" de 10"; $('#qBar').style.width=(n*10)+"%"; $('#next3').disabled=n<10; }
+  paintQ();
+
+  /* navigation */
+  function show(id){ ['s-intro','s-wiz','s-result'].forEach(function(s){ $('#'+s).hidden=(s!==id); }); window.scrollTo(0,0); }
+  function goStep(n){
+    st.step=n; persist();
+    for(var i=1;i<=4;i++) $('#st'+i).hidden=(i!==n);
+    document.querySelectorAll('#steps > div').forEach(function(d,i){ d.className = i+1===n?'on':(i+1<n?'done':''); });
+    window.scrollTo(0,0); ga('calc_step',{step:n});
+  }
+  $('#start').addEventListener('click',function(){ show('s-wiz'); goStep(1); ga('calc_start'); });
+  $('#next1').addEventListener('click',function(){
+    var m=!st.sector?"Elige tu sector.":!st.cargo?"Elige tu cargo.":!st.dept?"Elige el área que diriges.":"";
+    $('#err1').textContent=m; if(!m) goStep(2);
+  });
+  $('#back2').addEventListener('click',function(){ goStep(1); });
+  $('#next2').addEventListener('click',function(){
+    var m=!st.fact?"Dime si tu área factura.":(st.fact==="si"&&st.rev<10000)?"Escribe la facturación anual aproximada.":(st.sal<3000)?"Revisa el sueldo medio anual.":"";
+    $('#err2').textContent=m; if(!m) goStep(3);
+  });
+  $('#back3').addEventListener('click',function(){ goStep(2); });
+  $('#next3').addEventListener('click',function(){ if(answered()===10){ if(st.unlocked){ reveal(); } else goStep(4); } });
+  $('#back4').addEventListener('click',function(){ goStep(3); });
+
+  /* model */
+  function score(){ var s=0; st.ans.forEach(function(a){ s+=a||0; }); return s/10; }
+  function util(){ return Math.round(LOW+(HIGH-LOW)*score()); }
+  function mass(){ return st.sal*st.people; }
+  // pérdida a un nivel u de capacidad
+  function lossAt(u){
+    var costLoss = mass()*(HIGH-u)/100;                         // sueldos pagados por capacidad que no se usa
+    if(st.fact==="si"){ return Math.max(st.rev*(HIGH/u-1)*REV_SHARE, costLoss); } // facturación potencial (conservadora)
+    return costLoss;
+  }
+  function discScores(){ return DISC.map(function(d,i){ return {d:d, v:((st.ans[i*2]||0)+(st.ans[i*2+1]||0))/2}; }); }
+  function profile(u){
+    if(u<80) return ["r","Líder que resta","Sin querer, estás frenando a tu equipo. Lo decides y lo controlas casi todo, y tu gente se acostumbra a esperar tus respuestas. La buena noticia: es donde más dinero hay por recuperar."];
+    if(u<120) return ["","Restador accidental","Tienes buena intención, pero algunos hábitos le quitan a tu equipo espacio para pensar y responsabilizarse. Hay mucho talento esperando a que lo sueltes."];
+    if(u<160) return ["","En camino de multiplicar","Ya haces muchas cosas bien. Te falta pulir un par de hábitos para que tu equipo dé lo que realmente puede dar."];
+    return ["g","Líder multiplicador","Sacas casi todo el talento de tu equipo. Tu reto ahora es sostenerlo y crear más líderes como tú."];
+  }
+
+  /* result */
+  function reveal(){ st.unlocked=true; persist(); buildResult(); show('s-result'); ga('calc_result_view',{util:util()}); }
+  function buildResult(){
+    var u=util(), L=lossAt(u);
+    $('#rHead').innerHTML=(st.name?esc(st.name)+", tu":"Tu")+' equipo se deja <em>encima de la mesa</em>';
+    $('#rBig').innerHTML=fmt(L)+' <small>al año</small>';
+    $('#rLede').textContent = st.fact==="si"
+      ? "Es la facturación que tu área podría estar generando con el mismo equipo y el mismo sueldo, si cada persona rindiera como en un equipo de alto rendimiento."
+      : "Es el valor que tu equipo podría aportar por encima de lo que hoy te rinde, con el mismo sueldo.";
+    $('#rMonth').textContent=fmt(L/12); $('#r3y').textContent=fmt(L*3); $('#rPer').textContent=fmt(L/st.people);
+    // gauge
+    var pct=(u-0)/100; $('#gArc').setAttribute('stroke-dasharray', (100*u/HIGH).toFixed(1)+" 100"); $('#gVal').textContent=(u/100).toFixed(2).replace(".",",");
+    var g=$('#gMarks'); g.innerHTML="";
+    [[LOW,"0,48"],[100,"1"],[HIGH,"1,97"]].forEach(function(m){
+      var a=Math.PI*(1-m[0]/HIGH), x1=120+86*Math.cos(a), y1=130-86*Math.sin(a), x2=120+114*Math.cos(a), y2=130-114*Math.sin(a);
+      g.insertAdjacentHTML('beforeend','<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(m[0]===LOW?'#E08A7C':m[0]===100?'#F0EBE0':'#C9A961')+'" stroke-width="2"/>');
+    });
+    var p=profile(u); $('#pTag').className='tag '+p[0]; $('#pTag').textContent=(u/100).toFixed(2).replace('.',',')+" por trabajador"; $('#pName').textContent=p[1]; $('#pTxt').textContent=p[2];
+    // bars
+    var base=st.fact==="si"?st.rev:mass();
+    function val(x){ return st.fact==="si" ? st.rev*(1+(x/u-1)*REV_SHARE) : mass()*x/100; }
+    $('#barsNote').textContent = st.fact==="si"
+      ? "Facturación anual estimada de tu área con tus "+st.people+" personas, según cómo se dirijan."
+      : "Valor que obtienes de "+fmt(mass())+" en sueldos, según cómo se dirija el equipo.";
+    var rows=[["bad","Dirigido por alguien que resta (0,48 por persona)",LOW],["you","Tu equipo hoy ("+(u/100).toFixed(2).replace(".",",")+" por persona)",u],["good","Dirigido por alguien que multiplica (1,97 por persona)",HIGH]];
+    var mx=val(HIGH), html="";
+    rows.forEach(function(r){ html+='<div class="brow '+r[0]+'"><div class="top"><span>'+r[1]+'</span><b>'+fmt(val(r[2]))+'</b></div><div class="tk"><i style="width:0" data-w="'+(100*val(r[2])/mx).toFixed(1)+'"></i></div></div>'; });
+    $('#bars').innerHTML=html;
+    requestAnimationFrame(function(){ document.querySelectorAll('#bars i').forEach(function(i){ i.style.width=i.dataset.w+"%"; }); });
+    // what-if
+    var wf=$('#wf'); wf.value=Math.min(HIGH,Math.max(u+30,LOW)); wf.min=u; paintWF();
+    // weak
+    var ws=discScores().sort(function(a,b){return a.v-b.v;}).slice(0,2);
+    $('#weak').innerHTML=ws.map(function(w){ return '<div class="w"><small>'+(w.v<0.4?"Restas":w.v<0.75?"A medias":"Bien")+'</small><b>'+w.d.n+'</b><span>'+w.d.tip+'</span></div>'; }).join("");
+    $('#mLine').innerHTML = st.fact==="si"
+      ? "<b>Dinero perdido:</b> calculamos cuánto más facturaría tu área si cada persona rindiera 1,97 en vez de "+(u/100).toFixed(2).replace(".",",")+". Para ser prudentes asumimos que solo la mitad de tu facturación depende de cómo rinde el equipo. Si sale más alto, usamos lo que pagas en sueldos por capacidad que no se usa."
+      : "<b>Dinero perdido:</b> lo que pagas en sueldos al año ("+fmt(mass())+") multiplicado por el rendimiento que se queda sin usar (1,97 − "+(u/100).toFixed(2).replace(".",",")+").";
+    if(st.waited){ $('#waitBtn').hidden=true; $('#waitOk').hidden=false; }
+  }
+  function paintWF(){
+    var u=util(), x=+$('#wf').value, rec=lossAt(u)-lossAt(x);
+    $('#wfVal').textContent=(x/100).toFixed(2).replace(".",",");
+    $('#wfOut').innerHTML = x<=u ? "Mueve la barra a la derecha." : "Si cada persona pasa de <b>"+(u/100).toFixed(2).replace(".",",")+"</b> a <b>"+(x/100).toFixed(2).replace(".",",")+"</b>, recuperas <b>"+fmt(rec)+" al año</b>. Eso son <b>"+fmt(rec/12)+"</b> cada mes.";
+  }
+  $('#wf').addEventListener('input',paintWF);
+  $('#wf').addEventListener('change',function(){ ga('calc_whatif',{to:+$('#wf').value}); });
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+  /* backend */
+  function payload(action){
+    var u=util();
+    return {source:'calculadora', action:action, name:st.name, email:st.email, newsletter:$('#optin').checked,
+      sector:st.sector, cargo:st.cargo, departamento:st.dept, personas:st.people, moneda:st.cur, factura:st.fact,
+      facturacion:st.fact==="si"?st.rev:null, sueldo_medio:st.sal, capacidad:u, perdida_anual:Math.round(lossAt(u)),
+      perfil:profile(u)[1], debiles:discScores().sort(function(a,b){return a.v-b.v;}).slice(0,2).map(function(w){return w.d.n;}),
+      respuestas:st.ans, lm_source:'calculadora-liderazgo', utm_source:(new URLSearchParams(location.search)).get('utm_source')||(new URLSearchParams(location.search)).get('src')||'calculadora',
+      page:'/calculadora-liderazgo/'};
+  }
+  function post(body,cb){
+    if(!LIVE){ cb(true); return; }
+    var c=('AbortController' in window)?new AbortController():null, t=c&&setTimeout(function(){c.abort();},9000);
+    fetch(WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:c?c.signal:undefined})
+      .then(function(){ clearTimeout(t); cb(true); }).catch(function(){ clearTimeout(t); cb(false); });
+  }
+  $('#gateForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var em=($('#gEmail').value||"").trim(), nm=($('#gName').value||"").trim();
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ $('#gMsg').textContent="Escribe un email válido para desbloquear tu resultado."; $('#gMsg').className='gmsg err'; $('#gEmail').focus(); return; }
+    st.email=em; st.name=nm; persist();
+    var b=$('#gateBtn'); b.disabled=true; b.textContent="Calculando…"; $('#gMsg').textContent="";
+    ga('calc_submit',{newsletter:$('#optin').checked});
+    var done=false, fin=function(){ if(done) return; done=true; b.disabled=false; b.textContent="Desbloquear mi resultado →"; reveal(); };
+    var fs=setTimeout(fin,9500); post(payload('resultado'),function(){ clearTimeout(fs); fin(); });
+  });
+  $('#waitBtn').addEventListener('click',function(){
+    var b=this; b.disabled=true; b.textContent="Apuntándote…"; ga('calc_waitlist');
+    post(payload('lista_espera'),function(){ st.waited=true; persist(); b.hidden=true; $('#waitOk').hidden=false; });
+  });
+  $('#restart').addEventListener('click',function(){ st.ans=new Array(10).fill(null); st.unlocked=st.unlocked; persist(); location.reload(); });
+
+  /* share */
+  $('#waBtn').href='https://wa.me/?text='+encodeURIComponent(SHARE_TEXT+' '+SHARE_URL);
+  $('#mailBtn').href='mailto:?subject='+encodeURIComponent('¿Cuánto se deja tu equipo encima de la mesa?')+'&body='+encodeURIComponent(SHARE_TEXT+'\n\n'+SHARE_URL);
+  $('#waBtn').addEventListener('click',function(){ ga('share_click',{method:'whatsapp'}); });
+  $('#mailBtn').addEventListener('click',function(){ ga('share_click',{method:'email'}); });
+  $('#copyBtn').addEventListener('click',function(){ copy(SHARE_URL,'Enlace copiado'); ga('share_click',{method:'copy'}); });
+  $('#igBtn').addEventListener('click',function(){ copy(SHARE_URL,'Enlace copiado'); $('#hint').textContent='Enlace copiado: pégalo en tu historia o en un DM.'; ga('share_click',{method:'instagram'}); });
+  $('#shareTop').addEventListener('click',function(){ if(navigator.share){ navigator.share({title:'Calculadora del líder multiplicador',text:SHARE_TEXT,url:SHARE_URL}).catch(function(){}); } else copy(SHARE_URL,'Enlace copiado'); });
+
+  /* resume */
+  if(st.unlocked && answered()===10){ reveal(); }
+})();
+</script>
+</body>
+</html>
