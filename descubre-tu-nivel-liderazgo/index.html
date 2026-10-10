@@ -138,9 +138,15 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   .card{background:var(--bg2);border:1px solid var(--line-soft);border-left:2px solid var(--gold);border-radius:0 3px 3px 0;padding:16px 20px;margin-bottom:12px}
   .card .k{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
   .card .v{font-size:16px;line-height:1.55;color:var(--cream)}
-  .cta{max-width:480px;margin:28px auto 0;border:1px solid var(--line);border-radius:4px;padding:26px;text-align:center;background:linear-gradient(180deg,rgba(201,169,97,.06),transparent)}
-  .cta h3{font-family:var(--serif);font-weight:500;font-size:22px;margin:0 0 8px;color:var(--cream)}
-  .cta p{color:var(--muted);font-size:15px;margin:0 0 18px}
+  .cta{margin:34px 0 8px;padding:28px 24px;border-radius:12px;text-align:left;color:#F0EBE0;
+    background:radial-gradient(120% 90% at 100% 0%, rgba(201,169,97,.16), transparent 55%), linear-gradient(160deg,#18264a,#14213D);
+    border:1px solid rgba(201,169,97,.38);box-shadow:0 18px 50px -24px rgba(201,169,97,.45)}
+  .cta .cta-eyebrow{display:block;font-family:"Inter",ui-sans-serif,system-ui,sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#C9A961;font-weight:600;margin:0}
+  .cta h3{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:clamp(23px,5.2vw,30px);line-height:1.18;margin:10px 0 10px;color:#F0EBE0;text-wrap:balance}
+  .cta h3 em{font-style:italic;color:#C9A961;font-weight:500}
+  .cta p{color:#A09B92;font-size:15px;line-height:1.6;margin:0 0 20px}
+  .cta p b{color:#F0EBE0;font-weight:500}
+  .cta .btn{font-weight:600;border-radius:3px;padding:14px 24px;box-shadow:0 0 0 0 rgba(201,169,97,.5);animation:wlpulse 2.4s infinite}
   .center{text-align:center}
   .mt{margin-top:22px}
   .results-body{max-width:480px;margin:0 auto}
@@ -308,10 +314,9 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
         card(pasoLabel,r.paso)+
         card('A qué sabe la victoria',r.victoria)+
         card('Tu siguiente lectura',bookVal)+
-        '<div class="cta"><h3>Subir al siguiente nivel es más fácil de lo que parece</h3>'+
-        '<p>Te envío a '+esc(lead.email)+' la serie exacta diseñada para salir de donde estás y subir al siguiente nivel. Un paso cada semana.</p>'+
-        '<button class="btn" id="cta">Quiero subir de nivel</button>'+
-        '<p class="fine center" style="margin:14px 0 0">Saber tu nivel no cambia nada. El plan, sí.</p></div>'+'<div id="wlMount"></div>'+
+        '<div class="cta"><span class="cta-eyebrow">Tu plan · Por email</span><h3>Subir al siguiente nivel es <em>más fácil de lo que parece</em></h3>'+
+        '<p>Te envío a <b>'+esc(lead.email)+'</b> la serie exacta diseñada para salir de donde estás y subir al siguiente nivel. Un paso cada semana.</p>'+
+        '<button class="btn" id="cta">Quiero subir de nivel</button></div>'+'<div id="wlMount"></div>'+
         '<div class="center mt"><button class="btn ghost" id="again">Repetir el test</button></div>'+
       '</div></div>';
     document.getElementById('again').onclick=intro;
