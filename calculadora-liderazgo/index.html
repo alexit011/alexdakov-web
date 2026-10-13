@@ -457,8 +457,8 @@
         <p class="help">Si diriges la empresa entera, la facturación de la empresa.</p>
         <div class="moneywrap"><input class="money" id="rev" inputmode="numeric" placeholder="1.200.000" autocomplete="off"><span class="cur" data-cur></span></div>
         <div class="presets" id="revPresets"></div></div>
-      <div class="field"><label for="sal">Sueldo medio bruto anual por persona</label>
-        <p class="help">Una referencia: ajústala a tu realidad.</p>
+      <div class="field"><label for="sal">Sueldo medio bruto al mes por persona</label>
+        <p class="help">Lo que cobra de media cada persona al mes. Calculamos el año con 12 pagas.</p>
         <div class="moneywrap"><input class="money" id="sal" inputmode="numeric" autocomplete="off"><span class="cur" data-cur></span></div></div>
       <div class="mass"><span>Lo que te cuesta tu equipo al año en sueldos</span><b id="massV">—</b></div>
       <div class="nav"><button class="btn" id="back2" type="button">← Atrás</button><span class="err" id="err2"></span><button class="btn gold" id="next2" type="button">Siguiente →</button></div>
@@ -587,14 +587,14 @@
   var SHARE_URL="https://alexdakov.com/calculadora-liderazgo/";
   var SHARE_TEXT="¿Cuánto dinero se deja tu equipo encima de la mesa por cómo se dirige? Hice la calculadora de Alex Dakov (4 min):";
   var WORKER="https://test-lider-beehiiv.alexdakov.workers.dev";
-  var STORE="adk-calculadora-v1";
+  var STORE="adk-calculadora-v2";
   var LIVE=location.hostname.indexOf('alexdakov.com')!==-1;
   var LOW=48, HIGH=197, REV_SHARE=0.5;
 
   var SECTORS=["Hostelería y restauración","Industria y producción","Construcción y reformas","Salud y sanidad","Comercio y retail","Educación y formación","Logística y transporte","Consultoría y servicios","Ventas y comercial","Finanzas, seguros y asesoría","Turismo y ocio","Marketing y agencia","Automoción y talleres","Tecnología y software","Deporte y fitness","Agro y alimentación","Inmobiliaria","Legal","Belleza y bienestar","Sector público","Otro"];
   var CARGOS=["Dueño o socio","Director o gerente","Mando intermedio","Encargado o supervisor","Otro"];
   var DEPTS=[["Toda la empresa",1],["Ventas o comercial",1],["Tienda, sala o local",1],["Operaciones o producción",0],["Logística o almacén",0],["Obra o campo",0],["Atención al cliente",0],["Administración o finanzas",0],["RRHH",0],["Marketing",0],["Otro",0]];
-  var CURS={eur:{sym:"€",loc:"es-ES",cur:"EUR",sal:24000,pres:[250000,500000,1000000,3000000,10000000]},usd:{sym:"US$",loc:"es-ES",cur:"USD",sal:24000,pres:[250000,500000,1000000,3000000,10000000]}};
+  var CURS={eur:{sym:"€",loc:"es-ES",cur:"EUR",sal:2000,pres:[250000,500000,1000000,3000000,10000000]},usd:{sym:"US$",loc:"es-ES",cur:"USD",sal:2000,pres:[250000,500000,1000000,3000000,10000000]}};
 
   /* 5 disciplinas de Wiseman · 2 frases cada una (comportamiento multiplicador) */
   var DISC=[
@@ -616,7 +616,7 @@
   ];
   var OPTS=[["Casi nunca",0],["A veces",0.5],["Casi siempre",1]];
 
-  var st={sector:"",cargo:"",dept:"",sectorOtro:"",cargoOtro:"",deptOtro:"",people:15,cur:"eur",fact:null,rev:0,sal:24000,ans:new Array(10).fill(null),name:"",email:"",step:1,unlocked:false,waited:false};
+  var st={sector:"",cargo:"",dept:"",sectorOtro:"",cargoOtro:"",deptOtro:"",people:15,cur:"eur",fact:null,rev:0,sal:2000,ans:new Array(10).fill(null),name:"",email:"",step:1,unlocked:false,waited:false};
   try{ var sv=JSON.parse(localStorage.getItem(STORE)||"null"); if(sv&&sv.ans&&sv.ans.length===10) Object.assign(st,sv); }catch(e){}
   function persist(){ try{ localStorage.setItem(STORE, JSON.stringify(st)); }catch(e){} }
 
@@ -716,8 +716,8 @@
     el.addEventListener('input',function(){ var v=parseMoney(el.value); st[key]=v; el.value=v?fmtN(v):""; paintMass(); persist(); });
   }
   moneyInput(rev,'rev'); moneyInput(sal,'sal');
-  function paintMass(){ $('#massV').textContent = st.sal? fmt(st.sal*st.people) : "—"; }
-  if(st.rev) rev.value=fmtN(st.rev); sal.value=fmtN(st.sal||24000); if(!st.sal) st.sal=24000;
+  function paintMass(){ $('#massV').textContent = st.sal? fmt(st.sal*12*st.people) : "—"; }
+  if(st.rev) rev.value=fmtN(st.rev); sal.value=fmtN(st.sal||2000); if(!st.sal) st.sal=2000;
   paintFact(); paintCur();
   paintOtros();
 
@@ -782,7 +782,7 @@
   });
   $('#back2').addEventListener('click',function(){ goStep(1); });
   $('#next2').addEventListener('click',function(){
-    var m=!st.fact?"Dime si tu área factura.":(st.fact==="si"&&st.rev<10000)?"Escribe la facturación anual aproximada.":(st.sal<3000)?"Revisa el sueldo medio anual.":"";
+    var m=!st.fact?"Dime si tu área factura.":(st.fact==="si"&&st.rev<10000)?"Escribe la facturación anual aproximada.":(st.sal<300)?"Revisa el sueldo medio mensual.":"";
     $('#err2').textContent=m; if(!m) goStep(3);
   });
   $('#back3').addEventListener('click',function(){ goStep(2); });
@@ -792,7 +792,7 @@
   /* model */
   function score(){ var s=0; st.ans.forEach(function(a){ s+=a||0; }); return s/10; }
   function util(){ return Math.round(LOW+(HIGH-LOW)*score()); }
-  function mass(){ return st.sal*st.people; }
+  function mass(){ return st.sal*12*st.people; }
   // pérdida a un nivel u de capacidad
   function lossAt(u){
     var costLoss = mass()*(HIGH-u)/100;                         // sueldos pagados por capacidad que no se usa
