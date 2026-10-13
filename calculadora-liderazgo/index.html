@@ -231,13 +231,13 @@
     input.lk::-moz-range-track{height:8px; border-radius:8px; background:rgba(240,235,224,.10);}
     input.lk::-moz-range-progress{height:8px; border-radius:8px; background:var(--c);}
     input.lk::-webkit-slider-thumb{-webkit-appearance:none; width:28px; height:28px; margin-top:-10px; border-radius:50%; background:var(--navy); border:3px solid var(--c); box-shadow:0 4px 14px rgba(0,0,0,.45); transition:transform .15s, background .2s;}
-    input.lk::-moz-range-thumb{width:22px; height:22px; border-radius:50%; background:var(--navy); border:3px solid var(--c); box-shadow:0 4px 14px rgba(0,0,0,.45);}
+    input.lk::-moz-range-thumb{box-sizing:border-box; width:28px; height:28px; border-radius:50%; background:var(--navy); border:3px solid var(--c); box-shadow:0 4px 14px rgba(0,0,0,.45);}
     .q.ans input.lk::-webkit-slider-thumb{background:var(--c);}
     .q.ans input.lk::-moz-range-thumb{background:var(--c);}
     input.lk:active::-webkit-slider-thumb{transform:scale(1.2);}
-    .q:not(.ans) input.lk::-webkit-slider-thumb{animation:nudge 2.2s ease-in-out infinite;}
-    @keyframes nudge{0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)}}
-    .lkl{display:grid; grid-template-columns:repeat(5,1fr); margin:4px -4px 0;}
+    .lkl{position:relative; height:46px; margin-top:4px;}
+    .lkl .lkb{position:absolute; top:0; width:22%; transform:translateX(-50%);}
+    .lkl .lkb:nth-child(1){left:14px} .lkl .lkb:nth-child(2){left:calc(14px + (100% - 28px) * .25)} .lkl .lkb:nth-child(3){left:50%} .lkl .lkb:nth-child(4){left:calc(14px + (100% - 28px) * .75)} .lkl .lkb:nth-child(5){left:calc(100% - 14px)}
     .lkb{font:inherit; background:none; border:0; color:var(--muted); cursor:pointer; padding:6px 2px; display:flex; flex-direction:column; align-items:center; gap:5px; font-size:11.5px; line-height:1.2; text-align:center; transition:color .2s;}
     .lkb i{width:6px; height:6px; border-radius:50%; background:rgba(240,235,224,.18); transition:all .2s;}
     .lkb:hover{color:var(--cream);}
@@ -720,7 +720,7 @@
     if(a===null){ card.classList.remove('ans'); out.textContent="Desliza para responder"; out.style.color=""; r.style.setProperty('--p','50%'); r.style.setProperty('--c','#6E6960'); card.querySelectorAll('.lkb').forEach(function(b){b.setAttribute('aria-pressed','false');}); return; }
     var v=Math.round(a*4); r.value=v+1;
     card.classList.add('ans'); out.textContent=LK[v]; out.style.color=LKC[v];
-    r.style.setProperty('--p',(v*25)+'%'); r.style.setProperty('--c',LKC[v]);
+    r.style.setProperty('--p','calc(14px + (100% - 28px) * '+(v/4)+')'); r.style.setProperty('--c',LKC[v]);
     card.querySelectorAll('.lkb').forEach(function(b,i){ b.setAttribute('aria-pressed', String(i===v)); });
     out.classList.remove('tick'); void out.offsetWidth; out.classList.add('tick');
   }
