@@ -353,11 +353,11 @@
   <section class="screen" id="s-intro">
     <span class="eyebrow">Calculadora · 4 minutos</span>
     <h1 class="title">¿Cuánto dinero se deja tu equipo <em>encima de la mesa</em>?</h1>
-    <p class="lede">Pagas el sueldo entero de cada persona. La pregunta es si te rinde 0,48 o 1,97.</p>
+    <p class="lede">Cada mes pagas el 100% del salario de cada persona. La pregunta es si rinde un 0,48 o un 1,97.</p>
 
     <div class="duo" aria-label="Rendimiento por trabajador según el líder">
       <div class="tm bad">
-        <span class="lbl">Líder que resta</span>
+        <span class="lbl">Líder mediocre</span>
         <div class="pct"><span data-count="0.48" data-dec="2">0,48</span></div>
         <div class="per">por cada trabajador</div>
         <div class="meter"><i style="--w:24%"></i></div>
@@ -368,16 +368,17 @@
         <div class="pct"><span data-count="1.97" data-dec="2">1,97</span></div>
         <div class="per">por cada trabajador</div>
         <div class="meter"><i style="--w:100%"></i></div>
-        <p>Reta, delega de verdad y hace pensar. Cada persona da más de lo que creía tener.</p>
+        <p>Reta, delega de verdad y hace pensar. Cada persona da mucho más de lo que creía que era capaz.</p>
       </div>
     </div>
 
     <!-- EJEMPLO -->
     <div class="ex" id="ex">
       <div class="ex-head">
-        <span class="eyebrow">Hagamos la cuenta</span>
+        <span class="eyebrow">Un cálculo rápido</span>
         <div class="seg" role="group" aria-label="Número de personas">
           <button type="button" class="segb" data-n="1" aria-pressed="true">1 persona</button>
+          <button type="button" class="segb" data-n="5" aria-pressed="false">5 personas</button>
           <button type="button" class="segb" data-n="10" aria-pressed="false">10 personas</button>
         </div>
       </div>
@@ -404,13 +405,13 @@
     </div>
 
     <div class="stats">
-      <div class="st"><b>×4</b><span>Del 0,48 al 1,97: la misma gente y el mismo sueldo, cuatro veces más rendimiento.</span></div>
-      <div class="st"><b>+1</b><span>Por encima de 1 está la clave: en los equipos buenos la gente da <em>más del 100%</em>.</span></div>
+      <div class="st"><b>×4</b><span>Del 0,48 al 1,97: mismas personas, mismo sueldo. Cuatro veces más rendimiento.</span></div>
+      <div class="st"><b>+1</b><span>Por encima de 1 está la clave: en los equipos bien liderados dan <em>más del 100%</em>.</span></div>
     </div>
-    <p class="src">Fuente: Liz Wiseman, <em>Multipliers</em>. Tras estudiar a más de 150 líderes, mide que quien resta obtiene de media 0,48 de cada trabajador y que el líder que multiplica consigue 1,97 veces más. Con líderes multiplicadores, muchos encuestados afirmaron aportar más del 100% de su capacidad. Esta calculadora usa 1,97 por trabajador como el potencial de un equipo de alto rendimiento.</p>
+    <p class="src">Fuente: Liz Wiseman, en su libro <em>Multipliers</em>. Tras estudiar a más de 150 líderes y equipos con diferentes modelos de liderazgo, obtuvo la diferencia de 0,48 por cada trabajador con un líder mediocre y 1,97 con líder que multiplica. Con líderes multiplicadores, muchos equipos encuestados afirmaron aportar más del 100% de su capacidad. Esta calculadora usa 1,97 por trabajador como el potencial de un equipo de alto rendimiento.</p>
 
     <div class="intro" style="margin-top:22px">
-      <p>He visto a muchos jefes con equipos buenos que rinden como equipos mediocres. El problema casi nunca es la gente: es <em>cómo se la dirige</em>. Ahora haz la cuenta con tu equipo de verdad: tu sector, tu gente y tus números.</p>
+      <p>He visto a muchos jefes con equipos buenos, que se pasan el día quejándose de que sus equipos rinden como equipos mediocres. El problema casi nunca es la gente: es <em>cómo la diriges</em>. Ahora aquí puedes hacer la cuenta con tu equipo de verdad: tu sector, tu gente y tus números.</p>
       <div class="sign">— Alex</div>
     </div>
     <div class="nav" style="justify-content:flex-start"><button class="btn gold big pulse" id="start" type="button">Calcular lo que pierde mi equipo →</button></div>
@@ -450,7 +451,7 @@
       <p class="lede" style="font-size:16px">Aproximado vale. Nadie más que tú los ve.</p>
       <div class="field"><span class="flabel">Moneda</span><div class="chips" id="cur" role="group" aria-label="Moneda"></div></div>
       <div class="field"><span class="flabel">¿Tu área genera facturación directa?</span>
-        <p class="help">Ventas, una tienda, un restaurante, la empresa entera… Si es un área de soporte (almacén, administración, RRHH, obra) di que no: lo calculamos sobre lo que cuesta tu equipo.</p>
+        <p class="help">Facturación directa puede ser: un departamento de ventas, una tienda, un restaurante, la empresa entera… Si es un área de soporte (almacén, administración, RRHH, financiero, obra) di que no: lo calcularemos sobre el coste de tu equipo.</p>
         <div class="chips" id="fact" role="group" aria-label="¿Factura?"></div></div>
       <div class="field" id="revField"><label for="rev">Facturación anual de tu área</label>
         <p class="help">Si diriges la empresa entera, la facturación de la empresa.</p>
@@ -466,8 +467,8 @@
     <!-- step 3 -->
     <div class="step" id="st3" hidden>
       <span class="eyebrow">Paso 3 de 4</span>
-      <h2 class="h">¿Restas o <em>multiplicas</em>?</h2>
-      <p class="lede" style="font-size:16px">10 frases sobre cómo diriges en el día a día. Desliza cada una de <b style="color:var(--cream)">Nunca</b> a <b style="color:var(--gold)">Siempre</b>, por lo que haces de verdad, no por lo que te gustaría hacer.</p>
+      <h2 class="h">¿Tú restas o <em>multiplicas</em>?</h2>
+      <p class="lede" style="font-size:16px">10 afirmaciones sobre cómo diriges en el día a día. Desliza cada una de <b style="color:var(--cream)">Nunca</b> a <b style="color:var(--gold)">Siempre</b>, por lo que haces de verdad cada día, no por lo que te gustaría hacer.</p>
       <div class="qprog"><span id="qCount">0 de 10</span><div class="tr"><i id="qBar"></i></div></div>
       <div id="test"></div>
       <div class="nav"><button class="btn" id="back3" type="button">← Atrás</button><span class="err" id="err3"></span><button class="btn gold" id="next3" type="button" disabled>Ver mi resultado →</button></div>
@@ -488,7 +489,7 @@
         <form id="gateForm" novalidate>
           <div class="field" style="margin-top:18px"><label for="gName">Tu nombre</label><input type="text" id="gName" autocomplete="given-name" placeholder="Nombre"></div>
           <div class="field" style="margin-top:14px"><label for="gEmail">Tu email</label><input type="email" id="gEmail" autocomplete="email" placeholder="tu@email.com"></div>
-          <label class="check"><input type="checkbox" id="optin"> <span>Quiero recibir también <b style="color:var(--cream)">Room Five</b>, mi newsletter de los miércoles sobre liderazgo. Te das de baja con un clic.</span></label>
+          <label class="check"><input type="checkbox" id="optin"> <span>Quiero recibir también <b style="color:var(--cream)">Room Five</b>, una newsletter semanal con herramientas, historias y sistemas para liderar mejor. Te das de baja con un clic.</span></label>
           <div class="nav" style="margin-top:20px"><button class="btn" id="back4" type="button">← Atrás</button><button class="btn gold" id="gateBtn" type="submit">Desbloquear mi resultado →</button></div>
           <div class="gmsg" id="gMsg"></div>
           <p class="legal">Solo uso tu email para mandarte el resultado y, si lo marcas, la newsletter. Nada de spam.</p>
@@ -597,19 +598,19 @@
 
   /* 5 disciplinas de Wiseman · 2 frases cada una (comportamiento multiplicador) */
   var DISC=[
-    {k:"talento",n:"Atraer y usar el talento",vs:"Imán de talento frente a coleccionista de recursos",
+    {k:"talento",n:"Atraer y usar el talento",vs:"Imán de talento VS coleccionista de recursos",
      tip:"Haz un mapa de tu equipo: en qué es brillante cada persona sin esfuerzo. Y dale una tarea esta semana que lo use.",
      q:["Sé en qué es brillante cada persona de mi equipo y le doy trabajo que aprovecha ese talento.","Cuando alguien destaca, le ayudo a crecer aunque eso acabe sacándolo de mi equipo."]},
-    {k:"libertad",n:"Crear un clima seguro",vs:"Liberador frente a tirano",
+    {k:"libertad",n:"Crear un clima seguro",vs:"Liberador VS tirano",
      tip:"En tu próxima reunión, habla el último. Y cuando alguien te traiga un error, agradécele que lo haya contado antes de nada.",
-     q:["Mi equipo me cuenta los errores pronto, sin miedo a cómo voy a reaccionar.","En las reuniones mi equipo habla más que yo."]},
-    {k:"reto",n:"Retar en vez de dar respuestas",vs:"Desafiador frente a sabelotodo",
+     q:["Mi equipo me cuenta los errores rápido, sin miedo a cómo voy a reaccionar.","En las reuniones mi equipo habla más que yo."]},
+    {k:"reto",n:"Retar en vez de dar respuestas",vs:"Desafiador VS sabelotodo",
      tip:"Cambia una respuesta por una pregunta: «¿tú qué harías?». Y pon a tu equipo un objetivo que hoy le parezca un poco imposible.",
-     q:["En vez de dar la solución, planteo preguntas y retos que obligan a mi equipo a pensar.","Mi equipo tiene objetivos que le estiran, no solo tareas que cumplir."]},
-    {k:"debate",n:"Decidir con el equipo",vs:"Generador de debate frente a decisor solitario",
+     q:["En vez de dar la solución, planteo preguntas y retos que obligan a mi equipo a pensar.","Mi equipo tiene objetivos que le expanden, no solo tareas que cumplir."]},
+    {k:"debate",n:"Decidir con el equipo",vs:"Generador de debate VS decisor solitario",
      tip:"Antes de tu próxima decisión importante, pide a tu equipo dos opciones y que defienda la contraria. Luego decides tú, y explicas por qué.",
-     q:["Antes de decidir algo importante, escucho a mi equipo y dejo que discrepe.","Mi equipo entiende el porqué de las decisiones, aunque no las haya tomado él."]},
-    {k:"inversor",n:"Delegar de verdad",vs:"Inversor frente a micromanager",
+     q:["Antes de decidir algo importante, escucho a mi equipo y dejo que discrepen conmigo.","Mi equipo entiende el porqué de las decisiones, aunque no las haya tomado él."]},
+    {k:"inversor",n:"Delegar de verdad",vs:"Inversor VS micromanager",
      tip:"Elige una tarea que hoy revisas tú y delega el resultado entero, no solo el trabajo. Si se atascan, ayuda a pensar pero devuelve el problema.",
      q:["Cuando delego algo, delego también la responsabilidad del resultado y no estoy encima.","Si alguien se atasca, le ayudo a pensar, pero le devuelvo el problema en vez de resolverlo yo."]}
   ];
