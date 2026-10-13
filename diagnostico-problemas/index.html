@@ -108,7 +108,8 @@
     .proc-grid{display:flex; gap:16px; margin:30px 0 12px; justify-content:center; align-items:flex-start;}
     .proc-grid .pc{flex:1; max-width:210px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px;}
     .proc-grid .circle{width:176px; height:176px; border-radius:50%; border:1.5px solid var(--gold-line); background:var(--card);
-      display:grid; place-items:center; font-size:72px; line-height:1;}
+      display:grid; place-items:center; line-height:1;}
+    .proc-grid .circle svg{width:42%; height:42%; stroke:var(--gold); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round;}
     .proc-grid b{font-weight:600; font-size:16px; color:var(--cream); display:block;}
     .proc-grid span{color:var(--taupe); font-size:13px; line-height:1.4; display:block; margin-top:3px;}
     @media (max-width:560px){ .proc-grid{gap:9px;} .proc-grid .circle{width:100px; height:100px; font-size:42px;} .proc-grid b{font-size:14px;} .proc-grid span{font-size:11.5px;} }
@@ -290,9 +291,9 @@
       </div>
 
       <div class="proc-grid" aria-hidden="true">
-        <div class="pc"><div class="circle">🎯</div><div><b>Selección</b><span>A quién eliges y cómo</span></div></div>
-        <div class="pc"><div class="circle">🌱</div><div><b>Formación</b><span>Cómo haces crecer a tu equipo</span></div></div>
-        <div class="pc"><div class="circle">⚙️</div><div><b>Gestión</b><span>Cómo diriges el día a día</span></div></div>
+        <div class="pc"><div class="circle"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><div><b>Selección</b><span>A quién eliges y cómo</span></div></div>
+        <div class="pc"><div class="circle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg></div><div><b>Formación</b><span>Cómo haces crecer a tu equipo</span></div></div>
+        <div class="pc"><div class="circle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></div><div><b>Gestión</b><span>Cómo diriges el día a día</span></div></div>
       </div>
 
       <div class="field">
