@@ -151,6 +151,8 @@
     @keyframes breathe{50%{opacity:.55}}
     .cv b{display:block; font-family:var(--serif); font-size:clamp(26px,6.5vw,38px); line-height:1.05; font-variant-numeric:lining-nums tabular-nums;}
     .col.bad .cv b{color:var(--red);} .col.good .cv b{color:var(--gold);}
+    .cv .cvk{font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; font-weight:700; margin:0 0 4px;}
+    .col.bad .cv .cvk{color:var(--red);} .col.good .cv .cvk{color:var(--gold);}
     .cv span{font-size:13px; color:var(--taupe); line-height:1.35; display:block; margin-top:3px;}
     .tagx{font-size:12.5px; border-radius:6px; padding:7px 10px; line-height:1.35;}
     .tagx b{font-variant-numeric:tabular-nums;}
@@ -369,13 +371,11 @@
         <div class="payline"><span>Lo que pagas · <b id="exPay2">2.000 €</b></span></div>
         <div class="col bad">
           <div class="vbar"><i style="--h:24.4%"></i></div>
-          <div class="cv"><b id="exBad">960 €</b><span>te rinde con un líder que resta</span></div>
-          <div class="tagx neg">Pierdes <b id="exLoss">1.040 €</b> al mes</div>
+          <div class="cv"><span class="cvk">Pierdes</span><b id="exLoss">1.040 €</b><span>al mes con un líder que resta</span></div>
         </div>
         <div class="col good">
           <div class="vbar"><i style="--h:100%"></i></div>
-          <div class="cv"><b id="exGood">3.940 €</b><span>te rinde con un líder que multiplica</span></div>
-          <div class="tagx pos">Ganas <b id="exGain">1.940 €</b> más de lo que pagas</div>
+          <div class="cv"><span class="cvk">Ganas</span><b id="exGain">1.940 €</b><span>más de lo que pagas con un líder que multiplica</span></div>
         </div>
       </div>
 
@@ -639,7 +639,7 @@
       document.querySelectorAll('.segb').forEach(function(b){ b.setAttribute('aria-pressed', String(+b.dataset.n===n)); });
       document.getElementById('exWho').textContent = n===1?"una persona":n+" personas";
       document.getElementById('exGapWho').textContent = n===1?"con una sola persona":"con un equipo de "+n;
-      var M={exPay:pay, exPay2:pay, exBad:bad, exGood:good, exLoss:pay-bad, exGain:good-pay, exGapM:good-bad, exGapY:(good-bad)*12};
+      var M={exPay:pay, exPay2:pay, exLoss:pay-bad, exGain:good-pay, exGapM:good-bad, exGapY:(good-bad)*12};
       Object.keys(M).forEach(function(id){ var el=document.getElementById(id); if(anim) tween(el,M[id],eur); else { el.dataset.v=M[id]; el.textContent=eur(M[id]); } });
       crowd(n);
       var g=document.querySelector('.gapn.big'); g.classList.remove('bump'); void g.offsetWidth; g.classList.add('bump');
