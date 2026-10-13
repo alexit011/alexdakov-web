@@ -504,11 +504,11 @@
     <div class="verdict">
       <h2 class="h" id="rHead">Esto es lo que pasa hoy en tu equipo</h2>
       <div class="story">
-        <div class="sx cost"><span class="sk">Hoy tu equipo te cuesta</span><b id="sCost">—</b><small id="sCostTxt">al año en sueldos</small><i class="sfill"></i></div>
-        <div class="sx now" id="sNowBox"><span class="sk">Pero trabaja como uno de</span><b id="sNow">—</b><small id="sNowTxt"></small><i class="sfill"></i></div>
-        <div class="sx pot"><span class="sk">Y con el liderazgo adecuado podría convertirse en uno de</span><b id="sPot">—</b><small>Un verdadero equipo de alto rendimiento.</small><i class="sfill"></i></div>
+        <div class="sx cost"><span class="sk" id="sCostK">Hoy tu equipo te cuesta</span><b id="sCost">—</b><small id="sCostTxt">al año en sueldos</small><i class="sfill"></i></div>
+        <div class="sx now" id="sNowBox"><span class="sk" id="sNowK">Pero trabaja como uno de</span><b id="sNow">—</b><small id="sNowTxt"></small><i class="sfill"></i></div>
+        <div class="sx pot"><span class="sk" id="sPotK">Y con el liderazgo adecuado podría convertirse en uno de</span><b id="sPot">—</b><small>Un verdadero equipo de alto rendimiento.</small><i class="sfill"></i></div>
       </div>
-      <p class="gapline">Te estás dejando <b id="sGap">—</b> al año encima de la mesa. <span id="sGapM"></span></p>
+      <p class="gapline">Te estás dejando <b id="sGap">—</b> <span id="sGapK" style="color:inherit;font-size:inherit">al año encima de la mesa.</span> <span id="sGapM"></span></p>
     </div>
 
     <div class="panel">
@@ -794,9 +794,11 @@
   function util(){ return Math.round(LOW+(HIGH-LOW)*score()); }
   function mass(){ return st.sal*12*st.people; }
   // pérdida a un nivel u de capacidad
-  function lossAt(u){
-    var costLoss = mass()*(HIGH-u)/100;                         // sueldos pagados por capacidad que no se usa
-    return costLoss;
+  function bills(){ return st.fact==="si" && st.rev>0; }
+  // lo que se deja a un nivel x: si factura, sobre la facturación (la actual es lo que produce hoy con util()); si no, sobre el coste
+  function lossAt(x){
+    if(bills()) return st.rev*(HIGH-x)/util();
+    return mass()*(HIGH-x)/100;
   }
   function discScores(){ return DISC.map(function(d,i){ return {d:d, v:((st.ans[i*2]||0)+(st.ans[i*2+1]||0))/2}; }); }
   function profile(u){
@@ -812,14 +814,32 @@
   function buildResult(){
     var u=util(), L=lossAt(u);
     $('#rHead').innerHTML=(st.name?esc(st.name)+", esto es lo que pasa hoy en tu equipo":"Esto es lo que pasa hoy en tu equipo");
-    var C=mass(), N=C*u/100, P=C*HIGH/100;
-    $('#sCostTxt').textContent="al año en sueldos ("+st.people+(st.people===1?" persona":" personas")+")";
+    var C=mass(), U=(u/100).toFixed(2).replace(".",","), who=st.people+(st.people===1?" persona":" personas");
     var nb=$('#sNowBox'); nb.classList.remove('low','high'); nb.classList.add(u<100?'low':'high');
-    $('#sNowTxt').textContent = u<100 ? "Cada persona te rinde "+(u/100).toFixed(2).replace(".",",")+" de cada euro que le pagas." : "Cada persona te rinde "+(u/100).toFixed(2).replace(".",",")+" por cada euro que le pagas.";
-    document.querySelector('.sx.cost .sfill').style.setProperty('--w',(100*100/HIGH).toFixed(1)+'%');
+    if(bills()){
+      var F=st.rev, P=F*HIGH/u;
+      $('#sCostK').textContent="Hoy tu área factura";
+      $('#sCostTxt').textContent="al año, con "+who;
+      $('#sNowK').textContent="Con un rendimiento por trabajador de";
+      $('#sNowTxt').textContent="Es lo que hoy te rinde cada persona. Un equipo de alto rendimiento llega a 1,97.";
+      $('#sPotK').textContent="Y con el liderazgo adecuado podría facturar";
+      $('#sGapK').textContent="al año en facturación encima de la mesa.";
+      document.querySelector('.sx.cost .sfill').style.setProperty('--w',(100*u/HIGH).toFixed(1)+'%');
+      countTo($('#sCost'),F); $('#sNow').textContent=U; countTo($('#sPot'),P);
+    } else {
+      var N=C*u/100, P=C*HIGH/100;
+      $('#sCostK').textContent="Hoy tu equipo te cuesta";
+      $('#sCostTxt').textContent="al año en sueldos ("+who+")";
+      $('#sNowK').textContent="Pero trabaja como uno de";
+      $('#sNowTxt').textContent = "Cada persona te rinde "+U+(u<100?" de":" por")+" cada euro que le pagas.";
+      $('#sPotK').textContent="Y con el liderazgo adecuado podría convertirse en uno de";
+      $('#sGapK').textContent="al año encima de la mesa.";
+      document.querySelector('.sx.cost .sfill').style.setProperty('--w',(100*100/HIGH).toFixed(1)+'%');
+      countTo($('#sCost'),C); countTo($('#sNow'),N); countTo($('#sPot'),P);
+    }
     nb.querySelector('.sfill').style.setProperty('--w',(100*u/HIGH).toFixed(1)+'%');
     document.querySelector('.sx.pot .sfill').style.setProperty('--w','100%');
-    countTo($('#sCost'),C); countTo($('#sNow'),N); countTo($('#sPot'),P); countTo($('#sGap'),L);
+    countTo($('#sGap'),L);
     $('#sGapM').textContent="Son "+fmt(L/12)+" cada mes.";
     // gauge
     var pct=(u-0)/100; $('#gArc').setAttribute('stroke-dasharray', (100*u/HIGH).toFixed(1)+" 100"); $('#gVal').textContent=(u/100).toFixed(2).replace(".",",");
@@ -834,7 +854,9 @@
     // weak
     var ws=discScores().sort(function(a,b){return a.v-b.v;}).slice(0,2);
     $('#weak').innerHTML=ws.map(function(w){ return '<div class="w"><small>'+(w.v<0.4?"Restas":w.v<0.75?"A medias":"Bien")+'</small><b>'+w.d.n+'</b><span>'+w.d.tip+'</span></div>'; }).join("");
-    $('#mLine').innerHTML = "<b>Las tres cifras:</b> lo que te cuesta es tus personas por el sueldo medio ("+fmt(C)+"). Lo que trabaja hoy es ese coste por tu rendimiento ("+(u/100).toFixed(2).replace(".",",")+"). Lo que podría ser es ese coste por 1,97. Lo que te dejas es la diferencia entre las dos últimas.";
+    $('#mLine').innerHTML = bills()
+      ? "<b>Las cifras:</b> tu facturación actual ("+fmt(st.rev)+") es lo que produce hoy tu equipo con un rendimiento de "+U+" por trabajador. Con 1,97 facturaría "+fmt(st.rev)+" ÷ "+U+" × 1,97. Lo que te dejas es la diferencia."
+      : "<b>Las tres cifras:</b> lo que te cuesta es tus personas por el sueldo medio por 12 meses ("+fmt(C)+"). Lo que trabaja hoy es ese coste por tu rendimiento ("+U+"). Lo que podría ser es ese coste por 1,97. Lo que te dejas es la diferencia entre las dos últimas.";
     if(st.waited){ $('#waitBtn').hidden=true; $('#waitOk').hidden=false; }
   }
   function paintWF(){
