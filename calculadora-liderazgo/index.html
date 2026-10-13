@@ -162,8 +162,8 @@
     .gapn span{display:block; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--taupe);}
     .gapn b{display:block; font-family:var(--serif); font-size:clamp(26px,6vw,34px); color:var(--cream); line-height:1.15; margin-top:4px; font-variant-numeric:lining-nums tabular-nums;}
     .gapn small{color:var(--muted); font-size:12.5px;}
-    .gapn.big{border-color:var(--gold); background:linear-gradient(160deg, rgba(201,169,97,.16), var(--navy) 70%);}
-    .gapn.big b{color:var(--gold); font-size:clamp(30px,7.5vw,44px);}
+    .gapn.hl{border-color:var(--gold); background:linear-gradient(160deg, rgba(201,169,97,.16), var(--navy) 70%);}
+    .gapn.hl b{color:var(--gold); font-size:clamp(30px,7.5vw,44px);}
     .bump{animation:bump .5s ease;}
     @keyframes bump{40%{transform:scale(1.06)}}
     .stats{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:0 0 14px;}
@@ -381,7 +381,7 @@
 
       <div class="gap">
         <div class="gapn"><span>Diferencia entre un líder y otro</span><b id="exGapM">2.980 €</b><small>al mes</small></div>
-        <div class="gapn big"><span>En un año</span><b id="exGapY">35.760 €</b><small id="exGapWho">con un equipo de una sola persona</small></div>
+        <div class="gapn hl"><span>En un año</span><b id="exGapY">35.760 €</b><small id="exGapWho">con un equipo de una sola persona</small></div>
       </div>
       <button class="btn gold block" id="ex10" type="button">Ahora multiplícalo por 10 →</button>
     </div>
@@ -642,7 +642,7 @@
       var M={exPay:pay, exPay2:pay, exLoss:pay-bad, exGain:good-pay, exGapM:good-bad, exGapY:(good-bad)*12};
       Object.keys(M).forEach(function(id){ var el=document.getElementById(id); if(anim) tween(el,M[id],eur); else { el.dataset.v=M[id]; el.textContent=eur(M[id]); } });
       crowd(n);
-      var g=document.querySelector('.gapn.big'); g.classList.remove('bump'); void g.offsetWidth; g.classList.add('bump');
+      var g=document.querySelector('.gapn.hl'); g.classList.remove('bump'); void g.offsetWidth; g.classList.add('bump');
       var btn=document.getElementById('ex10'); btn.textContent = n===1 ? "Ahora multiplícalo por 10 →" : "Ahora calcula tu equipo de verdad →";
       ga('intro_example',{n:n});
     }
