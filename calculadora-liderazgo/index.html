@@ -800,8 +800,8 @@
   }
   function discScores(){ return DISC.map(function(d,i){ return {d:d, v:((st.ans[i*2]||0)+(st.ans[i*2+1]||0))/2}; }); }
   function profile(u){
-    if(u<80) return ["r","Líder que resta","Sin querer, estás frenando a tu equipo. Lo decides y lo controlas casi todo, y tu gente se acostumbra a esperar tus respuestas. La buena noticia: es donde más dinero hay por recuperar."];
-    if(u<120) return ["","Restador accidental","Tienes buena intención, pero algunos hábitos le quitan a tu equipo espacio para pensar y responsabilizarse. Hay mucho talento esperando a que lo sueltes."];
+    if(u<80) return ["r","Líder que resta","Sin querer, estás frenando a tu equipo. Lo decides y lo controlas casi todo, y tu gente se acostumbra a esperar tus respuestas. La buena noticia: es donde más dinero puedes hoy recuperar."];
+    if(u<120) return ["","Restador accidental","Tienes buena intención, pero algunos hábitos le quitan a tu equipo espacio para pensar y responsabilizarse. Hay mucho talento esperando a que le ayudes a despegar."];
     if(u<160) return ["","En camino de multiplicar","Ya haces muchas cosas bien. Te falta pulir un par de hábitos para que tu equipo dé lo que realmente puede dar."];
     return ["g","Líder multiplicador","Sacas casi todo el talento de tu equipo. Tu reto ahora es sostenerlo y crear más líderes como tú."];
   }
