@@ -190,6 +190,7 @@
     select option{background:var(--card); color:var(--cream);}
     input::placeholder{color:var(--muted);}
     input:focus, select:focus{outline:none; border-color:var(--gold);}
+    input.otro{margin-top:10px; animation:fade .3s ease both;}
     .chips{display:flex; flex-wrap:wrap; gap:8px;}
     .chip{font:inherit; font-size:14px; cursor:pointer; background:var(--card); color:var(--cream); border:1px solid var(--line); border-radius:999px; padding:9px 15px; transition:all .15s;}
     .chip:hover{border-color:var(--gold-line);}
@@ -413,9 +414,12 @@
       <span class="eyebrow">Paso 1 de 4</span>
       <h2 class="h">Cuéntame <em>qué diriges</em></h2>
       <div class="field"><label for="sector">Tu sector</label>
-        <select id="sector"><option value="">Elige tu sector…</option></select></div>
-      <div class="field"><span class="flabel">Tu cargo</span><div class="chips" id="cargo" role="group" aria-label="Tu cargo"></div></div>
-      <div class="field"><span class="flabel">¿Qué área diriges?</span><div class="chips" id="dept" role="group" aria-label="Área que diriges"></div></div>
+        <select id="sector"><option value="">Elige tu sector…</option></select>
+        <input type="text" class="otro" id="sectorOtro" placeholder="¿Cuál es tu sector?" aria-label="Escribe tu sector" hidden></div>
+      <div class="field"><span class="flabel">Tu cargo</span><div class="chips" id="cargo" role="group" aria-label="Tu cargo"></div>
+        <input type="text" class="otro" id="cargoOtro" placeholder="¿Cuál es tu cargo?" aria-label="Escribe tu cargo" hidden></div>
+      <div class="field"><span class="flabel">¿Qué área diriges?</span><div class="chips" id="dept" role="group" aria-label="Área que diriges"></div>
+        <input type="text" class="otro" id="deptOtro" placeholder="¿Qué área es?" aria-label="Escribe el área que diriges" hidden></div>
       <div class="field"><label for="peopleR">¿Cuántas personas diriges?</label>
         <div class="people"><div class="n"><span id="peopleN">15</span><small>personas</small></div>
           <div class="rng"><input type="range" id="peopleR" min="1" max="250" value="15" aria-label="Personas que diriges">
@@ -602,7 +606,7 @@
   ];
   var OPTS=[["Casi nunca",0],["A veces",0.5],["Casi siempre",1]];
 
-  var st={sector:"",cargo:"",dept:"",people:15,cur:"eur",fact:null,rev:0,sal:24000,ans:new Array(10).fill(null),name:"",email:"",step:1,unlocked:false,waited:false};
+  var st={sector:"",cargo:"",dept:"",sectorOtro:"",cargoOtro:"",deptOtro:"",people:15,cur:"eur",fact:null,rev:0,sal:24000,ans:new Array(10).fill(null),name:"",email:"",step:1,unlocked:false,waited:false};
   try{ var sv=JSON.parse(localStorage.getItem(STORE)||"null"); if(sv&&sv.ans&&sv.ans.length===10) Object.assign(st,sv); }catch(e){}
   function persist(){ try{ localStorage.setItem(STORE, JSON.stringify(st)); }catch(e){} }
 
@@ -665,10 +669,20 @@
     });
   }
   var sel=$('#sector'); SECTORS.forEach(function(s){ var o=document.createElement('option'); o.value=s; o.textContent=s; sel.appendChild(o); });
-  sel.value=st.sector; sel.addEventListener('change',function(){ st.sector=sel.value; persist(); });
-  chips($('#cargo'), CARGOS, 'cargo');
+  sel.value=st.sector; sel.addEventListener('change',function(){ st.sector=sel.value; paintOtros(); persist(); });
+  function paintOtros(){
+    [['sector','sectorOtro'],['cargo','cargoOtro'],['dept','deptOtro']].forEach(function(p){
+      var inp=$('#'+p[1]), show=st[p[0]]==="Otro", was=inp.hidden;
+      inp.hidden=!show; if(show && was && document.activeElement && document.activeElement.id!==p[1]) { try{ inp.focus(); }catch(e){} }
+    });
+  }
+  [['sectorOtro'],['cargoOtro'],['deptOtro']].forEach(function(p){
+    var inp=$('#'+p[0]); inp.value=st[p[0]]||"";
+    inp.addEventListener('input',function(){ st[p[0]]=inp.value.slice(0,80); persist(); });
+  });
+  chips($('#cargo'), CARGOS, 'cargo', paintOtros);
   chips($('#dept'), DEPTS.map(function(d){return d[0];}), 'dept', function(name){
-    var d=DEPTS.filter(function(x){return x[0]===name;})[0]; st.fact=d&&d[1]?"si":"no"; paintFact();
+    var d=DEPTS.filter(function(x){return x[0]===name;})[0]; st.fact=d&&d[1]?"si":"no"; paintFact(); paintOtros();
   });
   var pR=$('#peopleR'), pN=$('#peopleN');
   function paintPeople(){ pR.value=Math.min(st.people,250); pN.textContent=st.people>=250?"250+":st.people; }
@@ -695,6 +709,7 @@
   function paintMass(){ $('#massV').textContent = st.sal? fmt(st.sal*st.people) : "—"; }
   if(st.rev) rev.value=fmtN(st.rev); sal.value=fmtN(st.sal||24000); if(!st.sal) st.sal=24000;
   paintFact(); paintCur();
+  paintOtros();
 
   /* step 3: test · escala deslizante 1-5 */
   var LK=["Nunca","Casi nunca","A veces","Casi siempre","Siempre"];
@@ -752,7 +767,7 @@
   }
   $('#start').addEventListener('click',function(){ show('s-wiz'); goStep(1); ga('calc_start'); });
   $('#next1').addEventListener('click',function(){
-    var m=!st.sector?"Elige tu sector.":!st.cargo?"Elige tu cargo.":!st.dept?"Elige el área que diriges.":"";
+    var m=!st.sector?"Elige tu sector.":(st.sector==="Otro"&&!st.sectorOtro.trim())?"Escribe cuál es tu sector.":!st.cargo?"Elige tu cargo.":(st.cargo==="Otro"&&!st.cargoOtro.trim())?"Escribe cuál es tu cargo.":!st.dept?"Elige el área que diriges.":(st.dept==="Otro"&&!st.deptOtro.trim())?"Escribe qué área diriges.":"";
     $('#err1').textContent=m; if(!m) goStep(2);
   });
   $('#back2').addEventListener('click',function(){ goStep(1); });
@@ -830,11 +845,12 @@
   $('#wf').addEventListener('change',function(){ ga('calc_whatif',{to:+$('#wf').value}); });
   function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
 
+  function otro(v,t){ return v==='Otro' && (t||'').trim() ? 'Otro: '+t.trim() : v; }
   /* backend */
   function payload(action){
     var u=util();
     return {source:'calculadora', action:action, name:st.name, email:st.email, newsletter:$('#optin').checked,
-      sector:st.sector, cargo:st.cargo, departamento:st.dept, personas:st.people, moneda:st.cur, factura:st.fact,
+      sector:otro(st.sector,st.sectorOtro), cargo:otro(st.cargo,st.cargoOtro), departamento:otro(st.dept,st.deptOtro), personas:st.people, moneda:st.cur, factura:st.fact,
       facturacion:st.fact==="si"?st.rev:null, sueldo_medio:st.sal, capacidad:u, perdida_anual:Math.round(lossAt(u)),
       perfil:profile(u)[1], debiles:discScores().sort(function(a,b){return a.v-b.v;}).slice(0,2).map(function(w){return w.d.n;}),
       respuestas:st.ans, lm_source:'calculadora-liderazgo', utm_source:(new URLSearchParams(location.search)).get('utm_source')||(new URLSearchParams(location.search)).get('src')||'calculadora',
