@@ -174,6 +174,22 @@
     @keyframes pulse{70%{box-shadow:0 0 0 14px rgba(201,169,97,0)} 100%{box-shadow:0 0 0 0 rgba(201,169,97,0)}}
     @media (max-width:560px){ .duo,.stats{grid-template-columns:1fr;} .gap{grid-template-columns:1fr;} .vbar{height:180px;} .payline{top:calc(6px + 180px - 180px * 0.5076);} .chart{gap:12px;} .ex{padding:20px 16px;} }
 
+    /* resultado: historia en 3 tarjetas */
+    .story{display:grid; gap:10px; margin:18px 0 6px;}
+    .sx{position:relative; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 18px 20px; overflow:hidden; min-width:0; animation:fade .5s ease both;}
+    .sx:nth-child(2){animation-delay:.25s} .sx:nth-child(3){animation-delay:.5s}
+    .sx .sk{display:block; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--taupe); font-weight:600;}
+    .sx b{display:block; font-family:var(--serif); font-weight:600; font-size:clamp(32px,8.5vw,46px); line-height:1.1; margin:6px 0 2px; color:var(--cream); font-variant-numeric:lining-nums tabular-nums;}
+    .sx small{display:block; font-size:13.5px; color:var(--taupe);}
+    .sx .sfill{position:absolute; left:0; bottom:0; height:5px; width:var(--w,0%); background:var(--cream); transform-origin:left; animation:grow 1.3s cubic-bezier(.2,.8,.2,1) both .4s; border-radius:0 3px 3px 0; opacity:.85;}
+    .sx.now.low b{color:var(--red);} .sx.now.low .sfill{background:var(--red);}
+    .sx.now.high b{color:var(--green);} .sx.now.high .sfill{background:var(--green);}
+    .sx.pot{border-color:var(--gold); background:linear-gradient(160deg, rgba(201,169,97,.18), var(--card) 70%); box-shadow:0 18px 50px -24px rgba(201,169,97,.45);}
+    .sx.pot b{color:var(--gold); font-size:clamp(38px,10vw,56px);}
+    .sx.pot .sfill{background:linear-gradient(90deg,#a8873f,#f1d79a);}
+    .gapline{font-size:17px; line-height:1.5; color:var(--cream); margin:14px 0 4px; padding-top:14px; border-top:1px solid var(--line);}
+    .gapline b{font-family:var(--serif); font-size:24px; color:var(--gold); font-variant-numeric:lining-nums tabular-nums;}
+    .gapline span{color:var(--taupe); font-size:14.5px;}
     /* stepper */
     .steps{display:flex; gap:6px; margin:4px 0 26px;}
     .steps div{flex:1; min-width:0;}
@@ -485,14 +501,13 @@
   <section class="screen" id="s-result" hidden>
     <span class="eyebrow" id="rEyebrow">Tu resultado</span>
     <div class="verdict">
-      <h2 class="h" id="rHead">Tu equipo se deja encima de la mesa</h2>
-      <div class="big" id="rBig">—</div>
-      <p class="lede" id="rLede" style="margin-bottom:6px"></p>
-      <div class="sub3">
-        <div><b id="rMonth">—</b>al mes</div>
-        <div><b id="r3y">—</b>en 3 años</div>
-        <div><b id="rPer">—</b>por persona de tu equipo</div>
+      <h2 class="h" id="rHead">Esto es lo que pasa hoy en tu equipo</h2>
+      <div class="story">
+        <div class="sx cost"><span class="sk">Hoy tu equipo te cuesta</span><b id="sCost">—</b><small id="sCostTxt">al año en sueldos</small><i class="sfill"></i></div>
+        <div class="sx now" id="sNowBox"><span class="sk">Pero trabaja como uno de</span><b id="sNow">—</b><small id="sNowTxt"></small><i class="sfill"></i></div>
+        <div class="sx pot"><span class="sk">Y con el liderazgo adecuado podría convertirse en uno de</span><b id="sPot">—</b><small>Un verdadero equipo de alto rendimiento.</small><i class="sfill"></i></div>
       </div>
+      <p class="gapline">Te estás dejando <b id="sGap">—</b> al año encima de la mesa. <span id="sGapM"></span></p>
     </div>
 
     <div class="panel">
@@ -507,12 +522,6 @@
         </svg>
         <div class="prof"><span class="tag" id="pTag">—</span><h4 id="pName">—</h4><p id="pTxt"></p></div>
       </div>
-    </div>
-
-    <div class="panel">
-      <h3>Lo que <em>produce</em> el mismo equipo según cómo se dirija</h3>
-      <p class="note" id="barsNote"></p>
-      <div class="bars" id="bars"></div>
     </div>
 
     <div class="panel whatif">
@@ -786,7 +795,6 @@
   // pérdida a un nivel u de capacidad
   function lossAt(u){
     var costLoss = mass()*(HIGH-u)/100;                         // sueldos pagados por capacidad que no se usa
-    if(st.fact==="si"){ return Math.max(st.rev*(HIGH/u-1)*REV_SHARE, costLoss); } // facturación potencial (conservadora)
     return costLoss;
   }
   function discScores(){ return DISC.map(function(d,i){ return {d:d, v:((st.ans[i*2]||0)+(st.ans[i*2+1]||0))/2}; }); }
@@ -799,14 +807,19 @@
 
   /* result */
   function reveal(){ st.unlocked=true; persist(); buildResult(); show('s-result'); ga('calc_result_view',{util:util()}); }
+  function countTo(el,to){ var t0=null,d=1100; if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent=fmt(to); return; } function f(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/d,1), e=1-Math.pow(1-p,3); el.textContent=fmt(to*e); if(p<1) requestAnimationFrame(f); } el.textContent=fmt(to); requestAnimationFrame(f); }
   function buildResult(){
     var u=util(), L=lossAt(u);
-    $('#rHead').innerHTML=(st.name?esc(st.name)+", tu":"Tu")+' equipo se deja <em>encima de la mesa</em>';
-    $('#rBig').innerHTML=fmt(L)+' <small>al año</small>';
-    $('#rLede').textContent = st.fact==="si"
-      ? "Es la facturación que tu área podría estar generando con el mismo equipo y el mismo sueldo, si cada persona rindiera como en un equipo de alto rendimiento."
-      : "Es el valor que tu equipo podría aportar por encima de lo que hoy te rinde, con el mismo sueldo.";
-    $('#rMonth').textContent=fmt(L/12); $('#r3y').textContent=fmt(L*3); $('#rPer').textContent=fmt(L/st.people);
+    $('#rHead').innerHTML=(st.name?esc(st.name)+", esto es lo que pasa hoy en tu equipo":"Esto es lo que pasa hoy en tu equipo");
+    var C=mass(), N=C*u/100, P=C*HIGH/100;
+    $('#sCostTxt').textContent="al año en sueldos ("+st.people+(st.people===1?" persona":" personas")+")";
+    var nb=$('#sNowBox'); nb.classList.remove('low','high'); nb.classList.add(u<100?'low':'high');
+    $('#sNowTxt').textContent = u<100 ? "Cada persona te rinde "+(u/100).toFixed(2).replace(".",",")+" de cada euro que le pagas." : "Cada persona te rinde "+(u/100).toFixed(2).replace(".",",")+" por cada euro que le pagas.";
+    document.querySelector('.sx.cost .sfill').style.setProperty('--w',(100*100/HIGH).toFixed(1)+'%');
+    nb.querySelector('.sfill').style.setProperty('--w',(100*u/HIGH).toFixed(1)+'%');
+    document.querySelector('.sx.pot .sfill').style.setProperty('--w','100%');
+    countTo($('#sCost'),C); countTo($('#sNow'),N); countTo($('#sPot'),P); countTo($('#sGap'),L);
+    $('#sGapM').textContent="Son "+fmt(L/12)+" cada mes.";
     // gauge
     var pct=(u-0)/100; $('#gArc').setAttribute('stroke-dasharray', (100*u/HIGH).toFixed(1)+" 100"); $('#gVal').textContent=(u/100).toFixed(2).replace(".",",");
     var g=$('#gMarks'); g.innerHTML="";
@@ -815,25 +828,12 @@
       g.insertAdjacentHTML('beforeend','<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(m[0]===LOW?'#E08A7C':m[0]===100?'#F0EBE0':'#C9A961')+'" stroke-width="2"/>');
     });
     var p=profile(u); $('#pTag').className='tag '+p[0]; $('#pTag').textContent=(u/100).toFixed(2).replace('.',',')+" por trabajador"; $('#pName').textContent=p[1]; $('#pTxt').textContent=p[2];
-    // bars
-    var base=st.fact==="si"?st.rev:mass();
-    function val(x){ return st.fact==="si" ? st.rev*(1+(x/u-1)*REV_SHARE) : mass()*x/100; }
-    $('#barsNote').textContent = st.fact==="si"
-      ? "Facturación anual estimada de tu área con tus "+st.people+" personas, según cómo se dirijan."
-      : "Valor que obtienes de "+fmt(mass())+" en sueldos, según cómo se dirija el equipo.";
-    var rows=[["bad","Dirigido por alguien que resta (0,48 por persona)",LOW],["you","Tu equipo hoy ("+(u/100).toFixed(2).replace(".",",")+" por persona)",u],["good","Dirigido por alguien que multiplica (1,97 por persona)",HIGH]];
-    var mx=val(HIGH), html="";
-    rows.forEach(function(r){ html+='<div class="brow '+r[0]+'"><div class="top"><span>'+r[1]+'</span><b>'+fmt(val(r[2]))+'</b></div><div class="tk"><i style="width:0" data-w="'+(100*val(r[2])/mx).toFixed(1)+'"></i></div></div>'; });
-    $('#bars').innerHTML=html;
-    requestAnimationFrame(function(){ document.querySelectorAll('#bars i').forEach(function(i){ i.style.width=i.dataset.w+"%"; }); });
     // what-if
     var wf=$('#wf'); wf.value=Math.min(HIGH,Math.max(u+30,LOW)); wf.min=u; paintWF();
     // weak
     var ws=discScores().sort(function(a,b){return a.v-b.v;}).slice(0,2);
     $('#weak').innerHTML=ws.map(function(w){ return '<div class="w"><small>'+(w.v<0.4?"Restas":w.v<0.75?"A medias":"Bien")+'</small><b>'+w.d.n+'</b><span>'+w.d.tip+'</span></div>'; }).join("");
-    $('#mLine').innerHTML = st.fact==="si"
-      ? "<b>Dinero perdido:</b> calculamos cuánto más facturaría tu área si cada persona rindiera 1,97 en vez de "+(u/100).toFixed(2).replace(".",",")+". Para ser prudentes asumimos que solo la mitad de tu facturación depende de cómo rinde el equipo. Si sale más alto, usamos lo que pagas en sueldos por capacidad que no se usa."
-      : "<b>Dinero perdido:</b> lo que pagas en sueldos al año ("+fmt(mass())+") multiplicado por el rendimiento que se queda sin usar (1,97 − "+(u/100).toFixed(2).replace(".",",")+").";
+    $('#mLine').innerHTML = "<b>Las tres cifras:</b> lo que te cuesta es tus personas por el sueldo medio ("+fmt(C)+"). Lo que trabaja hoy es ese coste por tu rendimiento ("+(u/100).toFixed(2).replace(".",",")+"). Lo que podría ser es ese coste por 1,97. Lo que te dejas es la diferencia entre las dos últimas.";
     if(st.waited){ $('#waitBtn').hidden=true; $('#waitOk').hidden=false; }
   }
   function paintWF(){
