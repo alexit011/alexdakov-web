@@ -381,7 +381,7 @@
 
       <div class="gap">
         <div class="gapn"><span>Diferencia entre un líder y otro</span><b id="exGapM">2.980 €</b><small>al mes</small></div>
-        <div class="gapn big"><span>En un año</span><b id="exGapY">35.760 €</b><small id="exGapWho">con una sola persona</small></div>
+        <div class="gapn big"><span>En un año</span><b id="exGapY">35.760 €</b><small id="exGapWho">con un equipo de una sola persona</small></div>
       </div>
       <button class="btn gold block" id="ex10" type="button">Ahora multiplícalo por 10 →</button>
     </div>
@@ -638,7 +638,7 @@
       curN=n; var pay=SAL*n, bad=pay*LO, good=pay*HI;
       document.querySelectorAll('.segb').forEach(function(b){ b.setAttribute('aria-pressed', String(+b.dataset.n===n)); });
       document.getElementById('exWho').textContent = n===1?"una persona":n+" personas";
-      document.getElementById('exGapWho').textContent = n===1?"con una sola persona":"con un equipo de "+n;
+      document.getElementById('exGapWho').textContent = n===1?"con un equipo de una sola persona":"con un equipo de "+n;
       var M={exPay:pay, exPay2:pay, exLoss:pay-bad, exGain:good-pay, exGapM:good-bad, exGapY:(good-bad)*12};
       Object.keys(M).forEach(function(id){ var el=document.getElementById(id); if(anim) tween(el,M[id],eur); else { el.dataset.v=M[id]; el.textContent=eur(M[id]); } });
       crowd(n);
