@@ -169,9 +169,7 @@
       border:1px solid var(--line); border-radius:4px; padding:11px 6px; cursor:pointer; transition:.15s;}
     .yn button:hover{border-color:var(--gold-line); color:var(--cream);}
     .yn button:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
-    .yn button.sel-si{background:var(--gold); color:#1a1305; border-color:var(--gold);}
-    .yn button.sel-medio{background:var(--amber-bg); color:var(--amber); border-color:var(--amber);}
-    .yn button.sel-no{background:var(--card-soft); color:var(--cream); border-color:var(--taupe);}
+    .yn button.sel-si,.yn button.sel-medio,.yn button.sel-no{background:var(--gold); color:#1a1305; border-color:var(--gold);}
     @media (max-width:420px){ .yn{padding-left:0;} }
 
     .nav{display:flex; gap:10px; margin-top:22px;}
@@ -515,10 +513,13 @@
       '<circle class="rv" id="'+id+'" cx="36" cy="36" r="30" stroke="var(--gold)" stroke-dasharray="'+C+'" stroke-dashoffset="'+C+'"></circle>'+
       '</svg><span class="pct" id="'+id+'-p">0%</span></div>';
   }
+  function pctDone(k){ return Math.round(answered(k)/Q[k].length*100); }
   function paintRing(prefix,k){
-    var v=score(k), off=C*(1-v/100);
-    var el=document.getElementById(prefix+k); if(el){ el.style.strokeDashoffset=off; el.setAttribute("stroke",bandColor(v)); }
-    var p=document.getElementById(prefix+k+"-p"); if(p){ p.textContent=v+"%"; p.style.color=bandColor(v); }
+    var tracker=(prefix==="r-");
+    var v=tracker?pctDone(k):score(k), off=C*(1-v/100);
+    var color=tracker?"var(--gold)":bandColor(v);
+    var el=document.getElementById(prefix+k); if(el){ el.style.strokeDashoffset=off; el.setAttribute("stroke",color); }
+    var p=document.getElementById(prefix+k+"-p"); if(p){ p.textContent=v+"%"; p.style.color=color; }
   }
   function paintTracker(){ PILLARS.forEach(function(p){ paintRing("r-",p.key); }); }
 
