@@ -23,6 +23,34 @@
   <!--TRACKING-->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBWBFNY0W7"></script>
   <script>
+/* === Validación del dominio del email (compartida por los lead magnets) =====================
+   Sugiere la corrección de las erratas frecuentes (gmail.con, hotnail.com, gmail.com.com…) y
+   solo BLOQUEA cuando el TLD no existe. Un dominio corporativo desconocido SIEMPRE pasa: el
+   objetivo es recuperar el lead, no perderlo. En octubre-2026 entraron 6 leads inalcanzables
+   por este motivo. Devuelve {ok, hard, suggestion}. */
+window.adkEmailCheck=window.adkEmailCheck||function(email){
+  var e=String(email||"").trim(),out={ok:false,hard:false,suggestion:""};
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e))return out;
+  var at=e.lastIndexOf("@"),user=e.slice(0,at),dom=e.slice(at+1).toLowerCase();
+  var GOOD=["gmail.com","googlemail.com","hotmail.com","hotmail.es","hotmail.com.mx","hotmail.com.ar","outlook.com","outlook.es","outlook.com.mx","live.com","live.com.mx","msn.com","yahoo.com","yahoo.es","yahoo.com.mx","yahoo.com.ar","icloud.com","me.com","mac.com","aol.com","protonmail.com","proton.me","gmx.com","gmx.es","zoho.com","terra.com.mx","prodigy.net.mx","telefonica.net","movistar.es","telmex.com"];
+  /* TLD que sí existen (ES + LATAM + genéricos): si el TLD está aquí, como mucho sugerimos. */
+  var TLD=["com","es","net","org","info","biz","eu","io","co","me","app","dev","pro","online","store","site","xyz","tv","cc","ai","edu","gov","mil","int","mx","ar","cl","pe","br","uy","py","bo","ve","ec","gt","cr","do","pa","hn","sv","ni","cu","pr","us","ca","uk","de","fr","it","pt","nl","be","ch","at","se","no","dk","fi","pl","ie","gr","ru","tr","il","ae","sa","ma","za","in","cn","jp","kr","au","nz","om","cm","ly","sh","gl","to","gg"];
+  if(GOOD.indexOf(dom)>=0){out.ok=true;return out;}
+  function lev(a,b){var m=a.length,n=b.length,d=[],i,j;for(i=0;i<=m;i++)d[i]=[i];for(j=0;j<=n;j++)d[0][j]=j;
+    for(i=1;i<=m;i++)for(j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a.charAt(i-1)===b.charAt(j-1)?0:1));
+    return d[m][n];}
+  var best="",bd=99,i;
+  for(i=0;i<GOOD.length;i++){var dd=lev(dom,GOOD[i]);
+    /* en empate gana el que comparte la primera letra: "hoail.com" -> hotmail.com, no gmail.com */
+    if(dd<bd||(dd===bd&&GOOD[i].charAt(0)===dom.charAt(0)&&best.charAt(0)!==dom.charAt(0))){bd=dd;best=GOOD[i];}}
+  if(bd>0&&bd<=2)out.suggestion=user+"@"+best;
+  var dup=/\.com\.com$/;                                             /* gmail.com.com */
+  if(dup.test(dom)){out.hard=true;out.suggestion=user+"@"+dom.replace(dup,".com");return out;}
+  if(TLD.indexOf(dom.split(".").pop())<0&&out.suggestion){out.hard=true;return out;}  /* .con, .comf… */
+  out.ok=true;return out;                                            /* dominio propio -> pasa */
+};
+</script>
+<script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -820,10 +848,16 @@
     fetch(WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:c?c.signal:undefined})
       .then(function(){ clearTimeout(t); cb(true); }).catch(function(){ clearTimeout(t); cb(false); });
   }
+  var mailAvisado=false;   // dominio ya sugerido: si el usuario insiste, lo aceptamos
   $('#gateForm').addEventListener('submit',function(e){
     e.preventDefault();
     var em=($('#gEmail').value||"").trim(), nm=($('#gName').value||"").trim();
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ $('#gMsg').textContent="Escribe un email válido para desbloquear tu resultado."; $('#gMsg').className='gmsg err'; $('#gEmail').focus(); return; }
+    /* Dominio mal escrito: sugerimos la corrección antes de guardar un lead inalcanzable. */
+    var chk=window.adkEmailCheck?window.adkEmailCheck(em):{ok:true,hard:false,suggestion:''};
+    if(chk.suggestion&&(chk.hard||!mailAvisado)){ mailAvisado=true;
+      $('#gMsg').textContent='¿Querías decir '+chk.suggestion+'?'+(chk.hard?' Revisa el dominio.':' Si tu email es correcto, pulsa otra vez.');
+      $('#gMsg').className='gmsg err'; $('#gEmail').focus(); return; }
     st.email=em; st.name=nm; persist();
     var b=$('#gateBtn'); b.disabled=true; b.textContent="Calculando…"; $('#gMsg').textContent="";
     ga('calc_submit',{newsletter:$('#optin').checked});

@@ -129,6 +129,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   .row{display:flex;gap:16px}
   .lock{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;color:var(--gold);font-size:20px}
   .err{color:#e0a878;font-size:14px;display:none}
+  .err a{color:#C9A961;font-weight:600}
   .badge{width:84px;height:84px;border-radius:50%;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;
     font-family:var(--serif);font-size:38px;color:var(--gold);margin:0 auto 8px;background:radial-gradient(circle,rgba(201,169,97,.12),transparent 70%)}
   .lvl-label{text-align:center;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
@@ -270,12 +271,25 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
         '<div class="nav center"><button class="back" id="backc">&#8592; Volver a las preguntas</button></div>'+
       '</div></div>';
     var bc=document.getElementById('backc');if(bc)bc.onclick=function(){idx=Q.length-1;render();};
+    var mailAvisado=false;   // ya le hemos sugerido la corrección del dominio: si insiste, lo aceptamos
     document.getElementById('reveal').onclick=function(){
       var n=val('f_name'),a=val('f_age'),c=val('f_city'),e=val('f_email'),err=document.getElementById('f_err');
       var re=/^[^@\s]+@[^@\s]+\.[^@\s]+$/;
       if(!n||!a||!c||!e){return showErr(err,'Completa todos los campos para ver tu resultado.');}
       if(+a<14||+a>99){return showErr(err,'Introduce una edad válida.');}
       if(!re.test(e)){return showErr(err,'Ese email no parece válido. Revísalo, por favor.');}
+      /* Dominio mal escrito (gmail.con, hotnail.com…): sugerimos la corrección en vez de perder el lead. */
+      var chk=window.adkEmailCheck?window.adkEmailCheck(e):{ok:true,hard:false,suggestion:''};
+      if(chk.suggestion&&(chk.hard||!mailAvisado)){
+        showErrHtml(err,'¿Querías decir <a href="#" id="f_fix">'+esc(chk.suggestion)+'</a>?'+(chk.hard?'':' Si tu email es correcto, pulsa otra vez.'));
+        document.getElementById('f_fix').onclick=function(ev){ev.preventDefault();
+          document.getElementById('f_email').value=chk.suggestion; err.textContent='';err.style.display='none';
+          if(typeof tlpTrack==='function')tlpTrack('email_typo_fixed');
+          document.getElementById('reveal').click();};
+        mailAvisado=true;
+        if(typeof tlpTrack==='function')tlpTrack('email_typo',{hard:chk.hard?1:0});
+        return;
+      }
       var cc={1:0,2:0,3:0,4:0,5:0};answers.forEach(function(v){if(v)cc[v]++;});
       var nv=[1,2,3,4,5].sort(function(x,y){return cc[y]-cc[x]||x-y;})[0];
       var ss=0;for(var qi=1;qi<=5;qi++)ss+=cc[qi]*qi;
@@ -288,6 +302,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   }
   function val(id){return document.getElementById(id).value.trim();}
   function showErr(el,m){el.textContent=m;el.style.display='block';}
+  function showErrHtml(el,h){el.innerHTML=h;el.style.display='block';}
   function result(){
     var counts={1:0,2:0,3:0,4:0,5:0};answers.forEach(function(v){if(v)counts[v]++;});
     var l=[1,2,3,4,5].sort(function(a,b){return counts[b]-counts[a]||a-b;});
@@ -386,11 +401,38 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   @keyframes wlpulse{70%{box-shadow:0 0 0 14px rgba(201,169,97,0)} 100%{box-shadow:0 0 0 0 rgba(201,169,97,0)}}
   .wl-who{font-size:12.5px; color:#6E6960; margin-top:10px;}
   .wl-err{font-size:13.5px; color:#E08A7C; margin-top:8px; min-height:1em;}
+  .wl-err a{color:#C9A961; font-weight:600; text-decoration:underline;}
   .wl-ok{display:flex; gap:12px; align-items:flex-start; margin-top:4px; color:#8FBF87; font-weight:600; font-size:15.5px;}
   .wl-ok b{display:inline-grid; place-items:center; flex:0 0 28px; height:28px; border-radius:50%; background:rgba(143,191,135,.16); color:#8FBF87;}
   @media (prefers-reduced-motion:reduce){.wl-btn{animation:none}}
 </style>
 <script>
+/* === Validación del dominio del email (compartida por los lead magnets) =====================
+   Sugiere la corrección de las erratas frecuentes (gmail.con, hotnail.com, gmail.com.com…) y
+   solo BLOQUEA cuando el TLD no existe. Un dominio corporativo desconocido SIEMPRE pasa: el
+   objetivo es recuperar el lead, no perderlo. En octubre-2026 entraron 6 leads inalcanzables
+   por este motivo. Devuelve {ok, hard, suggestion}. */
+window.adkEmailCheck=window.adkEmailCheck||function(email){
+  var e=String(email||"").trim(),out={ok:false,hard:false,suggestion:""};
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e))return out;
+  var at=e.lastIndexOf("@"),user=e.slice(0,at),dom=e.slice(at+1).toLowerCase();
+  var GOOD=["gmail.com","googlemail.com","hotmail.com","hotmail.es","hotmail.com.mx","hotmail.com.ar","outlook.com","outlook.es","outlook.com.mx","live.com","live.com.mx","msn.com","yahoo.com","yahoo.es","yahoo.com.mx","yahoo.com.ar","icloud.com","me.com","mac.com","aol.com","protonmail.com","proton.me","gmx.com","gmx.es","zoho.com","terra.com.mx","prodigy.net.mx","telefonica.net","movistar.es","telmex.com"];
+  /* TLD que sí existen (ES + LATAM + genéricos): si el TLD está aquí, como mucho sugerimos. */
+  var TLD=["com","es","net","org","info","biz","eu","io","co","me","app","dev","pro","online","store","site","xyz","tv","cc","ai","edu","gov","mil","int","mx","ar","cl","pe","br","uy","py","bo","ve","ec","gt","cr","do","pa","hn","sv","ni","cu","pr","us","ca","uk","de","fr","it","pt","nl","be","ch","at","se","no","dk","fi","pl","ie","gr","ru","tr","il","ae","sa","ma","za","in","cn","jp","kr","au","nz","om","cm","ly","sh","gl","to","gg"];
+  if(GOOD.indexOf(dom)>=0){out.ok=true;return out;}
+  function lev(a,b){var m=a.length,n=b.length,d=[],i,j;for(i=0;i<=m;i++)d[i]=[i];for(j=0;j<=n;j++)d[0][j]=j;
+    for(i=1;i<=m;i++)for(j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a.charAt(i-1)===b.charAt(j-1)?0:1));
+    return d[m][n];}
+  var best="",bd=99,i;
+  for(i=0;i<GOOD.length;i++){var dd=lev(dom,GOOD[i]);
+    /* en empate gana el que comparte la primera letra: "hoail.com" -> hotmail.com, no gmail.com */
+    if(dd<bd||(dd===bd&&GOOD[i].charAt(0)===dom.charAt(0)&&best.charAt(0)!==dom.charAt(0))){bd=dd;best=GOOD[i];}}
+  if(bd>0&&bd<=2)out.suggestion=user+"@"+best;
+  var dup=/\.com\.com$/;                                             /* gmail.com.com */
+  if(dup.test(dom)){out.hard=true;out.suggestion=user+"@"+dom.replace(dup,".com");return out;}
+  if(TLD.indexOf(dom.split(".").pop())<0&&out.suggestion){out.hard=true;return out;}  /* .con, .comf… */
+  out.ok=true;return out;                                            /* dominio propio -> pasa */
+};
 (function(){
   "use strict";
   var WORKER="https://test-lider-beehiiv.alexdakov.workers.dev";
@@ -413,14 +455,28 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     var act=el.querySelector('.wl-act');
     function okView(){ act.innerHTML='<div class="wl-ok"><b>✓</b><span>Hecho. Estás en la lista: te escribo antes que a nadie.</span></div>'; }
     if(done(key)){ okView(); return; }
-    var hasEmail=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(o.email||"");
-    act.innerHTML=(hasEmail?'':'<div class="wl-row"><input type="email" class="wl-email" placeholder="tu@email.com" autocomplete="email" aria-label="Tu email"></div><div style="height:8px"></div>')+
+    // Si el email que trae la página tiene el dominio imposible, pedimos que lo corrija aquí.
+    var pre=window.adkEmailCheck(o.email||"");
+    var hasEmail=pre.ok&&!pre.hard;
+    act.innerHTML=(hasEmail?'':'<div class="wl-row"><input type="email" class="wl-email" placeholder="tu@email.com" autocomplete="email" aria-label="Tu email" value="'+esc(o.email||"")+'"></div><div style="height:8px"></div>')+
       '<button type="button" class="wl-btn">Apuntarme a la lista de espera</button>'+
       (hasEmail?'<div class="wl-who">Te apunto con '+esc(o.email)+'</div>':'')+'<div class="wl-err" aria-live="polite"></div>';
-    var btn=act.querySelector('.wl-btn'), err=act.querySelector('.wl-err');
+    var btn=act.querySelector('.wl-btn'), err=act.querySelector('.wl-err'), inp=act.querySelector('.wl-email');
+    var avisado=false;   // ya le hemos sugerido la corrección: si insiste, lo aceptamos
     btn.addEventListener('click',function(){
-      var email=hasEmail?o.email:((act.querySelector('.wl-email')||{}).value||"").trim();
-      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ err.textContent="Escribe un email válido."; return; }
+      var email=hasEmail?o.email:((inp||{}).value||"").trim();
+      var chk=window.adkEmailCheck(email);
+      if(!chk.ok&&!chk.suggestion){ err.textContent="Escribe un email válido."; return; }
+      if(chk.suggestion&&(chk.hard||!avisado)){
+        err.innerHTML='¿Querías decir <a href="#" class="wl-fix">'+esc(chk.suggestion)+'</a>?'+(chk.hard?'':' Si tu email es correcto, pulsa otra vez.');
+        act.querySelector('.wl-fix').addEventListener('click',function(ev){
+          ev.preventDefault();
+          if(inp){ inp.value=chk.suggestion; } else { o.email=chk.suggestion; var w=act.querySelector('.wl-who'); if(w) w.textContent='Te apunto con '+chk.suggestion; }
+          err.textContent=""; ga('waitlist_email_fixed',{origen:o.origen}); btn.click();
+        });
+        avisado=true; ga('waitlist_email_typo',{origen:o.origen, hard:chk.hard?1:0});
+        return;
+      }
       btn.disabled=true; btn.textContent="Apuntándote…"; err.textContent="";
       ga('waitlist_submit',{origen:o.origen});
       var fin=function(){ mark(key); okView(); };
