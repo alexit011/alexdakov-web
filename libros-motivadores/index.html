@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Libros que motivan y cambian la cabeza — Alex Dakov</title>
+  <meta name="description" content="Los libros que me levantan del sofá: disciplina, hábitos, carácter y la cabeza de quienes hacen cosas difíciles.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Libros que motivan y cambian la cabeza — Alex Dakov">
+  <meta property="og:description" content="Los libros que me levantan del sofá: disciplina, hábitos, carácter y la cabeza de quienes hacen cosas difíciles.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://alexdakov.com/libros-motivadores/">
+  <meta property="og:url" content="https://alexdakov.com/libros-motivadores/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy-base:#090C17; --navy-card:#14213D; --navy-card-hover:#1B2A4D;
+      --text:#F0EBE0; --text-secondary:#A09B92; --text-tertiary:#6E6960;
+      --gold:#C9A961; --gold-hover:#B69465; --gold-soft:rgba(201,169,97,0.12);
+      --border:rgba(240,235,224,0.08); --border-strong:rgba(240,235,224,0.16);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:hidden}
+    body{
+      font-family:'Inter',-apple-system,sans-serif;
+      background:radial-gradient(1100px 560px at 50% -8%,#101a30 0%,var(--navy-base) 58%);
+      color:var(--text);font-weight:300;line-height:1.55;
+      -webkit-font-smoothing:antialiased;overflow-x:hidden;
+      padding:64px 22px 90px;
+    }
+    .wrap{max-width:960px;margin:0 auto}
+    header{text-align:center;margin-bottom:8px}
+    .kicker{letter-spacing:.32em;text-transform:uppercase;font-size:12px;color:var(--gold);font-weight:600}
+    h1{font-family:'Playfair Display',serif;font-size:48px;line-height:1.08;margin:16px 0 12px;font-weight:700}
+    h1 em{font-style:italic;color:var(--gold)}
+    .sub{color:var(--text-secondary);font-size:17px;max-width:640px;margin:0 auto;font-weight:300}
+    .rule{width:56px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:28px auto 44px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    @media(max-width:700px){.grid{grid-template-columns:1fr}h1{font-size:36px}body{padding:48px 18px 70px}}
+    .card{
+      background:var(--navy-card);border:1px solid var(--border);border-radius:16px;padding:20px;
+      display:flex;gap:18px;align-items:flex-start;
+      transition:transform .18s ease,border-color .18s ease,background .18s ease;
+    }
+    .card:hover{transform:translateY(-3px);border-color:var(--gold);background:var(--navy-card-hover)}
+    .cover{width:80px;min-width:80px;height:120px;border-radius:6px;object-fit:cover;
+      background:#0b1120;box-shadow:0 8px 22px rgba(0,0,0,.5)}
+    .info{flex:1;min-width:0}
+    .num{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:.14em}
+    .title{font-family:'Playfair Display',serif;font-size:20px;line-height:1.2;margin:5px 0 3px;font-weight:600;color:var(--text)}
+    .author{color:var(--text-secondary);font-size:13px;margin-bottom:10px}
+    .why{font-size:14px;color:#cdd4e0;font-weight:300;margin-bottom:14px}
+    .btn{display:inline-flex;align-items:center;gap:7px;background:var(--gold);
+      color:var(--navy-base);font-weight:600;font-size:13px;text-decoration:none;padding:9px 16px;border-radius:8px;transition:background .18s ease}
+    .btn:hover{background:var(--gold-hover)}
+    .back{display:inline-flex;align-items:center;gap:7px;color:var(--text-secondary);text-decoration:none;
+      font-size:13px;font-weight:500;letter-spacing:.02em;margin-bottom:26px;transition:color .18s ease}
+    .back:hover{color:var(--gold)}
+    .chips{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:-22px 0 42px}
+    .chip{font-size:13px;font-weight:500;color:var(--text-secondary);text-decoration:none;
+      border:1px solid var(--border-strong);border-radius:999px;padding:7px 15px;
+      transition:color .18s ease,border-color .18s ease,background .18s ease}
+    .chip:hover{color:var(--gold);border-color:var(--gold)}
+    .chip.on{color:var(--navy-base);background:var(--gold);border-color:var(--gold);font-weight:600}
+    footer{margin-top:50px;text-align:center;color:var(--text-tertiary);font-size:13px;line-height:1.7}
+    .disc{max-width:640px;margin:0 auto 12px;font-size:12px;color:var(--text-tertiary);border-top:1px solid var(--border);padding-top:26px}
+    footer a{color:var(--gold);text-decoration:none}
+  </style>
+  <script>
+    window.__adLoadAnalytics=function(){
+      if(window.__adAnalyticsLoaded)return;window.__adAnalyticsLoaded=true;/* Meta Pixel (gated on consent) */!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1019162761091060');fbq('track','PageView');/* TikTok Pixel (gated on consent) */!function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};ttq.load('D9BL66JC77U7PB56RCO0');ttq.page();}(window,document,'ttq');
+      var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-EBWBFNY0W7';document.head.appendChild(g);
+      window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','G-EBWBFNY0W7');
+    };
+    try{if(localStorage.getItem('ad_cookie_consent')==='accepted')window.__adLoadAnalytics();}catch(e){}
+  </script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "x95217wrw7");
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "url": "https://alexdakov.com/libros-motivadores/",
+      "name": "Libros que motivan y cambian la cabeza — Alex Dakov",
+      "description": "Los libros que me levantan del sofá: disciplina, hábitos, carácter y la cabeza de quienes hacen cosas difíciles.",
+      "inLanguage": "es",
+      "isPartOf": {
+        "@id": "https://alexdakov.com/#website"
+      },
+      "about": {
+        "@id": "https://alexdakov.com/#alexdakov"
+      }
+    },
+    {
+      "@type": "ItemList",
+      "name": "Libros que motivan y cambian la cabeza — Alex Dakov",
+      "numberOfItems": 23,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Los 5 tipos de riqueza",
+          "item": {
+            "@type": "Book",
+            "name": "Los 5 tipos de riqueza",
+            "author": {
+              "@type": "Person",
+              "name": "Sahil Bloom"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Cómo fracasar en casi todo y aun así triunfar",
+          "item": {
+            "@type": "Book",
+            "name": "Cómo fracasar en casi todo y aun así triunfar",
+            "author": {
+              "@type": "Person",
+              "name": "Scott Adams"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Los 7 hábitos de la gente altamente efectiva",
+          "item": {
+            "@type": "Book",
+            "name": "Los 7 hábitos de la gente altamente efectiva",
+            "author": {
+              "@type": "Person",
+              "name": "Stephen R. Covey"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Cuatro mil semanas",
+          "item": {
+            "@type": "Book",
+            "name": "Cuatro mil semanas",
+            "author": {
+              "@type": "Person",
+              "name": "Oliver Burkeman"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "The Monk and the Riddle",
+          "item": {
+            "@type": "Book",
+            "name": "The Monk and the Riddle",
+            "author": {
+              "@type": "Person",
+              "name": "Randy Komisar"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "Diario para estoicos",
+          "item": {
+            "@type": "Book",
+            "name": "Diario para estoicos",
+            "author": {
+              "@type": "Person",
+              "name": "Ryan Holiday"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "Steve Jobs",
+          "item": {
+            "@type": "Book",
+            "name": "Steve Jobs",
+            "author": {
+              "@type": "Person",
+              "name": "Walter Isaacson"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "El hombre en busca de sentido",
+          "item": {
+            "@type": "Book",
+            "name": "El hombre en busca de sentido",
+            "author": {
+              "@type": "Person",
+              "name": "Viktor Frankl"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "El punto clave",
+          "item": {
+            "@type": "Book",
+            "name": "El punto clave",
+            "author": {
+              "@type": "Person",
+              "name": "Malcolm Gladwell"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "name": "Designing Your Life",
+          "item": {
+            "@type": "Book",
+            "name": "Designing Your Life",
+            "author": {
+              "@type": "Person",
+              "name": "Bill Burnett y Dave Evans"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "name": "El motivo",
+          "item": {
+            "@type": "Book",
+            "name": "El motivo",
+            "author": {
+              "@type": "Person",
+              "name": "Patrick Lencioni"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "name": "Si lo crees, lo creas",
+          "item": {
+            "@type": "Book",
+            "name": "Si lo crees, lo creas",
+            "author": {
+              "@type": "Person",
+              "name": "Brian Tracy"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "name": "Delivering Happiness",
+          "item": {
+            "@type": "Book",
+            "name": "Delivering Happiness",
+            "author": {
+              "@type": "Person",
+              "name": "Tony Hsieh"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 14,
+          "name": "La riqueza que el dinero no puede comprar",
+          "item": {
+            "@type": "Book",
+            "name": "La riqueza que el dinero no puede comprar",
+            "author": {
+              "@type": "Person",
+              "name": "Robin Sharma"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 15,
+          "name": "El camino del artista",
+          "item": {
+            "@type": "Book",
+            "name": "El camino del artista",
+            "author": {
+              "@type": "Person",
+              "name": "Julia Cameron"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 16,
+          "name": "The Almanack of Naval Ravikant",
+          "item": {
+            "@type": "Book",
+            "name": "The Almanack of Naval Ravikant",
+            "author": {
+              "@type": "Person",
+              "name": "Eric Jorgenson"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 17,
+          "name": "El experimento de la rendición",
+          "item": {
+            "@type": "Book",
+            "name": "El experimento de la rendición",
+            "author": {
+              "@type": "Person",
+              "name": "Michael A. Singer"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 18,
+          "name": "Dejar ir",
+          "item": {
+            "@type": "Book",
+            "name": "Dejar ir",
+            "author": {
+              "@type": "Person",
+              "name": "David R. Hawkins"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 19,
+          "name": "Radical Honesty",
+          "item": {
+            "@type": "Book",
+            "name": "Radical Honesty",
+            "author": {
+              "@type": "Person",
+              "name": "Brad Blanton"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 20,
+          "name": "Los cuatro acuerdos",
+          "item": {
+            "@type": "Book",
+            "name": "Los cuatro acuerdos",
+            "author": {
+              "@type": "Person",
+              "name": "Miguel Ruiz"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 21,
+          "name": "El arte de la guerra",
+          "item": {
+            "@type": "Book",
+            "name": "El arte de la guerra",
+            "author": {
+              "@type": "Person",
+              "name": "Sun Tzu"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 22,
+          "name": "Nunca te pares",
+          "item": {
+            "@type": "Book",
+            "name": "Nunca te pares",
+            "author": {
+              "@type": "Person",
+              "name": "Phil Knight"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 23,
+          "name": "Atrévete a no gustar",
+          "item": {
+            "@type": "Book",
+            "name": "Atrévete a no gustar",
+            "author": {
+              "@type": "Person",
+              "name": "Ichiro Kishimi y Fumitake Koga"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://alexdakov.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Libros",
+          "item": "https://alexdakov.com/libros/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Motivadores",
+          "item": "https://alexdakov.com/libros-motivadores/"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/libros/">← Todos los libros</a>
+  <header>
+    <div class="kicker">Alex Dakov · Motivadores</div>
+    <h1>Libros que te <em>mueven</em></h1>
+    <p class="sub">No son libros de frases bonitas. Son los que me han cambiado algo de verdad: la forma de mirar el tiempo que me queda, el trabajo que elijo hacer y la persona en la que quiero convertirme.</p>
+    <div class="rule"></div>
+    <nav class="chips">
+      <a class="chip" href="/libros-liderazgo/">Liderazgo</a>
+      <a class="chip" href="/libros-toma-decisiones/">Toma de decisiones</a>
+      <a class="chip" href="/libros-finanzas/">Finanzas</a>
+      <a class="chip" href="/libros-ventas/">Ventas</a>
+      <a class="chip on" href="/libros-motivadores/">Motivadores</a>
+    </nav>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/6075840567.01._SCLZZZZZZZ_.jpg" alt="Portada de Los 5 tipos de riqueza" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 01</div>
+        <div class="title">Los 5 tipos de riqueza</div>
+        <div class="author">Sahil Bloom</div>
+        <div class="why">El dinero es solo uno de los cinco. Tiempo, salud, relaciones y propósito también cuentan — y son los que nadie mide hasta que ya es tarde.</div>
+        <a class="btn" href="https://www.amazon.es/dp/6075840567?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8496627896.01._SCLZZZZZZZ_.jpg" alt="Portada de Cómo fracasar en casi todo y aun así triunfar" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 02</div>
+        <div class="title">Cómo fracasar en casi todo y aun así triunfar</div>
+        <div class="author">Scott Adams</div>
+        <div class="why">Los objetivos son para perdedores; los sistemas, para ganadores. El creador de Dilbert explicando por qué fallar mucho es la estrategia.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8496627896?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8449304326.01._SCLZZZZZZZ_.jpg" alt="Portada de Los 7 hábitos de la gente altamente efectiva" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 03</div>
+        <div class="title">Los 7 hábitos de la gente altamente efectiva</div>
+        <div class="author">Stephen R. Covey</div>
+        <div class="why">El clásico que todo el mundo cita y casi nadie aplica. Empieza por el hábito 1: deja de reaccionar a lo que te pasa.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8449304326?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8408250892.01._SCLZZZZZZZ_.jpg" alt="Portada de Cuatro mil semanas" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 04</div>
+        <div class="title">Cuatro mil semanas</div>
+        <div class="author">Oliver Burkeman</div>
+        <div class="why">Eso es lo que dura una vida. El antídoto contra la productividad infinita: aceptar que nunca vas a hacerlo todo.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8408250892?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/1578511402.01._SCLZZZZZZZ_.jpg" alt="Portada de The Monk and the Riddle" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 05</div>
+        <div class="title">The Monk and the Riddle</div>
+        <div class="author">Randy Komisar</div>
+        <div class="why">¿Harías lo que haces hoy si supieras que te quedan pocos años? La pregunta que descoloca a cualquier emprendedor.</div>
+        <a class="btn" href="https://www.amazon.es/dp/1578511402?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8410121077.01._SCLZZZZZZZ_.jpg" alt="Portada de Diario para estoicos" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 06</div>
+        <div class="title">Diario para estoicos</div>
+        <div class="author">Ryan Holiday</div>
+        <div class="why">Una página al día durante un año. El estoicismo convertido en rutina, no en frase bonita de Instagram.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8410121077?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8499897312.01._SCLZZZZZZZ_.jpg" alt="Portada de Steve Jobs" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 07</div>
+        <div class="title">Steve Jobs</div>
+        <div class="author">Walter Isaacson</div>
+        <div class="why">La biografía completa, con lo brillante y lo insoportable. Un recordatorio de que el genio y el mal jefe caben en la misma persona.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8499897312?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8425432022.01._SCLZZZZZZZ_.jpg" alt="Portada de El hombre en busca de sentido" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 08</div>
+        <div class="title">El hombre en busca de sentido</div>
+        <div class="author">Viktor Frankl</div>
+        <div class="why">Escrito desde un campo de concentración. Si él encontró un porqué ahí, tu excusa de esta mañana se queda pequeña.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8425432022?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8466342443.01._SCLZZZZZZZ_.jpg" alt="Portada de El punto clave" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 09</div>
+        <div class="title">El punto clave</div>
+        <div class="author">Malcolm Gladwell</div>
+        <div class="why">Cómo una idea pasa de no ser nada a estar en todas partes. Entender el momento exacto en que algo prende.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8466342443?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/1101875321.01._SCLZZZZZZZ_.jpg" alt="Portada de Designing Your Life" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 10</div>
+        <div class="title">Designing Your Life</div>
+        <div class="author">Bill Burnett y Dave Evans</div>
+        <div class="why">Design thinking aplicado a tu propia vida: prototipar caminos en vez de agonizar durante años con la decisión perfecta.</div>
+        <a class="btn" href="https://www.amazon.es/dp/1101875321?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8416997438.01._SCLZZZZZZZ_.jpg" alt="Portada de El motivo" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 11</div>
+        <div class="title">El motivo</div>
+        <div class="author">Patrick Lencioni</div>
+        <div class="why">¿Lideras porque quieres servir o porque querías el puesto? Se lee en una tarde y escuece.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8416997438?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8466364005.01._SCLZZZZZZZ_.jpg" alt="Portada de Si lo crees, lo creas" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 12</div>
+        <div class="title">Si lo crees, lo creas</div>
+        <div class="author">Brian Tracy</div>
+        <div class="why">Tu rendimiento nunca supera la idea que tienes de ti mismo. Ahí está el techo real, no en el mercado.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8466364005?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/145550890X.01._SCLZZZZZZZ_.jpg" alt="Portada de Delivering Happiness" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 13</div>
+        <div class="title">Delivering Happiness</div>
+        <div class="author">Tony Hsieh</div>
+        <div class="why">Cómo Zappos se construyó sobre la cultura antes que sobre el producto. Y lo que eso cuesta sostener.</div>
+        <a class="btn" href="https://www.amazon.es/dp/145550890X?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8425366348.01._SCLZZZZZZZ_.jpg" alt="Portada de La riqueza que el dinero no puede comprar" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 14</div>
+        <div class="title">La riqueza que el dinero no puede comprar</div>
+        <div class="author">Robin Sharma</div>
+        <div class="why">Los ocho tipos de riqueza que no aparecen en tu cuenta bancaria y que decides ignorar cuando vas rápido.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8425366348?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8403102054.01._SCLZZZZZZZ_.jpg" alt="Portada de El camino del artista" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 15</div>
+        <div class="title">El camino del artista</div>
+        <div class="author">Julia Cameron</div>
+        <div class="why">Tres páginas escritas a mano cada mañana. Suena absurdo hasta que lo haces un mes seguido.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8403102054?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/1544514212.01._SCLZZZZZZZ_.jpg" alt="Portada de The Almanack of Naval Ravikant" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 16</div>
+        <div class="title">The Almanack of Naval Ravikant</div>
+        <div class="author">Eric Jorgenson</div>
+        <div class="why">Todo lo que Naval ha dicho sobre riqueza, suerte y felicidad, ordenado. Se lee a trozos y se relee siempre.</div>
+        <a class="btn" href="https://www.amazon.es/dp/1544514212?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/848445620X.01._SCLZZZZZZZ_.jpg" alt="Portada de El experimento de la rendición" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 17</div>
+        <div class="title">El experimento de la rendición</div>
+        <div class="author">Michael A. Singer</div>
+        <div class="why">Diez años diciendo que sí a todo lo que la vida le puso delante, sin planificar nada. Dónde acabó.</div>
+        <a class="btn" href="https://www.amazon.es/dp/848445620X?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8494248219.01._SCLZZZZZZZ_.jpg" alt="Portada de Dejar ir" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 18</div>
+        <div class="title">Dejar ir</div>
+        <div class="author">David R. Hawkins</div>
+        <div class="why">Un mecanismo concreto para soltar lo que te bloquea, en vez de pasarte otros diez años analizándolo.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8494248219?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/0440507545.01._SCLZZZZZZZ_.jpg" alt="Portada de Radical Honesty" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 19</div>
+        <div class="title">Radical Honesty</div>
+        <div class="author">Brad Blanton</div>
+        <div class="why">Decir la verdad, toda, siempre. Es incomodísimo y probablemente por eso funciona.</div>
+        <a class="btn" href="https://www.amazon.es/dp/0440507545?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/847953253X.01._SCLZZZZZZZ_.jpg" alt="Portada de Los cuatro acuerdos" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 20</div>
+        <div class="title">Los cuatro acuerdos</div>
+        <div class="author">Miguel Ruiz</div>
+        <div class="why">Cuatro reglas. La segunda — no te tomes nada personalmente — vale el libro entero y te ahorra la mitad de los disgustos.</div>
+        <a class="btn" href="https://www.amazon.es/dp/847953253X?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8494709208.01._SCLZZZZZZZ_.jpg" alt="Portada de El arte de la guerra" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 21</div>
+        <div class="title">El arte de la guerra</div>
+        <div class="author">Sun Tzu</div>
+        <div class="why">2.500 años después sigue explicando la estrategia mejor que la mitad de los libros de negocio de este año.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8494709208?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8416029776.01._SCLZZZZZZZ_.jpg" alt="Portada de Nunca te pares" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 22</div>
+        <div class="title">Nunca te pares</div>
+        <div class="author">Phil Knight</div>
+        <div class="why">Cómo se construyó Nike contado sin épica: deudas, miedo, proveedores que fallan y gente que no se rindió.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8416029776?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8408184164.01._SCLZZZZZZZ_.jpg" alt="Portada de Atrévete a no gustar" loading="lazy" onerror="this.style.visibility='hidden'">
+      <div class="info">
+        <div class="num">LIBRO 23</div>
+        <div class="title">Atrévete a no gustar</div>
+        <div class="author">Ichiro Kishimi y Fumitake Koga</div>
+        <div class="why">Adler contra la idea de que tu pasado te define. Y contra la necesidad de caerle bien a todo el mundo.</div>
+        <a class="btn" href="https://www.amazon.es/dp/8408184164?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p class="disc">Como Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos. Recomiendo únicamente libros que he leído, que aportan valor real y que a mí me han hecho crecer. El precio para ti es exactamente el mismo; a mí me sirve para comprar más libros, seguir aprendiendo y seguir aportando valor.</p>
+    <p>© Alex Dakov · <a href="https://www.instagram.com/alex_dakov" target="_blank" rel="noopener">@alex_dakov</a></p>
+  </footer>
+</div>
+</body>
+</html>
