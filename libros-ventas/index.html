@@ -47,6 +47,12 @@
     .card:hover{transform:translateY(-3px);border-color:var(--gold);background:var(--navy-card-hover)}
     .cover{width:80px;min-width:80px;height:120px;border-radius:6px;object-fit:cover;
       background:#0b1120;box-shadow:0 8px 22px rgba(0,0,0,.5)}
+    .cover.ph{display:none;flex-direction:column;justify-content:center;align-items:center;
+      padding:10px 8px;text-align:center;border:1px solid var(--border-strong);
+      background:linear-gradient(160deg,#16233f,#0d1526)}
+    .cover.ph span{font-family:'Playfair Display',serif;font-size:12px;line-height:1.3;color:var(--text);
+      font-weight:600;overflow:hidden;display:block}
+    .cover.ph em{display:block;width:20px;height:2px;background:var(--gold);margin:8px auto 0}
     .info{flex:1;min-width:0}
     .num{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:.14em}
     .title{font-family:'Playfair Display',serif;font-size:20px;line-height:1.2;margin:5px 0 3px;font-weight:600;color:var(--text)}
@@ -253,7 +259,9 @@
 
   <div class="grid">
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8416029741.01._SCLZZZZZZZ_.jpg" alt="Portada de Rompe la barrera del no" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8416029741.01._SCLZZZZZZZ_.jpg" alt="Portada de Rompe la barrera del no" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Rompe la barrera del no<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 01</div>
         <div class="title">Rompe la barrera del no</div>
@@ -263,7 +271,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8417942351.01._SCLZZZZZZZ_.jpg" alt="Portada de Nunca comas solo" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8417942351.01._SCLZZZZZZZ_.jpg" alt="Portada de Nunca comas solo" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Nunca comas solo<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 02</div>
         <div class="title">Nunca comas solo</div>
@@ -273,7 +283,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/6073146507.01._SCLZZZZZZZ_.jpg" alt="Portada de La regla de oro de los negocios" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/6073146507.01._SCLZZZZZZZ_.jpg" alt="Portada de La regla de oro de los negocios" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>La regla de oro de los negocios<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 03</div>
         <div class="title">La regla de oro de los negocios</div>
@@ -283,7 +295,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8493664928.01._SCLZZZZZZZ_.jpg" alt="Portada de Cómo ganar amigos e influir sobre las personas" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8493664928.01._SCLZZZZZZZ_.jpg" alt="Portada de Cómo ganar amigos e influir sobre las personas" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Cómo ganar amigos e influir sobre las personas<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 04</div>
         <div class="title">Cómo ganar amigos e influir sobre las personas</div>
@@ -293,7 +307,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/1511318201.01._SCLZZZZZZZ_.jpg" alt="Portada de The Sales Acceleration Formula" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/1511318201.01._SCLZZZZZZZ_.jpg" alt="Portada de The Sales Acceleration Formula" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>The Sales Acceleration Formula<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 05</div>
         <div class="title">The Sales Acceleration Formula</div>
@@ -303,7 +319,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8466371796.01._SCLZZZZZZZ_.jpg" alt="Portada de Vendes o vendes" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8466371796.01._SCLZZZZZZZ_.jpg" alt="Portada de Vendes o vendes" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Vendes o vendes<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 06</div>
         <div class="title">Vendes o vendes</div>
@@ -313,7 +331,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/1607382628.01._SCLZZZZZZZ_.jpg" alt="Portada de El poder de la persuasión" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/1607382628.01._SCLZZZZZZZ_.jpg" alt="Portada de El poder de la persuasión" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>El poder de la persuasión<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 07</div>
         <div class="title">El poder de la persuasión</div>
@@ -323,7 +343,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/849139690X.01._SCLZZZZZZZ_.jpg" alt="Portada de Influencia" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/849139690X.01._SCLZZZZZZZ_.jpg" alt="Portada de Influencia" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Influencia<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 08</div>
         <div class="title">Influencia</div>
@@ -339,5 +361,9 @@
     <p>© Alex Dakov · <a href="https://www.instagram.com/alex_dakov" target="_blank" rel="noopener">@alex_dakov</a></p>
   </footer>
 </div>
+<script>
+/* Amazon sirve un GIF de 1x1 cuando no tiene portada, asi que onerror no basta. */
+function adNoCover(i){i.style.display='none';i.nextElementSibling.style.display='flex';}
+</script>
 </body>
 </html>

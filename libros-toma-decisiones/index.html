@@ -47,6 +47,12 @@
     .card:hover{transform:translateY(-3px);border-color:var(--gold);background:var(--navy-card-hover)}
     .cover{width:80px;min-width:80px;height:120px;border-radius:6px;object-fit:cover;
       background:#0b1120;box-shadow:0 8px 22px rgba(0,0,0,.5)}
+    .cover.ph{display:none;flex-direction:column;justify-content:center;align-items:center;
+      padding:10px 8px;text-align:center;border:1px solid var(--border-strong);
+      background:linear-gradient(160deg,#16233f,#0d1526)}
+    .cover.ph span{font-family:'Playfair Display',serif;font-size:12px;line-height:1.3;color:var(--text);
+      font-weight:600;overflow:hidden;display:block}
+    .cover.ph em{display:block;width:20px;height:2px;background:var(--gold);margin:8px auto 0}
     .info{flex:1;min-width:0}
     .num{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:.14em}
     .title{font-family:'Playfair Display',serif;font-size:20px;line-height:1.2;margin:5px 0 3px;font-weight:600;color:var(--text)}
@@ -117,10 +123,10 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Built to Last",
+          "name": "Empresas que perduran",
           "item": {
             "@type": "Book",
-            "name": "Built to Last",
+            "name": "Empresas que perduran",
             "author": {
               "@type": "Person",
               "name": "Jim Collins y Jerry Porras"
@@ -143,10 +149,10 @@
         {
           "@type": "ListItem",
           "position": 4,
-          "name": "Good to Great",
+          "name": "Empresas que sobresalen",
           "item": {
             "@type": "Book",
-            "name": "Good to Great",
+            "name": "Empresas que sobresalen",
             "author": {
               "@type": "Person",
               "name": "Jim Collins"
@@ -195,10 +201,10 @@
         {
           "@type": "ListItem",
           "position": 8,
-          "name": "Thinking in Bets",
+          "name": "Decide y apuesta",
           "item": {
             "@type": "Book",
-            "name": "Thinking in Bets",
+            "name": "Decide y apuesta",
             "author": {
               "@type": "Person",
               "name": "Annie Duke"
@@ -247,10 +253,10 @@
         {
           "@type": "ListItem",
           "position": 12,
-          "name": "Alchemy",
+          "name": "Alquimia",
           "item": {
             "@type": "Book",
-            "name": "Alchemy",
+            "name": "Alquimia",
             "author": {
               "@type": "Person",
               "name": "Rory Sutherland"
@@ -286,10 +292,10 @@
         {
           "@type": "ListItem",
           "position": 15,
-          "name": "Oversubscribed",
+          "name": "Superventas",
           "item": {
             "@type": "Book",
-            "name": "Oversubscribed",
+            "name": "Superventas",
             "author": {
               "@type": "Person",
               "name": "Daniel Priestley"
@@ -344,7 +350,9 @@
 
   <div class="grid">
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8416997519.01._SCLZZZZZZZ_.jpg" alt="Portada de Blitzscaling" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8416997519.01._SCLZZZZZZZ_.jpg" alt="Portada de Blitzscaling" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Blitzscaling<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 01</div>
         <div class="title">Blitzscaling</div>
@@ -354,17 +362,21 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/0887307396.01._SCLZZZZZZZ_.jpg" alt="Portada de Built to Last" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8449302323.01._SCLZZZZZZZ_.jpg" alt="Portada de Empresas que perduran" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Empresas que perduran<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 02</div>
-        <div class="title">Built to Last</div>
+        <div class="title">Empresas que perduran</div>
         <div class="author">Jim Collins y Jerry Porras</div>
         <div class="why">Qué tienen en común las compañías que aguantan décadas. No es el producto ni el fundador carismático.</div>
-        <a class="btn" href="https://www.amazon.es/dp/0887307396?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+        <a class="btn" href="https://www.amazon.es/dp/8449302323?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/1401964362.01._SCLZZZZZZZ_.jpg" alt="Portada de The Gap and the Gain" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/1401964362.01._SCLZZZZZZZ_.jpg" alt="Portada de The Gap and the Gain" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>The Gap and the Gain<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 03</div>
         <div class="title">The Gap and the Gain</div>
@@ -374,17 +386,21 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/0066620996.01._SCLZZZZZZZ_.jpg" alt="Portada de Good to Great" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8496426858.01._SCLZZZZZZZ_.jpg" alt="Portada de Empresas que sobresalen" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Empresas que sobresalen<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 04</div>
-        <div class="title">Good to Great</div>
+        <div class="title">Empresas que sobresalen</div>
         <div class="author">Jim Collins</div>
         <div class="why">El salto de bueno a excelente: líder de nivel 5, el concepto del erizo y la gente correcta en el autobús.</div>
-        <a class="btn" href="https://www.amazon.es/dp/0066620996?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+        <a class="btn" href="https://www.amazon.es/dp/8496426858?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8483068613.01._SCLZZZZZZZ_.jpg" alt="Portada de Pensar rápido, pensar despacio" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8483068613.01._SCLZZZZZZZ_.jpg" alt="Portada de Pensar rápido, pensar despacio" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Pensar rápido, pensar despacio<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 05</div>
         <div class="title">Pensar rápido, pensar despacio</div>
@@ -394,7 +410,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8419105244.01._SCLZZZZZZZ_.jpg" alt="Portada de Tus próximas cinco jugadas" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8419105244.01._SCLZZZZZZZ_.jpg" alt="Portada de Tus próximas cinco jugadas" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Tus próximas cinco jugadas<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 06</div>
         <div class="title">Tus próximas cinco jugadas</div>
@@ -404,7 +422,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8416997462.01._SCLZZZZZZZ_.jpg" alt="Portada de Quién, no Cómo" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8416997462.01._SCLZZZZZZZ_.jpg" alt="Portada de Quién, no Cómo" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Quién, no Cómo<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 07</div>
         <div class="title">Quién, no Cómo</div>
@@ -414,17 +434,21 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/0735216371.01._SCLZZZZZZZ_.jpg" alt="Portada de Thinking in Bets" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8411004074.01._SCLZZZZZZZ_.jpg" alt="Portada de Decide y apuesta" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Decide y apuesta<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 08</div>
-        <div class="title">Thinking in Bets</div>
+        <div class="title">Decide y apuesta</div>
         <div class="author">Annie Duke</div>
         <div class="why">Una jugadora profesional de póker explicando cómo separar una buena decisión de un buen resultado.</div>
-        <a class="btn" href="https://www.amazon.es/dp/0735216371?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+        <a class="btn" href="https://www.amazon.es/dp/8411004074?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8415917279.01._SCLZZZZZZZ_.jpg" alt="Portada de Superpronosticadores" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8415917279.01._SCLZZZZZZZ_.jpg" alt="Portada de Superpronosticadores" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Superpronosticadores<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 09</div>
         <div class="title">Superpronosticadores</div>
@@ -434,7 +458,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/0679762884.01._SCLZZZZZZZ_.jpg" alt="Portada de High Output Management" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/0679762884.01._SCLZZZZZZZ_.jpg" alt="Portada de High Output Management" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>High Output Management<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 10</div>
         <div class="title">High Output Management</div>
@@ -444,7 +470,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/B0G2SW4QTJ.01._SCLZZZZZZZ_.jpg" alt="Portada de 10x es más fácil que 2x" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/B0G2SW4QTJ.01._SCLZZZZZZZ_.jpg" alt="Portada de 10x es más fácil que 2x" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>10x es más fácil que 2x<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 11</div>
         <div class="title">10x es más fácil que 2x</div>
@@ -454,17 +482,21 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/0753556529.01._SCLZZZZZZZ_.jpg" alt="Portada de Alchemy" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/B0HF4LCZLK.01._SCLZZZZZZZ_.jpg" alt="Portada de Alquimia" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Alquimia<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 12</div>
-        <div class="title">Alchemy</div>
+        <div class="title">Alquimia</div>
         <div class="author">Rory Sutherland</div>
         <div class="why">La lógica no explica por qué la gente compra. Psicología aplicada para los problemas que el Excel no resuelve.</div>
-        <a class="btn" href="https://www.amazon.es/dp/0753556529?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+        <a class="btn" href="https://www.amazon.es/dp/B0HF4LCZLK?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/0593239083.01._SCLZZZZZZZ_.jpg" alt="Portada de Masters of Scale" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/0593239083.01._SCLZZZZZZZ_.jpg" alt="Portada de Masters of Scale" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Masters of Scale<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 13</div>
         <div class="title">Masters of Scale</div>
@@ -474,7 +506,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/1781332487.01._SCLZZZZZZZ_.jpg" alt="Portada de 24 Assets" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/1781332487.01._SCLZZZZZZZ_.jpg" alt="Portada de 24 Assets" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>24 Assets<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 14</div>
         <div class="title">24 Assets</div>
@@ -484,13 +518,15 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/0857088254.01._SCLZZZZZZZ_.jpg" alt="Portada de Oversubscribed" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8410164248.01._SCLZZZZZZZ_.jpg" alt="Portada de Superventas" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Superventas<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 15</div>
-        <div class="title">Oversubscribed</div>
+        <div class="title">Superventas</div>
         <div class="author">Daniel Priestley</div>
         <div class="why">Que haya más demanda que oferta no es suerte. Cómo se diseña esa situación a propósito.</div>
-        <a class="btn" href="https://www.amazon.es/dp/0857088254?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+        <a class="btn" href="https://www.amazon.es/dp/8410164248?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
       </div>
     </div>
   </div>
@@ -500,5 +536,9 @@
     <p>© Alex Dakov · <a href="https://www.instagram.com/alex_dakov" target="_blank" rel="noopener">@alex_dakov</a></p>
   </footer>
 </div>
+<script>
+/* Amazon sirve un GIF de 1x1 cuando no tiene portada, asi que onerror no basta. */
+function adNoCover(i){i.style.display='none';i.nextElementSibling.style.display='flex';}
+</script>
 </body>
 </html>

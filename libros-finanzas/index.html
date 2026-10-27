@@ -47,6 +47,12 @@
     .card:hover{transform:translateY(-3px);border-color:var(--gold);background:var(--navy-card-hover)}
     .cover{width:80px;min-width:80px;height:120px;border-radius:6px;object-fit:cover;
       background:#0b1120;box-shadow:0 8px 22px rgba(0,0,0,.5)}
+    .cover.ph{display:none;flex-direction:column;justify-content:center;align-items:center;
+      padding:10px 8px;text-align:center;border:1px solid var(--border-strong);
+      background:linear-gradient(160deg,#16233f,#0d1526)}
+    .cover.ph span{font-family:'Playfair Display',serif;font-size:12px;line-height:1.3;color:var(--text);
+      font-weight:600;overflow:hidden;display:block}
+    .cover.ph em{display:block;width:20px;height:2px;background:var(--gold);margin:8px auto 0}
     .info{flex:1;min-width:0}
     .num{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:.14em}
     .title{font-family:'Playfair Display',serif;font-size:20px;line-height:1.2;margin:5px 0 3px;font-weight:600;color:var(--text)}
@@ -104,10 +110,10 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "I Will Teach You To Be Rich",
+          "name": "Te enseñaré a ser rico",
           "item": {
             "@type": "Book",
-            "name": "I Will Teach You To Be Rich",
+            "name": "Te enseñaré a ser rico",
             "author": {
               "@type": "Person",
               "name": "Ramit Sethi"
@@ -169,10 +175,10 @@
         {
           "@type": "ListItem",
           "position": 6,
-          "name": "Poor Charlie's Almanack",
+          "name": "El almanaque del pobre Charlie",
           "item": {
             "@type": "Book",
-            "name": "Poor Charlie's Almanack",
+            "name": "El almanaque del pobre Charlie",
             "author": {
               "@type": "Person",
               "name": "Charlie Munger / Peter Kaufman"
@@ -195,10 +201,10 @@
         {
           "@type": "ListItem",
           "position": 8,
-          "name": "The Price of Time",
+          "name": "El precio del tiempo",
           "item": {
             "@type": "Book",
-            "name": "The Price of Time",
+            "name": "El precio del tiempo",
             "author": {
               "@type": "Person",
               "name": "Edward Chancellor"
@@ -260,10 +266,10 @@
         {
           "@type": "ListItem",
           "position": 13,
-          "name": "What I Learned Losing a Million Dollars",
+          "name": "Lo que aprendí al perder un millón de dólares",
           "item": {
             "@type": "Book",
-            "name": "What I Learned Losing a Million Dollars",
+            "name": "Lo que aprendí al perder un millón de dólares",
             "author": {
               "@type": "Person",
               "name": "Jim Paul"
@@ -318,17 +324,21 @@
 
   <div class="grid">
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/1529306582.01._SCLZZZZZZZ_.jpg" alt="Portada de I Will Teach You To Be Rich" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8411720136.01._SCLZZZZZZZ_.jpg" alt="Portada de Te enseñaré a ser rico" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Te enseñaré a ser rico<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 01</div>
-        <div class="title">I Will Teach You To Be Rich</div>
+        <div class="title">Te enseñaré a ser rico</div>
         <div class="author">Ramit Sethi</div>
         <div class="why">Sistema, no fuerza de voluntad: automatiza tus finanzas una vez y deja de tomar decisiones de dinero cada mes.</div>
-        <a class="btn" href="https://www.amazon.es/dp/1529306582?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+        <a class="btn" href="https://www.amazon.es/dp/8411720136?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8408268139.01._SCLZZZZZZZ_.jpg" alt="Portada de La psicología del dinero" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8408268139.01._SCLZZZZZZZ_.jpg" alt="Portada de La psicología del dinero" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>La psicología del dinero<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 02</div>
         <div class="title">La psicología del dinero</div>
@@ -338,7 +348,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8423433307.01._SCLZZZZZZZ_.jpg" alt="Portada de La interpretación de los estados financieros" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8423433307.01._SCLZZZZZZZ_.jpg" alt="Portada de La interpretación de los estados financieros" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>La interpretación de los estados financieros<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 03</div>
         <div class="title">La interpretación de los estados financieros</div>
@@ -348,7 +360,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8417963553.01._SCLZZZZZZZ_.jpg" alt="Portada de El hombre más rico de Babilonia" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8417963553.01._SCLZZZZZZZ_.jpg" alt="Portada de El hombre más rico de Babilonia" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>El hombre más rico de Babilonia<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 04</div>
         <div class="title">El hombre más rico de Babilonia</div>
@@ -358,7 +372,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8494274783.01._SCLZZZZZZZ_.jpg" alt="Portada de Piense y hágase rico" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8494274783.01._SCLZZZZZZZ_.jpg" alt="Portada de Piense y hágase rico" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Piense y hágase rico<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 05</div>
         <div class="title">Piense y hágase rico</div>
@@ -368,17 +384,21 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/1953953239.01._SCLZZZZZZZ_.jpg" alt="Portada de Poor Charlie&#x27;s Almanack" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/B0F8J6F85F.01._SCLZZZZZZZ_.jpg" alt="Portada de El almanaque del pobre Charlie" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>El almanaque del pobre Charlie<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 06</div>
-        <div class="title">Poor Charlie&#x27;s Almanack</div>
+        <div class="title">El almanaque del pobre Charlie</div>
         <div class="author">Charlie Munger / Peter Kaufman</div>
         <div class="why">Modelos mentales de varias disciplinas a la vez, para dejar de ser el del martillo que solo ve clavos.</div>
-        <a class="btn" href="https://www.amazon.es/dp/1953953239?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+        <a class="btn" href="https://www.amazon.es/dp/B0F8J6F85F?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8491118748.01._SCLZZZZZZZ_.jpg" alt="Portada de Morir con cero" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8491118748.01._SCLZZZZZZZ_.jpg" alt="Portada de Morir con cero" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Morir con cero<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 07</div>
         <div class="title">Morir con cero</div>
@@ -388,17 +408,21 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/0241569168.01._SCLZZZZZZZ_.jpg" alt="Portada de The Price of Time" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8423437140.01._SCLZZZZZZZ_.jpg" alt="Portada de El precio del tiempo" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>El precio del tiempo<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 08</div>
-        <div class="title">The Price of Time</div>
+        <div class="title">El precio del tiempo</div>
         <div class="author">Edward Chancellor</div>
         <div class="why">La historia del tipo de interés. Después de leerlo entiendes por qué pasa lo que pasa en la economía.</div>
-        <a class="btn" href="https://www.amazon.es/dp/0241569168?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+        <a class="btn" href="https://www.amazon.es/dp/8423437140?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8423425177.01._SCLZZZZZZZ_.jpg" alt="Portada de El inversor inteligente" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8423425177.01._SCLZZZZZZZ_.jpg" alt="Portada de El inversor inteligente" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>El inversor inteligente<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 09</div>
         <div class="title">El inversor inteligente</div>
@@ -408,7 +432,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8416788103.01._SCLZZZZZZZ_.jpg" alt="Portada de La bolsa o la vida" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8416788103.01._SCLZZZZZZZ_.jpg" alt="Portada de La bolsa o la vida" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>La bolsa o la vida<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 10</div>
         <div class="title">La bolsa o la vida</div>
@@ -418,7 +444,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8491110194.01._SCLZZZZZZZ_.jpg" alt="Portada de El millonario de la puerta de al lado" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8491110194.01._SCLZZZZZZZ_.jpg" alt="Portada de El millonario de la puerta de al lado" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>El millonario de la puerta de al lado<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 11</div>
         <div class="title">El millonario de la puerta de al lado</div>
@@ -428,7 +456,9 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8423434206.01._SCLZZZZZZZ_.jpg" alt="Portada de Imbatible" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8423434206.01._SCLZZZZZZZ_.jpg" alt="Portada de Imbatible" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Imbatible<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 12</div>
         <div class="title">Imbatible</div>
@@ -438,13 +468,15 @@
       </div>
     </div>
     <div class="card">
-      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/1306311241.01._SCLZZZZZZZ_.jpg" alt="Portada de What I Learned Losing a Million Dollars" loading="lazy" onerror="this.style.visibility='hidden'">
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/P/8410313529.01._SCLZZZZZZZ_.jpg" alt="Portada de Lo que aprendí al perder un millón de dólares" loading="lazy"
+           onerror="adNoCover(this)" onload="if(this.naturalWidth<20)adNoCover(this)">
+      <div class="cover ph" aria-hidden="true"><span>Lo que aprendí al perder un millón de dólares<em></em></span></div>
       <div class="info">
         <div class="num">LIBRO 13</div>
-        <div class="title">What I Learned Losing a Million Dollars</div>
+        <div class="title">Lo que aprendí al perder un millón de dólares</div>
         <div class="author">Jim Paul</div>
         <div class="why">Hay mil formas de ganar dinero y solo unas pocas de perderlo. Estudia esas y evítalas.</div>
-        <a class="btn" href="https://www.amazon.es/dp/1306311241?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
+        <a class="btn" href="https://www.amazon.es/dp/8410313529?tag=alexdakov-21" target="_blank" rel="nofollow noopener sponsored">Ver en Amazon →</a>
       </div>
     </div>
   </div>
@@ -454,5 +486,9 @@
     <p>© Alex Dakov · <a href="https://www.instagram.com/alex_dakov" target="_blank" rel="noopener">@alex_dakov</a></p>
   </footer>
 </div>
+<script>
+/* Amazon sirve un GIF de 1x1 cuando no tiene portada, asi que onerror no basta. */
+function adNoCover(i){i.style.display='none';i.nextElementSibling.style.display='flex';}
+</script>
 </body>
 </html>
