@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog de liderazgo y equipos de alto rendimiento · Alex Dakov</title>
+  <meta name="description" content="Artículos de Alex Dakov sobre liderazgo, equipos de alto rendimiento y neurociencia de la motivación, y guías para elegir conferenciante para tu evento.">
+  <link rel="canonical" href="https://alexdakov.com/blog/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="Alex Dakov">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Alex Dakov">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:url" content="https://alexdakov.com/blog/">
+  <meta property="og:title" content="Blog de liderazgo y equipos de alto rendimiento · Alex Dakov">
+  <meta property="og:description" content="Artículos de Alex Dakov sobre liderazgo, equipos de alto rendimiento y neurociencia de la motivación, y guías para elegir conferenciante para tu evento.">
+  <meta property="og:image" content="https://alexdakov.com/assets/og-home.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog de liderazgo y equipos de alto rendimiento · Alex Dakov">
+  <meta name="twitter:description" content="Artículos de Alex Dakov sobre liderazgo, equipos de alto rendimiento y neurociencia de la motivación, y guías para elegir conferenciante para tu evento.">
+  <meta name="twitter:image" content="https://alexdakov.com/assets/og-home.png">
+  <link rel="alternate" type="application/rss+xml" title="Blog de Alex Dakov" href="https://alexdakov.com/blog/feed.xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Blog",
+      "@id": "https://alexdakov.com/blog/#blog",
+      "url": "https://alexdakov.com/blog/",
+      "name": "Blog de liderazgo de Alex Dakov",
+      "description": "Artículos de Alex Dakov sobre liderazgo, equipos de alto rendimiento y neurociencia de la motivación, y guías para elegir conferenciante para tu evento.",
+      "inLanguage": "es",
+      "author": {
+        "@id": "https://alexdakov.com/#alexdakov"
+      },
+      "publisher": {
+        "@id": "https://alexdakov.com/#alexdakov"
+      },
+      "blogPost": [
+        {
+          "@id": "https://alexdakov.com/blog/como-elegir-conferenciante-liderazgo/#post"
+        },
+        {
+          "@id": "https://alexdakov.com/blog/liderar-equipos-circo-del-sol/#post"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://alexdakov.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://alexdakov.com/blog/"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-base: #090C17;
+      --navy-alt: #0A0B17;
+      --navy-deep: #070A14;
+      --navy-card: #14213D;
+      --navy-card-hover: #1B2A4D;
+      --bg-dark-deep: #04060F;
+      --text: #F0EBE0;
+      --text-secondary: #A09B92;
+      --text-tertiary: #6E6960;
+      --gold: #C9A961;
+      --gold-hover: #B69465;
+      --bronze: #8B6F47;
+      --gold-soft: rgba(201,169,97,0.12);
+      --gold-glow: rgba(201,169,97,0.06);
+      --gold-dashed: rgba(201,169,97,0.45);
+      --navy-glow: rgba(70,120,180,0.10);
+      --border: rgba(240,235,224,0.08);
+      --border-strong: rgba(240,235,224,0.16);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--navy-base);
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 64px;
+      z-index: 100;
+      transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s;
+    }
+    .header.scrolled {
+      background: rgba(9,12,23,0.82);
+      backdrop-filter: blur(20px) saturate(180%);
+      padding: 20px 64px;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 28px;
+      color: var(--text);
+      letter-spacing: 0.5px;
+      line-height: 1;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 6px;
+      display: inline-block;
+    }
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .logo:hover::after { width: 100%; }
+    .logo-mark {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      vertical-align: middle;
+      margin: 0 8px 4px;
+    }
+
+    /* HAMBURGER */
+    .hamburger {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      width: 48px;
+      height: 48px;
+      transition: opacity 0.3s;
+    }
+    .hamburger:hover { opacity: 0.7; }
+    .hamburger span {
+      width: 28px;
+      height: 1px;
+      background: var(--text);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s, background 0.3s;
+      transform-origin: center;
+    }
+    .hamburger.open span { background: var(--gold); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* OVERLAY NAV */
+    .overlay-nav {
+      position: fixed;
+      inset: 0;
+      background: rgba(7,10,20,0.96);
+      backdrop-filter: blur(40px) saturate(180%);
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px;
+    }
+    .overlay-nav.open { opacity: 1; pointer-events: auto; }
+    .overlay-nav-inner { text-align: center; }
+    .overlay-nav-eyebrow {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 48px;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s 0.3s, transform 0.6s 0.3s;
+    }
+    .overlay-nav.open .overlay-nav-eyebrow { opacity: 1; transform: translateY(0); }
+    .overlay-nav ul { list-style: none; padding: 0; margin: 0; }
+    .overlay-nav li {
+      margin: 12px 0;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .overlay-nav.open li { opacity: 1; transform: translateY(0); }
+    .overlay-nav.open li:nth-child(1) { transition-delay: 0.4s; }
+    .overlay-nav.open li:nth-child(2) { transition-delay: 0.5s; }
+    .overlay-nav.open li:nth-child(3) { transition-delay: 0.6s; }
+    .overlay-nav.open li:nth-child(4) { transition-delay: 0.7s; }
+    .overlay-nav.open li:nth-child(5) { transition-delay: 0.8s; }
+    .overlay-nav a {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      transition: color 0.3s, padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-block;
+      position: relative;
+    }
+    .overlay-nav a:hover { color: var(--gold); padding-left: 24px; }
+    .overlay-nav a::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+      color: var(--gold);
+      font-style: normal;
+    }
+    .overlay-nav a:hover::before { opacity: 1; }
+    .overlay-nav a.active {
+      color: var(--gold);
+    }
+    .overlay-nav-footer {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 32px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      opacity: 0;
+      transition: opacity 0.6s 0.9s;
+    }
+    .overlay-nav.open .overlay-nav-footer { opacity: 0.7; }
+    .overlay-nav-footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      transition: color 0.3s;
+    }
+    .overlay-nav-footer a:hover { color: var(--gold); padding-left: 0; }
+    .overlay-nav-footer a::before { display: none; }
+
+    /* PAGE HERO (placeholder) */
+    .page-hero {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 160px 64px 80px;
+      position: relative;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 80% 20%, var(--navy-glow), transparent 50%),
+        radial-gradient(ellipse at 15% 80%, var(--gold-glow), transparent 50%),
+        var(--navy-base);
+    }
+    .page-eyebrow {
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 36px;
+      font-weight: 500;
+    }
+    .page-eyebrow::before { content: '— '; letter-spacing: -2px; }
+    .page-eyebrow::after { content: ' —'; letter-spacing: -2px; }
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 36px;
+      color: var(--text);
+      max-width: 900px;
+    }
+    .page-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+    .page-subtitle {
+      font-size: clamp(16px, 1.4vw, 19px);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 600px;
+      font-weight: 300;
+      margin-bottom: 80px;
+    }
+
+    /* COMING SOON */
+    .coming-soon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .coming-soon-line {
+      width: 80px;
+      height: 1px;
+      background: var(--gold);
+      position: relative;
+    }
+    .coming-soon-line::after {
+      content: '';
+      position: absolute;
+      top: -3px; left: 50%;
+      transform: translateX(-50%);
+      width: 7px;
+      height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .coming-soon-text {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .coming-soon-desc {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(18px, 1.8vw, 24px);
+      line-height: 1.5;
+      color: var(--text-secondary);
+      max-width: 560px;
+      font-weight: 400;
+    }
+    .coming-soon-link {
+      margin-top: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 6px;
+      transition: gap 0.25s, color 0.25s;
+    }
+    .coming-soon-link:hover { gap: 16px; color: var(--text); }
+    .coming-soon-link svg { width: 14px; height: 10px; }
+
+    /* FOOTER */
+    .page-footer {
+      background: var(--navy-deep);
+      padding: 40px 64px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+    }
+    .page-footer .gold { color: var(--gold); }
+
+    @media (max-width: 1024px) {
+      .header { padding: 20px 32px; }
+      .header.scrolled { padding: 16px 32px; }
+      .overlay-nav { padding: 32px; }
+      .page-hero { padding: 120px 32px 60px; }
+      .page-footer { padding: 32px; }
+    }
+  </style>
+  <!-- Consentimiento de cookies + analitica condicional -->
+  <style>
+    .cookie-banner{position:fixed;left:0;right:0;bottom:0;z-index:9999;display:flex;justify-content:center;padding:0 16px 16px;transform:translateY(20px);opacity:0;transition:opacity .4s,transform .4s;pointer-events:none}
+    .cookie-banner.show{transform:translateY(0);opacity:1;pointer-events:auto}
+    .cookie-banner-inner{max-width:700px;width:100%;background:rgba(9,12,23,.97);backdrop-filter:blur(20px);border:1px solid rgba(240,235,224,.16);border-radius:14px;padding:20px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;box-shadow:0 24px 60px -20px rgba(0,0,0,.75)}
+    .cookie-text{flex:1;min-width:240px;font-size:13px;line-height:1.6;color:#A09B92;font-family:'Inter',-apple-system,sans-serif}
+    .cookie-actions{display:flex;gap:10px}
+    .cookie-btn{cursor:pointer;border-radius:100px;padding:11px 22px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;font-family:'Inter',-apple-system,sans-serif;transition:background .25s,color .25s,border-color .25s;border:1px solid rgba(240,235,224,.16)}
+    .cookie-reject{background:transparent;color:#A09B92}
+    .cookie-reject:hover{color:#F0EBE0;border-color:#A09B92}
+    .cookie-accept{background:#C9A961;color:#090C17;border-color:#C9A961}
+    .cookie-accept:hover{background:#B69465}
+    @media(max-width:600px){.cookie-banner-inner{flex-direction:column;align-items:stretch}.cookie-btn{flex:1}}
+  </style>
+  <script>
+    window.__adLoadAnalytics=function(){
+      if(window.__adAnalyticsLoaded)return;window.__adAnalyticsLoaded=true;/* Meta Pixel (gated on consent) */!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1019162761091060');fbq('track','PageView');/* TikTok Pixel (gated on consent) */!function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};ttq.load('D9BL66JC77U7PB56RCO0');ttq.page();}(window,document,'ttq');
+      var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-EBWBFNY0W7';document.head.appendChild(g);
+      window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','G-EBWBFNY0W7');
+    };
+    try{if(localStorage.getItem('ad_cookie_consent')==='accepted')window.__adLoadAnalytics();}catch(e){}
+  </script>
+  <!-- Microsoft Clarity (carga incondicional) -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "x95217wrw7");
+  </script>
+
+  <style>
+    .blog-hero { max-width: 900px; margin: 0 auto; padding: 150px 32px 40px; text-align: center; }
+    .blog-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 6vw, 76px); font-weight: 500; line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 26px; }
+    .blog-hero h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
+    .blog-hero p { font-size: clamp(17px, 1.5vw, 20px); line-height: 1.7; color: var(--text-secondary); max-width: 640px; margin: 0 auto; }
+    .blog-list { max-width: 1100px; margin: 0 auto; padding: 30px 32px 90px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+    .blog-card { background: var(--navy-card); border: 1px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; transition: border-color .4s, transform .4s; }
+    .blog-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+    .blog-card img { width: 100%; height: 210px; object-fit: cover; filter: brightness(0.85); }
+    .blog-card div { padding: 26px 26px 30px; }
+    .blog-card span { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+    .blog-card h2 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 24px; line-height: 1.25; margin: 12px 0 12px; }
+    .blog-card p { color: var(--text-secondary); font-size: 15px; line-height: 1.65; }
+    @media (max-width: 700px) { .blog-hero { padding: 120px 20px 30px; } .blog-list { padding: 20px 16px 70px; grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="header" id="header">
+    <a href="/" class="logo">Alex<span class="logo-mark"></span>Dakov</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir navegación" aria-expanded="false" aria-controls="overlay-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <nav class="overlay-nav" id="overlay-nav" aria-hidden="true">
+    <div class="overlay-nav-inner">
+      <div class="overlay-nav-eyebrow">— Navegación —</div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/conferencias" class="">Conferencias</a></li>
+        <li><a href="/blog/" class="active">Blog</a></li>
+        <li><a href="/sostenibilidad" class="">Sostenibilidad e Impacto</a></li>
+        <li><a href="/contacto" class="">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="overlay-nav-footer">
+      <a href="https://instagram.com/alex_dakov" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/in/alex-dakov/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://aguanea.com" target="_blank" rel="noopener">AguaNEA</a>
+    </div>
+  </nav>
+
+  <section class="blog-hero">
+    <div class="page-eyebrow">Blog</div>
+    <h1>Liderazgo que se nota <em>el lunes</em>.</h1>
+    <p>Lo que he aprendido dirigiendo equipos bajo presión —de Space Ibiza a festivales por medio mundo— y lo que dice la neurociencia sobre por qué un equipo brilla o se apaga.</p>
+  </section>
+  <section class="blog-list">
+    <a class="blog-card" href="/blog/como-elegir-conferenciante-liderazgo/"><img src="/assets/IMG-conf_pickpack.jpg" alt="Alex Dakov dando una conferencia de liderazgo en el escenario de Pick&amp;Pack" loading="lazy">
+      <div><span>Para RRHH y organizadores · 3 de noviembre de 2026</span><h2>Cómo elegir un conferenciante de liderazgo para tu empresa (guía 2026)</h2><p>Guía para RRHH y organizadores: cómo elegir un conferenciante de liderazgo para tu empresa, qué preguntarle, señales de alarma y cómo medir si funcionó.</p></div></a>
+    <a class="blog-card" href="/blog/liderar-equipos-circo-del-sol/"><img src="/assets/IMG-05_escenario_quien_soy.jpg" alt="Alex Dakov en el escenario durante una conferencia sobre equipos de alto rendimiento" loading="lazy">
+      <div><span>Desde dentro · 3 de noviembre de 2026</span><h2>Lo que aprendí liderando equipos en un proyecto del Circo del Sol</h2><p>Tres años en Heart Ibiza, el proyecto del Circo del Sol y los hermanos Adrià: cinco lecciones sobre equipos de alto rendimiento que puedes aplicar el lunes.</p></div></a>
+  </section>
+  <footer class="page-footer">
+    © 2026 <span class="gold">Alex Dakov</span>
+  </footer>
+
+  <script>
+    // Header scroll blur
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Hamburger toggle
+    (function() {
+      const burger = document.getElementById('hamburger');
+      const overlay = document.getElementById('overlay-nav');
+      function close() {
+        burger.classList.remove('open');
+        overlay.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      function toggle() {
+        const willOpen = !burger.classList.contains('open');
+        burger.classList.toggle('open', willOpen);
+        overlay.classList.toggle('open', willOpen);
+        burger.setAttribute('aria-expanded', willOpen);
+        overlay.setAttribute('aria-hidden', !willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      }
+      burger.addEventListener('click', toggle);
+      overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    })();
+  </script>
+
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Aviso de cookies" hidden>
+    <div class="cookie-banner-inner">
+      <p class="cookie-text">Uso cookies de analítica y marketing para entender cómo se usa la web, mejorarla y medir mis campañas. Puedes aceptar o rechazar las cookies opcionales (Google Analytics, Meta y TikTok).</p>
+      <div class="cookie-actions">
+        <button class="cookie-btn cookie-reject" id="cookieReject" type="button">Rechazar</button>
+        <button class="cookie-btn cookie-accept" id="cookieAccept" type="button">Aceptar</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var KEY='ad_cookie_consent',b=document.getElementById('cookieBanner');if(!b)return;
+      var c;try{c=localStorage.getItem(KEY)}catch(e){}
+      if(!c){b.hidden=false;setTimeout(function(){b.classList.add('show')},500)}
+      function done(v){try{localStorage.setItem(KEY,v)}catch(e){}b.classList.remove('show');setTimeout(function(){b.hidden=true},400)}
+      document.getElementById('cookieAccept').addEventListener('click',function(){done('accepted');if(window.__adLoadAnalytics)window.__adLoadAnalytics()});
+      document.getElementById('cookieReject').addEventListener('click',function(){done('rejected')});
+    })();
+  </script>
+</body>
+</html>
