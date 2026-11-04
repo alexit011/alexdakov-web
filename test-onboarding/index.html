@@ -328,7 +328,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     if(tdx>=T.length)return capture();
     var n=Q.length+tdx,p=Math.round(n/TOTAL*100);
     var h='<div class="screen">'+bar(p)+'<div class="meta"><span>Pregunta '+(n+1)+' / '+TOTAL+'</span><span>Las últimas 4 semanas</span></div>'+
-      '<h2>En las últimas cuatro semanas, ¿cuántas veces '+T[tdx].q+'?</h2><div class="opts">';
+      '<h2>En las últimas cuatro semanas, ¿cuántas veces '+T[tdx].q.replace('…','')+'?</h2><div class="opts">';
     for(var i=0;i<SCALE.length;i++){var sel=tans[tdx]===i?' sel':'';h+='<button class="opt'+sel+'" data-i="'+i+'">'+SCALE[i]+'</button>';}
     h+='</div><div class="nav"><button class="back" id="back">&#8592; Anterior</button></div></div>';
     app.innerHTML=h;
