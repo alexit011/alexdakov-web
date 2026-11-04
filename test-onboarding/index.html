@@ -137,18 +137,13 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   .plist li{margin-bottom:6px}
   .plist strong{color:var(--cream)}
   .bignum{font-family:var(--serif);font-size:clamp(30px,5vw,44px);color:var(--gold);margin:0 0 2px;line-height:1.1}
-  /* === calculadora: frases con 3 opciones === */
-  .wlist{margin:0 0 20px}
-  .witem{padding:16px 0;border-bottom:1px solid var(--line-soft)}
-  .wtxt{margin:0 0 10px;font-size:15px;line-height:1.5}
-  .wopts{display:flex;gap:8px;flex-wrap:wrap}
-  .wopt{flex:1 1 auto;min-width:104px;font-family:var(--sans);font-size:13px;font-weight:300;cursor:pointer;
-    background:transparent;color:var(--cream);border:1px solid var(--line-soft);border-radius:2px;padding:9px 10px;transition:.2s}
-  .wopt:hover{border-color:var(--line);background:rgba(201,169,97,.06)}
-  .wopt.sel{border-color:var(--gold);background:rgba(201,169,97,.14);color:var(--gold-soft)}
-  /* === setting === */
-  .sitem{margin:0 0 26px}
-  .sq{font-family:var(--serif);font-size:19px;line-height:1.35;margin:0 0 12px}
+  /* === cualificacion: respuestas abiertas === */
+  .sitem{margin:0 0 24px}
+  .sq{display:block;font-family:var(--serif);font-size:19px;line-height:1.35;margin:0 0 10px;color:var(--cream)}
+  .sarea{width:100%;background:rgba(240,235,224,.03);border:1px solid var(--line-soft);border-radius:2px;
+    color:var(--cream);font-family:var(--sans);font-weight:300;font-size:15px;line-height:1.6;padding:12px 14px;resize:vertical}
+  .sarea:focus{outline:none;border-color:var(--gold);background:rgba(201,169,97,.05)}
+  .sarea::placeholder{color:var(--muted);opacity:.55}
 </style>
 </head>
 <body>
@@ -294,64 +289,35 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   ];
   /* ===== CAPA 2 · CALCULADORA (fórmula real de alexdakov.com/calculadora-liderazgo) ===== */
   var LOW=48,HIGH=197;
-  var WIS=[
-   {d:"Atraer y usar el talento",t:"Sé en qué es brillante cada persona de mi equipo y le doy trabajo que aprovecha ese talento."},
-   {d:"Atraer y usar el talento",t:"Cuando alguien destaca, le ayudo a crecer aunque eso acabe sacándolo de mi equipo."},
-   {d:"Crear un clima seguro",t:"Mi equipo me cuenta los errores rápido, sin miedo a cómo voy a reaccionar."},
-   {d:"Crear un clima seguro",t:"En las reuniones mi equipo habla más que yo."},
-   {d:"Retar en vez de dar respuestas",t:"En vez de dar la solución, planteo preguntas y retos que obligan a mi equipo a pensar."},
-   {d:"Retar en vez de dar respuestas",t:"Mi equipo tiene objetivos que le expanden, no solo tareas que cumplir."},
-   {d:"Decidir con el equipo",t:"Antes de decidir algo importante, escucho a mi equipo y dejo que discrepen conmigo."},
-   {d:"Decidir con el equipo",t:"Mi equipo entiende el porqué de las decisiones, aunque no las haya tomado él."},
-   {d:"Delegar de verdad",t:"Cuando delego algo, delego también la responsabilidad del resultado y no estoy encima."},
-   {d:"Delegar de verdad",t:"Si alguien se atasca, le ayudo a pensar, pero le devuelvo el problema en vez de resolverlo yo."}
-  ];
-  var WOPTS=[["Casi nunca",0],["A veces",0.5],["Casi siempre",1]];
-  var wans=new Array(10).fill(null), wpage=0;
   var ctx={personas:'',factura:'',facturacion:'',sueldo:''};
 
   /* ===== CAPA 3 · SETTING (fases 3, 4, 6, 7 y 8 del SOP de setting) ===== */
   var SET=[
-   {k:"objetivo",q:"¿Dónde quieres estar dentro de 6 meses?",o:[
-     "Que mi equipo funcione sin mí en el día a día",
-     "Que mi área cumpla sus objetivos sin que yo empuje",
-     "Dar el salto al siguiente puesto",
-     "Montar o escalar mi propio proyecto",
-     "Dejar de llevarme el trabajo a casa"]},
-   {k:"distancia",q:"¿A qué distancia estás hoy de eso?",o:[
-     "Lo tengo a tiro: me falta poco",
-     "A medio camino",
-     "Lejos: me falta la mayor parte",
-     "No sabría ni por dónde empezar"]},
-   {k:"bloqueo",q:"¿Qué es lo que más te frena ahora mismo?",o:[
-     "No tengo tiempo: vivo apagando fuegos",
-     "No sé por dónde empezar ni en qué orden",
-     "Lo he intentado y no se sostiene",
-     "Mi equipo no acompaña",
-     "No depende de mí, depende de la empresa"]},
-   {k:"tiempo",q:"¿Cuánto tiempo a la semana puedes dedicarle de verdad?",o:[
-     "Menos de una hora","Entre una y dos horas","Entre dos y cuatro horas","Más de cuatro horas"]},
-   {k:"inversion",q:"Si existiera el sistema que te lleva ahí, ¿en qué situación estarías para invertir en él?",o:[
-     "Lo pago yo y puedo hacerlo ahora",
-     "Lo pago yo, pero necesitaría fraccionarlo",
-     "Lo pagaría mi empresa",
-     "Ahora mismo no podría"]},
-   {k:"cuando",q:"¿Cuándo querrías empezar?",o:[
-     "Ya, cuanto antes","Este trimestre","Este año","Solo estoy mirando"]}
+   {k:"objetivo",q:"¿Dónde quieres estar dentro de 6 meses?",
+    ph:"Escríbelo con tus palabras: qué quieres que sea distinto."},
+   {k:"distancia",q:"¿A qué distancia estás hoy de eso?",
+    ph:"¿Qué te falta exactamente para llegar?"},
+   {k:"bloqueo",q:"¿Qué es lo que más te frena ahora mismo?",
+    ph:"Lo que de verdad te está parando, no lo que queda bien decir."},
+   {k:"tiempo",q:"¿Cuánto tiempo a la semana puedes dedicarle de verdad?",
+    ph:"Sé realista: cuántas horas y cuándo."},
+   {k:"inversion",q:"Si existiera el sistema que te lleva ahí, ¿en qué situación estarías para invertir en él?",
+    ph:"Quién lo pagaría y en qué condiciones."},
+   {k:"cuando",q:"¿Cuándo querrías empezar?",
+    ph:"Y qué tendría que pasar para que fuese ya."}
   ];
-  var sans=new Array(6).fill(null), spage=0;
+  var sans=new Array(6).fill(''), spage=0;
 
   var app=document.getElementById('app');
   var idx=0,tdx=0,answers=[],tans=[],order=[],lead={},phase='q';
   var LEAD_ENDPOINT='';
-  var STEPS=Q.length+T.length+1+2+2;
+  var STEPS=Q.length+T.length+1+2;
   function done(){
     var n=0;
     if(phase==='q')n=idx;
     else if(phase==='bridge'||phase==='t')n=Q.length+tdx;
     else if(phase==='calcIntro'||phase==='calcCtx')n=Q.length+T.length;
-    else if(phase==='calcQ')n=Q.length+T.length+1+wpage;
-    else if(phase==='setIntro'||phase==='setQ')n=Q.length+T.length+3+spage;
+    else if(phase==='setIntro'||phase==='setQ')n=Q.length+T.length+1+spage;
     else n=STEPS;
     return Math.round(n/STEPS*100);
   }
@@ -368,7 +334,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<p class="lead" style="margin-left:auto;margin-right:auto">Este test no mide qué tipo de líder eres. Mide <strong>qué tienes montado ya</strong> de cada uno de los 9 bloques del programa, cuánto dinero deja tu equipo encima de la mesa y dónde quieres llegar.</p>'+
       '<p class="fine" style="margin-bottom:34px">Unos 8 minutos · aquí no hay respuestas buenas, solo la tuya</p>'+
       '<button class="btn" id="go">Empezar</button></div>';
-    document.getElementById('go').onclick=function(){idx=0;tdx=0;wpage=0;spage=0;answers=[];tans=[];wans=new Array(10).fill(null);sans=new Array(6).fill(null);lead={};phase='q';order=Q.map(function(x){return shuf(x.o);});render();};
+    document.getElementById('go').onclick=function(){idx=0;tdx=0;spage=0;answers=[];tans=[];sans=new Array(6).fill('');lead={};phase='q';order=Q.map(function(x){return shuf(x.o);});render();};
   }
 
   function render(){
@@ -456,43 +422,14 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       if(ctx.factura==='si'&&(!rv||+rv<10000)){e.textContent='Escribe la facturación anual aproximada.';return;}
       if(!s||+s<300){e.textContent='Revisa el sueldo medio mensual.';return;}
       ctx.personas=+p;ctx.sueldo=+s;ctx.facturacion=ctx.factura==='si'?+rv:0;
-      phase='calcQ';wpage=0;renderW();
-    };
-  }
-
-  function renderW(){
-    if(wpage>=2){phase='setIntro';return setIntro();}
-    phase='calcQ';
-    var from=wpage*5,to=from+5;
-    var h='<div class="screen">'+bar(done())+'<div class="meta"><span>Tu forma de dirigir</span><span>'+(wpage+1)+' / 2</span></div>'+
-      '<h2>¿Con qué frecuencia pasa esto?</h2><div class="wlist">';
-    for(var i=from;i<to;i++){
-      h+='<div class="witem"><p class="wtxt">'+WIS[i].t+'</p><div class="wopts" data-i="'+i+'">';
-      for(var j=0;j<WOPTS.length;j++){var sel=wans[i]===WOPTS[j][1]?' sel':'';h+='<button class="wopt'+sel+'" data-v="'+WOPTS[j][1]+'">'+WOPTS[j][0]+'</button>';}
-      h+='</div></div>';
-    }
-    h+='</div><div class="err" id="w_err"></div><button class="btn" id="w_next">Seguir</button>'+
-      '<div class="nav center"><button class="back" id="w_back">&#8592; Anterior</button></div></div>';
-    app.innerHTML=h;
-    var bs=app.querySelectorAll('.wopt');
-    for(var k=0;k<bs.length;k++)bs[k].onclick=function(){
-      var box=this.parentNode,i=+box.getAttribute('data-i');
-      wans[i]=+this.getAttribute('data-v');
-      var sib=box.querySelectorAll('.wopt');
-      for(var z=0;z<sib.length;z++)sib[z].className='wopt';
-      this.className='wopt sel';
-    };
-    document.getElementById('w_back').onclick=function(){if(wpage===0){phase='calcCtx';calcCtx();}else{wpage--;renderW();}};
-    document.getElementById('w_next').onclick=function(){
-      for(var i=from;i<to;i++)if(wans[i]===null){document.getElementById('w_err').textContent='Te falta alguna.';return;}
-      wpage++;renderW();
+      setIntro();
     };
   }
 
   function setIntro(){
     phase='setIntro';
     slide('Última parte','Por último unas preguntas sobre dónde estás y dónde quieres llegar','',
-      'Seguir',function(){phase='setQ';spage=0;renderS();},function(){phase='calcQ';wpage=1;renderW();});
+      'Seguir',function(){phase='setQ';spage=0;renderS();},function(){phase='calcCtx';calcCtx();});
   }
 
   function renderS(){
@@ -501,27 +438,21 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     var from=spage*3,to=from+3;
     var h='<div class="screen">'+bar(done())+'<div class="meta"><span>Dónde estás y dónde quieres llegar</span><span>'+(spage+1)+' / 2</span></div>';
     for(var i=from;i<to;i++){
-      h+='<div class="sitem"><p class="sq">'+SET[i].q+'</p><div class="opts sopts" data-i="'+i+'">';
-      for(var j=0;j<SET[i].o.length;j++){var sel=sans[i]===j?' sel':'';h+='<button class="opt'+sel+'" data-v="'+j+'">'+SET[i].o[j]+'</button>';}
-      h+='</div></div>';
+      h+='<div class="sitem"><label class="sq" for="s'+i+'">'+SET[i].q+'</label>'+
+         '<textarea id="s'+i+'" class="sarea" rows="3" placeholder="'+SET[i].ph+'">'+esc(sans[i]||'')+'</textarea></div>';
     }
     h+='<div class="err" id="s_err"></div><button class="btn" id="s_next">Seguir</button>'+
       '<div class="nav center"><button class="back" id="s_back">&#8592; Anterior</button></div></div>';
     app.innerHTML=h;
-    var bs=app.querySelectorAll('.sopts .opt');
-    for(var k=0;k<bs.length;k++)bs[k].onclick=function(){
-      var box=this.parentNode,i=+box.getAttribute('data-i');
-      sans[i]=+this.getAttribute('data-v');
-      var sib=box.querySelectorAll('.opt');
-      for(var z=0;z<sib.length;z++)sib[z].className='opt';
-      this.className='opt sel';
-    };
-    document.getElementById('s_back').onclick=function(){if(spage===0){setIntro();}else{spage--;renderS();}};
+    function grab(){for(var i=from;i<to;i++){var el=document.getElementById('s'+i);if(el)sans[i]=el.value.trim();}}
+    document.getElementById('s_back').onclick=function(){grab();if(spage===0){setIntro();}else{spage--;renderS();}};
     document.getElementById('s_next').onclick=function(){
-      for(var i=from;i<to;i++)if(sans[i]===null){document.getElementById('s_err').textContent='Te falta alguna.';return;}
+      grab();
+      for(var i=from;i<to;i++)if(!sans[i]||sans[i].length<3){document.getElementById('s_err').textContent='Te falta alguna. Con una frase basta.';return;}
       spage++;renderS();
     };
   }
+
   function capture(){
     phase='capture';
     app.innerHTML='<div class="screen">'+bar(100)+'<div class="meta"><span>Último paso</span><span>100%</span></div>'+
@@ -543,10 +474,10 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       var r=score();
       lead={source:'test-onboarding',nombre:n,email:e,
         personas:ctx.personas,factura:ctx.factura,facturacion:ctx.facturacion,sueldo_medio:ctx.sueldo,
-        respuestas:answers.slice(),trampas:tans.slice(),wiseman:wans.slice(),setting:{},
+        respuestas:answers.slice(),trampas:tans.slice(),setting:{},
         nivel_global:r.global,aplicacion:r.mad,capacidad:r.u,perdida_anual:Math.round(r.loss),
         ts:new Date().toISOString()};
-      for(var i=0;i<SET.length;i++)lead.setting[SET[i].k]=SET[i].o[sans[i]];
+      for(var i=0;i<SET.length;i++)lead.setting[SET[i].k]=sans[i];
       for(var m=0;m<9;m++)lead['m'+(m+1)]=r.mods[m];
       submitLead();result(r);
     };
@@ -569,8 +500,8 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     var perfect=true;
     for(var pp=0;pp<9;pp++)if(mods[pp]<4)perfect=false;
     for(var tt=0;tt<T.length;tt++)if((tans[tt]||0)>0)perfect=false;
-    var ws=0;for(var w=0;w<wans.length;w++)ws+=wans[w]||0;
-    var u=Math.round(LOW+(HIGH-LOW)*(ws/10));
+    var score01=Math.max(0,Math.min(1,(g/9-1)/4));
+    var u=Math.round(LOW+(HIGH-LOW)*score01);
     var mass=ctx.sueldo*12*ctx.personas;
     var loss=ctx.factura==='si'?ctx.facturacion*(HIGH-u)/u:mass*(HIGH-u)/100;
     return {mods:mods,raw:raw,pen:pen,global:global,mad:mad,perfect:perfect,u:u,loss:loss,mass:mass};
