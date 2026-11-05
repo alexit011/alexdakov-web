@@ -184,14 +184,20 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   .fhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
   .fhead .mb{margin:0}
   .fnivel{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-  .ftitle{font-family:var(--serif);font-size:21px;line-height:1.3;margin:2px 0 16px;color:var(--cream)}
+  .ftitle{font-family:var(--serif);font-size:21px;line-height:1.3;margin:2px 0 10px;color:var(--cream)}
+  .fdots{display:flex;align-items:center;gap:7px;margin:0 0 18px;padding:0 0 16px;border-bottom:1px solid var(--line-soft)}
+  .fde{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-left:6px}
   .flabel{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
   .ftxt{margin:0 0 16px;font-size:15.5px;line-height:1.6;color:var(--cream)}
   .ftxt.gold{color:var(--gold-soft);margin-bottom:0}
-  .ecobox{border:1px solid var(--line);border-radius:13px;padding:34px 28px;margin:40px 0 0;text-align:center;
+  .ecobox{border:1px solid var(--line);border-radius:13px;padding:38px 28px 34px;margin:40px 0 0;text-align:center;
     background:linear-gradient(180deg,rgba(201,169,97,.13),rgba(201,169,97,.04))}
-  .ecolabel{font-size:15px;color:var(--muted);margin:0 0 6px}
-  .ecobox .fine{max-width:520px;margin-left:auto;margin-right:auto}
+  .ecoh{margin:6px auto 30px;max-width:560px;text-wrap:balance}
+  .ecolabel{font-size:15px;line-height:1.5;color:var(--muted);margin:0 auto 10px;max-width:460px}
+  .ecosep{height:1px;max-width:220px;margin:30px auto;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+  .ecobox .bignum{margin-bottom:10px}
+  .ecofine{max-width:450px;margin:0 auto;color:var(--muted);font-size:13px;line-height:1.65}
+  .ecosrc{max-width:470px;margin:16px auto 0;color:var(--muted);font-size:12px;line-height:1.6;opacity:.7}
   .cta{border:1px solid var(--line);border-radius:13px;background:rgba(201,169,97,.07);
     padding:30px 26px;margin:22px 0 0;text-align:center}
   .cta .lead{margin-left:auto;margin-right:auto}
@@ -649,17 +655,12 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     var ord=[];for(var i=0;i<9;i++)ord.push(i);
     var flojo=0;for(var z=1;z<9;z++)if(r.raw[z]<r.raw[flojo])flojo=z;
 
-    var rows='';
-    for(var k=0;k<ord.length;k++){var m=ord[k];
-      rows+='<div class="mrow"><div class="mname"><span class="mb">'+MODS[m].b+'</span>'+MODS[m].n+'</div>'+
-        '<div class="mdots">'+dots(r.mods[m])+'</div><div class="mlvl">'+r.mods[m]+'</div></div>';
-    }
-
     var fichas='';
     for(var f=0;f<ord.length;f++){var mm=ord[f],lv=r.mods[mm],nx=NEXT[mm][lv-1];
       fichas+='<div class="ficha">'+
         '<div class="fhead"><span class="mb">'+MODS[mm].b+'</span><span class="fnivel">Nivel '+lv+' · '+L[lv].n+'</span></div>'+
         '<p class="ftitle">'+MODS[mm].n+'</p>'+
+        '<div class="fdots">'+dots(lv)+'<span class="fde">'+lv+' de 5</span></div>'+
         '<p class="flabel">Dónde estás</p><p class="ftxt">'+nx.s+'</p>'+
         '<p class="flabel">Para subir un escalón</p><p class="ftxt gold">'+nx.n+'</p></div>';
     }
@@ -675,17 +676,18 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
 
     var U=(r.u/100).toFixed(2).replace('.',',');
     var base=ctx.factura==='si'
-      ? 'Tu área factura '+nfmt(ctx.facturacion)+' € al año con un rendimiento de '+U+' por persona. Con 1,97 facturaría '+nfmt(Math.round(ctx.facturacion/r.u*HIGH))+' €.'
-      : 'Pagas '+nfmt(r.mass)+' € al año en sueldos ('+ctx.personas+' personas). A '+U+' por persona, lo que recibes a cambio no es lo que pagas.';
+      ? 'Hoy tu área factura '+nfmt(ctx.facturacion)+' € al año con un rendimiento de '+U+' por persona. Con las mismas personas rindiendo a 1,97, facturaría '+nfmt(Math.round(ctx.facturacion/r.u*HIGH))+' €.'
+      : 'Pagas '+nfmt(r.mass)+' € al año en sueldos ('+ctx.personas+(ctx.personas===1?' persona':' personas')+'). Con las mismas personas y el mismo coste, rindiendo a 1,97 en vez de a '+U+'.';
     var eco='<div class="ecobox"><p class="eyebrow">El impacto económico de tu liderazgo</p>'+
-      '<h2 style="margin:4px 0 22px">Lo que te está costando dirigir así</h2>'+
+      '<h2 class="ecoh">Lo que te está costando dirigir así</h2>'+
       '<p class="ecolabel">Lo que rinde hoy cada persona de tu equipo</p>'+
       '<p class="bignum">'+U+'</p>'+
-      '<p class="fine" style="margin:0 0 16px">0,48 es un líder que resta · 1 es lo que pagas · 1,97 es un equipo de alto rendimiento</p>'+
-      '<p class="ecolabel" style="margin-top:26px">Lo que tu equipo deja encima de la mesa cada año</p>'+
-      '<p class="bignum">'+nfmt(Math.round(r.loss))+' €</p>'+
-      '<p class="fine" style="margin:0">'+base+'</p>'+
-      '<p class="fine" style="margin:10px 0 0;opacity:.75">Sale de tus 18 respuestas, con las trampas ya descontadas. Escala basada en la investigación <em>Multipliers</em> de Liz Wiseman.</p></div>';
+      '<p class="ecofine">0,48 es un líder que resta · 1 es lo que pagas · 1,97 es un equipo de alto rendimiento</p>'+
+      '<div class="ecosep"></div>'+
+      '<p class="ecolabel">Si tu equipo rindiera como uno de alto rendimiento,<br>cada año generaría esto más</p>'+
+      '<p class="bignum">+'+nfmt(Math.round(r.loss))+' €</p>'+
+      '<p class="ecofine">'+base+'</p>'+
+      '<p class="ecosrc">Sale de tus 18 respuestas, con las trampas ya descontadas. Escala basada en la investigación <em>Multipliers</em> de Liz Wiseman.</p></div>';
 
     var reto=lead.mayor_reto?'<div class="box"><p class="eyebrow">Tu mayor reto, con tus palabras</p><p class="quote">«'+esc(lead.mayor_reto)+'»</p>'+
       '<p class="fine" style="margin:10px 0 0">Tu bloque más flojo hoy es <strong>'+MODS[flojo].b+' · '+MODS[flojo].n+'</strong>. Si tu reto no cae ahí, empieza igualmente por él: lo que te frena casi nunca es lo que crees.</p></div>':'';
@@ -699,10 +701,9 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       warn+
       '<h2 style="margin:34px 0 6px">Tu nivel bloque a bloque</h2>'+
       '<p class="fine" style="margin:0 0 18px">De lo más flojo a lo más fuerte. Lo primero de la lista es por donde empiezas tú.</p>'+
-      '<div class="mtable">'+rows+'</div>'+
       reto+ penTxt+
-      '<h2 style="margin:40px 0 6px">Bloque a bloque: qué tienes y qué te falta</h2>'+
-      '<p class="fine" style="margin:0 0 22px">Los nueve bloques en orden, del 1 al 9. En todos hay un siguiente escalón, también en los que ya llevas bien.</p>'+
+      '<h2 style="margin:40px 0 6px">Tu nivel bloque a bloque</h2>'+
+      '<p class="fine" style="margin:0 0 22px">Los nueve en orden, del 1 al 9: dónde estás en cada uno y qué te falta para subir. En todos hay un siguiente escalón, también en los que ya llevas bien.</p>'+
       fichas+ eco+
       '<div class="cta"><p class="eyebrow">Y ahora</p>'+
       '<h2 style="margin:0 0 12px">¿Quieres dar un paso más y formarte para ser un verdadero líder PRO?</h2>'+
