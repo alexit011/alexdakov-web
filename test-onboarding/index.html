@@ -120,6 +120,32 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   .social-ic svg{width:22px;height:22px;fill:currentColor;display:block}
   @media(max-width:520px){.row{flex-direction:column}.wrap{padding:32px 18px 60px}.social-ic{width:50px;height:50px}}
 
+  /* ===== preguntas: tratamiento de tarjeta del Líder PRO ===== */
+  .qhead{display:flex;align-items:flex-start;gap:16px;margin:0 0 22px}
+  .qidx{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--gold);
+    width:34px;height:34px;flex:none;border:1px solid var(--line);border-radius:10px;
+    display:grid;place-items:center;background:rgba(201,169,97,.07);margin-top:4px}
+  .qwrap{flex:1;min-width:0}
+  .qblock{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+  h2.qtitle{margin:0;font-size:clamp(21px,3.4vw,29px);line-height:1.25}
+  .opts{display:flex;flex-direction:column;gap:10px;margin:0}
+  .opt{display:flex;align-items:flex-start;gap:14px;text-align:left;width:100%;cursor:pointer;
+    background:linear-gradient(180deg,rgba(240,235,224,.045),rgba(240,235,224,.012));
+    border:1px solid var(--line-soft);border-left:3px solid transparent;border-radius:13px;
+    padding:15px 18px;color:var(--cream);font-family:var(--sans);font-weight:300;
+    font-size:15.5px;line-height:1.45;
+    transition:border-color .25s,background .25s,transform .12s}
+  .opt:hover{border-color:var(--line);background:linear-gradient(180deg,rgba(201,169,97,.085),rgba(201,169,97,.03))}
+  .opt:active{transform:scale(.994)}
+  .opt::before{content:"";flex:none;width:22px;height:22px;border-radius:7px;
+    border:1.8px solid rgba(240,235,224,.22);background:rgba(255,255,255,.02);margin-top:1px;
+    transition:background .2s,border-color .2s,box-shadow .2s}
+  .opt.sel{border-left-color:var(--gold);border-color:var(--line);
+    background:linear-gradient(180deg,rgba(201,169,97,.15),rgba(201,169,97,.05))}
+  .opt.sel::before{background:linear-gradient(180deg,var(--gold-soft),var(--gold));
+    border-color:var(--gold-soft);box-shadow:0 0 16px rgba(201,169,97,.38)}
+  .form .field input{border-radius:11px}
+  /* ===== resultado ===== */
   .madbox{max-width:520px;margin:0 auto 10px}
   .mtable{border-top:1px solid var(--line-soft);margin:0 0 28px}
   .mrow{display:flex;align-items:center;gap:14px;padding:14px 2px;border-bottom:1px solid var(--line-soft)}
@@ -129,34 +155,37 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   .dot{width:8px;height:8px;border-radius:50%;background:var(--line-soft);display:block}
   .dot.on{background:var(--gold)}
   .mlvl{flex:0 0 22px;text-align:right;font-family:var(--serif);font-size:20px;color:var(--cream)}
-  .box{border:1px solid var(--line-soft);border-radius:2px;padding:20px 22px;margin:0 0 20px;background:rgba(240,235,224,.02)}
+  .box{border:1px solid var(--line-soft);border-radius:13px;padding:20px 22px;margin:0 0 20px;background:rgba(240,235,224,.02)}
   .box.gold{border-color:var(--line);background:rgba(201,169,97,.06)}
   .box.warn{border-color:rgba(220,120,90,.4);background:rgba(220,120,90,.07)}
   .plist{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:15px}
   .plist li{margin-bottom:6px}
   .plist strong{color:var(--cream)}
-  .bignum{font-family:var(--serif);font-size:clamp(30px,5vw,44px);color:var(--gold);margin:0 0 2px;line-height:1.1}
+  .bignum{font-family:var(--serif);font-size:clamp(38px,8vw,64px);color:var(--gold);margin:0 0 2px;line-height:1.05}
   .quote{font-family:var(--serif);font-size:19px;line-height:1.45;color:var(--cream);margin:0}
-  /* fichas del informe */
-  .ficha{border:1px solid var(--line-soft);border-left:2px solid var(--gold);border-radius:2px;
-    padding:18px 20px;margin:0 0 14px;background:rgba(240,235,224,.02)}
+  .ficha{border:1px solid var(--line-soft);border-left:3px solid var(--gold);border-radius:13px;
+    padding:20px 22px;margin:0 0 14px;
+    background:linear-gradient(180deg,rgba(240,235,224,.045),rgba(240,235,224,.012))}
   .fhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
   .fhead .mb{margin:0}
   .fnivel{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-  .ftitle{font-family:var(--serif);font-size:20px;line-height:1.3;margin:2px 0 14px;color:var(--cream)}
+  .ftitle{font-family:var(--serif);font-size:21px;line-height:1.3;margin:2px 0 16px;color:var(--cream)}
   .flabel{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
-  .ftxt{margin:0 0 14px;font-size:15px;line-height:1.6;color:var(--cream)}
+  .ftxt{margin:0 0 16px;font-size:15.5px;line-height:1.6;color:var(--cream)}
   .ftxt.gold{color:var(--gold-soft);margin-bottom:0}
-  /* CTA del final del informe */
-  .cta{border:1px solid var(--line);border-radius:2px;background:rgba(201,169,97,.07);
-    padding:30px 26px;margin:38px 0 0;text-align:center}
+  .ecobox{border:1px solid var(--line);border-radius:13px;padding:34px 28px;margin:40px 0 0;text-align:center;
+    background:linear-gradient(180deg,rgba(201,169,97,.13),rgba(201,169,97,.04))}
+  .ecolabel{font-size:15px;color:var(--muted);margin:0 0 6px}
+  .ecobox .fine{max-width:520px;margin-left:auto;margin-right:auto}
+  .cta{border:1px solid var(--line);border-radius:13px;background:rgba(201,169,97,.07);
+    padding:30px 26px;margin:22px 0 0;text-align:center}
   .cta .lead{margin-left:auto;margin-right:auto}
-  /* cualificacion abierta */
   .sitem{margin:0 0 24px}
   .sq{display:block;font-family:var(--serif);font-size:19px;line-height:1.35;margin:0 0 10px;color:var(--cream)}
-  .sarea{width:100%;background:rgba(240,235,224,.03);border:1px solid var(--line-soft);border-radius:2px;
-    color:var(--cream);font-family:var(--sans);font-weight:300;font-size:15px;line-height:1.6;padding:12px 14px;resize:vertical}
-  .sarea:focus{outline:none;border-color:var(--gold);background:rgba(201,169,97,.05)}
+  .sarea{width:100%;background:linear-gradient(180deg,rgba(240,235,224,.045),rgba(240,235,224,.012));
+    border:1px solid var(--line-soft);border-radius:13px;
+    color:var(--cream);font-family:var(--sans);font-weight:300;font-size:15.5px;line-height:1.6;padding:14px 16px;resize:vertical}
+  .sarea:focus{outline:none;border-color:var(--gold);background:rgba(201,169,97,.06)}
   .sarea::placeholder{color:var(--muted);opacity:.55}
 </style>
 </head>
@@ -411,7 +440,8 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     phase='q';
     var opts=order[idx];
     var h='<div class="screen">'+bar(done())+'<div class="meta"><span>Pregunta '+(idx+1)+' / '+Q.length+'</span><span>'+MODS[Q[idx].m].b+'</span></div>'+
-      '<h2>'+Q[idx].q+'</h2><div class="opts">';
+      '<div class="qhead"><span class="qidx">'+(idx+1)+'</span><div class="qwrap">'+
+      '<p class="qblock">'+MODS[Q[idx].m].n+'</p><h2 class="qtitle">'+Q[idx].q+'</h2></div></div><div class="opts">';
     for(var i=0;i<opts.length;i++){var sel=answers[idx]===opts[i][1]?' sel':'';h+='<button class="opt'+sel+'" data-l="'+opts[i][1]+'">'+opts[i][0]+'</button>';}
     h+='</div>';
     if(idx>0)h+='<div class="nav"><button class="back" id="back">&#8592; Anterior</button></div>';
@@ -444,7 +474,8 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     if(tdx>=T.length){phase='calcIntro';return calcIntro();}
     phase='t';
     var h='<div class="screen">'+bar(done())+'<div class="meta"><span>Trampa '+(tdx+1)+' / '+T.length+'</span><span>Las últimas 4 semanas</span></div>'+
-      '<h2>En las últimas cuatro semanas, ¿cuántas veces '+T[tdx].q.replace('…','')+'?</h2><div class="opts">';
+      '<div class="qhead"><span class="qidx">'+(tdx+1)+'</span><div class="qwrap">'+
+      '<p class="qblock">En las últimas cuatro semanas</p><h2 class="qtitle">¿Cuántas veces '+T[tdx].q.replace('…','')+'?</h2></div></div><div class="opts">';
     for(var i=0;i<SCALE.length;i++){var sel=tans[tdx]===i?' sel':'';h+='<button class="opt'+sel+'" data-i="'+i+'">'+SCALE[i]+'</button>';}
     h+='</div><div class="nav"><button class="back" id="back">&#8592; Anterior</button></div></div>';
     app.innerHTML=h;
@@ -587,7 +618,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   function report(r){
     phase='report';
     var ord=[];for(var i=0;i<9;i++)ord.push(i);
-    ord.sort(function(a,b){return r.raw[a]-r.raw[b];});
+    var flojo=0;for(var z=1;z<9;z++)if(r.raw[z]<r.raw[flojo])flojo=z;
 
     var rows='';
     for(var k=0;k<ord.length;k++){var m=ord[k];
@@ -617,17 +648,18 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     var base=ctx.factura==='si'
       ? 'Tu área factura '+nfmt(ctx.facturacion)+' € al año con un rendimiento de '+U+' por persona. Con 1,97 facturaría '+nfmt(Math.round(ctx.facturacion/r.u*HIGH))+' €.'
       : 'Pagas '+nfmt(r.mass)+' € al año en sueldos ('+ctx.personas+' personas). A '+U+' por persona, lo que recibes a cambio no es lo que pagas.';
-    var eco='<div class="box gold"><p class="eyebrow">El impacto económico de tu liderazgo</p>'+
-      '<p style="margin:0 0 4px;font-size:15px">Lo que rinde hoy cada persona de tu equipo</p>'+
+    var eco='<div class="ecobox"><p class="eyebrow">El impacto económico de tu liderazgo</p>'+
+      '<h2 style="margin:4px 0 22px">Lo que te está costando dirigir así</h2>'+
+      '<p class="ecolabel">Lo que rinde hoy cada persona de tu equipo</p>'+
       '<p class="bignum">'+U+'</p>'+
       '<p class="fine" style="margin:0 0 16px">0,48 es un líder que resta · 1 es lo que pagas · 1,97 es un equipo de alto rendimiento</p>'+
-      '<p style="margin:0 0 4px;font-size:15px">Lo que tu equipo deja encima de la mesa cada año</p>'+
+      '<p class="ecolabel" style="margin-top:26px">Lo que tu equipo deja encima de la mesa cada año</p>'+
       '<p class="bignum">'+nfmt(Math.round(r.loss))+' €</p>'+
       '<p class="fine" style="margin:0">'+base+'</p>'+
       '<p class="fine" style="margin:10px 0 0;opacity:.75">Sale de tus 18 respuestas, con las trampas ya descontadas. Escala basada en la investigación <em>Multipliers</em> de Liz Wiseman.</p></div>';
 
     var reto=lead.mayor_reto?'<div class="box"><p class="eyebrow">Tu mayor reto, con tus palabras</p><p class="quote">«'+esc(lead.mayor_reto)+'»</p>'+
-      '<p class="fine" style="margin:10px 0 0">Tu bloque más flojo hoy es <strong>'+MODS[ord[0]].b+' · '+MODS[ord[0]].n+'</strong>. Si tu reto no cae ahí, empieza igualmente por él: lo que te frena casi nunca es lo que crees.</p></div>':'';
+      '<p class="fine" style="margin:10px 0 0">Tu bloque más flojo hoy es <strong>'+MODS[flojo].b+' · '+MODS[flojo].n+'</strong>. Si tu reto no cae ahí, empieza igualmente por él: lo que te frena casi nunca es lo que crees.</p></div>':'';
 
     app.innerHTML='<div class="screen">'+
       '<p class="lvl-label">'+esc(lead.nombre||'')+', este es tu punto de partida</p>'+
@@ -639,10 +671,10 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<h2 style="margin:34px 0 6px">Tu nivel bloque a bloque</h2>'+
       '<p class="fine" style="margin:0 0 18px">De lo más flojo a lo más fuerte. Lo primero de la lista es por donde empiezas tú.</p>'+
       '<div class="mtable">'+rows+'</div>'+
-      eco+ reto+ penTxt+
+      reto+ penTxt+
       '<h2 style="margin:40px 0 6px">Bloque a bloque: qué tienes y qué te falta</h2>'+
-      '<p class="fine" style="margin:0 0 22px">Lo que sigue es tu informe. En los nueve bloques hay un siguiente escalón, también en los que ya llevas bien.</p>'+
-      fichas+
+      '<p class="fine" style="margin:0 0 22px">Los nueve bloques en orden, del 1 al 9. En todos hay un siguiente escalón, también en los que ya llevas bien.</p>'+
+      fichas+ eco+
       '<div class="cta"><p class="eyebrow">Y ahora</p>'+
       '<h2 style="margin:0 0 12px">¿Quieres dar un paso más y formarte para ser un verdadero líder PRO?</h2>'+
       '<p class="lead" style="margin:0 auto 20px">Este informe te dice dónde estás. El programa es el camino: 9 bloques, 90 días y los sistemas montados sobre tu equipo, no sobre un caso de clase.</p>'+
