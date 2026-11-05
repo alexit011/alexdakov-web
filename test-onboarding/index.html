@@ -120,6 +120,21 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   .social-ic svg{width:22px;height:22px;fill:currentColor;display:block}
   @media(max-width:520px){.row{flex-direction:column}.wrap{padding:32px 18px 60px}.social-ic{width:50px;height:50px}}
 
+  /* ===== portada ===== */
+  .hero{text-align:center}
+  .hero h1{margin-bottom:18px}
+  .rule{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 auto 22px;max-width:320px}
+  .rule i{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+  .rule span{color:var(--gold);font-size:13px;letter-spacing:.1em}
+  .hero-lead{margin-left:auto;margin-right:auto;max-width:560px;text-align:center;text-wrap:balance}
+  .steps{display:flex;flex-direction:column;gap:10px;margin:32px auto 34px;max-width:560px;text-align:left}
+  .step{display:flex;align-items:flex-start;gap:16px;
+    background:linear-gradient(180deg,rgba(240,235,224,.045),rgba(240,235,224,.012));
+    border:1px solid var(--line-soft);border-left:3px solid var(--line);border-radius:13px;padding:17px 20px}
+  .swrap{flex:1;min-width:0}
+  .stitle{font-family:var(--serif);font-size:18px;line-height:1.25;margin:0 0 5px;color:var(--cream);text-wrap:balance}
+  .stxt{font-size:14.5px;line-height:1.55;color:var(--muted);margin:0}
+
   /* ===== preguntas: tratamiento de tarjeta del Líder PRO ===== */
   .qhead{display:flex;align-items:flex-start;gap:16px;margin:0 0 22px}
   .qidx{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--gold);
@@ -426,12 +441,26 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   function nfmt(n){return (n||0).toLocaleString('es-ES');}
 
   function intro(){
-    app.innerHTML='<div class="screen center">'+
-      '<p class="eyebrow">Programa de liderazgo · Día 1</p>'+
+    phase='intro';
+    app.innerHTML='<div class="screen hero">'+
+      '<p class="eyebrow">Diagnóstico de liderazgo</p>'+
       '<h1>¿En qué nivel<br>entras?</h1>'+
-      '<p class="lead" style="margin-left:auto;margin-right:auto">Este test no mide qué tipo de líder eres. Mide <strong>qué tienes montado ya</strong> de cada uno de los 9 bloques del programa, cuánto dinero deja tu equipo encima de la mesa y dónde quieres llegar.</p>'+
-      '<p class="fine" style="margin-bottom:34px">Unos 8 minutos · aquí no hay respuestas buenas, solo la tuya</p>'+
-      '<button class="btn" id="go">Empezar</button></div>';
+      '<div class="rule"><i></i><span>✦</span><i></i></div>'+
+      '<p class="lead hero-lead">Este test no mide qué tipo de líder eres. Mide <strong>qué tienes montado ya</strong> de cada uno de los 9 bloques que sostienen a un equipo de alto rendimiento. Y lo que te cuesta, en euros, lo que todavía no está.</p>'+
+      '<div class="steps">'+
+        '<div class="step"><span class="qidx">1</span><div class="swrap">'+
+          '<p class="stitle">El diagnóstico</p>'+
+          '<p class="stxt">24 preguntas sobre cómo diriges hoy. Las seis últimas son incómodas a propósito: preguntan por lo que hiciste el mes pasado, no por lo que te gustaría hacer.</p></div></div>'+
+        '<div class="step"><span class="qidx">2</span><div class="swrap">'+
+          '<p class="stitle">Tu informe</p>'+
+          '<p class="stxt">Tu nivel en cada uno de los 9 bloques, qué te falta exactamente en cada uno para subir un escalón, y cuánto deja tu equipo encima de la mesa cada año.</p></div></div>'+
+        '<div class="step"><span class="qidx">3</span><div class="swrap">'+
+          '<p class="stitle">Y si quieres, un paso más</p>'+
+          '<p class="stxt">Solo si lo pides tú al final. El informe es tuyo en cualquier caso.</p></div></div>'+
+      '</div>'+
+      '<button class="btn" id="go">Empezar</button>'+
+      '<p class="fine" style="margin-top:16px">Unos 8 minutos · aquí no hay respuestas buenas, solo la tuya</p>'+
+      '</div>';
     document.getElementById('go').onclick=function(){idx=0;tdx=0;spage=0;answers=[];tans=[];sans=new Array(6).fill('');lead={};phase='q';order=Q.map(function(x){return shuf(x.o);});render();};
   }
 
