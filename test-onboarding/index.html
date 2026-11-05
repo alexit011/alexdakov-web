@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Test de onboarding · ¿en qué nivel entras? — Alex Dakov</title>
-  <meta name="description" content="Test de entrada del programa de liderazgo de Alex Dakov: tu nivel 1-5 en cada uno de los 9 bloques y el impacto económico de tu liderazgo.">
+  <meta name="description" content="Informe de liderazgo de Alex Dakov: tu nivel 1-5 en los 9 bloques, el impacto económico de tu liderazgo y qué te falta en cada uno.">
   <link rel="canonical" href="https://alexdakov.com/test-onboarding/">
   <meta name="robots" content="noindex, nofollow">
   <meta name="author" content="Alex Dakov">
@@ -12,14 +12,14 @@
   <meta property="og:site_name" content="Alex Dakov">
   <meta property="og:locale" content="es_ES">
   <meta property="og:url" content="https://alexdakov.com/test-onboarding/">
-  <meta property="og:title" content="Test de onboarding · ¿en qué nivel entras?">
-  <meta property="og:description" content="Tu nivel 1-5 en los 9 bloques y lo que tu equipo deja encima de la mesa.">
+  <meta property="og:title" content="¿En qué nivel de liderazgo entras?">
+  <meta property="og:description" content="Tu nivel en los 9 bloques, lo que tu equipo deja encima de la mesa y qué te falta en cada uno.">
   <meta property="og:image" content="https://alexdakov.com/assets/og-test-liderazgo.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Test de onboarding · ¿en qué nivel entras?">
-  <meta name="twitter:description" content="Tu nivel 1-5 en los 9 bloques y lo que tu equipo deja encima de la mesa.">
+  <meta name="twitter:title" content="¿En qué nivel de liderazgo entras?">
+  <meta name="twitter:description" content="Tu nivel en los 9 bloques, lo que tu equipo deja encima de la mesa y qué te falta en cada uno.">
   <meta name="twitter:image" content="https://alexdakov.com/assets/og-test-liderazgo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -120,7 +120,6 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   .social-ic svg{width:22px;height:22px;fill:currentColor;display:block}
   @media(max-width:520px){.row{flex-direction:column}.wrap{padding:32px 18px 60px}.social-ic{width:50px;height:50px}}
 
-  /* === resultado por bloque === */
   .madbox{max-width:520px;margin:0 auto 10px}
   .mtable{border-top:1px solid var(--line-soft);margin:0 0 28px}
   .mrow{display:flex;align-items:center;gap:14px;padding:14px 2px;border-bottom:1px solid var(--line-soft)}
@@ -137,7 +136,22 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   .plist li{margin-bottom:6px}
   .plist strong{color:var(--cream)}
   .bignum{font-family:var(--serif);font-size:clamp(30px,5vw,44px);color:var(--gold);margin:0 0 2px;line-height:1.1}
-  /* === cualificacion: respuestas abiertas === */
+  .quote{font-family:var(--serif);font-size:19px;line-height:1.45;color:var(--cream);margin:0}
+  /* fichas del informe */
+  .ficha{border:1px solid var(--line-soft);border-left:2px solid var(--gold);border-radius:2px;
+    padding:18px 20px;margin:0 0 14px;background:rgba(240,235,224,.02)}
+  .fhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .fhead .mb{margin:0}
+  .fnivel{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .ftitle{font-family:var(--serif);font-size:20px;line-height:1.3;margin:2px 0 14px;color:var(--cream)}
+  .flabel{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+  .ftxt{margin:0 0 14px;font-size:15px;line-height:1.6;color:var(--cream)}
+  .ftxt.gold{color:var(--gold-soft);margin-bottom:0}
+  /* CTA del final del informe */
+  .cta{border:1px solid var(--line);border-radius:2px;background:rgba(201,169,97,.07);
+    padding:30px 26px;margin:38px 0 0;text-align:center}
+  .cta .lead{margin-left:auto;margin-right:auto}
+  /* cualificacion abierta */
   .sitem{margin:0 0 24px}
   .sq{display:block;font-family:var(--serif);font-size:19px;line-height:1.35;margin:0 0 10px;color:var(--cream)}
   .sarea{width:100%;background:rgba(240,235,224,.03);border:1px solid var(--line-soft);border-radius:2px;
@@ -308,16 +322,71 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   ];
   var sans=new Array(6).fill(''), spage=0;
 
+  /* Informe: por bloque y nivel, dónde estás y cómo subir. Siempre hay siguiente paso, también en el 5. */
+  var NEXT=[
+   [{s:"Diriges desde el hacer: si algo importa, acaba en tus manos.",n:"Escribe la lista de lo que de verdad solo puedes hacer tú. Casi nunca pasa de cinco cosas, y verlo escrito cambia la semana."},
+    {s:"Has cambiado hacer por controlar. Controlar también lo haces tú.",n:"Cambia revisar el trabajo por revisar un indicador. Elige uno esta semana y no mires nada más de esa persona."},
+    {s:"Eres el mejor del equipo, y eso te tiene atrapado: lo difícil llega siempre a tu mesa.",n:"Elige una cosa que solo sabes hacer tú y enséñasela a alguien este mes. Tu valor deja de ser hacerlo y pasa a ser que otro lo haga."},
+    {s:"Ya mides tu trabajo por lo que crece tu gente.",n:"Te falta influir sin usar el cargo. Aprende qué palanca mueve a cada uno —reciprocidad, compromiso, prueba social, autoridad, unidad— y usa la que toca, no siempre la misma."},
+    {s:"Lideras sin apoyarte en el cargo y formas a otros.",n:"Tu techo ahora es la complacencia. Nombra hoy quién podría dirigir esto mejor que tú dentro de cinco años, y empieza a construirlo."}],
+
+   [{s:"No hay reglas escritas, así que la regla acaba siendo tu humor de ese día.",n:"Escribe tres conductas que no se negocian. Tres, no diez: diez no se recuerdan."},
+    {s:"Tienes valores escritos que nadie usa, y eso es casi peor: enseña al equipo que lo escrito no va en serio.",n:"Convierte cada valor en una conducta observable. No «respeto», sino «se habla con la persona, no de la persona»."},
+    {s:"Los valores viven en tu cabeza y los repites tú cuando toca.",n:"Sácalos de tu cabeza: que el equipo escriba contigo qué conductas quiere que se repitan y cuáles no se toleran. Lo que ayudan a escribir, lo defienden."},
+    {s:"Están escritos como conductas y los usas para corregir.",n:"Mételos donde duele: en a quién fichas, a quién asciendes y a quién dejas ir. Un valor que no decide sobre personas no es un valor."},
+    {s:"Los valores deciden personas y la visión baja al lunes de cada uno.",n:"Lo que se diluye al crecer es la cultura. Mete los valores en la selección y en la formación, que es por donde se pierde el alma cuando entra gente nueva."}],
+
+   [{s:"Diriges por sensación: te enteras de lo que va mal cuando ya ha pasado.",n:"Monta la primera versión de la Matriz con una sola fila por persona: objetivo, indicador y fecha. Nada más, de momento."},
+    {s:"Te enteras porque preguntas. Y preguntar no escala.",n:"Pasa de preguntar a mirar: que cada persona actualice su propia fila y que tú la veas sin tener que pedirla."},
+    {s:"Tienes tus números, pero los miras cuando te acuerdas.",n:"Ponle día y hora. Media hora a la semana donde se mira la Matriz y nada más. Lo que no está en el calendario no existe."},
+    {s:"Cada uno tiene su objetivo medido y lo revisáis cada semana.",n:"Crúzalos: que nadie pueda cumplir el suyo sin el de otro. Ahí es donde un grupo de individuos se convierte en equipo."},
+    {s:"El sistema corre solo y la información te llega sin pedirla.",n:"Métele el ciclo de doce semanas: cerrar, revisar y volver a abrir. Lo que no se cierra, se difumina."}],
+
+   [{s:"Lo que no dices se acumula, y acaba saliendo mal o no saliendo.",n:"Haz la lista de conversaciones que tienes pendientes y ten la primera esta semana. La más vieja, no la más fácil."},
+    {s:"Dices las cosas, pero tarde y a veces de más, porque ya venían acumuladas.",n:"Ponle plazo: 48 horas. Lo que se dice a tiempo se dice tranquilo."},
+    {s:"Las tienes, pero improvisando: entras y ves qué sale.",n:"Usa siempre la misma estructura: hecho, consecuencia, petición y acuerdo con fecha. Escríbela antes de entrar."},
+    {s:"Entras preparado y cierras con un acuerdo.",n:"Monta tu banco de conversaciones: el guion del despido, el del tóxico, el del veterano y el del superior. Lo que está escrito no depende del día que tengas."},
+    {s:"Las tienes a tiempo y tu equipo ya lo hace entre ellos.",n:"Enséñalo formalmente: que tus mandos tengan tu mismo guion. Esto se escala enseñándolo, no teniéndolo tú."}],
+
+   [{s:"Das por hecho que sin dinero no hay motivación, y eso te deja sin palancas.",n:"Elige una de las cinco que no cuestan —autonomía, progreso, reconocimiento, responsabilidad o acceso— y aplícala con una persona concreta esta semana."},
+    {s:"Motivas con cercanía y buen rollo. Ayuda, pero no sostiene una mala racha.",n:"Añade progreso visible: que cada uno vea cuánto ha avanzado, no solo lo que le falta."},
+    {s:"Reconoces cuando alguien lo hace bien.",n:"Ponle criterio y sitio fijo: reconoce en la reunión semanal, sobre el hecho concreto, y premia conducta antes que conocimiento."},
+    {s:"Tienes palancas y las usas distinto según la persona.",n:"Escribe el plan de crecimiento de cada uno: qué necesita aprender, cómo, cuándo y cómo lo va a aplicar. La última casilla es la que hace que dure."},
+    {s:"Cada persona tiene su plan escrito y sabes qué la mueve.",n:"De aquí salen tus relevos. Elige a dos y dales decisiones reales con red, no tareas difíciles."}],
+
+   [{s:"Fichas por currículum e intuición, y cada error te cuesta meses.",n:"Diseña una prueba corta parecida al trabajo real. Una sola, para el puesto que más repites."},
+    {s:"Fichas por experiencia previa.",n:"La experiencia predice menos de lo que parece. Escribe el criterio de corrección antes de ver ninguna prueba."},
+    {s:"Aciertas por olfato. Funciona hasta que no funciona, y entonces es caro.",n:"Añade el filtro de valores: la habilidad se enseña, la conducta casi nunca."},
+    {s:"Seleccionas con prueba y con criterio escrito.",n:"Lo que falla ahora son las dos primeras semanas. Ten el plan de los primeros 30 días escrito antes de que la persona entre."},
+    {s:"Seleccionas e integras con sistema.",n:"Prepáralo una vez por puesto y reutilízalo: la quinta incorporación tiene que costarte la mitad que la primera."}],
+
+   [{s:"No delegas: repartes trabajo cuando no llegas.",n:"Escribe todo lo que haces en una semana y marca lo que solo puedes hacer tú. Es mucho menos de lo que crees."},
+    {s:"Delegas la tarea y te quedas el control.",n:"Delega el resultado, no el paso a paso. Di qué quieres conseguir y cállate el cómo, aunque al principio duela."},
+    {s:"Sueltas cosas sin ritmo, y vuelven.",n:"Escribe el proceso antes de soltar la tarea. Sin eso, delegar es empezar de cero cada vez."},
+    {s:"Tienes niveles de autonomía y procesos escritos.",n:"Prueba la semana fuera. Es el único examen que no se puede falsear, y te dice exactamente qué te queda por vaciar."},
+    {s:"El equipo funciona sin ti, y lo sabes porque ya ha pasado.",n:"Monta la sucesión: quién te sustituye en cada decisión, qué tiene que saber y cómo lo entrenas antes de necesitarlo."}],
+
+   [{s:"Tu semana la marcan los fuegos: entras y ves qué hay.",n:"Bloquea dos horas para dirigir. Dos, y defiéndelas como defenderías una reunión con dirección."},
+    {s:"Tienes lista, no agenda. La lista no tiene límite y el día sí.",n:"Pasa la lista a bloques: dirigir, hacer y estar disponible."},
+    {s:"Lo intentas y se te cae casi siempre.",n:"No es tu disciplina: es que el equipo no sabe cuándo puede interrumpirte. Acordad las horas de disponibilidad y se sostiene solo."},
+    {s:"Tienes bloques y un día sin reuniones.",n:"Antes de automatizar, elimina. Haz la lista de lo que nadie reclamaría si dejaras de hacerlo, y déjalo de hacer."},
+    {s:"Tus bloques los respeta el equipo.",n:"Monta dos agentes sobre tus propios documentos: el que te prepara el informe semanal y el que convierte tus explicaciones en procesos."}],
+
+   [{s:"Cada semana entra más de lo que sale.",n:"Empieza el registro: tres cosas fuera de tu mesa cada semana, con nombre y fecha. Tres, porque diez no se hacen y una no se nota."},
+    {s:"Sueltas cosas cuando ya no puedes más.",n:"Pásalo a ritmo fijo en vez de a reacción: el mismo día, todas las semanas."},
+    {s:"Lo intentas, pero sin un ritmo.",n:"Mételo en la reunión que ya tienes. Un sistema que pide una reunión nueva se abandona en un mes."},
+    {s:"Sale algo todas las semanas, con nombre y fecha.",n:"Añade la métrica que lo ordena todo: qué ha pasado esta semana sin ti que la semana pasada no pasaba."},
+    {s:"Tienes la rutina y sabes separar la señal del ruido.",n:"Súbelo un nivel: que cada uno de tus mandos lleve su propia versión de esta rutina con su equipo."}]
+  ];
   var app=document.getElementById('app');
-  var idx=0,tdx=0,answers=[],tans=[],order=[],lead={},phase='q';
+  var idx=0,tdx=0,answers=[],tans=[],order=[],lead={},phase='q',RES=null;
   var LEAD_ENDPOINT='';
-  var STEPS=Q.length+T.length+1+2;
+  var STEPS=Q.length+T.length+1;
   function done(){
     var n=0;
     if(phase==='q')n=idx;
     else if(phase==='bridge'||phase==='t')n=Q.length+tdx;
     else if(phase==='calcIntro'||phase==='calcCtx')n=Q.length+T.length;
-    else if(phase==='setIntro'||phase==='setQ')n=Q.length+T.length+1+spage;
     else n=STEPS;
     return Math.round(n/STEPS*100);
   }
@@ -422,18 +491,19 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       if(ctx.factura==='si'&&(!rv||+rv<10000)){e.textContent='Escribe la facturación anual aproximada.';return;}
       if(!s||+s<300){e.textContent='Revisa el sueldo medio mensual.';return;}
       ctx.personas=+p;ctx.sueldo=+s;ctx.facturacion=ctx.factura==='si'?+rv:0;
-      setIntro();
+      capture();
     };
   }
 
   function setIntro(){
     phase='setIntro';
-    slide('Última parte','Por último unas preguntas sobre dónde estás y dónde quieres llegar','',
-      'Seguir',function(){phase='setQ';spage=0;renderS();},function(){phase='calcCtx';calcCtx();});
+    slide('Un paso más','Por último unas preguntas sobre dónde estás y dónde quieres llegar',
+      'Con esto preparamos tu caso antes de hablar contigo. Escríbelo con tus palabras, sin pensarlo mucho.',
+      'Seguir',function(){phase='setQ';spage=0;renderS();},function(){report(RES);});
   }
 
   function renderS(){
-    if(spage>=2)return capture();
+    if(spage>=2)return gracias();
     phase='setQ';
     var from=spage*3,to=from+3;
     var h='<div class="screen">'+bar(done())+'<div class="meta"><span>Dónde estás y dónde quieres llegar</span><span>'+(spage+1)+' / 2</span></div>';
@@ -456,30 +526,35 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   function capture(){
     phase='capture';
     app.innerHTML='<div class="screen">'+bar(100)+'<div class="meta"><span>Último paso</span><span>100%</span></div>'+
-      '<div class="center"><div class="lock">✦</div><h2 style="text-align:center;margin-bottom:10px">Tu mapa está listo</h2>'+
-      '<p class="lead" style="margin:0 auto 28px">Dime dónde te lo envío. Dentro tienes tu nivel en cada uno de los 9 bloques y lo que tu equipo deja encima de la mesa cada año.</p></div>'+
+      '<div class="center"><div class="lock">✦</div><h2 style="text-align:center;margin-bottom:10px">Tu informe está listo</h2>'+
+      '<p class="lead" style="margin:0 auto 28px">Dime quién eres y te lo abro. Dentro tienes tu nivel en cada uno de los 9 bloques, lo que tu equipo deja encima de la mesa cada año y, bloque a bloque, qué tendrías que hacer para subir un escalón.</p></div>'+
       '<div class="form" style="margin:0 auto">'+
         '<div class="field"><label>Nombre</label><input id="f_name" type="text" placeholder="Tu nombre"></div>'+
+        '<div class="field"><label>Ciudad</label><input id="f_city" type="text" placeholder="Dónde trabajas"></div>'+
+        '<div class="field"><label>¿Cuál es tu mayor reto ahora mismo?</label><textarea id="f_reto" class="sarea" rows="3" placeholder="Con tus palabras. Es lo primero que miro de tu caso."></textarea></div>'+
         '<div class="field"><label>Email</label><input id="f_email" type="email" placeholder="tu@email.com"></div>'+
         '<div class="err" id="f_err"></div>'+
-        '<button class="btn" id="reveal" style="margin-top:4px">Ver mi resultado</button>'+
+        '<button class="btn" id="reveal" style="margin-top:4px">Ver mi informe</button>'+
+        '<p class="fine center" style="margin:10px 0 0">Te lo enseño aquí y te lo mando al correo.</p>'+
         '<div class="nav center"><button class="back" id="backc">&#8592; Volver</button></div>'+
       '</div></div>';
-    document.getElementById('backc').onclick=function(){phase='setQ';spage=1;renderS();};
+    document.getElementById('backc').onclick=function(){phase='calcCtx';calcCtx();};
     document.getElementById('reveal').onclick=function(){
-      var n=document.getElementById('f_name').value.trim(),e=document.getElementById('f_email').value.trim();
+      var n=document.getElementById('f_name').value.trim(),e=document.getElementById('f_email').value.trim(),
+          c=document.getElementById('f_city').value.trim(),rt=document.getElementById('f_reto').value.trim();
       var err=document.getElementById('f_err');
       if(!n){err.textContent='Dime tu nombre.';return;}
+      if(!c){err.textContent='Dime en qué ciudad trabajas.';return;}
+      if(rt.length<3){err.textContent='Cuéntame tu mayor reto, aunque sea en una frase.';return;}
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e)){err.textContent='Revisa el email.';return;}
       var r=score();
-      lead={source:'test-onboarding',nombre:n,email:e,
+      lead={source:'test-onboarding',nombre:n,ciudad:c,email:e,mayor_reto:rt,
         personas:ctx.personas,factura:ctx.factura,facturacion:ctx.facturacion,sueldo_medio:ctx.sueldo,
-        respuestas:answers.slice(),trampas:tans.slice(),setting:{},
+        respuestas:answers.slice(),trampas:tans.slice(),
         nivel_global:r.global,aplicacion:r.mad,capacidad:r.u,perdida_anual:Math.round(r.loss),
-        ts:new Date().toISOString()};
-      for(var i=0;i<SET.length;i++)lead.setting[SET[i].k]=sans[i];
+        setting_hecho:false,ts:new Date().toISOString()};
       for(var m=0;m<9;m++)lead['m'+(m+1)]=r.mods[m];
-      submitLead();result(r);
+      submitLead();RES=r;report(r);
     };
   }
 
@@ -509,22 +584,35 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
 
   function dots(n){var s='';for(var i=1;i<=5;i++)s+='<i class="dot'+(i<=n?' on':'')+'"></i>';return s;}
 
-  function result(r){
+  function report(r){
+    phase='report';
     var ord=[];for(var i=0;i<9;i++)ord.push(i);
     ord.sort(function(a,b){return r.raw[a]-r.raw[b];});
+
     var rows='';
     for(var k=0;k<ord.length;k++){var m=ord[k];
       rows+='<div class="mrow"><div class="mname"><span class="mb">'+MODS[m].b+'</span>'+MODS[m].n+'</div>'+
         '<div class="mdots">'+dots(r.mods[m])+'</div><div class="mlvl">'+r.mods[m]+'</div></div>';
     }
+
+    var fichas='';
+    for(var f=0;f<ord.length;f++){var mm=ord[f],lv=r.mods[mm],nx=NEXT[mm][lv-1];
+      fichas+='<div class="ficha">'+
+        '<div class="fhead"><span class="mb">'+MODS[mm].b+'</span><span class="fnivel">Nivel '+lv+' · '+L[lv].n+'</span></div>'+
+        '<p class="ftitle">'+MODS[mm].n+'</p>'+
+        '<p class="flabel">Dónde estás</p><p class="ftxt">'+nx.s+'</p>'+
+        '<p class="flabel">Para subir un escalón</p><p class="ftxt gold">'+nx.n+'</p></div>';
+    }
+
     var penTxt='';var pl=[];
     for(var j=0;j<T.length;j++)if((tans[j]||0)>0)pl.push({i:j,v:tans[j]});
     pl.sort(function(a,b){return b.v-a.v;});
     if(pl.length){penTxt='<div class="box"><p class="eyebrow">Lo que te ha restado</p><ul class="plist">';
       for(var y=0;y<Math.min(2,pl.length);y++)penTxt+='<li><strong>'+SCALE[pl[y].v]+'</strong> — '+T[pl[y].i].q.replace('…','')+'</li>';
       penTxt+='</ul><p class="fine" style="margin:10px 0 0">Esto no sale de lo que crees que haces: sale de lo que hiciste el mes pasado.</p></div>';}
-    var first=ord.slice(0,3).map(function(m){return MODS[m].b;}).join(' · ');
-    var warn=r.perfect?'<div class="box warn"><p class="eyebrow">Atención</p><p style="margin:0">Has salido en 4 o 5 en los nueve bloques y sin una sola trampa. O no es tu cohorte, o te has puntuado como te gustaría ser. En tu 1 a 1 empezamos por ahí: enséñame tu matriz, tu último informe semanal y el proceso que escribiste la semana pasada.</p></div>':'';
+
+    var warn=r.perfect?'<div class="box warn"><p class="eyebrow">Atención</p><p style="margin:0">Has salido en 4 o 5 en los nueve bloques y sin una sola trampa. O tienes esto muy montado, o te has puntuado como te gustaría ser. La forma de salir de dudas es enseñar la matriz, el último informe semanal y el proceso que escribiste la semana pasada.</p></div>':'';
+
     var U=(r.u/100).toFixed(2).replace('.',',');
     var base=ctx.factura==='si'
       ? 'Tu área factura '+nfmt(ctx.facturacion)+' € al año con un rendimiento de '+U+' por persona. Con 1,97 facturaría '+nfmt(Math.round(ctx.facturacion/r.u*HIGH))+' €.'
@@ -536,9 +624,13 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<p style="margin:0 0 4px;font-size:15px">Lo que tu equipo deja encima de la mesa cada año</p>'+
       '<p class="bignum">'+nfmt(Math.round(r.loss))+' €</p>'+
       '<p class="fine" style="margin:0">'+base+'</p>'+
-      '<p class="fine" style="margin:10px 0 0;opacity:.75">Escala basada en la investigación <em>Multipliers</em> de Liz Wiseman.</p></div>';
+      '<p class="fine" style="margin:10px 0 0;opacity:.75">Sale de tus 18 respuestas, con las trampas ya descontadas. Escala basada en la investigación <em>Multipliers</em> de Liz Wiseman.</p></div>';
+
+    var reto=lead.mayor_reto?'<div class="box"><p class="eyebrow">Tu mayor reto, con tus palabras</p><p class="quote">«'+esc(lead.mayor_reto)+'»</p>'+
+      '<p class="fine" style="margin:10px 0 0">Tu bloque más flojo hoy es <strong>'+MODS[ord[0]].b+' · '+MODS[ord[0]].n+'</strong>. Si tu reto no cae ahí, empieza igualmente por él: lo que te frena casi nunca es lo que crees.</p></div>':'';
+
     app.innerHTML='<div class="screen">'+
-      (lead.nombre?'<p class="lvl-label">'+esc(lead.nombre)+', este es tu punto de partida</p>':'')+
+      '<p class="lvl-label">'+esc(lead.nombre||'')+', este es tu punto de partida</p>'+
       '<h1 style="text-align:center;margin-bottom:6px">Nivel '+r.global+'</h1>'+
       '<p class="eyebrow" style="text-align:center">'+L[r.global].n+'</p>'+
       '<p class="lead" style="margin:0 auto 26px;text-align:center">'+L[r.global].d+'</p>'+
@@ -547,12 +639,30 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<h2 style="margin:34px 0 6px">Tu nivel bloque a bloque</h2>'+
       '<p class="fine" style="margin:0 0 18px">De lo más flojo a lo más fuerte. Lo primero de la lista es por donde empiezas tú.</p>'+
       '<div class="mtable">'+rows+'</div>'+
-      eco+
-      penTxt+
-      '<div class="box"><p class="eyebrow">Tu recorrido</p><p style="margin:0 0 6px">Empiezas por: <strong>'+first+'</strong></p><p class="fine" style="margin:0">No vas a hacer los nueve bloques en orden. Vas a hacer primero los tres que te faltan, y el resto cuando toque.</p></div>'+
-      '<p class="fine center" style="margin-top:30px">Guardamos esta foto. El día 90 la repetimos y comparamos.</p>'+
-      '<div class="nav center"><button class="back" id="again">Volver a empezar</button></div></div>';
-    document.getElementById('again').onclick=intro;
+      eco+ reto+ penTxt+
+      '<h2 style="margin:40px 0 6px">Bloque a bloque: qué tienes y qué te falta</h2>'+
+      '<p class="fine" style="margin:0 0 22px">Lo que sigue es tu informe. En los nueve bloques hay un siguiente escalón, también en los que ya llevas bien.</p>'+
+      fichas+
+      '<div class="cta"><p class="eyebrow">Y ahora</p>'+
+      '<h2 style="margin:0 0 12px">¿Quieres dar un paso más y formarte para ser un verdadero líder PRO?</h2>'+
+      '<p class="lead" style="margin:0 auto 20px">Este informe te dice dónde estás. El programa es el camino: 9 bloques, 90 días y los sistemas montados sobre tu equipo, no sobre un caso de clase.</p>'+
+      '<button class="btn" id="goCta">Sí, quiero saber más</button>'+
+      '<p class="fine" style="margin:14px 0 0">Son tres preguntas más. Si solo querías tu informe, ya lo tienes: es tuyo y te llega por correo.</p></div>'+
+      '</div>';
+    document.getElementById('goCta').onclick=function(){setIntro();};
+    window.scrollTo(0,0);
+  }
+
+  function gracias(){
+    phase='gracias';
+    var s={};for(var i=0;i<SET.length;i++)s[SET[i].k]=sans[i];
+    lead.setting=s;lead.setting_hecho=true;submitLead();
+    app.innerHTML='<div class="screen center">'+
+      '<div class="lock">✦</div>'+
+      '<p class="eyebrow">Recibido</p>'+
+      '<h1 style="margin-bottom:14px">Analizaremos tu caso<br>y te contactamos en breve</h1>'+
+      '<p class="lead" style="margin:0 auto 10px">Lo vemos con calma —tu informe, tus números y lo que acabas de contarnos— y te escribimos con lo que haríamos en tu caso concreto. No es una llamada de venta con guion: si esto no es para ti, te lo decimos.</p>'+
+      '<p class="fine" style="margin-top:20px">Mientras tanto, tienes tu informe en el correo.</p></div>';
     window.scrollTo(0,0);
   }
   intro();
