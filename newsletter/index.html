@@ -276,6 +276,30 @@ function nlTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}cat
   .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}.rv.d5{transition-delay:.5s}
   @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.scroll-hint i{animation:none}}
 </style>
+<script>
+/* Envío al Worker de altas con espera de 20 s y 1 reintento automático (15-nov-2026).
+   Los navegadores internos de Instagram/Facebook en Android a veces tardan o cortan la conexión.
+   opts.retryOnTimeout=false -> no reintenta si se agotó la espera (p.ej. si el Worker manda un email). */
+window.__workerPost=function(url,payload,opts){
+  opts=opts||{};var timeout=opts.timeout||20000,retryTimeout=opts.retryOnTimeout!==false;
+  function once(n){
+    var c=('AbortController' in window)?new AbortController():null,t=c&&setTimeout(function(){c.abort();},timeout);
+    var data={};for(var k in payload){if(Object.prototype.hasOwnProperty.call(payload,k))data[k]=payload[k];}data.attempt=n;
+    return fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),signal:c?c.signal:undefined})
+      .then(function(r){clearTimeout(t);return r.json().catch(function(){return {};}).then(function(j){
+          return {ok:r.ok&&j.ok!==false,status:r.status,j:j||{},reason:(r.ok&&j.ok!==false)?'':((j&&j.code)||('http_'+r.status)),retry:r.status>=500};});},
+        function(e){clearTimeout(t);var to=!!(e&&e.name==='AbortError');return {ok:false,status:0,j:{},reason:to?'timeout':'network',retry:!to||retryTimeout};});
+  }
+  return once(1).then(function(r){
+    if(r.ok||!r.retry)return r;
+    try{if(window.gtag)gtag('event','worker_retry',{reason:r.reason,source:payload&&payload.source});}catch(e){}
+    return new Promise(function(ok){setTimeout(ok,1500);}).then(function(){return once(2);});
+  }).then(function(r){
+    if(!r.ok){try{if(window.gtag)gtag('event','worker_error',{reason:r.reason,source:payload&&payload.source});}catch(e){}}
+    return r;
+  });
+};
+</script>
 </head>
 <body>
 
@@ -556,18 +580,16 @@ function nlTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}cat
       btn.disabled=true;var old=btn.innerHTML;btn.textContent='Un segundo…';
       nlTrack('newsletter_submit',{form:f.getAttribute('data-form')});
       var payload={source:'newsletter',email:email,lm_source:'newsletter-landing',utm_source:utm('utm_source'),utm_medium:utm('utm_medium'),utm_campaign:utm('utm_campaign'),page:location.pathname,form:f.getAttribute('data-form')};
-      var ctrl=('AbortController' in window)?new AbortController():null;var t=ctrl&&setTimeout(function(){ctrl.abort();},9000);
-      fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:ctrl?ctrl.signal:undefined})
-        .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {ok:r.ok&&j.ok!==false,j:j};});})
-        .then(function(res){clearTimeout(t);
+      __workerPost(ENDPOINT,payload)
+        .then(function(res){
           if(res.ok){f.style.display='none';msg.textContent='';done.style.display='block';nlTrack('newsletter_subscribed',{form:f.getAttribute('data-form')});try{if(window.fbq)fbq('track','Lead');}catch(e){}try{if(window.ttq)ttq.track('SubmitForm');}catch(e){}}
-          else{throw new Error('worker');}
+          else{var e=new Error('worker');e.reason=res.reason;throw e;}
         })
-        .catch(function(){clearTimeout(t);
+        .catch(function(e){
           /* Sin redirección a beehiiv: se queda en la página, avisa y permite reintentar. */
-          nlTrack('newsletter_error');
+          nlTrack('newsletter_error',{reason:(e&&e.reason)||'js'});
           btn.disabled=false;btn.innerHTML=old;
-          msg.className='form-msg err';msg.textContent='No he podido registrarte ahora mismo. Inténtalo de nuevo en unos segundos.';
+          msg.className='form-msg err';msg.textContent=(e&&e.reason==='invalid_email')?'Ese email no parece válido. ¿Puedes revisarlo?':'No he podido registrarte ahora mismo. Dale otra vez en unos segundos.';
         });
     });
   });
