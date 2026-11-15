@@ -359,23 +359,47 @@
       var ENDPOINT = 'https://test-lider-beehiiv.alexdakov.workers.dev';
       var f = document.getElementById('nl-form'), inp = f.querySelector('input[type="email"]'),
           btn = document.getElementById('nl-btn'), msg = document.getElementById('nl-msg'), done = document.getElementById('nl-done');
+      // Envío robusto (15-nov-2026): los navegadores internos de Instagram/Facebook en Android
+      // a veces tardan o cortan la conexión. Por eso: espera de 20 s, 1 reintento automático
+      // (el alta es idempotente: beehiiv reactiva si ya existe) y el motivo del fallo va a GA4.
+      function enviar(email, intento){
+        var ctrl = ('AbortController' in window) ? new AbortController() : null;
+        var t = ctrl && setTimeout(function(){ ctrl.abort(); }, 20000);
+        return fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ source: 'newsletter', lm_source: 'links-bio', email: email, utm_source: src, utm_medium: 'links', utm_campaign: 'bio', page: '/links/', attempt: intento }),
+          signal: ctrl ? ctrl.signal : undefined })
+          .then(function(r){ clearTimeout(t);
+            return r.json().catch(function(){ return {}; }).then(function(j){
+              if (r.ok && j.ok !== false) return { ok: true };
+              return { ok: false, reason: (j && j.code) || ('http_' + r.status), retry: r.status >= 500 };
+            }); },
+          function(err){ clearTimeout(t);
+            return { ok: false, reason: (err && err.name === 'AbortError') ? 'timeout' : 'network', retry: true }; });
+      }
       f.addEventListener('submit', function(ev){
         ev.preventDefault();
         var email = (inp.value || '').trim(); msg.className = 'nl-msg'; msg.textContent = '';
         if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.className = 'nl-msg show'; msg.textContent = 'Revisa el email, parece que falta algo.'; inp.focus(); return; }
         btn.disabled = true; var old = btn.textContent; btn.textContent = 'Un segundo…';
         try { gtag('event', 'links_newsletter_submit', { page: 'links', src: src }); } catch(e){}
-        var ctrl = ('AbortController' in window) ? new AbortController() : null; var t = ctrl && setTimeout(function(){ ctrl.abort(); }, 9000);
-        fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ source: 'newsletter', lm_source: 'links-bio', email: email, utm_source: src, utm_medium: 'links', utm_campaign: 'bio', page: '/links/' }),
-          signal: ctrl ? ctrl.signal : undefined })
-          .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return r.ok && j.ok !== false; }); })
-          .then(function(ok){ clearTimeout(t); if (!ok) throw new Error('worker');
-            f.style.display = 'none'; done.className = 'nl-done show';
-            try { gtag('event', 'links_newsletter_subscribed', { page: 'links', src: src }); } catch(e){} })
-          .catch(function(){ clearTimeout(t); btn.disabled = false; btn.textContent = old;
-            msg.className = 'nl-msg show'; msg.textContent = 'No he podido registrarte ahora mismo. Inténtalo de nuevo en unos segundos.';
-            try { gtag('event', 'links_newsletter_error', { page: 'links' }); } catch(e){} });
+        enviar(email, 1)
+          .then(function(res){
+            if (res.ok || !res.retry) return res;
+            try { gtag('event', 'links_newsletter_retry', { page: 'links', reason: res.reason }); } catch(e){}
+            return new Promise(function(ok){ setTimeout(ok, 1500); }).then(function(){ return enviar(email, 2); });
+          })
+          .then(function(res){
+            if (res.ok) {
+              f.style.display = 'none'; done.className = 'nl-done show';
+              try { gtag('event', 'links_newsletter_subscribed', { page: 'links', src: src }); } catch(e){}
+              return;
+            }
+            btn.disabled = false; btn.textContent = old; msg.className = 'nl-msg show';
+            msg.textContent = res.reason === 'invalid_email'
+              ? 'Ese email no parece válido. ¿Puedes revisarlo?'
+              : 'No he podido registrarte ahora mismo. Dale otra vez a «Suscribirme» en unos segundos.';
+            try { gtag('event', 'links_newsletter_error', { page: 'links', src: src, reason: res.reason }); } catch(e){}
+          });
       });
     })();
   </script>
