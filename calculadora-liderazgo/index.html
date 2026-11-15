@@ -363,6 +363,30 @@ window.adkEmailCheck=window.adkEmailCheck||function(email){
     }
     @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
   </style>
+<script>
+/* Envío al Worker de altas con espera de 20 s y 1 reintento automático (15-nov-2026).
+   Los navegadores internos de Instagram/Facebook en Android a veces tardan o cortan la conexión.
+   opts.retryOnTimeout=false -> no reintenta si se agotó la espera (p.ej. si el Worker manda un email). */
+window.__workerPost=function(url,payload,opts){
+  opts=opts||{};var timeout=opts.timeout||20000,retryTimeout=opts.retryOnTimeout!==false;
+  function once(n){
+    var c=('AbortController' in window)?new AbortController():null,t=c&&setTimeout(function(){c.abort();},timeout);
+    var data={};for(var k in payload){if(Object.prototype.hasOwnProperty.call(payload,k))data[k]=payload[k];}data.attempt=n;
+    return fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),signal:c?c.signal:undefined})
+      .then(function(r){clearTimeout(t);return r.json().catch(function(){return {};}).then(function(j){
+          return {ok:r.ok&&j.ok!==false,status:r.status,j:j||{},reason:(r.ok&&j.ok!==false)?'':((j&&j.code)||('http_'+r.status)),retry:r.status>=500};});},
+        function(e){clearTimeout(t);var to=!!(e&&e.name==='AbortError');return {ok:false,status:0,j:{},reason:to?'timeout':'network',retry:!to||retryTimeout};});
+  }
+  return once(1).then(function(r){
+    if(r.ok||!r.retry)return r;
+    try{if(window.gtag)gtag('event','worker_retry',{reason:r.reason,source:payload&&payload.source});}catch(e){}
+    return new Promise(function(ok){setTimeout(ok,1500);}).then(function(){return once(2);});
+  }).then(function(r){
+    if(!r.ok){try{if(window.gtag)gtag('event','worker_error',{reason:r.reason,source:payload&&payload.source});}catch(e){}}
+    return r;
+  });
+};
+</script>
 </head>
 <body>
 
@@ -844,9 +868,8 @@ window.adkEmailCheck=window.adkEmailCheck||function(email){
   }
   function post(body,cb){
     if(!LIVE){ cb(true); return; }
-    var c=('AbortController' in window)?new AbortController():null, t=c&&setTimeout(function(){c.abort();},9000);
-    fetch(WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:c?c.signal:undefined})
-      .then(function(){ clearTimeout(t); cb(true); }).catch(function(){ clearTimeout(t); cb(false); });
+    __workerPost(WORKER,body)
+      .then(function(res){ cb(res.ok); }).catch(function(){ cb(false); });
   }
   var mailAvisado=false;   // dominio ya sugerido: si el usuario insiste, lo aceptamos
   $('#gateForm').addEventListener('submit',function(e){
