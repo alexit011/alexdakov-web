@@ -29,7 +29,9 @@
 
 ## Blog de liderazgo
 - [Blog](https://alexdakov.com/blog/): Artículos de Alex Dakov sobre liderazgo, alto rendimiento y neurociencia de la motivación.
+- [Diferencia entre jefe y líder: 7 diferencias que se notan en un equipo](https://alexdakov.com/blog/diferencia-entre-jefe-y-lider/): Jefe vs líder: las 7 diferencias que de verdad se notan en un equipo, una tabla comparativa y un test rápido para saber cuál eres, de alguien que fue el jefe que odiaba ser.
 - [Equipos de alto rendimiento: qué son y cómo se construye uno](https://alexdakov.com/blog/equipos-de-alto-rendimiento/): Qué es un equipo de alto rendimiento, sus 6 características y cómo se construye uno paso a paso, con lo aprendido dirigiendo equipos en Space Ibiza y festivales.
+- [Motivación laboral: qué es, por qué cae y cómo recuperarla en tu equipo](https://alexdakov.com/blog/motivacion-laboral/): Qué es la motivación laboral, qué factores la suben y cuáles solo evitan que caiga, qué es el salario emocional y un plan de 30 días para recuperar la motivación de un equipo.
 - [Neurociencia de la motivación: por qué tu equipo se apaga (y cómo encenderlo)](https://alexdakov.com/blog/neurociencia-de-la-motivacion/): Qué dice la neurociencia sobre la motivación en el trabajo: por qué los premios y las broncas fallan, el papel de la dopamina y el progreso, y cómo encender a un equipo.
 - [Qué incluye contratar a un conferenciante (y qué preguntar antes de pedir presupuesto)](https://alexdakov.com/blog/que-incluye-contratar-conferenciante/): Qué incluye contratar a un conferenciante para tu empresa, qué hace variar el presupuesto y las preguntas que conviene hacer antes de pedirlo. Guía para RRHH.
 - [Tipos de liderazgo: los 7 estilos y cuándo usar cada uno](https://alexdakov.com/blog/tipos-de-liderazgo/): Los 7 tipos de liderazgo explicados con ejemplos reales: autoritario, visionario, afiliativo, democrático, ejemplarizante, coach y laissez-faire. Cuándo usar cada uno.
