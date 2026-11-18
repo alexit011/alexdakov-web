@@ -386,6 +386,9 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       return o;
     }catch(err){return {};}
   })();
+  // Si el enlace trae nombre y email, es alguien que ya esta cualificado: no se le vuelve a
+  // preguntar lo que ya sabemos, y el presetting va ANTES del resultado (ya pidio informacion).
+  var MODO_PRE=!!(PRE.n&&PRE.e);
   var LM_NOMBRE={'test-lider':'el Test del L\u00edder','lider-pro':'el checklist L\u00edder PRO',
     'diagnostico':'el Diagn\u00f3stico de problemas','calculadora':'la Calculadora del l\u00edder'};
   // Saluda SOLO con lo que sabemos de verdad. Sin datos no se pinta nada: mejor nada que fallar.
@@ -563,19 +566,25 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       if(ctx.factura==='si'&&(!rv||+rv<10000)){e.textContent='Escribe la facturación anual aproximada.';return;}
       if(!s||+s<300){e.textContent='Revisa el sueldo medio mensual.';return;}
       ctx.personas=+p;ctx.sueldo=+s;ctx.facturacion=ctx.factura==='si'?+rv:0;
-      capture();
+      if(MODO_PRE){preSalto();}else{capture();}
     };
   }
 
   function setIntro(){
     phase='setIntro';
-    slide('Crecer está solo al alcance de quien de verdad se compromete.','¿Quién eres, y dónde quieres llegar?',
-      'Para poder trabajar contigo necesitamos analizar tu caso: entender el valor que podemos aportarte y cómo podemos hacer que vayas al siguiente nivel.',
-      'Seguir',function(){phase='setQ';spage=0;renderS();},function(){report(RES);},'kicker');
+    if(MODO_PRE){
+      slide('Antes de darte el resultado.','Y ahora, cuéntame sobre tu caso',
+        'Ya sé cómo diriges hoy. Para que el informe te sirva de verdad —y para saber si puedo ayudarte— necesito entender dónde quieres llegar y qué te lo está impidiendo. Son siete preguntas y van con tus palabras.',
+        'Seguir',function(){phase='setQ';spage=0;renderS();},function(){phase='calcCtx';calcCtx();},'kicker');
+    }else{
+      slide('Crecer está solo al alcance de quien de verdad se compromete.','¿Quién eres, y dónde quieres llegar?',
+        'Para poder trabajar contigo necesitamos analizar tu caso: entender el valor que podemos aportarte y cómo podemos hacer que vayas al siguiente nivel.',
+        'Seguir',function(){phase='setQ';spage=0;renderS();},function(){report(RES);},'kicker');
+    }
   }
 
   function renderS(){
-    if(spage>=SPAGES.length)return gracias();
+    if(spage>=SPAGES.length){enviarSetting();return MODO_PRE?report(RES):gracias();}
     phase='setQ';
     var from=SPAGES[spage][0],to=SPAGES[spage][1];
     var h='<div class="screen">'+bar(done())+'<div class="meta"><span>Dónde estás y dónde quieres llegar</span><span>'+(spage+1)+' / '+SPAGES.length+'</span></div>';
@@ -617,6 +626,28 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     };
   }
 
+  // Calcula, arma el lead y manda el primer envio. Lo usan los dos caminos.
+  function construirLead(n,c,e,rt){
+    var r=score();
+    lead={source:'test-completo-lider-v2',nombre:n,ciudad:c,email:e,mayor_reto:rt,
+      personas:ctx.personas,factura:ctx.factura,facturacion:ctx.facturacion,sueldo_medio:ctx.sueldo,
+      page:location.pathname,utm_source:(new URLSearchParams(location.search).get('utm_source')||''),
+      respuestas:answers.slice(),trampas:tans.slice(),
+      nivel_global:r.global,aplicacion:r.mad,capacidad:r.u,perdida_anual:Math.round(r.loss),
+      setting_hecho:false,ts:new Date().toISOString()};
+    for(var m=0;m<9;m++)lead['m'+(m+1)]=r.mods[m];
+    submitLead();RES=r;return r;
+  }
+  // Camino de quien ya conocemos: nos saltamos pedirle nombre, email y reto.
+  function preSalto(){
+    construirLead(PRE.n||'',PRE.c||'',PRE.e||'',PRE.r||'');
+    setIntro();
+  }
+  function enviarSetting(){
+    var s={};for(var i=0;i<SET.length;i++)s[SET[i].k]=sans[i];
+    lead.setting=s;lead.setting_hecho=true;submitLead();
+  }
+
   function capture(){
     phase='capture';
     app.innerHTML='<div class="screen">'+bar(100)+'<div class="meta"><span>Último paso</span><span>100%</span></div>'+
@@ -640,15 +671,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       if(!c){err.textContent='Dime en qué ciudad trabajas.';return;}
       if(rt.length<3){err.textContent='Cuéntame tu mayor reto, aunque sea en una frase.';return;}
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e)){err.textContent='Revisa el email.';return;}
-      var r=score();
-      lead={source:'test-completo-lider-v2',nombre:n,ciudad:c,email:e,mayor_reto:rt,
-        personas:ctx.personas,factura:ctx.factura,facturacion:ctx.facturacion,sueldo_medio:ctx.sueldo,
-        page:location.pathname,utm_source:(new URLSearchParams(location.search).get('utm_source')||''),
-        respuestas:answers.slice(),trampas:tans.slice(),
-        nivel_global:r.global,aplicacion:r.mad,capacidad:r.u,perdida_anual:Math.round(r.loss),
-        setting_hecho:false,ts:new Date().toISOString()};
-      for(var m=0;m<9;m++)lead['m'+(m+1)]=r.mods[m];
-      submitLead();RES=r;report(r);
+      report(construirLead(n,c,e,rt));
     };
   }
 
@@ -732,18 +755,20 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<p class="fine" style="margin:0 0 22px">Los nueve en orden, del 1 al 9: dónde estás en cada uno y qué te falta para subir. En todos hay un siguiente escalón, también en los que ya llevas bien.</p>'+
       fichas+ eco+
       '<div class="cta"><p class="eyebrow">Y ahora</p>'+
-      '<h2 style="margin:0 0 12px">¿Te gustaría dar un paso más para ser un verdadero líder PRO?</h2>'+
-      '<p class="lead" style="margin:0 auto 20px">Este informe te dice dónde estás. Formarte te permite construir dónde quieres estar.</p>'+
-      '<button class="btn" id="goCta">Sí, quiero saber más</button></div>'+
+      (MODO_PRE
+        ? '<h2 style="margin:0 0 12px">Ya tengo todo lo que necesito para estudiar tu caso</h2>'+
+          '<p class="lead" style="margin:0 auto 20px">Me has contado dónde quieres llegar y qué te está frenando. Lo miro con calma y te escribo.</p>'+
+          '<button class="btn" id="goCta">Terminar</button>'
+        : '<h2 style="margin:0 0 12px">¿Te gustaría dar un paso más para ser un verdadero líder PRO?</h2>'+
+          '<p class="lead" style="margin:0 auto 20px">Este informe te dice dónde estás. Formarte te permite construir dónde quieres estar.</p>'+
+          '<button class="btn" id="goCta">Sí, quiero saber más</button>')+'</div>'+
       '</div>';
-    document.getElementById('goCta').onclick=function(){setIntro();};
+    document.getElementById('goCta').onclick=function(){if(MODO_PRE){gracias();}else{setIntro();}};
     window.scrollTo(0,0);
   }
 
   function gracias(){
     phase='gracias';
-    var s={};for(var i=0;i<SET.length;i++)s[SET[i].k]=sans[i];
-    lead.setting=s;lead.setting_hecho=true;submitLead();
     app.innerHTML='<div class="screen center">'+
       '<div class="lock">✦</div>'+
       '<p class="eyebrow">Recibido</p>'+
