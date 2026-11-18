@@ -224,6 +224,13 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     transition:border-color .2s,color .2s,transform .12s}
   .sbtn:hover{border-color:var(--gold);color:var(--gold-soft);transform:translateY(-1px)}
   .sbtn svg{width:16px;height:16px;fill:currentColor;opacity:.85;flex:none}
+.prebox{max-width:560px;margin:0 auto 26px;padding:18px 20px;border:1px solid rgba(201,169,97,.45);
+  border-left:3px solid #C9A961;border-radius:10px;background:rgba(201,169,97,.07);text-align:left}
+.pre-hi{margin:0 0 8px;font-family:Georgia,serif;font-size:18px;line-height:1.3;color:#C9A961}
+.pre-txt{margin:0 0 6px;font-size:14.5px;line-height:1.6;opacity:.92}
+.pre-quote{margin:8px 0 10px;padding-left:12px;border-left:2px solid rgba(201,169,97,.5);
+  font-family:Georgia,serif;font-style:italic;font-size:15.5px;line-height:1.5}
+@media(max-width:560px){.prebox{margin-bottom:20px;padding:15px 16px}.pre-hi{font-size:16.5px}}
 </style>
 </head>
 <body>
@@ -370,6 +377,31 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   var app=document.getElementById('app');
   var idx=0,tdx=0,answers=[],tans=[],order=[],lead={},phase='q',RES=null;
   var LEAD_ENDPOINT='https://test-lider-beehiiv.alexdakov.workers.dev';
+  // Datos que viajan en el enlace personalizado que se envia a quien ya esta cualificado.
+  // Si no vienen (visita normal desde la web), la pagina se comporta igual que siempre.
+  var PRE=(function(){
+    try{
+      var q=new URLSearchParams(location.search),o={};
+      ['n','c','e','nv','lm','r'].forEach(function(k){var v=(q.get(k)||'').trim();if(v)o[k]=v.slice(0,200);});
+      return o;
+    }catch(err){return {};}
+  })();
+  var LM_NOMBRE={'test-lider':'el Test del L\u00edder','lider-pro':'el checklist L\u00edder PRO',
+    'diagnostico':'el Diagn\u00f3stico de problemas','calculadora':'la Calculadora del l\u00edder'};
+  // Saluda SOLO con lo que sabemos de verdad. Sin datos no se pinta nada: mejor nada que fallar.
+  function preBanner(){
+    if(!PRE.n&&!PRE.nv&&!PRE.r) return '';
+    var h='<div class="prebox">';
+    h+='<p class="pre-hi">'+(PRE.n?esc(PRE.n)+', esto no es el test de siempre.':'Esto no es el test de siempre.')+'</p>';
+    var s=[];
+    if(PRE.lm&&LM_NOMBRE[PRE.lm]) s.push('Hiciste <strong>'+LM_NOMBRE[PRE.lm]+'</strong>');
+    if(PRE.nv) s.push('y saliste <strong>nivel '+esc(PRE.nv)+'</strong>');
+    if(s.length) h+='<p class="pre-txt">'+s.join(' ')+'. Aquello era una foto r\u00e1pida. Esto entra en los 9 bloques, uno por uno.</p>';
+    if(PRE.r) h+='<p class="pre-txt">Me dijiste que tu mayor reto era:</p>'+
+      '<p class="pre-quote">\u00ab'+esc(PRE.r)+'\u00bb</p>'+
+      '<p class="pre-txt">Vamos a ver exactamente d\u00f3nde est\u00e1 el atasco.</p>';
+    return h+'</div>';
+  }
   var SHARE_URL='https://alexdakov.com/test-completo-lider-v2/';
   var SHARE_TXT='Acabo de hacer el Test Líder PRO: te dice en qué nivel estás en los 9 bloques que crean equipos de alto rendimiento, y qué te falta en cada uno. Haz el tuyo:';
   var ICO={
@@ -425,6 +457,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   function intro(){
     phase='intro';
     app.innerHTML='<div class="screen hero">'+
+      preBanner()+
       '<p class="kicker">Descubre en qué nivel de líder estás, y qué necesitas para ir al siguiente.</p>'+
       '<h1>Test Líder PRO</h1>'+
       '<div class="rule"><i></i><span>✦</span><i></i></div>'+
@@ -590,10 +623,10 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<div class="center"><div class="lock">✦</div><h2 style="text-align:center;margin-bottom:10px">Tu informe está listo</h2>'+
       '<p class="lead" style="margin:0 auto 28px">Dentro encontrarás tus resultados y propuestas de mejora para cada ámbito: cuál es el rendimiento económico de tu equipo según tu forma de liderazgo, y acciones que puedes implementar desde mañana para mejorar.</p></div>'+
       '<div class="form" style="margin:0 auto">'+
-        '<div class="field"><label>Nombre</label><input id="f_name" type="text" placeholder="Tu nombre"></div>'+
-        '<div class="field"><label>Ciudad</label><input id="f_city" type="text" placeholder="Dónde vives o trabajas"></div>'+
+        '<div class="field"><label>Nombre</label><input id="f_name" type="text" placeholder="Tu nombre" value="'+esc(PRE.n||'')+'"></div>'+
+        '<div class="field"><label>Ciudad</label><input id="f_city" type="text" placeholder="Dónde vives o trabajas" value="'+esc(PRE.c||'')+'"></div>'+
         '<div class="field"><label>¿Cuál es tu mayor reto ahora mismo?</label><textarea id="f_reto" class="sarea" rows="3" placeholder="Defínelo con tus palabras. Me ayuda saber a qué te enfrentas para poder aportar más valor."></textarea></div>'+
-        '<div class="field"><label>Email</label><input id="f_email" type="email" placeholder="tu@email.com"></div>'+
+        '<div class="field"><label>Email</label><input id="f_email" type="email" placeholder="tu@email.com" value="'+esc(PRE.e||'')+'"></div>'+
         '<div class="err" id="f_err"></div>'+
         '<button class="btn" id="reveal" style="margin-top:4px">Ver mis resultados</button>'+
         '<div class="nav center"><button class="back" id="backc">&#8592; Volver</button></div>'+
