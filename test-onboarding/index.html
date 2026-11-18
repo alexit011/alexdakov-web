@@ -213,6 +213,18 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     color:var(--cream);font-family:var(--sans);font-weight:300;font-size:15.5px;line-height:1.6;padding:14px 16px;resize:vertical}
   .sarea:focus{outline:none;border-color:var(--gold);background:rgba(201,169,97,.06)}
   .sarea::placeholder{color:var(--muted);opacity:.55}
+  .sharebox{margin:44px auto 0;max-width:560px;padding:32px 24px 28px;text-align:center;
+    border:1px solid var(--line);border-radius:13px;background:rgba(201,169,97,.06)}
+  .sharebox h2{font-size:clamp(20px,3vw,26px);margin:0 0 10px}
+  .sharefine{max-width:430px;margin:0 auto 22px;color:var(--muted);font-size:14px;line-height:1.6}
+  .shared{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .sbtn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:14px;font-weight:300;
+    color:var(--cream);text-decoration:none;cursor:pointer;white-space:nowrap;
+    background:linear-gradient(180deg,rgba(240,235,224,.05),rgba(240,235,224,.015));
+    border:1px solid var(--line-soft);border-radius:999px;padding:11px 18px;
+    transition:border-color .2s,color .2s,transform .12s}
+  .sbtn:hover{border-color:var(--gold);color:var(--gold-soft);transform:translateY(-1px)}
+  .sbtn svg{width:16px;height:16px;fill:currentColor;opacity:.85;flex:none}
 </style>
 </head>
 <body>
@@ -230,45 +242,45 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
    {b:"Bloque 9",n:"El día a día"}
   ];
   var L={
-   1:{n:"A ciegas",d:"No lo conoces y no lo haces. No sabes que esa palanca existe."},
-   2:{n:"De oídas",d:"Sabes que existe, pero no lo aplicas. Lo has leído o te lo han contado."},
-   3:{n:"A ratos",d:"Lo haces, pero improvisando y sin sistema. Depende de tu día."},
-   4:{n:"Montado",d:"Tienes el sistema escrito y funcionando. Todavía depende de que tú empujes."},
-   5:{n:"Instalado",d:"El sistema se sostiene sin ti. El equipo lo mantiene vivo."}
+   1:{n:"A ciegas",d:"Te queda mucho por mejorar. No te frustres. Muchos hemos empezado desde aquí. Todo lo que sufres en el día a día, tiene solución."},
+   2:{n:"De oídas",d:"Tienes unos básicos, pero te queda mucho por aplicar. Tu día a día puede mejorar drásticamente si te pones a ello."},
+   3:{n:"A ratos",d:"Haces, pero improvisando y sin sistema. Depende de tu día. Cuando las cosas van bien todo va bien, pero cuando no… sufres."},
+   4:{n:"Montado",d:"Tienes un sistema escrito y funcionando, pero todavía depende de que tú lo empujes."},
+   5:{n:"Instalado",d:"El sistema se sostiene sin ti. El equipo lo mantiene vivo. Has construido libertad y tranquilidad. Felicidades."}
   };
   var Q=[
    {m:0,q:"La última vez que le explicaste a alguien cuál es tu rol… ¿Cuál de ellas usaste?",
-    o:[["Para que las cosas salgan. Si hace falta, las hago yo",1],["Para controlar que todo se haga como hay que hacerlo",2],["Para resolver lo que mi equipo no sabe resolver",3],["Para que mi gente crezca y haga cosas que antes hacía yo",4],["Para construir el sistema y los líderes que hacen que esto funcione sin mí",5]]},
+    o:[["Mi rol es que las cosas salgan. Si hace falta, las hago yo",1],["Mi rol es controlar que todo se haga como hay que hacerlo",2],["Mi rol es resolver lo que mi equipo no sabe resolver",3],["Mi rol es que mi gente crezca y haga cosas que antes hacía yo",4],["Mi rol es construir el sistema y a los líderes que hacen que esto funcione sin mí",5]]},
    {m:0,q:"Necesitas que alguien haga algo que no le toca, y no puedes obligarle. ¿Qué haces?",
-    o:[["Se lo pido por jerarquía: para eso soy el jefe",1],["Le explico lo importante que es y le insisto hasta que acepta",2],["Le convenzo con mi argumento; se me da bien vender una idea",3],["Le enseño qué gana él y le pido que se comprometa en voz alta",4],["Sé qué palanca mueve a cada uno y uso la que toca en cada caso",5]]},
+    o:[["Se lo pido por jerarquía: para eso soy el jefe",1],["Le explico lo importante que es y le insisto hasta que acepte",2],["Le convenzo con mi argumento; se me da bien vender una idea",3],["Le enseño qué gana él y le pido que se comprometa en voz alta",4],["Sé qué palanca mueve a cada uno y uso la que toca en cada caso",5]]},
    {m:1,q:"Si alguien de fuera visitara a tu equipo hoy, ¿dónde podría ver los valores del equipo?",
-    o:[["No los tenemos escritos.",1],["Están escritos en algún sitio, pero nadie los recuerda",2],["Los tengo claros yo y los repito cuando toca",3],["Están escritos como conductas concretas y los uso para corregir",4],["Cualquier persona del equipo me los podría decir",5]]},
+    o:[["No están definidos",1],["Están escritos en algún sitio, pero nadie los recuerda",2],["Yo los tengo claros y se los repito cuando toca",3],["Están escritos como conductas concretas y los uso para corregir",4],["Cualquier persona del equipo los podría decir",5]]},
    {m:1,q:"Si hoy preguntara a tres personas diferentes de tu equipo a dónde vais este año…",
-    o:[["Te dirían tres cosas distintas.",1],["Te darían una cifra (el objetivo de facturación)",2],["Todos dirían lo mismo, porque lo he contado varias veces",3],["Te dirían el objetivo, y por qué es importante para todos.",4],["Te dirían el objetivo y las acciones que están haciendo cada uno para llegar a él.",5]]},
+    o:[["Te dirían tres cosas distintas",1],["Te darían una cifra (el objetivo de facturación)",2],["Todos dirían lo mismo, porque lo he contado varias veces",3],["Te dirían el objetivo, y por qué es importante para todos",4],["Te dirían el objetivo y las acciones que están haciendo cada uno para llegar a él",5]]},
    {m:2,q:"¿Cómo sabes hoy si tu equipo va bien?",
-    o:[["Nadie se queja. Todo va bien.",1],["Yo reviso, pregunto y me entero",2],["Tenemos buenos resultados.",3],["Cada persona tiene su objetivo medido y lo revisamos cada semana",4],["Cada uno mide sus objetivos, los ven todos y me llega un reporte sin pedirlo.",5]]},
+    o:[["Nadie se queja. Todo va bien",1],["Yo reviso, pregunto y me entero",2],["Tenemos buenos resultados",3],["Cada persona tiene su objetivo medido y lo revisamos cada semana",4],["Cada uno mide sus objetivos, los ven todos y me llega un reporte sin pedirlo",5]]},
    {m:2,q:"Los objetivos de tu equipo:",
-    o:[["No hay objetivos escritos por persona",1],["Los pongo yo y se los comunico",2],["Los pongo yo y los negociamos",3],["Cada uno escribe el suyo, con sus indicadores y fechas",4],["Cada uno escribe el suyo, y los cruza con los del resto.",5]]},
+    o:[["No hay objetivos escritos por persona",1],["Los pongo yo y se los comunico",2],["Los pongo yo y los negociamos",3],["Cada uno escribe el suyo, con sus indicadores y fechas",4],["Cada uno escribe el suyo, y los cruza con los del resto",5]]},
    {m:3,q:"¿Hay alguna conversación incómoda que tengas ahora mismo?",
-    o:[["Tengo varias, y llevo meses dándoles vueltas",1],["Tengo una, y estoy esperando el momento",2],["Las tengo en cualquier momento, improviso y para adelante.",3],["La tengo esta semana y ya sé cómo voy a abrirla",4],["No tengo ninguna pendiente. Me las preparo y las abordo al momento.",5]]},
+    o:[["Tengo varias, y llevo meses dándoles vueltas",1],["Tengo una, y estoy esperando el momento correcto",2],["Las tengo en cualquier momento, improviso y para adelante",3],["La tengo esta semana y ya sé cómo voy a abrirla",4],["No tengo ninguna pendiente. Me las preparo y las abordo al momento",5]]},
    {m:3,q:"Cuando alguien hace algo mal:",
-    o:[["Lo arreglo yo y no digo nada, no quiero problemas.",1],["Se lo digo cuando pasa varias veces. Así tiene más peso.",2],["Se lo digo cuando surge la ocasión",3],["Se lo digo rápido, con criterio, y acordamos una solución",4],["Busco el hecho, la consecuencia y el criterio, y abordo un plan para todas.",5]]},
+    o:[["Lo arreglo yo y no digo nada, no quiero problemas",1],["Se lo digo cuando pasa varias veces. Así tiene más peso",2],["Se lo digo cuando surge la ocasión",3],["Se lo digo rápido, con criterio, y acordamos una solución",4],["Busco el hecho, la consecuencia y el criterio, y abordo un plan para todas",5]]},
    {m:4,q:"No puedes subir sueldos ni mejorar condiciones. ¿Con qué motivas?",
     o:[["Poco puedo hacer: sin dinero no hay motivación",1],["Con buen rollo y cercanía",2],["Con reconocimiento, cuando alguien hace algo bien",3],["Con autonomía, progreso visible y responsabilidad nueva, según la persona",4],["Sé qué palanca mueve a cada uno y está escrita en su plan individual",5]]},
    {m:4,q:"El plan de crecimiento de tu gente:",
     o:[["No existe. Aquí se viene a trabajar",1],["Hablamos de futuro cuando alguien lo pide",2],["Sé quién quiere crecer y lo tengo en la cabeza",3],["Cada persona tiene su siguiente nivel escrito",4],["Cada persona trabaja en su siguiente nivel y revisamos sus indicadores de crecimiento cada trimestre",5]]},
    {m:5,q:"Cómo eliges a quién fichas:",
-    o:[["Por currículum y por lo bien que me cae en la entrevista",1],["Por experiencia: que ya haya hecho esto mismo antes",2],["Por la entrevista. Hago preguntas trampa y veo cómo responde",3],["Con una prueba parecida al trabajo real",4],["Con pruebas, criterios de corrección, filtro de valores y referencias.",5]]},
+    o:[["Por currículum y por lo bien que me cae en la entrevista",1],["Por experiencia: que ya haya hecho esto mismo antes",2],["Por la entrevista. Hago preguntas trampa y veo cómo responde",3],["Con una prueba parecida al trabajo real",4],["Con pruebas, criterios de corrección, filtro de valores y referencias",5]]},
    {m:5,q:"Cuando entra alguien nuevo:",
-    o:[["Se va enganchando poco a poco, le pongo con los antiguos y que aprenda.",1],["Le explico yo lo básico los primeros días",2],["Tengo un plan para los primeros días, y lo vamos siguiendo.",3],["Entra con los objetivos de su primera semana y su primer mes escritos",4],["Entra con los objetivos definidos a tres meses, con sus indicadores propios, y cada semana sabe cómo progresa",5]]},
+    o:[["Se va enganchando poco a poco, le pongo con los antiguos y que aprenda",1],["Le explico yo lo básico los primeros días",2],["Tengo un plan para los primeros días, y lo vamos siguiendo",3],["Entra con los objetivos de su primera semana y su primer mes escritos",4],["Entra con los objetivos definidos a tres meses, con sus indicadores propios, y cada semana sabe cómo progresa",5]]},
    {m:6,q:"Te vas una semana entera sin mirar el móvil. Al volver:",
     o:[["No me voy una semana. No puedo",1],["Volvería a un montón de cosas paradas esperándome",2],["Funcionaría, pero tendría que dejar muchas cosas atadas antes de irme",3],["Funcionaría, y lo sé porque ya ha pasado",4],["Funcionaría, y alguna cosa hasta mejoraría sin mí",5]]},
    {m:6,q:"Los procesos de tu equipo:",
-    o:[["Cada uno sabe hacer lo suyo. Por eso somos un equipo.",1],["Los sé yo y se los explico a cada uno.",2],["Hay algo escrito, pero está desactualizado",3],["Las tareas críticas tienen su proceso escrito y su punto de control",4],["Los documenta quien hace el trabajo, yo los reviso, y todo el mundo los conoce",5]]},
+    o:[["Cada uno sabe hacer lo suyo. Por eso somos un equipo",1],["Los sé yo y se los explico a cada uno",2],["Hay algo escrito, pero está desactualizado",3],["Las tareas críticas tienen su proceso escrito y su punto de control",4],["Los documenta quien hace el trabajo, yo los reviso, y todo el mundo los conoce",5]]},
    {m:7,q:"¿Cómo te organizas la semana?",
-    o:[["La marcan los fuegos. Entro, veo qué hay y según eso hago mi plan.",1],["Tengo mi lista de cosas y voy tachando lo que puedo",2],["Intento bloquear tiempo para mi, pero se me cae casi siempre",3],["Tengo bloques diferenciados para dirigir, crear y estar disponible, y un día sin reuniones",4],["Todo el equipo tiene bloques definidos que encajan con los míos, y un sistema que funciona de manera predecible.",5]]},
+    o:[["La marcan los fuegos. Entro, veo qué hay y según eso hago mi plan",1],["Tengo mi lista de cosas y voy tachando lo que puedo",2],["Intento bloquear tiempo para mi, pero se me cae casi siempre",3],["Tengo bloques diferenciados para dirigir, crear y estar disponible, y un día sin reuniones",4],["Todo el equipo tiene bloques definidos que encajan con los míos, y un sistema que funciona de manera predecible",5]]},
    {m:7,q:"La IA en tu trabajo de líder:",
-    o:[["No la uso",1],["La he probado para escribir algún texto",2],["La uso casi a diario, para preguntarle cosas",3],["Tengo dos o tres usos fijos que me ahorran horas cada semana",4],["Tengo agentes montados sobre mis propios sistemas y los del equipo, que conocen nuestros procesos, analizan nuestros datos, y proponen mejoras constantes.",5]]},
+    o:[["No la uso",1],["La he probado para escribir algún texto",2],["La uso casi a diario, para preguntarle cosas",3],["Tengo dos o tres usos fijos que me ahorran horas cada semana",4],["Tengo agentes montados sobre mis propios sistemas y los del equipo, que conocen nuestros procesos, analizan nuestros datos, y proponen mejoras constantes",5]]},
    {m:8,q:"Cada semana, de tus tareas…",
     o:[["No sale nada. Cada semana entra más",1],["Sale algo cuando ya no puedo más",2],["Intento soltar cosas a medida que puedo",3],["Sale algo todas las semanas, con nombre y fecha",4],["Salen tres cosas cada semana, solo reviso los indicadores",5]]},
    {m:8,q:"De todo lo que te llega cada día:",
@@ -311,62 +323,86 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   /* Informe: por bloque y nivel, dónde estás y cómo subir. Siempre hay siguiente paso, también en el 5. */
   var NEXT=[
    [{s:"Diriges desde el hacer: si algo importa, acaba en tus manos.",n:"Escribe la lista de lo que de verdad solo puedes hacer tú. Casi nunca pasa de cinco cosas, y verlo escrito cambia la semana."},
-    {s:"Has cambiado hacer por controlar. Controlar también lo haces tú.",n:"Cambia revisar el trabajo por revisar un indicador. Elige uno esta semana y no mires nada más de esa persona."},
+    {s:"Has cambiado hacer por controlar pero controlar también lo haces tú.",n:"Cambia revisar el trabajo por revisar indicadores. Elige uno esta semana y no revises nada más de esa persona."},
     {s:"Eres el mejor del equipo, y eso te tiene atrapado: lo difícil llega siempre a tu mesa.",n:"Elige una cosa que solo sabes hacer tú y enséñasela a alguien este mes. Tu valor deja de ser hacerlo y pasa a ser que otro lo haga."},
     {s:"Ya mides tu trabajo por lo que crece tu gente.",n:"Te falta influir sin usar el cargo. Aprende qué palanca mueve a cada uno —reciprocidad, compromiso, prueba social, autoridad, unidad— y usa la que toca, no siempre la misma."},
     {s:"Lideras sin apoyarte en el cargo y formas a otros.",n:"Tu techo ahora es la complacencia. Nombra hoy quién podría dirigir esto mejor que tú dentro de cinco años, y empieza a construirlo."}],
-
-   [{s:"No hay reglas escritas, así que la regla acaba siendo tu humor de ese día.",n:"Escribe tres conductas que no se negocian. Tres, no diez: diez no se recuerdan."},
-    {s:"Tienes valores escritos que nadie usa, y eso es casi peor: enseña al equipo que lo escrito no va en serio.",n:"Convierte cada valor en una conducta observable. No «respeto», sino «se habla con la persona, no de la persona»."},
-    {s:"Los valores viven en tu cabeza y los repites tú cuando toca.",n:"Sácalos de tu cabeza: que el equipo escriba contigo qué conductas quiere que se repitan y cuáles no se toleran. Lo que ayudan a escribir, lo defienden."},
-    {s:"Están escritos como conductas y los usas para corregir.",n:"Mételos donde duele: en a quién fichas, a quién asciendes y a quién dejas ir. Un valor que no decide sobre personas no es un valor."},
-    {s:"Los valores deciden personas y la visión baja al lunes de cada uno.",n:"Lo que se diluye al crecer es la cultura. Mete los valores en la selección y en la formación, que es por donde se pierde el alma cuando entra gente nueva."}],
-
-   [{s:"Diriges por sensación: te enteras de lo que va mal cuando ya ha pasado.",n:"Monta la primera versión de la Matriz con una sola fila por persona: objetivo, indicador y fecha. Nada más, de momento."},
-    {s:"Te enteras porque preguntas. Y preguntar no escala.",n:"Pasa de preguntar a mirar: que cada persona actualice su propia fila y que tú la veas sin tener que pedirla."},
-    {s:"Tienes tus números, pero los miras cuando te acuerdas.",n:"Ponle día y hora. Media hora a la semana donde se mira la Matriz y nada más. Lo que no está en el calendario no existe."},
-    {s:"Cada uno tiene su objetivo medido y lo revisáis cada semana.",n:"Crúzalos: que nadie pueda cumplir el suyo sin el de otro. Ahí es donde un grupo de individuos se convierte en equipo."},
-    {s:"El sistema corre solo y la información te llega sin pedirla.",n:"Métele el ciclo de doce semanas: cerrar, revisar y volver a abrir. Lo que no se cierra, se difumina."}],
-
-   [{s:"Lo que no dices se acumula, y acaba saliendo mal o no saliendo.",n:"Haz la lista de conversaciones que tienes pendientes y ten la primera esta semana. La más vieja, no la más fácil."},
+   [{s:"No hay reglas escritas, así que la regla acaba siendo tu humor de ese día.",n:"Escribe tres conductas que no se negocian. Tres, no diez."},
+    {s:"Tienes valores escritos que nadie usa, y eso es casi peor: enseña al equipo que lo escrito no va en serio.",n:"Convierte cada valor en un comportamiento observable. No «respeto», sino «se habla con la persona, no de la persona»."},
+    {s:"Los valores viven en tu cabeza y los repites tú cuando toca.",n:"Sácalos de tu cabeza: que el equipo escriba contigo qué comportamientos quiere que se repitan y cuáles no se toleran. Lo que ayudan a escribir, lo defienden."},
+    {s:"Están escritos como comportamientos y los usas para corregir.",n:"Intégralos en todo: en a quién fichas, a quién asciendes y a quién dejas ir. Un valor que no decide sobre personas no es un valor."},
+    {s:"Los valores deciden y la visión baja al lunes de cada uno.",n:"Lo que se diluye al crecer es la cultura. Mete los valores en la selección y en la formación, que es por donde se pierde el alma cuando entra gente nueva."}],
+   [{s:"Diriges por sensación: te enteras de lo que va mal cuando ya ha pasado.",n:"Define tus objetivos: objetivo, indicador y fecha. Nada más, de momento."},
+    {s:"Te enteras porque preguntas. Y preguntar no escala.",n:"Pasa de preguntar a mirar: que cada persona actualice sus objetivos y que tú lo veas sin tener que pedirlo."},
+    {s:"Tienes tus números, pero los miras cuando te acuerdas.",n:"Ponle día y hora. Media hora a la semana donde se mira el progreso y nada más. Lo que no está en el calendario no existe."},
+    {s:"Cada uno tiene su objetivo medido y lo revisáis cada semana.",n:"Crúzalos: que nadie pueda cumplir sus objetivos sin el de otro. Ahí es donde un grupo de individuos se convierte en equipo."},
+    {s:"El sistema corre solo y la información te llega sin pedirla.",n:"Crea un ciclo de doce semanas como si fuera el de un año: cierra, revisa y vuelve a abrir. Bienvenido al alto rendimiento."}],
+   [{s:"Lo que no dices se acumula, y acaba saliendo mal o no saliendo.",n:"Haz la lista de conversaciones que tienes pendientes y ten la primera esta semana. La más antigua, no la más fácil."},
     {s:"Dices las cosas, pero tarde y a veces de más, porque ya venían acumuladas.",n:"Ponle plazo: 48 horas. Lo que se dice a tiempo se dice tranquilo."},
     {s:"Las tienes, pero improvisando: entras y ves qué sale.",n:"Usa siempre la misma estructura: hecho, consecuencia, petición y acuerdo con fecha. Escríbela antes de entrar."},
-    {s:"Entras preparado y cierras con un acuerdo.",n:"Monta tu banco de conversaciones: el guion del despido, el del tóxico, el del veterano y el del superior. Lo que está escrito no depende del día que tengas."},
+    {s:"Entras preparado y cierras con un acuerdo.",n:"Monta tu banco de conversaciones: el guion del despido, el del tóxico, el del veterano y el del superior. Lo que está escrito no depende del día que tengas. Sirve para todos."},
     {s:"Las tienes a tiempo y tu equipo ya lo hace entre ellos.",n:"Enséñalo formalmente: que tus mandos tengan tu mismo guion. Esto se escala enseñándolo, no teniéndolo tú."}],
-
    [{s:"Das por hecho que sin dinero no hay motivación, y eso te deja sin palancas.",n:"Elige una de las cinco que no cuestan —autonomía, progreso, reconocimiento, responsabilidad o acceso— y aplícala con una persona concreta esta semana."},
     {s:"Motivas con cercanía y buen rollo. Ayuda, pero no sostiene una mala racha.",n:"Añade progreso visible: que cada uno vea cuánto ha avanzado, no solo lo que le falta."},
     {s:"Reconoces cuando alguien lo hace bien.",n:"Ponle criterio y sitio fijo: reconoce en la reunión semanal, sobre el hecho concreto, y premia conducta antes que conocimiento."},
     {s:"Tienes palancas y las usas distinto según la persona.",n:"Escribe el plan de crecimiento de cada uno: qué necesita aprender, cómo, cuándo y cómo lo va a aplicar. La última casilla es la que hace que dure."},
-    {s:"Cada persona tiene su plan escrito y sabes qué la mueve.",n:"De aquí salen tus relevos. Elige a dos y dales decisiones reales con red, no tareas difíciles."}],
-
+    {s:"Cada persona tiene su plan escrito y sabes qué la mueve.",n:"De aquí salen tus relevos. Elige a dos y dales decisiones reales, no tareas difíciles."}],
    [{s:"Fichas por currículum e intuición, y cada error te cuesta meses.",n:"Diseña una prueba corta parecida al trabajo real. Una sola, para el puesto que más repites."},
     {s:"Fichas por experiencia previa.",n:"La experiencia predice menos de lo que parece. Escribe el criterio de corrección antes de ver ninguna prueba."},
-    {s:"Aciertas por olfato. Funciona hasta que no funciona, y entonces es caro.",n:"Añade el filtro de valores: la habilidad se enseña, la conducta casi nunca."},
+    {s:"Aciertas por olfato. Funciona hasta que no funciona, y entonces es caro.",n:"Añade el filtro de valores: la habilidad se enseña, la actitud casi nunca."},
     {s:"Seleccionas con prueba y con criterio escrito.",n:"Lo que falla ahora son las dos primeras semanas. Ten el plan de los primeros 30 días escrito antes de que la persona entre."},
     {s:"Seleccionas e integras con sistema.",n:"Prepáralo una vez por puesto y reutilízalo: la quinta incorporación tiene que costarte la mitad que la primera."}],
-
    [{s:"No delegas: repartes trabajo cuando no llegas.",n:"Escribe todo lo que haces en una semana y marca lo que solo puedes hacer tú. Es mucho menos de lo que crees."},
     {s:"Delegas la tarea y te quedas el control.",n:"Delega el resultado, no el paso a paso. Di qué quieres conseguir y cállate el cómo, aunque al principio duela."},
     {s:"Sueltas cosas sin ritmo, y vuelven.",n:"Escribe el proceso antes de soltar la tarea. Sin eso, delegar es empezar de cero cada vez."},
-    {s:"Tienes niveles de autonomía y procesos escritos.",n:"Prueba la semana fuera. Es el único examen que no se puede falsear, y te dice exactamente qué te queda por vaciar."},
+    {s:"Tienes niveles de autonomía y procesos escritos.",n:"Vete una semana. Es el único examen que no se puede falsear, y te dice exactamente qué te queda por vaciar."},
     {s:"El equipo funciona sin ti, y lo sabes porque ya ha pasado.",n:"Monta la sucesión: quién te sustituye en cada decisión, qué tiene que saber y cómo lo entrenas antes de necesitarlo."}],
-
-   [{s:"Tu semana la marcan los fuegos: entras y ves qué hay.",n:"Bloquea dos horas para dirigir. Dos, y defiéndelas como defenderías una reunión con dirección."},
+   [{s:"Tu semana la marcan los fuegos: entras y ves qué hay.",n:"Bloquea dos horas para estrategia. Dos, y defiéndelas como defenderías una cita médica."},
     {s:"Tienes lista, no agenda. La lista no tiene límite y el día sí.",n:"Pasa la lista a bloques: dirigir, hacer y estar disponible."},
-    {s:"Lo intentas y se te cae casi siempre.",n:"No es tu disciplina: es que el equipo no sabe cuándo puede interrumpirte. Acordad las horas de disponibilidad y se sostiene solo."},
+    {s:"Lo intentas y se te cae casi siempre.",n:"No es tu disciplina: es que el equipo no sabe cuándo puede interrumpirte. Acordad las horas de disponibilidad."},
     {s:"Tienes bloques y un día sin reuniones.",n:"Antes de automatizar, elimina. Haz la lista de lo que nadie reclamaría si dejaras de hacerlo, y déjalo de hacer."},
     {s:"Tus bloques los respeta el equipo.",n:"Monta dos agentes sobre tus propios documentos: el que te prepara el informe semanal y el que convierte tus explicaciones en procesos."}],
-
-   [{s:"Cada semana entra más de lo que sale.",n:"Empieza el registro: tres cosas fuera de tu mesa cada semana, con nombre y fecha. Tres, porque diez no se hacen y una no se nota."},
+   [{s:"Cada semana entra más de lo que sale.",n:"Empieza el registro: tres cosas fuera de tu mesa cada semana, con nombre y fecha."},
     {s:"Sueltas cosas cuando ya no puedes más.",n:"Pásalo a ritmo fijo en vez de a reacción: el mismo día, todas las semanas."},
     {s:"Lo intentas, pero sin un ritmo.",n:"Mételo en la reunión que ya tienes. Un sistema que pide una reunión nueva se abandona en un mes."},
-    {s:"Sale algo todas las semanas, con nombre y fecha.",n:"Añade la métrica que lo ordena todo: qué ha pasado esta semana sin ti que la semana pasada no pasaba."},
+    {s:"Delego algo todas las semanas, con nombre y fecha.",n:"Añade la métrica que lo ordena todo: qué ha pasado esta semana sin ti que la semana pasada no pasaba."},
     {s:"Tienes la rutina y sabes separar la señal del ruido.",n:"Súbelo un nivel: que cada uno de tus mandos lleve su propia versión de esta rutina con su equipo."}]
   ];
   var app=document.getElementById('app');
   var idx=0,tdx=0,answers=[],tans=[],order=[],lead={},phase='q',RES=null;
   var LEAD_ENDPOINT='';
+  var SHARE_URL='https://alexdakov.com/test-onboarding/';
+  var SHARE_TXT='Acabo de hacer el Test Líder PRO: te dice en qué nivel estás en los 9 bloques que crean equipos de alto rendimiento, y qué te falta en cada uno. Haz el tuyo:';
+  var ICO={
+    wa:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>',
+    li:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>',
+    mail:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>',
+    link:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>'
+  };
+  function shareBox(){
+    var u=encodeURIComponent(SHARE_URL), t=encodeURIComponent(SHARE_TXT+' '+SHARE_URL);
+    return '<div class="sharebox">'+
+      '<p class="eyebrow">Comparte</p>'+
+      '<h2>Comparte este test con un amigo</h2>'+
+      '<p class="sharefine">Todos hemos tenido jefes que no sabían dirigir. Pásaselo a alguien que esté al frente de un equipo: en ocho minutos sabe por dónde empezar.</p>'+
+      '<div class="shared">'+
+        '<a class="sbtn" target="_blank" rel="noopener" href="https://wa.me/?text='+t+'">'+ICO.wa+'<span>WhatsApp</span></a>'+
+        '<a class="sbtn" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url='+u+'">'+ICO.li+'<span>LinkedIn</span></a>'+
+        '<a class="sbtn" href="mailto:?subject='+encodeURIComponent('El Test Líder PRO')+'&body='+t+'">'+ICO.mail+'<span>Email</span></a>'+
+        '<button type="button" class="sbtn" id="scopy">'+ICO.link+'<span>Copiar enlace</span></button>'+
+      '</div></div>';
+  }
+  function wireShare(){
+    var b=document.getElementById('scopy'); if(!b)return;
+    b.onclick=function(){
+      var sp=b.querySelector('span');
+      function done(){sp.textContent='Enlace copiado';setTimeout(function(){sp.textContent='Copiar enlace';},2200);}
+      try{
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(SHARE_URL).then(done,function(){window.prompt('Copia el enlace:',SHARE_URL);});}
+        else{window.prompt('Copia el enlace:',SHARE_URL);}
+      }catch(e){window.prompt('Copia el enlace:',SHARE_URL);}
+    };
+  }
   var STEPS=Q.length+T.length+1;
   function done(){
     var n=0;
@@ -379,6 +415,11 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   function submitLead(){if(!LEAD_ENDPOINT)return;try{fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lead)});}catch(e){}}
   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function shufQ(a){
+    var r=shuf(a);
+    if(r[0][1]>3){for(var i=1;i<r.length;i++){if(r[i][1]<=3){var t=r[0];r[0]=r[i];r[i]=t;break;}}}
+    return r;
+  }
   function bar(p){return '<div class="progress"><i style="width:'+p+'%"></i></div>';}
   function nfmt(n){return (n||0).toLocaleString('es-ES');}
 
@@ -400,7 +441,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<button class="btn" id="go">Empezar</button>'+
       '<p class="fine" style="margin-top:16px;max-width:520px;margin-left:auto;margin-right:auto">Unos 8 minutos · aquí no hay respuestas buenas, solo la tuya. Cuanto más honesto seas, más afinado será tu plan de mejora. No se trata de acertar, sino de elegir la que más te representa hoy.</p>'+
       '</div>';
-    document.getElementById('go').onclick=function(){idx=0;tdx=0;spage=0;answers=[];tans=[];sans=new Array(SET.length).fill('');lead={};phase='q';order=Q.map(function(x){return shuf(x.o);});render();};
+    document.getElementById('go').onclick=function(){idx=0;tdx=0;spage=0;answers=[];tans=[];sans=new Array(SET.length).fill('');lead={};phase='q';order=Q.map(function(x){return shufQ(x.o);});render();};
   }
 
   function render(){
@@ -602,6 +643,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     return {mods:mods,raw:raw,pen:pen,global:global,mad:mad,perfect:perfect,u:u,loss:loss,mass:mass};
   }
 
+  function cap(t){return t.charAt(0).toUpperCase()+t.slice(1);}
   function dots(n){var s='';for(var i=1;i<=5;i++)s+='<i class="dot'+(i<=n?' on':'')+'"></i>';return s;}
 
   function report(r){
@@ -622,8 +664,8 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     var penTxt='';var pl=[];
     for(var j=0;j<T.length;j++)if((tans[j]||0)>0)pl.push({i:j,v:tans[j]});
     pl.sort(function(a,b){return b.v-a.v;});
-    if(pl.length){penTxt='<div class="box"><p class="eyebrow">Lo que te resta fuerte</p><ul class="plist">';
-      for(var y=0;y<Math.min(2,pl.length);y++)penTxt+='<li><strong>'+SCALE[pl[y].v]+'</strong> — '+T[pl[y].i].q.replace('…','')+'</li>';
+    if(pl.length){penTxt='<div class="box"><p class="eyebrow">Lo que te resta</p><ul class="plist">';
+      for(var y=0;y<Math.min(2,pl.length);y++)penTxt+='<li>'+cap(T[pl[y].i].q.replace('…',''))+'</li>';
       penTxt+='</ul><p class="fine" style="margin:10px 0 0">Si haces esto a menudo, será muy complicado que construyas un gran equipo.</p></div>';}
 
     var warn=r.perfect?'<div class="box warn"><p class="eyebrow">Atención</p><p style="margin:0">Has tenido muy buen resultado en los nueve bloques. O eres un gran líder, y te felicito por ello, o te has puntuado como te gustaría ser. La forma de salir de dudas es preguntarle a tu equipo cómo te puntuaría a ti en estas mismas preguntas. Ahí está la verdad.</p></div>':'';
@@ -631,7 +673,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     var U=(r.u/100).toFixed(2).replace('.',',');
     var base=ctx.factura==='si'
       ? 'Hoy tu área factura '+nfmt(ctx.facturacion)+' € al año con un rendimiento de '+U+' por persona. Con las mismas personas rindiendo a 1,97, facturaría '+nfmt(Math.round(ctx.facturacion/r.u*HIGH))+' €.'
-      : 'Pagas '+nfmt(r.mass)+' € al año en sueldos ('+ctx.personas+(ctx.personas===1?' persona':' personas')+'). Con las mismas personas y el mismo coste, rindiendo a 1,97 en vez de a '+U+'.';
+      : 'Tu equipo te cuesta '+nfmt(r.mass)+' € al año en sueldos ('+ctx.personas+(ctx.personas===1?' persona':' personas')+'). Con las mismas personas y el mismo coste, podrías generar 1,97 en vez de '+U+' por cada persona.';
     var eco='<div class="ecobox"><p class="eyebrow">El impacto económico de tu liderazgo</p>'+
       '<h2 class="ecoh">El precio de tu forma de liderar</h2>'+
       '<p class="ecolabel">Lo que rinde hoy cada persona de tu equipo</p>'+
@@ -644,7 +686,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<p class="ecosrc">Escala basada en la investigación <em>Multipliers</em> de Liz Wiseman.</p></div>';
 
     var reto=lead.mayor_reto?'<div class="box"><p class="eyebrow">Tu mayor reto, con tus palabras</p><p class="quote">«'+esc(lead.mayor_reto)+'»</p>'+
-      '<p class="fine" style="margin:10px 0 0">Tu bloque más flojo hoy es <strong>'+MODS[flojo].b+' · '+MODS[flojo].n+'</strong>. Si tu reto no cae ahí, empieza igualmente por él: normalmente lo que nos frena no es lo que creemos.</p></div>':'';
+      '<p class="fine" style="margin:10px 0 0">Tu bloque más flojo hoy es <strong>'+MODS[flojo].b+' · '+MODS[flojo].n+'</strong>. Si tu reto no cae ahí, empieza igualmente por él: normalmente lo que más nos frena no es siempre lo que creemos.</p></div>':'';
 
     app.innerHTML='<div class="screen">'+
       '<p class="lvl-label">'+esc(lead.nombre||'')+', este es tu punto de partida</p>'+
@@ -673,7 +715,9 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<div class="lock">✦</div>'+
       '<p class="eyebrow">Recibido</p>'+
       '<h1 style="margin-bottom:14px">Analizaremos tu caso<br>y te contactaremos en breve</h1>'+
-      '<p class="lead" style="margin:0 auto 10px">Gracias por completar toda la información. La analizaremos con detenimiento y te escribimos de vuelta. Nuestros programas tienen plazas reducidas para poder dar una atención personalizada, y nos tomamos muy en serio la selección de las personas que trabajan con nosotros: construir líderes PRO es nuestro mayor indicador de éxito.</p></div>';
+      '<p class="lead" style="margin:0 auto 10px">Gracias por completar toda la información. La analizaremos con detenimiento y te escribimos de vuelta. Nuestros programas tienen plazas reducidas para poder dar una atención personalizada, y nos tomamos muy en serio la selección de las personas que trabajan con nosotros: construir líderes PRO es nuestro mayor indicador de éxito.</p>'+
+      shareBox()+'</div>';
+    wireShare();
     window.scrollTo(0,0);
   }
   intro();
