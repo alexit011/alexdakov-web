@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Fuera de Google y de los buscadores de IA: este test se reparte por enlace
+     personalizado, no se busca. NO bloquear en robots.txt, o el rastreador no
+     podria leer este noindex y la indexaria igual por los enlaces internos. -->
+<meta name="robots" content="noindex, nofollow">
 <title>Test Líder PRO — Alex Dakov</title>
   <meta name="description" content="Descubre en qué nivel de líder estás: tu nivel 1-5 en los 9 bloques que crean equipos de alto rendimiento y qué necesitas para ir al siguiente.">
   <link rel="canonical" href="https://alexdakov.com/test-completo-lider-v2/">
@@ -460,10 +464,10 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   function intro(){
     phase='intro';
     app.innerHTML='<div class="screen hero">'+
-      preBanner()+
       '<p class="kicker">Descubre en qué nivel de líder estás, y qué necesitas para ir al siguiente.</p>'+
       '<h1>Test Líder PRO</h1>'+
       '<div class="rule"><i></i><span>✦</span><i></i></div>'+
+      preBanner()+
       '<p class="lead hero-lead">Este test mide cuáles de los sistemas que crean equipos de alto rendimiento <strong>tienes construidos</strong>, y cuáles puedes mejorar. Al final te cuantifica, en euros, cuánto te cuesta tu sistema de liderazgo actual.</p>'+
       '<div class="steps">'+
         '<div class="step"><span class="qidx">1</span><div class="swrap">'+
