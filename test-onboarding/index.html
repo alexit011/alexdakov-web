@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Test de onboarding · ¿en qué nivel entras? — Alex Dakov</title>
-  <meta name="description" content="Informe de liderazgo de Alex Dakov: tu nivel 1-5 en los 9 bloques, el impacto económico de tu liderazgo y qué te falta en cada uno.">
+<title>Test Líder PRO — Alex Dakov</title>
+  <meta name="description" content="Descubre en qué nivel de líder estás: tu nivel 1-5 en los 9 bloques que crean equipos de alto rendimiento y qué necesitas para ir al siguiente.">
   <link rel="canonical" href="https://alexdakov.com/test-onboarding/">
   <meta name="robots" content="noindex, nofollow">
   <meta name="author" content="Alex Dakov">
@@ -12,14 +12,14 @@
   <meta property="og:site_name" content="Alex Dakov">
   <meta property="og:locale" content="es_ES">
   <meta property="og:url" content="https://alexdakov.com/test-onboarding/">
-  <meta property="og:title" content="¿En qué nivel de liderazgo entras?">
-  <meta property="og:description" content="Tu nivel en los 9 bloques, lo que tu equipo deja encima de la mesa y qué te falta en cada uno.">
+  <meta property="og:title" content="Test Líder PRO">
+  <meta property="og:description" content="Descubre en qué nivel de líder estás, y qué necesitas para ir al siguiente.">
   <meta property="og:image" content="https://alexdakov.com/assets/og-test-liderazgo.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="¿En qué nivel de liderazgo entras?">
-  <meta name="twitter:description" content="Tu nivel en los 9 bloques, lo que tu equipo deja encima de la mesa y qué te falta en cada uno.">
+  <meta name="twitter:title" content="Test Líder PRO">
+  <meta name="twitter:description" content="Descubre en qué nivel de líder estás, y qué necesitas para ir al siguiente.">
   <meta name="twitter:image" content="https://alexdakov.com/assets/og-test-liderazgo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -126,6 +126,8 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   .rule{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 auto 22px;max-width:320px}
   .rule i{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
   .rule span{color:var(--gold);font-size:13px;letter-spacing:.1em}
+  .kicker{font-family:var(--sans);font-size:14.5px;font-weight:300;line-height:1.5;letter-spacing:.01em;
+    color:var(--gold-soft);max-width:520px;margin:0 auto 20px;text-wrap:balance}
   p.lead.hero-lead{max-width:560px;margin:0 auto 14px;text-align:center;text-wrap:balance}
   .steps{display:flex;flex-direction:column;gap:10px;margin:32px auto 34px;max-width:560px;text-align:left}
   .step{display:flex;align-items:flex-start;gap:16px;
@@ -235,114 +237,42 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
    5:{n:"Instalado",d:"El sistema se sostiene sin ti. El equipo lo mantiene vivo."}
   };
   var Q=[
-   {m:0,q:"Si tuvieras que decir en una frase para qué estás tú ahí, dirías…",o:[
-     ["Para que las cosas salgan. Si hace falta, las hago yo",1],
-     ["Para controlar que todo se haga como hay que hacerlo",2],
-     ["Para resolver lo que mi equipo no sabe resolver",3],
-     ["Para que mi gente crezca y haga cosas que antes hacía yo",4],
-     ["Para construir el sistema y los líderes que hacen que esto funcione sin mí",5]]},
-   {m:0,q:"Necesitas que alguien haga algo que no le toca, y no puedes obligarle.",o:[
-     ["Se lo pido por jerarquía: para eso soy el jefe",1],
-     ["Le explico lo importante que es y le insisto hasta que acepta",2],
-     ["Le convenzo con mi argumento; se me da bien vender una idea",3],
-     ["Le enseño qué gana él y le pido que se comprometa en voz alta",4],
-     ["Sé qué palanca mueve a cada uno y uso la que toca en cada caso",5]]},
-   {m:1,q:"Los valores de tu equipo, hoy:",o:[
-     ["No los tenemos escritos en ningún sitio",1],
-     ["Están escritos en algún sitio, pero nadie los recuerda",2],
-     ["Los tengo claros yo y los repito cuando toca",3],
-     ["Están escritos como conductas concretas y los uso para corregir",4],
-     ["Entran en a quién fichamos, a quién ascendemos y a quién dejamos ir",5]]},
-   {m:1,q:"Si preguntara hoy a tres de tu equipo adónde vais este año…",o:[
-     ["Me dirían tres cosas distintas, o ninguna",1],
-     ["Dirían la cifra, pero no sabrían para qué",2],
-     ["Lo sabrían, porque lo he contado varias veces",3],
-     ["Lo sabrían y sabrían qué parte les toca a ellos",4],
-     ["Sabrían además cómo lo que hacen el lunes acerca a eso",5]]},
-   {m:2,q:"¿Cómo sabes hoy si tu equipo va bien?",o:[
-     ["Por la sensación que tengo y por lo que me va llegando",1],
-     ["Porque lo reviso yo, pregunto y me entero",2],
-     ["Tengo mis números, pero los miro cuando me acuerdo",3],
-     ["Cada persona tiene su objetivo medido y lo revisamos cada semana",4],
-     ["Cada uno mide lo suyo, lo ve todo el equipo y me llega sin pedirlo",5]]},
-   {m:2,q:"Los objetivos de tu equipo:",o:[
-     ["No hay objetivos escritos por persona",1],
-     ["Los pongo yo y se los comunico",2],
-     ["Los pongo yo y los negociamos",3],
-     ["Los escribe cada uno, con su indicador y su fecha",4],
-     ["Los escribe cada uno, cruzados: nadie cumple el suyo sin el de otro",5]]},
-   {m:3,q:"La conversación incómoda que tienes pendiente ahora mismo:",o:[
-     ["Tengo varias, y llevo meses dándoles vueltas",1],
-     ["Tengo una, y estoy esperando el momento",2],
-     ["La tendré, pero improviso: entro y veo qué sale",3],
-     ["La tengo esta semana y ya sé cómo voy a abrirla",4],
-     ["No tengo ninguna pendiente: las tengo en 48 horas y con guion",5]]},
-   {m:3,q:"Cuando alguien hace algo mal:",o:[
-     ["Lo arreglo yo y no digo nada, para no montar un problema",1],
-     ["Se lo digo, y a veces me sale de más porque ya venía acumulado",2],
-     ["Se lo digo cuando surge la ocasión",3],
-     ["Se lo digo pronto, sobre el hecho, y cerramos un acuerdo",4],
-     ["Hecho, consecuencia y petición con fecha, y eso ya lo hacen ellos entre sí",5]]},
-   {m:4,q:"No puedes subir sueldos ni mejorar condiciones. ¿Con qué motivas?",o:[
-     ["Poco puedo hacer: sin dinero no hay motivación",1],
-     ["Con buen rollo y cercanía, que algo ayuda",2],
-     ["Con reconocimiento, cuando alguien hace algo bien",3],
-     ["Con autonomía, progreso visible y responsabilidad nueva, según la persona",4],
-     ["Sé qué palanca mueve a cada uno y está escrita en su plan",5]]},
-   {m:4,q:"El plan de crecimiento de tu gente:",o:[
-     ["No existe. Aquí se viene a trabajar",1],
-     ["Hablamos de futuro cuando alguien lo pide",2],
-     ["Sé quién quiere crecer y lo tengo en la cabeza",3],
-     ["Cada persona tiene su siguiente nivel escrito",4],
-     ["Escrito, revisado cada trimestre y con cómo va a aplicar lo que aprende",5]]},
-   {m:5,q:"Cómo eliges a quién fichas:",o:[
-     ["Por currículum y por lo bien que me cae en la entrevista",1],
-     ["Por experiencia: que ya haya hecho esto mismo antes",2],
-     ["Por la entrevista. Suelo acertar con el olfato",3],
-     ["Con una prueba parecida al trabajo real",4],
-     ["Con prueba, criterio de corrección escrito antes de verla y filtro de valores",5]]},
-   {m:5,q:"Cuando entra alguien nuevo:",o:[
-     ["Se va enganchando como puede, con quien tenga al lado",1],
-     ["Le explico yo lo básico los primeros días",2],
-     ["Tengo un plan para los primeros días, aunque cambia cada vez",3],
-     ["Entra con los objetivos de su primera semana y su primer mes escritos",4],
-     ["Entra con su fila en la matriz, su referente y su shadowing. A los 30 días sé si he acertado",5]]},
-   {m:6,q:"Te vas una semana entera sin mirar el móvil. Al volver:",o:[
-     ["No me voy una semana. No puedo",1],
-     ["Volvería a un montón de cosas paradas esperándome",2],
-     ["Funcionaría, pero tendría que dejar muchas cosas atadas antes de irme",3],
-     ["Funcionaría, y lo sé porque ya ha pasado",4],
-     ["Funcionaría, y alguna cosa hasta mejoraría sin mí",5]]},
-   {m:6,q:"Los procesos de tu equipo:",o:[
-     ["Están en la cabeza de cada uno",1],
-     ["Los sé yo y los explico cuando hace falta",2],
-     ["Hay algo escrito, pero está desactualizado",3],
-     ["Las tareas críticas tienen su proceso escrito y su punto de control",4],
-     ["Los escribe quien hace el trabajo, yo los reviso, y se escriben antes de delegar",5]]},
-   {m:7,q:"Tu semana:",o:[
-     ["La marcan los fuegos. Entro y veo qué hay",1],
-     ["Tengo mi lista y voy tachando lo que puedo",2],
-     ["Intento bloquear tiempo, pero se me cae casi siempre",3],
-     ["Tengo bloques de dirigir, hacer y estar disponible, y un día sin reuniones",4],
-     ["Los bloques están y los respeta el equipo, porque saben cuándo pueden interrumpirme",5]]},
-   {m:7,q:"La IA en tu trabajo de dirigir:",o:[
-     ["No la uso",1],
-     ["La he probado para escribir algún texto",2],
-     ["La uso casi a diario, para lo que se me va ocurriendo",3],
-     ["Tengo dos o tres usos fijos que me ahorran horas cada semana",4],
-     ["Tengo agentes montados sobre mis propios documentos, y el equipo sabe qué puede usar",5]]},
-   {m:8,q:"Cada semana, de tu mesa:",o:[
-     ["No sale nada. Cada semana entra más",1],
-     ["Sale algo cuando ya no puedo más",2],
-     ["Intento soltar cosas, sin un ritmo fijo",3],
-     ["Sale algo todas las semanas, con nombre y fecha",4],
-     ["Salen tres cosas cada semana y lo reviso en una reunión que ya existía",5]]},
-   {m:8,q:"De todo lo que te llega al día:",o:[
-     ["Lo atiendo casi todo. Si me llega, será importante",1],
-     ["Priorizo por lo que más urge",2],
-     ["Sé lo que importa, pero acabo atendiendo lo que grita",3],
-     ["Tengo claro qué miro cada día, qué cada semana y qué no miro nunca",4],
-     ["Me avisan solo cuando algo se sale de lo previsto",5]]}
+   {m:0,q:"La última vez que le explicaste a alguien cuál es tu rol… ¿Cuál de ellas usaste?",
+    o:[["Para que las cosas salgan. Si hace falta, las hago yo",1],["Para controlar que todo se haga como hay que hacerlo",2],["Para resolver lo que mi equipo no sabe resolver",3],["Para que mi gente crezca y haga cosas que antes hacía yo",4],["Para construir el sistema y los líderes que hacen que esto funcione sin mí",5]]},
+   {m:0,q:"Necesitas que alguien haga algo que no le toca, y no puedes obligarle. ¿Qué haces?",
+    o:[["Se lo pido por jerarquía: para eso soy el jefe",1],["Le explico lo importante que es y le insisto hasta que acepta",2],["Le convenzo con mi argumento; se me da bien vender una idea",3],["Le enseño qué gana él y le pido que se comprometa en voz alta",4],["Sé qué palanca mueve a cada uno y uso la que toca en cada caso",5]]},
+   {m:1,q:"Si alguien de fuera visitara a tu equipo hoy, ¿dónde podría ver los valores del equipo?",
+    o:[["No los tenemos escritos.",1],["Están escritos en algún sitio, pero nadie los recuerda",2],["Los tengo claros yo y los repito cuando toca",3],["Están escritos como conductas concretas y los uso para corregir",4],["Cualquier persona del equipo me los podría decir",5]]},
+   {m:1,q:"Si hoy preguntara a tres personas diferentes de tu equipo a dónde vais este año…",
+    o:[["Te dirían tres cosas distintas.",1],["Te darían una cifra (el objetivo de facturación)",2],["Todos dirían lo mismo, porque lo he contado varias veces",3],["Te dirían el objetivo, y por qué es importante para todos.",4],["Te dirían el objetivo y las acciones que están haciendo cada uno para llegar a él.",5]]},
+   {m:2,q:"¿Cómo sabes hoy si tu equipo va bien?",
+    o:[["Nadie se queja. Todo va bien.",1],["Yo reviso, pregunto y me entero",2],["Tenemos buenos resultados.",3],["Cada persona tiene su objetivo medido y lo revisamos cada semana",4],["Cada uno mide sus objetivos, los ven todos y me llega un reporte sin pedirlo.",5]]},
+   {m:2,q:"Los objetivos de tu equipo:",
+    o:[["No hay objetivos escritos por persona",1],["Los pongo yo y se los comunico",2],["Los pongo yo y los negociamos",3],["Cada uno escribe el suyo, con sus indicadores y fechas",4],["Cada uno escribe el suyo, y los cruza con los del resto.",5]]},
+   {m:3,q:"¿Hay alguna conversación incómoda que tengas ahora mismo?",
+    o:[["Tengo varias, y llevo meses dándoles vueltas",1],["Tengo una, y estoy esperando el momento",2],["Las tengo en cualquier momento, improviso y para adelante.",3],["La tengo esta semana y ya sé cómo voy a abrirla",4],["No tengo ninguna pendiente. Me las preparo y las abordo al momento.",5]]},
+   {m:3,q:"Cuando alguien hace algo mal:",
+    o:[["Lo arreglo yo y no digo nada, no quiero problemas.",1],["Se lo digo cuando pasa varias veces. Así tiene más peso.",2],["Se lo digo cuando surge la ocasión",3],["Se lo digo rápido, con criterio, y acordamos una solución",4],["Busco el hecho, la consecuencia y el criterio, y abordo un plan para todas.",5]]},
+   {m:4,q:"No puedes subir sueldos ni mejorar condiciones. ¿Con qué motivas?",
+    o:[["Poco puedo hacer: sin dinero no hay motivación",1],["Con buen rollo y cercanía",2],["Con reconocimiento, cuando alguien hace algo bien",3],["Con autonomía, progreso visible y responsabilidad nueva, según la persona",4],["Sé qué palanca mueve a cada uno y está escrita en su plan individual",5]]},
+   {m:4,q:"El plan de crecimiento de tu gente:",
+    o:[["No existe. Aquí se viene a trabajar",1],["Hablamos de futuro cuando alguien lo pide",2],["Sé quién quiere crecer y lo tengo en la cabeza",3],["Cada persona tiene su siguiente nivel escrito",4],["Cada persona trabaja en su siguiente nivel y revisamos sus indicadores de crecimiento cada trimestre",5]]},
+   {m:5,q:"Cómo eliges a quién fichas:",
+    o:[["Por currículum y por lo bien que me cae en la entrevista",1],["Por experiencia: que ya haya hecho esto mismo antes",2],["Por la entrevista. Hago preguntas trampa y veo cómo responde",3],["Con una prueba parecida al trabajo real",4],["Con pruebas, criterios de corrección, filtro de valores y referencias.",5]]},
+   {m:5,q:"Cuando entra alguien nuevo:",
+    o:[["Se va enganchando poco a poco, le pongo con los antiguos y que aprenda.",1],["Le explico yo lo básico los primeros días",2],["Tengo un plan para los primeros días, y lo vamos siguiendo.",3],["Entra con los objetivos de su primera semana y su primer mes escritos",4],["Entra con los objetivos definidos a tres meses, con sus indicadores propios, y cada semana sabe cómo progresa",5]]},
+   {m:6,q:"Te vas una semana entera sin mirar el móvil. Al volver:",
+    o:[["No me voy una semana. No puedo",1],["Volvería a un montón de cosas paradas esperándome",2],["Funcionaría, pero tendría que dejar muchas cosas atadas antes de irme",3],["Funcionaría, y lo sé porque ya ha pasado",4],["Funcionaría, y alguna cosa hasta mejoraría sin mí",5]]},
+   {m:6,q:"Los procesos de tu equipo:",
+    o:[["Cada uno sabe hacer lo suyo. Por eso somos un equipo.",1],["Los sé yo y se los explico a cada uno.",2],["Hay algo escrito, pero está desactualizado",3],["Las tareas críticas tienen su proceso escrito y su punto de control",4],["Los documenta quien hace el trabajo, yo los reviso, y todo el mundo los conoce",5]]},
+   {m:7,q:"¿Cómo te organizas la semana?",
+    o:[["La marcan los fuegos. Entro, veo qué hay y según eso hago mi plan.",1],["Tengo mi lista de cosas y voy tachando lo que puedo",2],["Intento bloquear tiempo para mi, pero se me cae casi siempre",3],["Tengo bloques diferenciados para dirigir, crear y estar disponible, y un día sin reuniones",4],["Todo el equipo tiene bloques definidos que encajan con los míos, y un sistema que funciona de manera predecible.",5]]},
+   {m:7,q:"La IA en tu trabajo de líder:",
+    o:[["No la uso",1],["La he probado para escribir algún texto",2],["La uso casi a diario, para preguntarle cosas",3],["Tengo dos o tres usos fijos que me ahorran horas cada semana",4],["Tengo agentes montados sobre mis propios sistemas y los del equipo, que conocen nuestros procesos, analizan nuestros datos, y proponen mejoras constantes.",5]]},
+   {m:8,q:"Cada semana, de tus tareas…",
+    o:[["No sale nada. Cada semana entra más",1],["Sale algo cuando ya no puedo más",2],["Intento soltar cosas a medida que puedo",3],["Sale algo todas las semanas, con nombre y fecha",4],["Salen tres cosas cada semana, solo reviso los indicadores",5]]},
+   {m:8,q:"De todo lo que te llega cada día:",
+    o:[["Lo atiendo todo. Si me llega, es importante",1],["Priorizo por lo que más urge",2],["Sé lo que importa, pero acabo apagando fuegos",3],["Tengo claro qué miro cada día, qué cada semana y qué no miro nunca",4],["Me avisan solo cuando algo se sale de lo previsto",5]]}
   ];
   var SCALE=["Ninguna","Una","Dos o tres","Casi cada semana","Varias por semana"];
   var PEN=[0,0.25,0.5,0.75,1];
@@ -351,7 +281,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
    {q:"…has rehecho tú el trabajo de alguien porque era más rápido que explicarlo",m:[6]},
    {q:"…has preguntado «¿cómo va eso?» sobre algo que deberías poder ver sin preguntar",m:[2]},
    {q:"…has contestado mensajes de trabajo después de tu hora de cierre",m:[7]},
-   {q:"…has dejado pasar algo que había que corregir, para no tener el marrón",m:[3]},
+   {q:"…has dejado pasar algo que había que corregir, para no discutir",m:[3]},
    {q:"…has resuelto tú un problema que te trajeron, sin pedirles antes su propuesta",m:[0,6]}
   ];
   /* ===== CAPA 2 · CALCULADORA (fórmula real de alexdakov.com/calculadora-liderazgo) ===== */
@@ -360,20 +290,23 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
 
   /* ===== CAPA 3 · SETTING (fases 3, 4, 6, 7 y 8 del SOP de setting) ===== */
   var SET=[
-   {k:"objetivo",q:"¿Dónde quieres estar dentro de 6 meses?",
+   {k:"objetivo",q:"¿Dónde te gustaría estar dentro de 6 meses?",
     ph:"Escríbelo con tus palabras: qué quieres que sea distinto."},
    {k:"distancia",q:"¿A qué distancia estás hoy de eso?",
     ph:"¿Qué te falta exactamente para llegar?"},
    {k:"bloqueo",q:"¿Qué es lo que más te frena ahora mismo?",
-    ph:"Lo que de verdad te está parando, no lo que queda bien decir."},
+    ph:"Lo que de verdad te está parando, dentro y fuera de ti."},
+   {k:"impacto",q:"¿Cómo crees que afecta esto a tu crecimiento profesional?",
+    ph:"Dónde crees que podrías llegar."},
    {k:"tiempo",q:"¿Cuánto tiempo a la semana puedes dedicarle de verdad?",
-    ph:"Sé realista: cuántas horas y cuándo."},
-   {k:"inversion",q:"Si existiera el sistema que te lleva ahí, ¿en qué situación estarías para invertir en él?",
-    ph:"Quién lo pagaría y en qué condiciones."},
-   {k:"cuando",q:"¿Cuándo querrías empezar?",
-    ph:"Y qué tendría que pasar para que fuese ya."}
+    ph:"Sé realista: cuántas horas."},
+   {k:"inversion",q:"¿Cuánto estarías dispuesto a invertir en esto?",
+    opts:["0 a 2.000 €","2.000 € a 5.000 €","5.000 € a 10.000 €","Más de 10.000 €"]},
+   {k:"cuando",q:"¿Cuándo estás dispuesto a empezar?",
+    ph:"Define tu nivel de compromiso con tus objetivos."}
   ];
-  var sans=new Array(6).fill(''), spage=0;
+  var SPAGES=[[0,4],[4,7]];
+  var sans=new Array(SET.length).fill(''), spage=0;
 
   /* Informe: por bloque y nivel, dónde estás y cómo subir. Siempre hay siguiente paso, también en el 5. */
   var NEXT=[
@@ -452,25 +385,22 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   function intro(){
     phase='intro';
     app.innerHTML='<div class="screen hero">'+
-      '<p class="eyebrow">Diagnóstico de liderazgo</p>'+
-      '<h1>¿En qué nivel<br>entras?</h1>'+
+      '<p class="kicker">Descubre en qué nivel de líder estás, y qué necesitas para ir al siguiente.</p>'+
+      '<h1>Test Líder PRO</h1>'+
       '<div class="rule"><i></i><span>✦</span><i></i></div>'+
-      '<p class="lead hero-lead">Este test no mide qué tipo de líder eres. Mide <strong>qué tienes montado ya</strong> de cada uno de los 9 bloques que sostienen a un equipo de alto rendimiento. Y lo que te cuesta, en euros, lo que todavía no está.</p>'+
+      '<p class="lead hero-lead">Este test mide cuáles de los sistemas que crean equipos de alto rendimiento <strong>tienes construidos</strong>, y cuáles puedes mejorar. Al final te cuantifica, en euros, cuánto te cuesta tu sistema de liderazgo actual.</p>'+
       '<div class="steps">'+
         '<div class="step"><span class="qidx">1</span><div class="swrap">'+
-          '<p class="stitle">El diagnóstico</p>'+
-          '<p class="stxt">24 preguntas sobre cómo diriges hoy. Las seis últimas son incómodas a propósito: preguntan por lo que hiciste el mes pasado, no por lo que te gustaría hacer.</p></div></div>'+
+          '<p class="stitle">El test</p>'+
+          '<p class="stxt">24 preguntas sobre cómo diriges hoy. Las seis últimas evalúan tu comportamiento las últimas semanas. Cuanto más honesto seas, más real será tu resultado. No se trata de acertar ni de elegir lo que te gustaría, sino lo real: saber dónde estás es el primer paso para poder mejorar.</p></div></div>'+
         '<div class="step"><span class="qidx">2</span><div class="swrap">'+
-          '<p class="stitle">Tu informe</p>'+
-          '<p class="stxt">Tu nivel en cada uno de los 9 bloques, qué te falta exactamente en cada uno para subir un escalón, y cuánto más podría generar tu equipo cada año si rindiera como uno de alto rendimiento.</p></div></div>'+
-        '<div class="step"><span class="qidx">3</span><div class="swrap">'+
-          '<p class="stitle">Y si quieres, un paso más</p>'+
-          '<p class="stxt">Solo si lo pides tú al final. El informe es tuyo en cualquier caso.</p></div></div>'+
+          '<p class="stitle">El resultado</p>'+
+          '<p class="stxt">Tu nivel en cada uno de los 9 bloques que conforman a un líder PRO, qué te falta exactamente en cada uno para subir un escalón, y cuánto más podría generar tu equipo cada año si rindiera como uno de alto rendimiento.</p></div></div>'+
       '</div>'+
       '<button class="btn" id="go">Empezar</button>'+
-      '<p class="fine" style="margin-top:16px">Unos 8 minutos · aquí no hay respuestas buenas, solo la tuya</p>'+
+      '<p class="fine" style="margin-top:16px;max-width:520px;margin-left:auto;margin-right:auto">Unos 8 minutos · aquí no hay respuestas buenas, solo la tuya. Cuanto más honesto seas, más afinado será tu plan de mejora. No se trata de acertar, sino de elegir la que más te representa hoy.</p>'+
       '</div>';
-    document.getElementById('go').onclick=function(){idx=0;tdx=0;spage=0;answers=[];tans=[];sans=new Array(6).fill('');lead={};phase='q';order=Q.map(function(x){return shuf(x.o);});render();};
+    document.getElementById('go').onclick=function(){idx=0;tdx=0;spage=0;answers=[];tans=[];sans=new Array(SET.length).fill('');lead={};phase='q';order=Q.map(function(x){return shuf(x.o);});render();};
   }
 
   function render(){
@@ -490,9 +420,9 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     var bk=document.getElementById('back');if(bk)bk.onclick=function(){idx--;render();};
   }
 
-  function slide(eyebrow,title,text,btn,onNext,onBack){
+  function slide(eyebrow,title,text,btn,onNext,onBack,ek){
     app.innerHTML='<div class="screen center">'+bar(done())+
-      '<p class="eyebrow">'+eyebrow+'</p>'+
+      '<p class="'+(ek||'eyebrow')+'">'+eyebrow+'</p>'+
       '<h2 style="text-align:center">'+title+'</h2>'+
       (text?'<p class="lead" style="margin-left:auto;margin-right:auto">'+text+'</p>':'')+
       '<button class="btn" id="slideNext" style="margin-top:14px">'+btn+'</button>'+
@@ -503,8 +433,8 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
 
   function bridge(){
     phase='bridge';
-    slide('Segunda parte','Y ahora, lo incómodo',
-      'Seis preguntas sobre lo que has hecho <strong>las últimas cuatro semanas</strong>. No sobre lo que intentas hacer: sobre lo que pasó. Estas sí restan, y son las que hacen que tu nivel sea real.',
+    slide('Segunda parte','Y ahora, la parte más cualitativa',
+      'Seis preguntas sobre lo que has hecho <strong>las últimas cuatro semanas</strong>. No sobre lo que intentas hacer, ni sobre lo que te gustaría: sobre <strong>lo que ha pasado</strong>.',
       'Seguir',function(){phase='t';tdx=0;renderT();},function(){phase='q';idx=Q.length-1;render();});
   }
 
@@ -566,28 +496,50 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
 
   function setIntro(){
     phase='setIntro';
-    slide('Un paso más','Por último unas preguntas sobre dónde estás y dónde quieres llegar',
-      'Con esto preparamos tu caso antes de hablar contigo. Escríbelo con tus palabras, sin pensarlo mucho.',
-      'Seguir',function(){phase='setQ';spage=0;renderS();},function(){report(RES);});
+    slide('Crecer está solo al alcance de quien de verdad se compromete.','¿Quién eres, y dónde quieres llegar?',
+      'Para poder trabajar contigo necesitamos analizar tu caso: entender el valor que podemos aportarte y cómo podemos hacer que vayas al siguiente nivel.',
+      'Seguir',function(){phase='setQ';spage=0;renderS();},function(){report(RES);},'kicker');
   }
 
   function renderS(){
-    if(spage>=2)return gracias();
+    if(spage>=SPAGES.length)return gracias();
     phase='setQ';
-    var from=spage*3,to=from+3;
-    var h='<div class="screen">'+bar(done())+'<div class="meta"><span>Dónde estás y dónde quieres llegar</span><span>'+(spage+1)+' / 2</span></div>';
+    var from=SPAGES[spage][0],to=SPAGES[spage][1];
+    var h='<div class="screen">'+bar(done())+'<div class="meta"><span>Dónde estás y dónde quieres llegar</span><span>'+(spage+1)+' / '+SPAGES.length+'</span></div>';
     for(var i=from;i<to;i++){
-      h+='<div class="sitem"><label class="sq" for="s'+i+'">'+SET[i].q+'</label>'+
-         '<textarea id="s'+i+'" class="sarea" rows="3" placeholder="'+SET[i].ph+'">'+esc(sans[i]||'')+'</textarea></div>';
+      h+='<div class="sitem"><label class="sq" for="s'+i+'">'+SET[i].q+'</label>';
+      if(SET[i].opts){
+        h+='<div class="opts sopts" data-i="'+i+'">';
+        for(var z=0;z<SET[i].opts.length;z++){
+          var sl=sans[i]===SET[i].opts[z]?' sel':'';
+          h+='<button type="button" class="opt'+sl+'" data-v="'+esc(SET[i].opts[z])+'">'+SET[i].opts[z]+'</button>';
+        }
+        h+='</div>';
+      }else{
+        h+='<textarea id="s'+i+'" class="sarea" rows="3" placeholder="'+SET[i].ph+'">'+esc(sans[i]||'')+'</textarea>';
+      }
+      h+='</div>';
     }
     h+='<div class="err" id="s_err"></div><button class="btn" id="s_next">Seguir</button>'+
       '<div class="nav center"><button class="back" id="s_back">&#8592; Anterior</button></div></div>';
     app.innerHTML=h;
+    var boxes=app.querySelectorAll('.sopts');
+    for(var x=0;x<boxes.length;x++)(function(box){
+      var bi=+box.getAttribute('data-i'),bb=box.querySelectorAll('.opt');
+      for(var y=0;y<bb.length;y++)bb[y].onclick=function(){
+        sans[bi]=this.getAttribute('data-v');
+        for(var w=0;w<bb.length;w++)bb[w].className='opt';
+        this.className='opt sel';
+      };
+    })(boxes[x]);
     function grab(){for(var i=from;i<to;i++){var el=document.getElementById('s'+i);if(el)sans[i]=el.value.trim();}}
     document.getElementById('s_back').onclick=function(){grab();if(spage===0){setIntro();}else{spage--;renderS();}};
     document.getElementById('s_next').onclick=function(){
       grab();
-      for(var i=from;i<to;i++)if(!sans[i]||sans[i].length<3){document.getElementById('s_err').textContent='Te falta alguna. Con una frase basta.';return;}
+      for(var i=from;i<to;i++){
+        if(SET[i].opts){if(!sans[i]){document.getElementById('s_err').textContent='Elige una de las opciones.';return;}}
+        else if(!sans[i]||sans[i].length<3){document.getElementById('s_err').textContent='Te falta alguna. Con una frase basta.';return;}
+      }
       spage++;renderS();
     };
   }
@@ -596,15 +548,14 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     phase='capture';
     app.innerHTML='<div class="screen">'+bar(100)+'<div class="meta"><span>Último paso</span><span>100%</span></div>'+
       '<div class="center"><div class="lock">✦</div><h2 style="text-align:center;margin-bottom:10px">Tu informe está listo</h2>'+
-      '<p class="lead" style="margin:0 auto 28px">Dime quién eres y te lo abro. Dentro tienes tu nivel en cada uno de los 9 bloques, lo que tu equipo podría generar de más cada año y, bloque a bloque, qué tendrías que hacer para subir un escalón.</p></div>'+
+      '<p class="lead" style="margin:0 auto 28px">Dentro encontrarás tus resultados y propuestas de mejora para cada ámbito: cuál es el rendimiento económico de tu equipo según tu forma de liderazgo, y acciones que puedes implementar desde mañana para mejorar.</p></div>'+
       '<div class="form" style="margin:0 auto">'+
         '<div class="field"><label>Nombre</label><input id="f_name" type="text" placeholder="Tu nombre"></div>'+
-        '<div class="field"><label>Ciudad</label><input id="f_city" type="text" placeholder="Dónde trabajas"></div>'+
-        '<div class="field"><label>¿Cuál es tu mayor reto ahora mismo?</label><textarea id="f_reto" class="sarea" rows="3" placeholder="Con tus palabras. Es lo primero que miro de tu caso."></textarea></div>'+
+        '<div class="field"><label>Ciudad</label><input id="f_city" type="text" placeholder="Dónde vives o trabajas"></div>'+
+        '<div class="field"><label>¿Cuál es tu mayor reto ahora mismo?</label><textarea id="f_reto" class="sarea" rows="3" placeholder="Defínelo con tus palabras. Me ayuda saber a qué te enfrentas para poder aportar más valor."></textarea></div>'+
         '<div class="field"><label>Email</label><input id="f_email" type="email" placeholder="tu@email.com"></div>'+
         '<div class="err" id="f_err"></div>'+
-        '<button class="btn" id="reveal" style="margin-top:4px">Ver mi informe</button>'+
-        '<p class="fine center" style="margin:10px 0 0">Te lo enseño aquí y te lo mando al correo.</p>'+
+        '<button class="btn" id="reveal" style="margin-top:4px">Ver mis resultados</button>'+
         '<div class="nav center"><button class="back" id="backc">&#8592; Volver</button></div>'+
       '</div></div>';
     document.getElementById('backc').onclick=function(){phase='calcCtx';calcCtx();};
@@ -661,7 +612,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     var fichas='';
     for(var f=0;f<ord.length;f++){var mm=ord[f],lv=r.mods[mm],nx=NEXT[mm][lv-1];
       fichas+='<div class="ficha">'+
-        '<div class="fhead"><span class="mb">'+MODS[mm].b+'</span><span class="fnivel">Nivel '+lv+' · '+L[lv].n+'</span></div>'+
+        '<div class="fhead"><span class="mb">'+MODS[mm].b+'</span><span class="fnivel">Nivel '+lv+'</span></div>'+
         '<p class="ftitle">'+MODS[mm].n+'</p>'+
         '<div class="fdots">'+dots(lv)+'<span class="fde">'+lv+' de 5</span></div>'+
         '<p class="flabel">Dónde estás</p><p class="ftxt">'+nx.s+'</p>'+
@@ -671,34 +622,33 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     var penTxt='';var pl=[];
     for(var j=0;j<T.length;j++)if((tans[j]||0)>0)pl.push({i:j,v:tans[j]});
     pl.sort(function(a,b){return b.v-a.v;});
-    if(pl.length){penTxt='<div class="box"><p class="eyebrow">Lo que te ha restado</p><ul class="plist">';
+    if(pl.length){penTxt='<div class="box"><p class="eyebrow">Lo que te resta fuerte</p><ul class="plist">';
       for(var y=0;y<Math.min(2,pl.length);y++)penTxt+='<li><strong>'+SCALE[pl[y].v]+'</strong> — '+T[pl[y].i].q.replace('…','')+'</li>';
-      penTxt+='</ul><p class="fine" style="margin:10px 0 0">Esto no sale de lo que crees que haces: sale de lo que hiciste el mes pasado.</p></div>';}
+      penTxt+='</ul><p class="fine" style="margin:10px 0 0">Si haces esto a menudo, será muy complicado que construyas un gran equipo.</p></div>';}
 
-    var warn=r.perfect?'<div class="box warn"><p class="eyebrow">Atención</p><p style="margin:0">Has salido en 4 o 5 en los nueve bloques y sin una sola trampa. O tienes esto muy montado, o te has puntuado como te gustaría ser. La forma de salir de dudas es enseñar la matriz, el último informe semanal y el proceso que escribiste la semana pasada.</p></div>':'';
+    var warn=r.perfect?'<div class="box warn"><p class="eyebrow">Atención</p><p style="margin:0">Has tenido muy buen resultado en los nueve bloques. O eres un gran líder, y te felicito por ello, o te has puntuado como te gustaría ser. La forma de salir de dudas es preguntarle a tu equipo cómo te puntuaría a ti en estas mismas preguntas. Ahí está la verdad.</p></div>':'';
 
     var U=(r.u/100).toFixed(2).replace('.',',');
     var base=ctx.factura==='si'
       ? 'Hoy tu área factura '+nfmt(ctx.facturacion)+' € al año con un rendimiento de '+U+' por persona. Con las mismas personas rindiendo a 1,97, facturaría '+nfmt(Math.round(ctx.facturacion/r.u*HIGH))+' €.'
       : 'Pagas '+nfmt(r.mass)+' € al año en sueldos ('+ctx.personas+(ctx.personas===1?' persona':' personas')+'). Con las mismas personas y el mismo coste, rindiendo a 1,97 en vez de a '+U+'.';
     var eco='<div class="ecobox"><p class="eyebrow">El impacto económico de tu liderazgo</p>'+
-      '<h2 class="ecoh">Lo que te está costando dirigir así</h2>'+
+      '<h2 class="ecoh">El precio de tu forma de liderar</h2>'+
       '<p class="ecolabel">Lo que rinde hoy cada persona de tu equipo</p>'+
       '<p class="bignum">'+U+'</p>'+
-      '<p class="ecofine">0,48 es un líder que resta · 1 es lo que pagas · 1,97 es un equipo de alto rendimiento</p>'+
+      '<p class="ecofine">0,48 es un líder que resta y anula a su equipo · 1 es un líder medio, paga y recibe lo mismo · 1,97 es un líder PRO: su equipo se implica y da el doble</p>'+
       '<div class="ecosep"></div>'+
-      '<p class="ecolabel">Si tu equipo rindiera como uno de alto rendimiento,<br>cada año generaría esto más</p>'+
+      '<p class="ecolabel">Si tu equipo rindiera como uno de alto rendimiento,<br>cada año generaría esto más de lo que genera actualmente</p>'+
       '<p class="bignum">+'+nfmt(Math.round(r.loss))+' €</p>'+
       '<p class="ecofine">'+base+'</p>'+
-      '<p class="ecosrc">Sale de tus 18 respuestas, con las trampas ya descontadas. Escala basada en la investigación <em>Multipliers</em> de Liz Wiseman.</p></div>';
+      '<p class="ecosrc">Escala basada en la investigación <em>Multipliers</em> de Liz Wiseman.</p></div>';
 
     var reto=lead.mayor_reto?'<div class="box"><p class="eyebrow">Tu mayor reto, con tus palabras</p><p class="quote">«'+esc(lead.mayor_reto)+'»</p>'+
-      '<p class="fine" style="margin:10px 0 0">Tu bloque más flojo hoy es <strong>'+MODS[flojo].b+' · '+MODS[flojo].n+'</strong>. Si tu reto no cae ahí, empieza igualmente por él: lo que te frena casi nunca es lo que crees.</p></div>':'';
+      '<p class="fine" style="margin:10px 0 0">Tu bloque más flojo hoy es <strong>'+MODS[flojo].b+' · '+MODS[flojo].n+'</strong>. Si tu reto no cae ahí, empieza igualmente por él: normalmente lo que nos frena no es lo que creemos.</p></div>':'';
 
     app.innerHTML='<div class="screen">'+
       '<p class="lvl-label">'+esc(lead.nombre||'')+', este es tu punto de partida</p>'+
-      '<h1 style="text-align:center;margin-bottom:6px">Nivel '+r.global+'</h1>'+
-      '<p class="eyebrow" style="text-align:center">'+L[r.global].n+'</p>'+
+      '<h1 style="text-align:center;margin-bottom:10px">Nivel '+r.global+'</h1>'+
       '<p class="lead" style="margin:0 auto 26px;text-align:center">'+L[r.global].d+'</p>'+
       '<div class="madbox"><div class="meta"><span>Aplicación</span><span>'+r.mad+' / 100</span></div>'+bar(r.mad)+'</div>'+
       warn+
@@ -707,10 +657,9 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<p class="fine" style="margin:0 0 22px">Los nueve en orden, del 1 al 9: dónde estás en cada uno y qué te falta para subir. En todos hay un siguiente escalón, también en los que ya llevas bien.</p>'+
       fichas+ eco+
       '<div class="cta"><p class="eyebrow">Y ahora</p>'+
-      '<h2 style="margin:0 0 12px">¿Quieres dar un paso más y formarte para ser un verdadero líder PRO?</h2>'+
-      '<p class="lead" style="margin:0 auto 20px">Este informe te dice dónde estás. El programa es el camino: 9 bloques, 90 días y los sistemas montados sobre tu equipo, no sobre un caso de clase.</p>'+
-      '<button class="btn" id="goCta">Sí, quiero saber más</button>'+
-      '<p class="fine" style="margin:14px 0 0">Son tres preguntas más. Si solo querías tu informe, ya lo tienes: es tuyo y te llega por correo.</p></div>'+
+      '<h2 style="margin:0 0 12px">¿Te gustaría dar un paso más para ser un verdadero líder PRO?</h2>'+
+      '<p class="lead" style="margin:0 auto 20px">Este informe te dice dónde estás. Formarte te permite construir dónde quieres estar.</p>'+
+      '<button class="btn" id="goCta">Sí, quiero saber más</button></div>'+
       '</div>';
     document.getElementById('goCta').onclick=function(){setIntro();};
     window.scrollTo(0,0);
@@ -723,9 +672,8 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     app.innerHTML='<div class="screen center">'+
       '<div class="lock">✦</div>'+
       '<p class="eyebrow">Recibido</p>'+
-      '<h1 style="margin-bottom:14px">Analizaremos tu caso<br>y te contactamos en breve</h1>'+
-      '<p class="lead" style="margin:0 auto 10px">Lo vemos con calma —tu informe, tus números y lo que acabas de contarnos— y te escribimos con lo que haríamos en tu caso concreto. No es una llamada de venta con guion: si esto no es para ti, te lo decimos.</p>'+
-      '<p class="fine" style="margin-top:20px">Mientras tanto, tienes tu informe en el correo.</p></div>';
+      '<h1 style="margin-bottom:14px">Analizaremos tu caso<br>y te contactaremos en breve</h1>'+
+      '<p class="lead" style="margin:0 auto 10px">Gracias por completar toda la información. La analizaremos con detenimiento y te escribimos de vuelta. Nuestros programas tienen plazas reducidas para poder dar una atención personalizada, y nos tomamos muy en serio la selección de las personas que trabajan con nosotros: construir líderes PRO es nuestro mayor indicador de éxito.</p></div>';
     window.scrollTo(0,0);
   }
   intro();
