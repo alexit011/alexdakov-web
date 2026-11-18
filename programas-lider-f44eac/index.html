@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Programas de liderazgo — Alex Dakov</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Alex Dakov">
+<meta name="theme-color" content="#090C17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: hero → los tres precios en fila → el detalle del elegido debajo.
+   Tokens calcados del :root de alexdakov.com. Tema único oscuro, como la web. */
+:root{
+  --navy-base:#090C17;
+  --navy-alt:#0A0B17;
+  --navy-deep:#070A14;
+  --navy-card:#14213D;
+  --navy-card-hover:#1B2A4D;
+  --text:#F0EBE0;
+  --text-secondary:#A09B92;
+  --text-tertiary:#6E6960;
+  --gold:#C9A961;
+  --gold-hover:#B69465;
+  --gold-soft:rgba(201,169,97,0.12);
+  --gold-dashed:rgba(201,169,97,0.45);
+  --red:#FF6B5E;
+  --border:rgba(240,235,224,0.08);
+  --border-strong:rgba(240,235,224,0.16);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color-scheme:dark;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:var(--sans);
+  background:var(--navy-base);
+  color:var(--text);
+  font-weight:300;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{
+  max-width:1120px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0 0;
+}
+a{color:inherit}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:2px}
+
+.eyebrow{
+  font-size:11px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);font-weight:500;
+}
+
+/* ---- hero ---- */
+.hero{padding-block:72px 44px;border-bottom:1px solid var(--border)}
+.hero .eyebrow{margin-bottom:28px;display:block}
+.hero h1{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(38px,5.6vw,68px);line-height:1.04;letter-spacing:-.025em;
+  margin-bottom:26px;text-wrap:balance;max-width:16ch;
+}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{
+  font-size:clamp(15px,1.3vw,18px);line-height:1.75;
+  color:var(--text);opacity:.88;max-width:620px;font-weight:300;
+}
+
+/* ---- selector de tramos ---- */
+.tiers{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);
+  margin-block:44px 0;
+}
+.tier{
+  background:var(--navy-base);border:0;cursor:pointer;color:var(--text);
+  text-align:left;padding:30px 26px 28px;
+  display:flex;flex-direction:column;gap:12px;
+  transition:background .3s,box-shadow .3s;
+  position:relative;
+}
+.tier:hover{background:var(--navy-alt)}
+.tier[aria-selected="true"]{background:var(--navy-card)}
+.tier[aria-selected="true"]::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--gold);
+}
+.tier .t-name{
+  font-family:var(--serif);font-size:clamp(21px,2.1vw,26px);font-weight:500;
+  letter-spacing:-.01em;line-height:1.15;color:var(--text);
+  transition:color .3s;
+}
+.tier[aria-selected="true"] .t-name{color:var(--gold)}
+.tier .t-price{
+  font-family:var(--serif);font-size:clamp(32px,3.6vw,46px);font-weight:400;
+  line-height:1;letter-spacing:-.03em;
+  font-variant-numeric:lining-nums tabular-nums;
+  color:var(--text);opacity:.92;
+}
+.tier .t-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.tier .t-dur{
+  font-size:11px;letter-spacing:2.2px;text-transform:uppercase;
+  color:var(--text-tertiary);font-weight:500;
+}
+.tier .t-plazas{
+  display:inline-flex;align-items:baseline;gap:8px;
+  border:1px solid var(--gold-dashed);border-radius:2px;padding:7px 13px 8px;
+  font-size:10px;letter-spacing:2.2px;text-transform:uppercase;font-weight:600;
+  line-height:1;color:var(--text-secondary);
+  transition:background .3s,border-color .3s;
+}
+.tier .t-plazas b{
+  font-family:var(--serif);font-size:19px;font-weight:500;color:var(--gold);
+  line-height:1;letter-spacing:0;
+  font-variant-numeric:lining-nums tabular-nums;
+}
+.tier .t-plazas i{
+  font-style:normal;font-size:9px;letter-spacing:1.3px;font-weight:700;
+  color:var(--red);white-space:nowrap;
+  font-variant-numeric:lining-nums tabular-nums;
+}
+.tier[aria-selected="true"] .t-plazas{background:var(--gold-soft);border-color:var(--gold)}
+.tier .t-for{font-size:13.5px;line-height:1.6;color:var(--text-secondary);margin-top:2px}
+
+/* ---- detalle ---- */
+.detail{
+  background:transparent;border:1px solid var(--border);border-top:0;
+  padding:44px 40px 46px;
+}
+.d-head{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:28px;flex-wrap:wrap;margin-bottom:12px;
+}
+.d-title{
+  font-family:var(--serif);font-size:clamp(28px,3.4vw,44px);font-weight:500;
+  line-height:1.1;letter-spacing:-.02em;
+}
+.d-title em{font-style:italic;color:var(--gold)}
+i.rest{
+  font-style:normal;color:var(--red);font-weight:700;
+  font-size:9px;letter-spacing:1.3px;text-transform:uppercase;
+  font-variant-numeric:lining-nums tabular-nums;
+}
+i.rest{margin-left:7px}
+.d-lead{
+  font-size:16px;line-height:1.65;color:var(--text-secondary);
+  max-width:46ch;margin-bottom:34px;
+}
+
+.cols{display:grid;gap:30px;max-width:640px}
+.sec-k{
+  font-size:10.5px;letter-spacing:3px;text-transform:uppercase;font-weight:600;
+  color:var(--gold);margin-bottom:4px;
+}
+.sec-k.off{color:var(--text-tertiary)}
+ul.lines{list-style:none}
+ul.lines li{
+  display:grid;grid-template-columns:14px 1fr;gap:13px;align-items:baseline;
+  padding:12px 0;border-bottom:1px solid var(--border);
+  font-size:15.5px;line-height:1.4;
+}
+ul.lines li .m{color:var(--gold);font-size:13px;line-height:1}
+ul.lines.off li{color:var(--text-tertiary)}
+ul.lines.off li .m{color:var(--text-tertiary)}
+
+/* ---- comparativa ---- */
+.cmp{margin-top:64px;padding-top:52px;border-top:1px solid var(--border)}
+.cmp-h{
+  font-family:var(--serif);font-size:clamp(26px,3vw,38px);font-weight:500;
+  letter-spacing:-.02em;margin-bottom:10px;
+}
+.cmp-help{font-size:14.5px;color:var(--text-secondary);margin-bottom:26px}
+.cmp-picks{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.chip{
+  display:inline-flex;align-items:center;gap:12px;
+  background:none;border:1px solid var(--border-strong);color:var(--text-secondary);
+  font-size:12px;letter-spacing:1.6px;text-transform:uppercase;font-weight:600;
+  padding:14px 22px;border-radius:100px;cursor:pointer;
+  transition:color .25s,border-color .25s,background .25s;
+  font-variant-numeric:tabular-nums;
+}
+.chip:hover{color:var(--text);border-color:var(--gold-dashed)}
+.chip .box{
+  width:15px;height:15px;border:1px solid var(--text-tertiary);border-radius:2px;
+  display:grid;place-items:center;transition:border-color .25s,background .25s;
+}
+.chip .box::after{
+  content:"";width:7px;height:7px;background:var(--gold);
+  transform:scale(0);transition:transform .2s;
+}
+.chip[aria-pressed="true"]{color:var(--gold);border-color:var(--gold);background:var(--gold-soft)}
+.chip[aria-pressed="true"] .box{border-color:var(--gold)}
+.chip[aria-pressed="true"] .box::after{transform:scale(1)}
+.cmp-opts{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:8px}
+.opt{
+  background:none;border:0;cursor:pointer;color:var(--text-tertiary);
+  font-size:12px;letter-spacing:1.6px;text-transform:uppercase;font-weight:600;
+  padding:8px 0;border-bottom:1px solid transparent;transition:color .25s,border-color .25s;
+}
+.opt:hover{color:var(--text-secondary)}
+.opt[aria-pressed="true"]{color:var(--gold);border-bottom-color:var(--gold)}
+.cmp-count{font-size:12.5px;color:var(--text-tertiary);letter-spacing:.3px}
+.cmp-wrap{margin-top:22px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:14px}
+th,td{
+  text-align:left;padding:16px 18px;border-bottom:1px solid var(--border);
+  vertical-align:top;line-height:1.6;
+}
+thead th{
+  font-size:10.5px;letter-spacing:2.6px;text-transform:uppercase;font-weight:600;
+  color:var(--gold);border-bottom:1px solid var(--gold-dashed);padding-bottom:14px;
+}
+tbody th{
+  font-weight:400;color:var(--text-secondary);width:27%;
+  font-size:13.5px;
+}
+td{color:var(--text)}
+td.no{color:var(--text-tertiary)}
+td .y{color:var(--gold);margin-right:7px}
+tr.price td{font-family:var(--serif);font-size:22px;font-variant-numeric:tabular-nums}
+
+/* ---- cierre ---- */
+.foot{
+  border-top:1px solid var(--border);margin-top:64px;
+  padding-block:40px 64px;
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center;
+}
+.foot .mark{
+  font-family:var(--serif);font-size:15px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--text-secondary);
+}
+.foot .note{font-size:12.5px;color:var(--text-tertiary);letter-spacing:.4px}
+
+@media (max-width:760px){
+  .tiers{grid-template-columns:1fr}
+  .tier{padding:22px 20px;flex-direction:row;align-items:center;gap:10px 16px;flex-wrap:wrap}
+  .tier .t-name{flex:1 1 auto;font-size:21px}
+  .tier .t-price{font-size:30px}
+  .tier .t-meta,.tier .t-for{flex-basis:100%}
+  .tier[aria-selected="true"]::after{height:2px}
+  .detail{padding:36px 22px 40px}
+  .items{gap:22px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">Alex Dakov · Programas de liderazgo</span>
+    <h1>Tres formas para ir al <em>siguiente nivel</em>.</h1>
+  </header>
+
+  <div class="tiers" role="tablist" aria-label="Programas">
+    <button class="tier" role="tab" id="tab-pro" aria-controls="panel" data-k="pro" aria-selected="true">
+      <span class="t-name">Líder PRO</span>
+      <span class="t-price">3.000 €</span>
+      <span class="t-meta"><span class="t-dur">3 meses</span><span class="t-plazas"><b>15</b> plazas <i>quedan 11</i></span></span>
+    </button>
+    <button class="tier" role="tab" id="tab-elite" aria-controls="panel" data-k="elite" aria-selected="false">
+      <span class="t-name">Líder Élite</span>
+      <span class="t-price">7.000 €</span>
+      <span class="t-meta"><span class="t-dur">6 meses</span><span class="t-plazas"><b>7</b> plazas <i>quedan 5</i></span></span>
+    </button>
+    <button class="tier" role="tab" id="tab-team" aria-controls="panel" data-k="team" aria-selected="false">
+      <span class="t-name">Team Elite</span>
+      <span class="t-price">20.000 €</span>
+      <span class="t-meta"><span class="t-dur">6 meses</span><span class="t-plazas"><b>2</b> plazas <i>quedan 2</i></span></span>
+    </button>
+  </div>
+
+  <section class="detail" id="panel" role="tabpanel" aria-labelledby="tab-pro"></section>
+
+  <section class="cmp" aria-labelledby="cmp-h">
+    <h2 class="cmp-h" id="cmp-h">Comparar</h2>
+    <p class="cmp-help">Marca los que quieras poner uno al lado del otro.</p>
+    <div class="cmp-picks" role="group" aria-label="Programas a comparar">
+      <button class="chip" data-c="pro" aria-pressed="true"><span class="box" aria-hidden="true"></span>Líder PRO · 3.000 €</button>
+      <button class="chip" data-c="elite" aria-pressed="true"><span class="box" aria-hidden="true"></span>Líder Élite · 7.000 €</button>
+      <button class="chip" data-c="team" aria-pressed="false"><span class="box" aria-hidden="true"></span>Team Elite · 20.000 €</button>
+    </div>
+    <div class="cmp-opts">
+      <button class="opt" id="only-diff" aria-pressed="false">Solo las diferencias</button>
+      <span class="cmp-count" id="cmp-count"></span>
+    </div>
+    <div class="cmp-wrap"><table id="cmp-table"></table></div>
+  </section>
+
+  <footer class="foot">
+    <span class="mark">Alex Dakov</span>
+  </footer>
+
+</div>
+
+<script>
+const P = {
+  pro: {
+    name: "Líder <em>PRO</em>",
+    lead: "Acceso privado a la metodología completa y resultados que mides desde el primer día. Sistemas para liderar, comunicar, delegar y lograr objetivos: en doce semanas tu equipo deja de depender de ti.",
+    inc: [
+      "Acceso privado a la metodología completa",
+      "Test de diagnóstico al comenzar y plan de trabajo personalizado",
+      "2 mentorías grupales en directo a la semana para repasar dudas y afianzar hábitos",
+      "Biblioteca de plantillas, fácil de aplicar",
+      "Comunidad privada en Skool",
+      "Resultados medibles el día 1 y el día 90",
+      "Bonus: AI Agents for leaders + Productividad para líderes"
+    ],
+    out: [
+      "Mentorías de revisión con Alex",
+      "Guiones personalizados"
+    ]
+  },
+  elite: {
+    name: "Líder <em>Élite</em>",
+    lead: "Acceso privado a Alex Dakov cada semana: revisión, dudas y formación en directo. Tu plan se reajusta cada mes y los guiones se escriben para las conversaciones que te tocan a ti.",
+    inc: [
+      "Acceso privado a la metodología completa",
+      "Consultoría de onboarding y un plan personalizado con objetivos e indicadores que se reajusta cada mes",
+      "2 mentorías grupales en directo a la semana",
+      "Mentoría de revisión con Alex, cada semana",
+      "Roadmap semanal con checklist y KPIs",
+      "Biblioteca de plantillas, fácil de aplicar",
+      "Guiones personalizados para abordar situaciones y conflictos",
+      "Comunidad privada en Skool",
+      "WhatsApp directo con Alex y su equipo",
+      "Resultados medibles y reajuste cada 4 semanas",
+      "Bonus: AI Agents for leaders + Productividad para líderes"
+    ],
+    out: []
+  },
+  team: {
+    name: "Team <em>Elite</em>",
+    lead: "Programa exclusivo, diseñado sobre los objetivos de tu empresa, para ti y hasta cinco personas de tu equipo. Voy yo a vuestra sede: tres workshops a medida y el rendimiento de cada equipo medido cada dos semanas.",
+    inc: [
+      "Entras tú y hasta cinco miembros de tu equipo",
+      "Acceso privado a la metodología completa, grabada",
+      "Diagnóstico inicial profundo y diseño de plan de objetivos de empresa",
+      "2 mentorías grupales en directo a la semana",
+      "Mentoría de revisión con Alex, cada semana",
+      "Mentoría individual de implementación con Alex cada 2 semanas",
+      "3 workshops preparados a medida para vuestro equipo",
+      "Roadmap semanal con checklist y KPIs",
+      "Biblioteca de plantillas, fácil de aplicar",
+      "Guiones a medida por caso y persona",
+      "Comunidad privada en Skool",
+      "WhatsApp privado con Alex",
+      "Resultados medibles y reajuste cada 2 semanas",
+      "Bonus: AI Agents for leaders + Productividad para líderes"
+    ],
+    out: []
+  }
+};
+
+const panel = document.getElementById("panel");
+const tabs = Array.from(document.querySelectorAll(".tier"));
+
+function draw(k){
+  const d = P[k];
+  const li = (t, mark) => '<li><span class="m" aria-hidden="true">' + mark + '</span><span>' + t + '</span></li>';
+  let h = '<div class="d-head"><h2 class="d-title">' + d.name + '</h2></div>';
+  h += '<p class="d-lead">' + d.lead + '</p>';
+  h += '<div class="cols"><div><p class="sec-k">Incluye</p><ul class="lines">' +
+       d.inc.map(t => li(t, "•")).join("") + '</ul></div>';
+  if (d.out.length){
+    h += '<div><p class="sec-k off">No incluye</p><ul class="lines off">' +
+         d.out.map(t => li(t, "—")).join("") + '</ul></div>';
+  }
+  h += '</div>';
+  panel.innerHTML = h;
+}
+
+function select(btn){
+  tabs.forEach(t => t.setAttribute("aria-selected", String(t === btn)));
+  panel.setAttribute("aria-labelledby", btn.id);
+  draw(btn.dataset.k);
+}
+
+tabs.forEach(t => t.addEventListener("click", () => select(t)));
+
+document.addEventListener("keydown", (e) => {
+  if (!tabs.includes(document.activeElement)) return;
+  const i = tabs.indexOf(document.activeElement);
+  let j = null;
+  if (e.key === "ArrowRight") j = (i + 1) % tabs.length;
+  if (e.key === "ArrowLeft") j = (i - 1 + tabs.length) % tabs.length;
+  if (j !== null){ e.preventDefault(); tabs[j].focus(); select(tabs[j]); }
+});
+
+/* ---------- comparativa ---------- */
+const LABEL = { pro: "Líder PRO", elite: "Líder Élite", team: "Team Elite" };
+const ROWS = [
+  { k: "Inversión", price: true, pro: "3.000 €", elite: "7.000 €", team: "20.000 €" },
+  { k: "Duración", pro: "3 meses", elite: "6 meses", team: "6 meses" },
+  { k: "Plazas", pro: "15 <i class=\"rest\">quedan 11</i>", elite: "7 <i class=\"rest\">quedan 5</i>", team: "2 <i class=\"rest\">quedan 2</i>" },
+  { k: "Quién entra", pro: "Tú", elite: "Tú", team: "Tú y tu equipo (hasta 5 personas)" },
+  { k: "Metodología grabada", pro: "Completa", elite: "Completa", team: "Completa" },
+  { k: "Mentorías grupales", pro: "2 por semana", elite: "2 por semana", team: "2 por semana" },
+  { k: "Mentoría revisión con Alex", pro: null, elite: "Semanal", team: "Semanal" },
+  { k: "Mentoría individual con Alex", pro: null, elite: null, team: "Cada 2 semanas" },
+  { k: "Diagnóstico y plan", pro: "Test de diagnóstico + plan de trabajo personalizado", elite: "Consultoría con diagnóstico de onboarding + plan con roadmap semanal, checklist y KPIs + revisión mensual de progreso y reajuste de plan", team: "Diagnóstico profundo de equipo + plan construido sobre los objetivos de la empresa + roadmap semanal, checklist y KPIs + revisión bi-semanal de progreso y reajuste de plan" },
+  { k: "Biblioteca de plantillas", pro: "Sí", elite: "Sí + guiones personalizados por situaciones", team: "Sí + guiones hechos a medida analizando el caso o la persona en concreto" },
+  { k: "Dónde pregunta", pro: "Comunidad privada en Skool", elite: "Skool + WhatsApp directo con Alex y su equipo", team: "Skool + WhatsApp privado con Alex" },
+  { k: "Medición y evolución", pro: "Día 1 y día 90", elite: "Cada 4 semanas", team: "Cada 2 semanas" },
+  { k: "Bonus", pro: "AI Agents for leaders + Productividad para líderes", elite: "AI Agents for leaders + Productividad para líderes", team: "AI Agents for leaders + Productividad para líderes" }
+];
+
+const chips = Array.from(document.querySelectorAll(".chip"));
+const onlyDiff = document.getElementById("only-diff");
+const cmpTable = document.getElementById("cmp-table");
+const cmpCount = document.getElementById("cmp-count");
+
+const picked = () => chips.filter(c => c.getAttribute("aria-pressed") === "true").map(c => c.dataset.c);
+
+function cell(v){
+  return v === null
+    ? '<td class="no">—</td>'
+    : '<td><span class="y">·</span>' + v + '</td>';
+}
+
+function drawCmp(){
+  const ks = picked();
+  const diff = onlyDiff.getAttribute("aria-pressed") === "true";
+  const same = r => ks.every(k => r[k] === r[ks[0]]);
+  const rows = (diff && ks.length > 1) ? ROWS.filter(r => !same(r)) : ROWS;
+
+  let h = '<thead><tr><th scope="col">&nbsp;</th>' +
+    ks.map(k => '<th scope="col">' + LABEL[k] + '</th>').join("") + '</tr></thead><tbody>';
+  h += rows.map(r =>
+    '<tr' + (r.price ? ' class="price"' : '') + '><th scope="row">' + r.k + '</th>' +
+    ks.map(k => cell(r[k])).join("") + '</tr>'
+  ).join("");
+  cmpTable.innerHTML = h + "</tbody>";
+
+  if (ks.length === 1){
+    cmpCount.textContent = "Marca otro para comparar.";
+  } else if (diff){
+    const hidden = ROWS.length - rows.length;
+    cmpCount.textContent = hidden
+      ? "Ocultas " + hidden + (hidden === 1 ? " fila en la que son iguales." : " filas en las que son iguales.")
+      : "No coinciden en nada.";
+  } else {
+    cmpCount.textContent = ROWS.length + " filas.";
+  }
+}
+
+chips.forEach(c => c.addEventListener("click", () => {
+  const on = c.getAttribute("aria-pressed") === "true";
+  if (on && picked().length === 1) return;   // siempre queda uno marcado
+  c.setAttribute("aria-pressed", String(!on));
+  drawCmp();
+}));
+
+onlyDiff.addEventListener("click", () => {
+  onlyDiff.setAttribute("aria-pressed", String(onlyDiff.getAttribute("aria-pressed") !== "true"));
+  drawCmp();
+});
+
+draw("pro");
+drawCmp();
+</script>
+
+</body>
+</html>
