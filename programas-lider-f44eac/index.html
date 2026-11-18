@@ -197,15 +197,6 @@ ul.lines.off li .m{color:var(--text-tertiary)}
 .chip[aria-pressed="true"]{color:var(--gold);border-color:var(--gold);background:var(--gold-soft)}
 .chip[aria-pressed="true"] .box{border-color:var(--gold)}
 .chip[aria-pressed="true"] .box::after{transform:scale(1)}
-.cmp-opts{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:8px}
-.opt{
-  background:none;border:0;cursor:pointer;color:var(--text-tertiary);
-  font-size:12px;letter-spacing:1.6px;text-transform:uppercase;font-weight:600;
-  padding:8px 0;border-bottom:1px solid transparent;transition:color .25s,border-color .25s;
-}
-.opt:hover{color:var(--text-secondary)}
-.opt[aria-pressed="true"]{color:var(--gold);border-bottom-color:var(--gold)}
-.cmp-count{font-size:12.5px;color:var(--text-tertiary);letter-spacing:.3px}
 .cmp-wrap{margin-top:22px;overflow-x:auto}
 table{border-collapse:collapse;width:100%;min-width:620px;font-size:14px}
 th,td{
@@ -288,10 +279,6 @@ tr.price td{font-family:var(--serif);font-size:22px;font-variant-numeric:tabular
       <button class="chip" data-c="pro" aria-pressed="true"><span class="box" aria-hidden="true"></span>Líder PRO · 3.000 €</button>
       <button class="chip" data-c="elite" aria-pressed="true"><span class="box" aria-hidden="true"></span>Líder Élite · 7.000 €</button>
       <button class="chip" data-c="team" aria-pressed="false"><span class="box" aria-hidden="true"></span>Team Elite · 20.000 €</button>
-    </div>
-    <div class="cmp-opts">
-      <button class="opt" id="only-diff" aria-pressed="false">Solo las diferencias</button>
-      <span class="cmp-count" id="cmp-count"></span>
     </div>
     <div class="cmp-wrap"><table id="cmp-table"></table></div>
   </section>
@@ -417,9 +404,7 @@ const ROWS = [
 ];
 
 const chips = Array.from(document.querySelectorAll(".chip"));
-const onlyDiff = document.getElementById("only-diff");
 const cmpTable = document.getElementById("cmp-table");
-const cmpCount = document.getElementById("cmp-count");
 
 const picked = () => chips.filter(c => c.getAttribute("aria-pressed") === "true").map(c => c.dataset.c);
 
@@ -431,9 +416,7 @@ function cell(v){
 
 function drawCmp(){
   const ks = picked();
-  const diff = onlyDiff.getAttribute("aria-pressed") === "true";
-  const same = r => ks.every(k => r[k] === r[ks[0]]);
-  const rows = (diff && ks.length > 1) ? ROWS.filter(r => !same(r)) : ROWS;
+  const rows = ROWS;
 
   let h = '<thead><tr><th scope="col">&nbsp;</th>' +
     ks.map(k => '<th scope="col">' + LABEL[k] + '</th>').join("") + '</tr></thead><tbody>';
@@ -442,17 +425,6 @@ function drawCmp(){
     ks.map(k => cell(r[k])).join("") + '</tr>'
   ).join("");
   cmpTable.innerHTML = h + "</tbody>";
-
-  if (ks.length === 1){
-    cmpCount.textContent = "Marca otro para comparar.";
-  } else if (diff){
-    const hidden = ROWS.length - rows.length;
-    cmpCount.textContent = hidden
-      ? "Ocultas " + hidden + (hidden === 1 ? " fila en la que son iguales." : " filas en las que son iguales.")
-      : "No coinciden en nada.";
-  } else {
-    cmpCount.textContent = ROWS.length + " filas.";
-  }
 }
 
 chips.forEach(c => c.addEventListener("click", () => {
@@ -461,11 +433,6 @@ chips.forEach(c => c.addEventListener("click", () => {
   c.setAttribute("aria-pressed", String(!on));
   drawCmp();
 }));
-
-onlyDiff.addEventListener("click", () => {
-  onlyDiff.setAttribute("aria-pressed", String(onlyDiff.getAttribute("aria-pressed") !== "true"));
-  drawCmp();
-});
 
 draw("pro");
 drawCmp();
