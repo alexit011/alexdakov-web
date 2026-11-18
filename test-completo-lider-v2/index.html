@@ -370,7 +370,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   ];
   var app=document.getElementById('app');
   var idx=0,tdx=0,answers=[],tans=[],order=[],lead={},phase='q',RES=null;
-  var LEAD_ENDPOINT='';
+  var LEAD_ENDPOINT='https://test-lider-beehiiv.alexdakov.workers.dev';
   var SHARE_URL='https://alexdakov.com/test-completo-lider-v2/';
   var SHARE_TXT='Acabo de hacer el Test Líder PRO: te dice en qué nivel estás en los 9 bloques que crean equipos de alto rendimiento, y qué te falta en cada uno. Haz el tuyo:';
   var ICO={
@@ -611,6 +611,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       var r=score();
       lead={source:'test-completo-lider-v2',nombre:n,ciudad:c,email:e,mayor_reto:rt,
         personas:ctx.personas,factura:ctx.factura,facturacion:ctx.facturacion,sueldo_medio:ctx.sueldo,
+        page:location.pathname,utm_source:(new URLSearchParams(location.search).get('utm_source')||''),
         respuestas:answers.slice(),trampas:tans.slice(),
         nivel_global:r.global,aplicacion:r.mad,capacidad:r.u,perdida_anual:Math.round(r.loss),
         setting_hecho:false,ts:new Date().toISOString()};
