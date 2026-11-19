@@ -394,17 +394,25 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   // Saluda SOLO con lo que sabemos de verdad. Sin datos no se pinta nada: mejor nada que fallar.
   function preBanner(){
     if(!PRE.n&&!PRE.nv&&!PRE.r) return '';
+    var COLA=' Hoy te propongo un ejercicio diferente, m\u00e1s en profundidad, para explorar en qu\u00e9 nivel est\u00e1s dentro de los 9 bloques que definen el liderazgo de alto rendimiento.';
     var h='<div class="prebox">';
-    h+='<p class="pre-hi">'+(PRE.n?esc(PRE.n)+', esto no es el test de siempre.':'Esto no es el test de siempre.')+'</p>';
-    var s=[];
-    if(PRE.lm&&LM_NOMBRE[PRE.lm]) s.push('Hiciste <strong>'+LM_NOMBRE[PRE.lm]+'</strong>');
-    if(PRE.nv) s.push('y saliste <strong>nivel '+esc(PRE.nv)+'</strong>');
-    if(s.length) h+='<p class="pre-txt">'+s.join(' ')+'. Aquello era una foto r\u00e1pida. Esto entra en los 9 bloques, uno por uno.</p>';
-    if(PRE.r) h+='<p class="pre-txt">Me dijiste que tu mayor reto era:</p>'+
+    h+='<p class="pre-hi">'+(PRE.n
+        ?'Hola '+esc(PRE.n)+', bienvenido a tu test de L\u00edder PRO personalizado.'
+        :'Bienvenido a tu test de L\u00edder PRO personalizado.')+'</p>';
+    var lm=PRE.lm&&LM_NOMBRE[PRE.lm]?LM_NOMBRE[PRE.lm]:'';
+    if(lm&&PRE.nv){
+      h+='<p class="pre-txt">S\u00e9 que hace tiempo completaste <strong>'+lm+'</strong> y tu resultado fue <strong>nivel '+esc(PRE.nv)+'</strong>. Ese test era un an\u00e1lisis superficial.'+COLA+'</p>';
+    }else if(lm){
+      h+='<p class="pre-txt">S\u00e9 que hace tiempo solicitaste <strong>'+lm+'</strong> y espero que te sirviera.'+COLA+'</p>';
+    }else if(PRE.nv){
+      h+='<p class="pre-txt">Tu resultado en el test anterior fue <strong>nivel '+esc(PRE.nv)+'</strong>. Ese test era un an\u00e1lisis superficial.'+COLA+'</p>';
+    }
+    if(PRE.r) h+='<p class="pre-txt">Me comentaste que tu mayor reto era:</p>'+
       '<p class="pre-quote">\u00ab'+esc(PRE.r)+'\u00bb</p>'+
-      '<p class="pre-txt">Vamos a ver exactamente d\u00f3nde est\u00e1 el atasco.</p>';
+      '<p class="pre-txt">Pero hoy vamos a identificar exactamente de d\u00f3nde viene el atasco.</p>';
     return h+'</div>';
   }
+
   var SHARE_URL='https://alexdakov.com/test-completo-lider-v2/';
   var SHARE_TXT='Acabo de hacer el Test Líder PRO: te dice en qué nivel estás en los 9 bloques que crean equipos de alto rendimiento, y qué te falta en cada uno. Haz el tuyo:';
   var ICO={
