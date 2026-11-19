@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¿Qué tipo de jefe eres? — Alex Dakov</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="24 preguntas para saber si eres buen jefe, jefe medio o mal jefe. Gratis y en 5 minutos.">
+<link rel="canonical" href="https://alexdakov.com/que-tipo-de-jefe-eres/">
+<meta name="author" content="Alex Dakov">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alex Dakov">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://alexdakov.com/que-tipo-de-jefe-eres/">
+<meta property="og:title" content="¿Qué tipo de jefe eres?">
+<meta property="og:description" content="Buen jefe, jefe medio o mal jefe. 24 preguntas, 5 minutos, gratis.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="¿Qué tipo de jefe eres?">
+<meta name="twitter:description" content="Buen jefe, jefe medio o mal jefe. 24 preguntas, 5 minutos, gratis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#071029; --bg2:#0d1b3d; --navy:#102A5C;
+    --acc:#6f9ce8; --acc2:#a9c6f2; --acc-deep:#2f5fae;
+    --ink:#eef3ff; --muted:#93a4c4;
+    --line:rgba(111,156,232,.28); --line-soft:rgba(238,243,255,.10);
+    --serif:"Playfair Display",Georgia,serif; --sans:"Inter",-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7;
+    -webkit-font-smoothing:antialiased;min-height:100vh;
+    background-image:
+      radial-gradient(130% 70% at 50% -5%,rgba(111,156,232,.20),transparent 60%),
+      linear-gradient(170deg,#0a1536 0%,#071029 55%,#050b1c 100%);
+    background-attachment:fixed;}
+  .wrap{max-width:760px;margin:0 auto;padding:48px 24px 80px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+  .screen{animation:fade .45s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  .eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--acc);font-weight:400;margin:0 0 18px}
+  .kicker{font-size:14.5px;font-weight:300;line-height:1.5;color:var(--acc2);max-width:520px;margin:0 auto 20px;text-wrap:balance}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(34px,6vw,58px);line-height:1.08;letter-spacing:-.02em;margin:0 0 20px}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(24px,3.6vw,34px);line-height:1.25;letter-spacing:-.01em;margin:0 0 28px}
+  p.lead{color:var(--muted);font-size:18px;max-width:520px;margin:0 0 14px}
+  p.lead.hero-lead{max-width:560px;margin:0 auto 14px;text-align:center;text-wrap:balance}
+  p.fine{color:var(--muted);font-size:13px;opacity:.85}
+  .center{text-align:center}
+  .hero{text-align:center}
+  .rule{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 auto 22px;max-width:320px}
+  .rule i{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+  .rule span{color:var(--acc);font-size:13px;letter-spacing:.1em}
+
+  .btn{font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:.02em;cursor:pointer;
+    background:linear-gradient(180deg,var(--acc2),var(--acc));color:#08142e;border:none;border-radius:3px;
+    padding:16px 34px;transition:.25s;box-shadow:0 6px 22px rgba(47,95,174,.35)}
+  .btn:hover{filter:brightness(1.07);transform:translateY(-1px)}
+  .back{background:none;border:none;color:var(--muted);font-family:var(--sans);font-weight:300;font-size:13px;cursor:pointer;padding:8px}
+  .back:hover{color:var(--acc2)}
+  .nav{margin-top:22px}
+
+  .progress{height:2px;background:var(--line-soft);overflow:hidden;margin-bottom:14px}
+  .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--acc-deep),var(--acc2));transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .meta{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:30px}
+
+  .qhead{display:flex;align-items:flex-start;gap:16px;margin:0 0 22px}
+  .qidx{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--acc2);
+    width:34px;height:34px;flex:none;border:1px solid var(--line);border-radius:10px;
+    display:grid;place-items:center;background:rgba(111,156,232,.10)}
+  .qhead .qidx{margin-top:26px}
+  @media(max-width:560px){.qhead .qidx{margin-top:20px}}
+  .step .qidx{margin-top:-5px}
+  .qwrap{flex:1;min-width:0}
+  .qblock{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+  h2.qtitle{margin:0;font-size:clamp(21px,3.4vw,29px);line-height:1.25}
+
+  .opts{display:flex;flex-direction:column;gap:10px;margin:0}
+  .opt{display:flex;align-items:flex-start;gap:14px;text-align:left;width:100%;cursor:pointer;
+    background:linear-gradient(180deg,rgba(238,243,255,.055),rgba(238,243,255,.015));
+    border:1px solid var(--line-soft);border-left:3px solid transparent;border-radius:13px;
+    padding:15px 18px;color:var(--ink);font-family:var(--sans);font-weight:300;
+    font-size:16px;line-height:1.45;transition:border-color .25s,background .25s,transform .12s}
+  .opt:hover{border-color:var(--line);background:linear-gradient(180deg,rgba(111,156,232,.14),rgba(111,156,232,.05))}
+  .opt:active{transform:scale(.994)}
+  .opt::before{content:"";flex:none;width:22px;height:22px;border-radius:7px;
+    border:1.8px solid rgba(238,243,255,.24);background:rgba(255,255,255,.02);margin-top:1px;
+    transition:background .2s,border-color .2s,box-shadow .2s}
+  .opt.sel{border-left-color:var(--acc);border-color:var(--line);
+    background:linear-gradient(180deg,rgba(111,156,232,.20),rgba(111,156,232,.07))}
+  .opt.sel::before{background:linear-gradient(180deg,var(--acc2),var(--acc));border-color:var(--acc2);
+    box-shadow:0 0 12px rgba(111,156,232,.5)}
+
+  .steps{display:flex;flex-direction:column;gap:10px;margin:32px auto 34px;max-width:560px;text-align:left}
+  .step{display:flex;align-items:flex-start;gap:16px;
+    background:linear-gradient(180deg,rgba(238,243,255,.05),rgba(238,243,255,.014));
+    border:1px solid var(--line-soft);border-left:3px solid var(--line);border-radius:13px;padding:17px 20px}
+  .swrap{flex:1;min-width:0}
+  .stitle{font-family:var(--serif);font-size:18px;line-height:1.25;margin:0 0 5px;color:var(--ink);text-wrap:balance}
+  .stxt{font-size:15px;line-height:1.55;color:var(--muted);margin:0}
+
+  .form{max-width:460px}
+  .field{margin:0 0 18px;text-align:left}
+  .field label{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+  .field input{width:100%;background:linear-gradient(180deg,rgba(238,243,255,.05),rgba(238,243,255,.015));
+    border:1px solid var(--line-soft);border-radius:13px;color:var(--ink);
+    font-family:var(--sans);font-weight:300;font-size:16px;padding:14px 16px}
+  .field input:focus{outline:none;border-color:var(--acc);background:rgba(111,156,232,.08)}
+  .field input::placeholder{color:var(--muted);opacity:.55}
+  .err{color:#ff9d9d;font-size:13px;min-height:20px;margin:0 0 6px}
+  .lock{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;
+    margin:0 auto 18px;color:var(--acc);font-size:18px;background:rgba(111,156,232,.10)}
+
+  /* ── Resultado ── */
+  .verdict{text-align:center;margin:0 0 6px}
+  .vlabel{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+  .vname{font-family:var(--serif);font-size:clamp(38px,7vw,64px);line-height:1.05;margin:0 0 14px;
+    background:linear-gradient(180deg,var(--ink),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .vtxt{color:var(--muted);font-size:17px;max-width:560px;margin:0 auto 30px;text-wrap:balance}
+
+  .ficha{background:linear-gradient(180deg,rgba(238,243,255,.05),rgba(238,243,255,.014));
+    border:1px solid var(--line-soft);border-left:3px solid var(--line);border-radius:13px;
+    padding:20px 22px;margin:0 0 12px}
+  .fhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 4px}
+  .mb{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .pill{font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;white-space:nowrap}
+  .pill.mal{background:rgba(255,120,120,.14);color:#ff9d9d;border:1px solid rgba(255,120,120,.3)}
+  .pill.med{background:rgba(238,200,120,.14);color:#f0cf93;border:1px solid rgba(238,200,120,.3)}
+  .pill.bien{background:rgba(120,220,170,.14);color:#8ee0b6;border:1px solid rgba(120,220,170,.3)}
+  .ftitle{font-family:var(--serif);font-size:21px;line-height:1.25;margin:0 0 12px;color:var(--ink)}
+  .flabel{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:14px 0 4px}
+  .ftxt{margin:0;font-size:15.5px;line-height:1.55;color:var(--ink)}
+  .ftxt.acc{color:var(--acc2)}
+  .fsep{height:1px;background:var(--line-soft);margin:12px 0 0}
+
+  .box{border:1px solid var(--line-soft);border-radius:13px;padding:20px 22px;margin:0 0 14px;
+    background:linear-gradient(180deg,rgba(238,243,255,.04),rgba(238,243,255,.012))}
+  .plist{margin:6px 0 0;padding-left:18px;color:var(--ink);font-size:15.5px;line-height:1.6}
+  .plist li{margin:0 0 6px}
+
+  .rend{border:1px solid var(--line);border-radius:13px;padding:34px 26px 28px;margin:40px 0 0;text-align:center;
+    background:linear-gradient(180deg,rgba(16,42,92,.55),rgba(7,16,41,.35))}
+  .rendh{font-family:var(--serif);font-size:clamp(22px,3.4vw,30px);line-height:1.25;margin:6px auto 8px;max-width:520px;text-wrap:balance}
+  .rendsub{color:var(--muted);font-size:15px;max-width:460px;margin:0 auto 26px}
+  .fila{display:flex;align-items:center;gap:16px;max-width:460px;margin:0 auto 12px;padding:14px 18px;
+    border:1px solid var(--line-soft);border-radius:13px;text-align:left;
+    background:linear-gradient(180deg,rgba(238,243,255,.035),rgba(238,243,255,.01))}
+  .fila.tuya{border-color:var(--acc);background:linear-gradient(180deg,rgba(111,156,232,.22),rgba(111,156,232,.07));
+    box-shadow:0 0 0 1px rgba(111,156,232,.25)}
+  .fq{font-family:var(--serif);font-size:30px;line-height:1;color:var(--acc2);width:62px;flex:none;text-align:center}
+  .fqs{flex:1;min-width:0}
+  .fqt{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 2px}
+  .fqd{margin:0;font-size:15px;line-height:1.4;color:var(--ink)}
+  .tuyo{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc2);white-space:nowrap}
+  .rendfine{max-width:450px;margin:18px auto 0;color:var(--muted);font-size:13px;line-height:1.6}
+
+  .cta{border:1px solid var(--line);border-radius:13px;background:linear-gradient(180deg,rgba(111,156,232,.14),rgba(111,156,232,.04));
+    padding:30px 26px;margin:22px 0 0;text-align:center}
+  .cta .lead{margin-left:auto;margin-right:auto}
+
+  .sharebox{margin:44px auto 0;max-width:560px;padding:32px 24px 28px;text-align:center;
+    border:1px solid var(--line);border-radius:13px;background:rgba(111,156,232,.07)}
+  .sharebox h2{font-size:clamp(20px,3vw,26px);margin:0 0 10px}
+  .sharefine{max-width:430px;margin:0 auto 22px;color:var(--muted);font-size:14px;line-height:1.6}
+  .shared{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .sbtn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:14px;font-weight:300;
+    color:var(--ink);text-decoration:none;cursor:pointer;white-space:nowrap;
+    background:linear-gradient(180deg,rgba(238,243,255,.05),rgba(238,243,255,.015));
+    border:1px solid var(--line-soft);border-radius:999px;padding:11px 18px;
+    transition:border-color .2s,color .2s,transform .12s}
+  .sbtn:hover{border-color:var(--acc);color:var(--acc2);transform:translateY(-1px)}
+  .sbtn svg{width:16px;height:16px;fill:currentColor;opacity:.85;flex:none}
+  @media(max-width:520px){.wrap{padding:32px 18px 60px}.fq{width:52px;font-size:26px}}
+</style>
+</head>
+<body>
+<div class="wrap"><div id="app"></div></div>
+<script>
+  /* ===== Los 9 bloques, con nombres de andar por casa ===== */
+  var MODS=[
+   {b:"Bloque 1",n:"Mandar sin estar encima"},
+   {b:"Bloque 2",n:"Las reglas y hacia dónde vais"},
+   {b:"Bloque 3",n:"Saber si vais bien"},
+   {b:"Bloque 4",n:"Decir las cosas"},
+   {b:"Bloque 5",n:"Que tu gente quiera"},
+   {b:"Bloque 6",n:"A quién metes y cómo entra"},
+   {b:"Bloque 7",n:"Soltar trabajo"},
+   {b:"Bloque 8",n:"Tu tiempo"},
+   {b:"Bloque 9",n:"El día a día"}
+  ];
+
+  /* ===== Los tres resultados ===== */
+  var NIV={
+   1:{n:"Mal jefe",d:"Hoy tu equipo saca el trabajo a pesar de ti, no gracias a ti. La buena noticia: casi nada de esto es cuestión de carácter. Son cosas que se aprenden."},
+   2:{n:"Jefe medio",d:"Ni mal ni bien: vas sacando. El problema es que todo depende de que tú empujes, y eso cansa y no crece."},
+   3:{n:"Buen jefe",d:"Tu equipo funciona y se nota. El siguiente salto es que funcione igual de bien cuando tú no estás."}
+  };
+
+  /* ===== 18 preguntas, dos por bloque ===== */
+  var Q=[
+   {m:0,q:"Cuando hay un problema en tu equipo, ¿qué pasa?",
+    o:[["Lo arreglo yo, es más rápido",1],["Les digo yo cómo se arregla",2],["Lo arreglamos juntos",3],["Les pido que me traigan la solución",4],["Lo arreglan ellos y luego me lo cuentan",5]]},
+   {m:0,q:"¿Para qué estás tú ahí?",
+    o:[["Para que el trabajo salga",1],["Para que nadie se despiste",2],["Para resolver lo que ellos no saben",3],["Para que mi gente aprenda",4],["Para que esto funcione sin mí",5]]},
+   {m:1,q:"¿Tu equipo sabe qué cosas no se hacen aquí?",
+    o:[["No lo hemos hablado nunca",1],["Lo sé yo, pero no lo he dicho",2],["Lo he dicho alguna vez",3],["Está escrito y lo repito",4],["Se lo dicen ellos entre ellos",5]]},
+   {m:1,q:"Si preguntas a tres de tu equipo para qué trabajáis este año, ¿qué dirían?",
+    o:[["Cada uno una cosa",1],["«Para vender más»",2],["Lo mismo, porque lo he contado",3],["Lo mismo y por qué importa",4],["Lo mismo y qué hace cada uno",5]]},
+   {m:2,q:"¿Cómo sabes si tu equipo va bien?",
+    o:[["Si nadie se queja",1],["Porque lo voy viendo",2],["Porque pregunto",3],["Cada uno tiene su número y lo miramos",4],["Cada uno mira su número y me avisa",5]]},
+   {m:2,q:"¿Tu gente sabe lo que esperas de ella?",
+    o:[["No se lo he dicho",1],["Se lo digo cuando falla",2],["Lo hablamos de vez en cuando",3],["Cada uno lo tiene por escrito",4],["Lo escriben ellos y lo revisamos",5]]},
+   {m:3,q:"Cuando alguien hace algo mal, ¿qué haces?",
+    o:[["Lo arreglo yo y no digo nada",1],["Me lo trago hasta que estallo",2],["Se lo digo cuando surge",3],["Se lo digo pronto y buscamos solución",4],["Se lo digo pronto y acordamos cómo no repetirlo",5]]},
+   {m:3,q:"¿Tienes alguna conversación pendiente con alguien?",
+    o:[["Varias, desde hace meses",1],["Una, y la voy retrasando",2],["Alguna, pero la tendré pronto",3],["La tengo esta semana",4],["No, las tengo cuando pasan",5]]},
+   {m:4,q:"Sin poder subir el sueldo, ¿cómo animas a tu gente?",
+    o:[["Sin dinero no hay ganas",1],["Con buen rollo",2],["Diciéndoles cuando algo sale bien",3],["Dándoles más responsabilidad",4],["Sé qué mueve a cada uno",5]]},
+   {m:4,q:"¿Sabes qué quiere cada uno de tu equipo para su futuro?",
+    o:[["No lo he preguntado nunca",1],["De alguno, por encima",2],["Lo sé, pero lo tengo en la cabeza",3],["Lo he hablado con cada uno",4],["Cada uno sabe cuál es su siguiente paso",5]]},
+   {m:5,q:"Cuando entra alguien nuevo, ¿qué pasa?",
+    o:[["Que se busque la vida",1],["Le pongo con un compañero",2],["Le explico yo lo básico",3],["Tiene un plan para su primera semana",4],["Sabe qué se espera de él a los tres meses",5]]},
+   {m:5,q:"¿Cómo eliges a quién contratas?",
+    o:[["Por el currículum",1],["Porque me cae bien",2],["Porque ya ha hecho este trabajo",3],["Le pongo una prueba parecida al trabajo",4],["Prueba, las mismas preguntas a todos y referencias",5]]},
+   {m:6,q:"Si te vas una semana de vacaciones, ¿qué pasa?",
+    o:[["No me puedo ir",1],["Se queda todo parado",2],["Tengo que dejarlo todo atado",3],["Funciona, ya ha pasado",4],["Funciona y alguna cosa hasta mejora",5]]},
+   {m:6,q:"Lo que hacéis siempre igual, ¿está escrito en algún sitio?",
+    o:[["No, cada uno lo hace a su manera",1],["Lo sé yo y lo voy explicando",2],["Hay algo escrito, pero está viejo",3],["Lo importante está escrito",4],["Lo escribe quien lo hace y todos lo usan",5]]},
+   {m:7,q:"¿Cómo es tu semana?",
+    o:[["Apagando fuegos",1],["Con una lista que nunca termino",2],["Intento organizarme, pero se me cae",3],["Tengo horas fijas para cada cosa",4],["Mi equipo respeta mis horas y yo las suyas",5]]},
+   {m:7,q:"¿Usas la inteligencia artificial para tu trabajo?",
+    o:[["No la uso",1],["La he probado alguna vez",2],["La uso para escribir cosas",3],["La uso cada semana para lo mismo",4],["Tengo cosas montadas con ella",5]]},
+   {m:8,q:"De todo lo que te llega al día, ¿qué haces?",
+    o:[["Lo atiendo todo",1],["Primero lo que más urge",2],["Lo que puedo",3],["Sé qué miro y qué no miro",4],["Solo me avisan si algo se sale",5]]},
+   {m:8,q:"¿Sueltas trabajo a tu equipo?",
+    o:[["No, acabo haciéndolo yo",1],["Cuando ya no puedo más",2],["De vez en cuando",3],["Cada semana suelto algo",4],["Cada semana, con nombre y fecha",5]]}
+  ];
+
+  /* ===== Las 6 de comportamiento (restan) ===== */
+  var SCALE=["Ninguna","Una","Dos o tres","Casi cada semana","Varias por semana"];
+  var PEN=[0,0.25,0.5,0.75,1];
+  var T=[
+   {q:"has levantado la voz a alguien de tu equipo",m:[3]},
+   {q:"has hecho tú el trabajo de otro porque era más rápido",m:[6]},
+   {q:"has preguntado «¿cómo vas?» por algo que deberías poder ver sin preguntar",m:[2]},
+   {q:"has contestado mensajes de trabajo fuera de tu horario",m:[7]},
+   {q:"has dejado pasar algo mal hecho por no discutir",m:[3]},
+   {q:"has resuelto tú un problema sin preguntar antes a quien te lo trajo",m:[0,6]}
+  ];
+  var T_CORTA=["Levantar la voz","Hacer el trabajo de otro","Preguntar «¿cómo vas?»","Contestar fuera de hora","Dejar pasar lo mal hecho","Resolver sin preguntar"];
+
+  /* ===== Qué le decimos en cada bloque, según salga ===== */
+  var DICE=[
+   [{s:"Todo acaba en tus manos. Si tú no estás, no se hace.",n:"Escribe las tres cosas que de verdad solo puedes hacer tú. El resto puede hacerlo alguien más."},
+    {s:"Ya no lo haces todo, pero sigues vigilándolo todo.",n:"Esta semana elige a una persona y no le revises el trabajo: mira solo el resultado."},
+    {s:"Tu equipo resuelve y tú decides. Así se gana tiempo.",n:"Enséñale a alguien algo que hoy solo sabes hacer tú. Ahí empieza tu relevo."}],
+   [{s:"Nadie sabe qué está bien y qué está mal aquí, así que cada uno hace lo que cree.",n:"Escribe tres cosas que en tu equipo no se hacen nunca. Tres, no diez: diez no se recuerdan."},
+    {s:"Tú lo tienes claro, pero tu gente no siempre.",n:"Dilo en voz alta en la próxima reunión, con un ejemplo de cada una."},
+    {s:"Tu equipo sabe qué se hace aquí y hacia dónde vais.",n:"Úsalo para decidir a quién contratas y a quién asciendes. Ahí se nota de verdad."}],
+   [{s:"Te enteras de los problemas cuando ya son gordos.",n:"Pon un número por persona. Uno solo, y míralo cada semana."},
+    {s:"Tienes números, pero los miras cuando te acuerdas.",n:"Ponle día y hora fijos: media hora a la semana para mirarlos. Siempre el mismo día."},
+    {s:"Cada uno sabe su número y tú lo ves sin tener que preguntar.",n:"Haz que el número de uno dependa del de otro. Ahí un grupo se convierte en equipo."}],
+   [{s:"Te lo callas, y un día estalla.",n:"Haz la lista de lo que te estás callando y empieza por lo más antiguo. Esta semana."},
+    {s:"Las dices, pero tarde o de mala manera.",n:"Di solo lo que pasó, sin adjetivos, y pregunta qué va a hacer la próxima vez."},
+    {s:"Hablas pronto y sin dramas.",n:"Enseña a tu equipo a decírselo entre ellos sin pasar por ti."}],
+   [{s:"Crees que sin dinero no se puede motivar. Sí se puede.",n:"Pregunta a cada uno qué le gustaría aprender este año. Solo preguntar, de momento."},
+    {s:"Motivas a todos igual, y cada uno es distinto.",n:"Escribe al lado de cada nombre qué le mueve: aprender, mandar, tiempo o que le reconozcan."},
+    {s:"Sabes qué mueve a cada uno y lo usas.",n:"Dale a dos de ellos una decisión de verdad, no una tarea difícil."}],
+   [{s:"Contratas a ojo y cruzas los dedos.",n:"Antes de la próxima entrevista, escribe qué tiene que saber hacer. Y luego pruébalo."},
+    {s:"Aciertas a veces. Cuando fallas, sale caro.",n:"Haz a todos las mismas preguntas. Si no, comparas sensaciones, no personas."},
+    {s:"Eliges con criterio y preparas la entrada.",n:"Dile a cada persona nueva qué esperas de ella a los 30, a los 60 y a los 90 días."}],
+   [{s:"No puedes irte. Sin ti, el equipo se para.",n:"Elige una tarea tuya de cada semana y escríbela paso a paso. Luego pásala."},
+    {s:"Sueltas cosas, pero vuelven.",n:"Vuelven porque no están escritas. Escríbelo antes de soltarlo y deja de volver."},
+    {s:"Puedes desaparecer una semana y esto sigue.",n:"Pruébalo de verdad. Es el único examen que no se puede copiar."}],
+   [{s:"El día te lleva a ti.",n:"Bloquea dos horas a la semana para pensar. Dos. Y defiéndelas como una cita médica."},
+    {s:"Te organizas, pero te interrumpen todo el rato.",n:"No es culpa tuya: tu equipo no sabe cuándo puede molestarte. Dile las horas."},
+    {s:"Tienes el día controlado.",n:"Mira qué tarea repites cada semana y hazla una vez con una inteligencia artificial."}],
+   [{s:"Apagas fuegos todo el día.",n:"Cada semana saca tres cosas de tu mesa. Con nombre y con fecha."},
+    {s:"Vas soltando cosas, pero sin ritmo.",n:"Ponle un día fijo: los viernes, tres cosas fuera."},
+    {s:"Tienes el día a día en su sitio.",n:"Haz que te avisen solo cuando algo se salga de lo normal."}]
+  ];
+
+  /* ===== Estado ===== */
+  var app=document.getElementById('app');
+  var idx=0,tdx=0,answers=[],tans=[],order=[],lead={},phase='intro',RES=null;
+  var LEAD_ENDPOINT='';
+  var STEPS=Q.length+T.length+1;
+  var SHARE_URL='https://alexdakov.com/que-tipo-de-jefe-eres/';
+  var SHARE_TXT='Acabo de hacer este test: te dice en 5 minutos si eres buen jefe, jefe medio o mal jefe. Haz el tuyo:';
+  var ICO={
+    wa:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>',
+    li:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>',
+    mail:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>',
+    link:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>'
+  };
+
+  /* ===== Utilidades ===== */
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function shufQ(a){var r=shuf(a);if(r[0][1]>3){for(var i=1;i<r.length;i++){if(r[i][1]<=3){var t=r[0];r[0]=r[i];r[i]=t;break;}}}return r;}
+  function bar(p){return '<div class="progress"><i style="width:'+p+'%"></i></div>';}
+  function cap(t){return t.charAt(0).toUpperCase()+t.slice(1);}
+  function banda(v){return v<2.5?0:(v<3.7?1:2);}
+  function pill(b){return '<span class="pill '+['mal','med','bien'][b]+'">'+['Mal jefe','Jefe medio','Buen jefe'][b]+'</span>';}
+  function submitLead(){if(!LEAD_ENDPOINT)return;try{fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lead)});}catch(e){}}
+  function done(){
+    var n=0;
+    if(phase==='q')n=idx;
+    else if(phase==='bridge'||phase==='t')n=Q.length+tdx;
+    else n=STEPS;
+    return Math.round(n/STEPS*100);
+  }
+
+  /* ===== Portada ===== */
+  function intro(){
+    phase='intro';
+    app.innerHTML='<div class="screen hero">'+
+      '<p class="kicker">Hay jefes que hunden a su equipo y jefes que lo levantan. Casi ninguno sabe cuál es.</p>'+
+      '<h1>¿Qué tipo<br>de jefe eres?</h1>'+
+      '<div class="rule"><i></i><span>◆</span><i></i></div>'+
+      '<p class="lead hero-lead">24 preguntas sencillas sobre tu día a día. Al final te digo si hoy eres <strong>buen jefe, jefe medio o mal jefe</strong>, en qué lo eres y qué puedes hacer esta misma semana.</p>'+
+      '<div class="steps">'+
+        '<div class="step"><span class="qidx">1</span><div class="swrap">'+
+          '<p class="stitle">Las preguntas</p>'+
+          '<p class="stxt">Son 24 y no hay respuestas buenas ni malas. Contesta lo que haces de verdad, no lo que te gustaría hacer: si no, el resultado no te sirve de nada.</p></div></div>'+
+        '<div class="step"><span class="qidx">2</span><div class="swrap">'+
+          '<p class="stitle">Tu resultado</p>'+
+          '<p class="stxt">Qué tipo de jefe eres hoy, cómo estás en cada una de las nueve cosas que hace un jefe, y lo primero que puedes cambiar en cada una.</p></div></div>'+
+      '</div>'+
+      '<button class="btn" id="go">Empezar</button>'+
+      '<p class="fine" style="margin:16px auto 0;max-width:460px">5 minutos · es gratis · nadie de tu equipo lo va a ver</p>'+
+      '</div>';
+    document.getElementById('go').onclick=function(){
+      idx=0;tdx=0;answers=[];tans=[];lead={};phase='q';
+      order=Q.map(function(x){return shufQ(x.o);});render();
+    };
+  }
+
+  /* ===== Las 18 ===== */
+  function render(){
+    if(idx>=Q.length){phase='bridge';return bridge();}
+    phase='q';
+    var opts=order[idx];
+    var h='<div class="screen">'+bar(done())+
+      '<div class="meta"><span>Pregunta '+(idx+1)+' / '+Q.length+'</span><span>'+MODS[Q[idx].m].b+'</span></div>'+
+      '<div class="qhead"><span class="qidx">'+(idx+1)+'</span><div class="qwrap">'+
+      '<p class="qblock">'+MODS[Q[idx].m].n+'</p><h2 class="qtitle">'+Q[idx].q+'</h2></div></div><div class="opts">';
+    for(var i=0;i<opts.length;i++){
+      var sel=answers[idx]===opts[i][1]?' sel':'';
+      h+='<button class="opt'+sel+'" data-l="'+opts[i][1]+'">'+opts[i][0]+'</button>';
+    }
+    h+='</div>'+(idx>0?'<div class="nav"><button class="back" id="back">&#8592; Anterior</button></div>':'')+'</div>';
+    app.innerHTML=h;
+    var b=app.querySelectorAll('.opt');
+    for(var k=0;k<b.length;k++)b[k].onclick=function(){
+      answers[idx]=+this.getAttribute('data-l');idx++;render();
+    };
+    if(idx>0)document.getElementById('back').onclick=function(){idx--;render();};
+  }
+
+  function slide(eyebrow,title,text,btn,onNext,onBack,ek){
+    app.innerHTML='<div class="screen center">'+bar(done())+
+      '<p class="'+(ek||'eyebrow')+'">'+eyebrow+'</p>'+
+      '<h2 style="text-align:center">'+title+'</h2>'+
+      (text?'<p class="lead" style="margin-left:auto;margin-right:auto">'+text+'</p>':'')+
+      '<button class="btn" id="slideNext" style="margin-top:14px">'+btn+'</button>'+
+      '<div class="nav center"><button class="back" id="slideBack">&#8592; Anterior</button></div></div>';
+    document.getElementById('slideNext').onclick=onNext;
+    document.getElementById('slideBack').onclick=onBack;
+  }
+
+  function bridge(){
+    phase='bridge';
+    slide('Segunda parte','Y ahora, seis preguntas incómodas',
+      'No van de lo que piensas, van de lo que has hecho <strong>las últimas cuatro semanas</strong>. Estas restan, y son las que hacen que el resultado sea de verdad.',
+      'Seguir',function(){phase='t';tdx=0;renderT();},function(){phase='q';idx=Q.length-1;render();});
+  }
+
+  /* ===== Las 6 de comportamiento ===== */
+  function renderT(){
+    if(tdx>=T.length){phase='capture';return capture();}
+    phase='t';
+    var h='<div class="screen">'+bar(done())+
+      '<div class="meta"><span>Pregunta '+(Q.length+tdx+1)+' / '+(Q.length+T.length)+'</span><span>Las últimas 4 semanas</span></div>'+
+      '<div class="qhead"><span class="qidx">'+(tdx+1)+'</span><div class="qwrap">'+
+      '<p class="qblock">En las últimas cuatro semanas</p><h2 class="qtitle">¿Cuántas veces '+T[tdx].q+'?</h2></div></div><div class="opts">';
+    for(var i=0;i<SCALE.length;i++){
+      var sel=tans[tdx]===i?' sel':'';
+      h+='<button class="opt'+sel+'" data-i="'+i+'">'+SCALE[i]+'</button>';
+    }
+    h+='</div><div class="nav"><button class="back" id="back">&#8592; Anterior</button></div></div>';
+    app.innerHTML=h;
+    var b=app.querySelectorAll('.opt');
+    for(var k=0;k<b.length;k++)b[k].onclick=function(){
+      tans[tdx]=+this.getAttribute('data-i');tdx++;renderT();
+    };
+    document.getElementById('back').onclick=function(){if(tdx===0){bridge();}else{tdx--;renderT();}};
+  }
+
+  /* ===== Puerta del resultado ===== */
+  function capture(){
+    phase='capture';
+    app.innerHTML='<div class="screen">'+bar(100)+'<div class="meta"><span>Último paso</span><span>100%</span></div>'+
+      '<div class="center"><div class="lock">◆</div>'+
+      '<h2 style="text-align:center;margin-bottom:10px">Ya está. Vamos a ver qué ha salido</h2>'+
+      '<p class="lead" style="margin:0 auto 28px">Dime cómo te llamas y te lo enseño: qué tipo de jefe eres hoy, cómo estás en cada una de las nueve cosas, y lo primero que puedes cambiar.</p></div>'+
+      '<div class="form" style="margin:0 auto">'+
+        '<div class="field"><label>Nombre</label><input id="f_name" type="text" placeholder="Tu nombre"></div>'+
+        '<div class="field"><label>Email</label><input id="f_email" type="email" placeholder="tu@email.com"></div>'+
+        '<div class="err" id="f_err"></div>'+
+        '<button class="btn" id="reveal" style="margin-top:4px;width:100%">Ver mi resultado</button>'+
+        '<div class="nav center"><button class="back" id="backc">&#8592; Volver</button></div>'+
+      '</div></div>';
+    document.getElementById('backc').onclick=function(){phase='t';tdx=T.length-1;renderT();};
+    document.getElementById('reveal').onclick=function(){
+      var n=document.getElementById('f_name').value.trim(),
+          e=document.getElementById('f_email').value.trim(),
+          err=document.getElementById('f_err');
+      if(!n){err.textContent='Dime tu nombre.';return;}
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e)){err.textContent='Revisa el email.';return;}
+      var r=score();
+      lead={source:'que-tipo-de-jefe-eres',nombre:n,email:e,
+        resultado:NIV[r.global].n,puntuacion:r.media.toFixed(2),
+        respuestas:answers.slice(),comportamiento:tans.slice(),
+        quiere_info:false,page:location.pathname,
+        utm_source:(new URLSearchParams(location.search).get('utm_source')||''),
+        ts:new Date().toISOString()};
+      for(var m=0;m<9;m++)lead['b'+(m+1)]=r.bandas[m]+1;
+      submitLead();RES=r;report(r);
+    };
+  }
+
+  /* ===== Cuentas ===== */
+  function score(){
+    var pen=[0,0,0,0,0,0,0,0,0];
+    for(var j=0;j<T.length;j++){var v=PEN[tans[j]||0];for(var k=0;k<T[j].m.length;k++)pen[T[j].m[k]]+=v;}
+    var raw=[],bandas=[];
+    for(var m=0;m<9;m++){
+      var acc=0,c=0;
+      for(var q=0;q<Q.length;q++)if(Q[q].m===m){acc+=answers[q]||1;c++;}
+      var v=Math.max(1,(acc/c)-pen[m]);
+      raw.push(v);bandas.push(banda(v));
+    }
+    var g=0;for(var z=0;z<9;z++)g+=raw[z];
+    var media=g/9;
+    return {raw:raw,bandas:bandas,media:media,global:banda(media)+1,pen:pen};
+  }
+
+  /* ===== El resultado ===== */
+  function report(r){
+    phase='report';
+    var flojo=0;for(var z=1;z<9;z++)if(r.raw[z]<r.raw[flojo])flojo=z;
+
+    var fichas='';
+    for(var f=0;f<9;f++){
+      var b=r.bandas[f],d=DICE[f][b];
+      fichas+='<div class="ficha">'+
+        '<div class="fhead"><span class="mb">'+MODS[f].b+'</span>'+pill(b)+'</div>'+
+        '<p class="ftitle">'+MODS[f].n+'</p><div class="fsep"></div>'+
+        '<p class="flabel">Cómo estás</p><p class="ftxt">'+d.s+'</p>'+
+        '<p class="flabel">Lo primero que puedes hacer</p><p class="ftxt acc">'+d.n+'</p></div>';
+    }
+
+    var penTxt='',pl=[];
+    for(var j=0;j<T.length;j++)if((tans[j]||0)>0)pl.push({i:j,v:tans[j]});
+    pl.sort(function(a,b){return b.v-a.v;});
+    if(pl.length){
+      penTxt='<div class="box"><p class="eyebrow">Lo que te ha restado</p><ul class="plist">';
+      for(var y=0;y<Math.min(3,pl.length);y++)penTxt+='<li>'+cap(T[pl[y].i].q)+' — <strong>'+SCALE[pl[y].v].toLowerCase()+'</strong></li>';
+      penTxt+='</ul><p class="fine" style="margin:12px 0 0">Esto no sale de lo que crees que haces, sale de lo que hiciste el mes pasado.</p></div>';
+    }
+
+    var filas=[
+      {q:'×5',t:'Mal jefe',d:'Saca el trabajo de 5 personas'},
+      {q:'×10',t:'Jefe medio',d:'Saca el trabajo de 10 personas'},
+      {q:'×20',t:'Buen jefe',d:'Saca el trabajo de 20 personas'}
+    ];
+    var rend='<div class="rend"><p class="eyebrow">Por qué importa esto</p>'+
+      '<h2 class="rendh">La misma gente rinde el doble o la mitad según quién la dirige</h2>'+
+      '<p class="rendsub">Con un equipo de 10 personas, esto es lo que saca cada tipo de jefe:</p>';
+    for(var i=0;i<3;i++){
+      var tuya=(i===r.global-1);
+      rend+='<div class="fila'+(tuya?' tuya':'')+'"><span class="fq">'+filas[i].q+'</span>'+
+        '<span class="fqs"><p class="fqt">'+filas[i].t+'</p><p class="fqd">'+filas[i].d+'</p></span>'+
+        (tuya?'<span class="tuyo">Aquí estás</span>':'')+'</div>';
+    }
+    rend+='<p class="rendfine">Es la misma gente, el mismo sueldo y las mismas horas. Lo único que cambia es quién la dirige. Los números salen de la investigación <em>Multipliers</em>, de Liz Wiseman.</p></div>';
+
+    app.innerHTML='<div class="screen">'+
+      '<div class="verdict">'+
+        '<p class="vlabel">'+esc(lead.nombre||'')+', hoy eres</p>'+
+        '<h1 class="vname">'+NIV[r.global].n+'</h1>'+
+        '<p class="vtxt">'+NIV[r.global].d+'</p>'+
+      '</div>'+
+      penTxt+
+      '<h2 style="margin:34px 0 6px">Las nueve cosas, una por una</h2>'+
+      '<p class="fine" style="margin:0 0 20px">Un jefe no es bueno o malo en todo a la vez. Aquí tienes dónde estás en cada cosa. Si no sabes por dónde empezar, empieza por <strong>'+MODS[flojo].n.toLowerCase()+'</strong>.</p>'+
+      fichas+rend+
+      '<div class="cta"><p class="eyebrow">Y ahora</p>'+
+      '<h2 style="margin:0 0 12px">¿Quieres que te cuente cómo se pasa de aquí a buen jefe?</h2>'+
+      '<p class="lead" style="margin:0 auto 20px">Te mando información del programa donde enseño esto mismo, paso a paso. Sin compromiso: lo miras y decides.</p>'+
+      '<button class="btn" id="goCta">Sí, quiero más información</button></div>'+
+      '</div>';
+    document.getElementById('goCta').onclick=function(){
+      lead.quiere_info=true;submitLead();gracias();
+    };
+    window.scrollTo(0,0);
+  }
+
+  /* ===== Gracias ===== */
+  function shareBox(){
+    var u=encodeURIComponent(SHARE_URL),t=encodeURIComponent(SHARE_TXT+' '+SHARE_URL);
+    return '<div class="sharebox">'+
+      '<p class="eyebrow">Comparte</p>'+
+      '<h2>Pásaselo a otro jefe</h2>'+
+      '<p class="sharefine">Todos hemos tenido jefes que no sabían dirigir. Mándaselo a alguien que lleve un equipo: en cinco minutos sabrá por dónde empezar.</p>'+
+      '<div class="shared">'+
+        '<a class="sbtn" target="_blank" rel="noopener" href="https://wa.me/?text='+t+'">'+ICO.wa+'<span>WhatsApp</span></a>'+
+        '<a class="sbtn" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url='+u+'">'+ICO.li+'<span>LinkedIn</span></a>'+
+        '<a class="sbtn" href="mailto:?subject='+encodeURIComponent('¿Qué tipo de jefe eres?')+'&body='+t+'">'+ICO.mail+'<span>Email</span></a>'+
+        '<button type="button" class="sbtn" id="scopy">'+ICO.link+'<span>Copiar enlace</span></button>'+
+      '</div></div>';
+  }
+  function wireShare(){
+    var b=document.getElementById('scopy');if(!b)return;
+    b.onclick=function(){
+      var sp=b.querySelector('span');
+      function ok(){sp.textContent='Enlace copiado';setTimeout(function(){sp.textContent='Copiar enlace';},2200);}
+      try{
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(SHARE_URL).then(ok,function(){window.prompt('Copia el enlace:',SHARE_URL);});}
+        else{window.prompt('Copia el enlace:',SHARE_URL);}
+      }catch(e){window.prompt('Copia el enlace:',SHARE_URL);}
+    };
+  }
+  function gracias(){
+    phase='gracias';
+    app.innerHTML='<div class="screen center">'+
+      '<div class="lock">◆</div>'+
+      '<p class="eyebrow">Recibido</p>'+
+      '<h1 style="margin-bottom:14px">Te escribo yo<br>en un momento</h1>'+
+      '<p class="lead" style="margin:0 auto 10px">Te mando la información al correo que me has dejado. Mientras tanto, quédate con lo primero que puedes cambiar esta semana: estaba al lado del bloque donde peor has salido.</p>'+
+      shareBox()+'</div>';
+    wireShare();
+    window.scrollTo(0,0);
+  }
+
+  intro();
+</script>
+</body>
+</html>
