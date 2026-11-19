@@ -304,7 +304,16 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   ];
   /* ===== CAPA 2 · CALCULADORA (fórmula real de alexdakov.com/calculadora-liderazgo) ===== */
   var LOW=48,HIGH=197;
-  var ctx={personas:'',factura:'',facturacion:'',sueldo:''};
+  var ctx={personas:'',factura:'',facturacion:'',sueldo:'',moneda:monedaInicial()};
+  // Moneda: la persona elige euros o dolares. Se preselecciona por la zona horaria del
+  // navegador (Europa -> euros; resto -> dolares) y se puede cambiar con un toque.
+  function monedaInicial(){try{var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';
+    return /^(Europe\/|Atlantic\/(Canary|Madeira|Azores)|Africa\/Ceuta)/.test(tz)?'EUR':'USD';}catch(e){return 'EUR';}}
+  function usd(){return ctx.moneda==='USD';}
+  function simb(){return usd()?'US$':'€';}
+  function money(n){var t=(n||0).toLocaleString('es-ES');return usd()?'US$ '+t:t+' €';}
+  function invOpts(){return usd()?["US$ 0 a 2.000","US$ 2.000 a 5.000","US$ 5.000 a 10.000","Más de US$ 10.000"]
+    :["0 a 2.000 €","2.000 € a 5.000 €","5.000 € a 10.000 €","Más de 10.000 €"];}
 
   /* ===== CAPA 3 · SETTING (fases 3, 4, 6, 7 y 8 del SOP de setting) ===== */
   var SET=[
@@ -454,6 +463,18 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     else n=STEPS;
     return Math.round(n/STEPS*100);
   }
+  // Avisos de embudo (19-nov): una senal anonima por paso para saber donde se pierde la gente.
+  // SID vive solo en memoria (sin cookies ni almacenamiento). Va al Worker (pestana EMBUDO TEST V2)
+  // y, como evento tv2_*, a GA4 (solo si hay consentimiento) y a Clarity (filtro de grabaciones).
+  var SID=('v'+Math.random().toString(36).slice(2)+Date.now().toString(36)).slice(0,20),PASOS={};
+  function paso(n,o){
+    if(PASOS[n])return;PASOS[n]=1;
+    tlpTrack('tv2_'+n.replace(/-/g,'_'),{orden:o});
+    if(!LEAD_ENDPOINT)return;
+    try{fetch(LEAD_ENDPOINT,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({source:'test-v2-paso',sid:SID,paso:n,orden:o,modo:MODO_PRE?'personalizado':'publico',
+        utm_source:(new URLSearchParams(location.search).get('utm_source')||''),moneda:ctx.moneda})});}catch(e){}
+  }
   function submitLead(){if(!LEAD_ENDPOINT)return;try{fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lead)});}catch(e){}}
   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
@@ -466,7 +487,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   function nfmt(n){return (n||0).toLocaleString('es-ES');}
 
   function intro(){
-    phase='intro';
+    phase='intro';paso('abre',1);
     app.innerHTML='<div class="screen hero">'+
       '<p class="kicker">Descubre en qué nivel de líder estás, y qué necesitas para ir al siguiente.</p>'+
       '<h1>Test Líder PRO</h1>'+
@@ -484,12 +505,12 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<button class="btn" id="go">Empezar</button>'+
       '<p class="fine" style="margin-top:16px;max-width:520px;margin-left:auto;margin-right:auto">Unos 8 minutos · aquí no hay respuestas buenas, solo la tuya. Cuanto más honesto seas, más afinado será tu plan de mejora. No se trata de acertar, sino de elegir la que más te representa hoy.</p>'+
       '</div>';
-    document.getElementById('go').onclick=function(){idx=0;tdx=0;spage=0;answers=[];tans=[];sans=new Array(SET.length).fill('');lead={};phase='q';order=Q.map(function(x){return shufQ(x.o);});render();};
+    document.getElementById('go').onclick=function(){paso('empieza',2);idx=0;tdx=0;spage=0;answers=[];tans=[];sans=new Array(SET.length).fill('');lead={};phase='q';order=Q.map(function(x){return shufQ(x.o);});render();};
   }
 
   function render(){
     if(idx>=Q.length){phase='bridge';return bridge();}
-    phase='q';
+    phase='q';if(idx===5)paso('pregunta-6',3);if(idx===11)paso('pregunta-12',4);
     var opts=order[idx];
     var h='<div class="screen">'+bar(done())+'<div class="meta"><span>Pregunta '+(idx+1)+' / '+Q.length+'</span><span>'+MODS[Q[idx].m].b+'</span></div>'+
       '<div class="qhead"><span class="qidx">'+(idx+1)+'</span><div class="qwrap">'+
@@ -516,7 +537,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   }
 
   function bridge(){
-    phase='bridge';
+    phase='bridge';paso('preguntas-fin',5);
     slide('Segunda parte','Y ahora, la parte más cualitativa',
       'Seis preguntas sobre lo que has hecho <strong>las últimas cuatro semanas</strong>. No sobre lo que intentas hacer, ni sobre lo que te gustaría: sobre <strong>lo que ha pasado</strong>.',
       'Seguir',function(){phase='t';tdx=0;renderT();},function(){phase='q';idx=Q.length-1;render();});
@@ -524,7 +545,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
 
   function renderT(){
     if(tdx>=T.length){phase='calcIntro';return calcIntro();}
-    phase='t';
+    phase='t';if(tdx===0)paso('trampas',6);
     var h='<div class="screen">'+bar(done())+'<div class="meta"><span>Trampa '+(tdx+1)+' / '+T.length+'</span><span>Las últimas 4 semanas</span></div>'+
       '<div class="qhead"><span class="qidx">'+(tdx+1)+'</span><div class="qwrap">'+
       '<p class="qblock">En las últimas cuatro semanas</p><h2 class="qtitle">¿Cuántas veces '+T[tdx].q.replace('…','')+'?</h2></div></div><div class="opts">';
@@ -537,26 +558,37 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   }
 
   function calcIntro(){
-    phase='calcIntro';
+    phase='calcIntro';paso('trampas-fin',7);
     slide('Tercera parte','Ahora, vamos a calcular el impacto económico de tu liderazgo','',
       'Calcular',function(){phase='calcCtx';calcCtx();},function(){phase='t';tdx=T.length-1;renderT();});
   }
 
   function calcCtx(){
-    phase='calcCtx';
-    app.innerHTML='<div class="screen">'+bar(done())+'<div class="meta"><span>Tu equipo</span><span>4 datos</span></div>'+
+    phase='calcCtx';paso('equipo',8);
+    app.innerHTML='<div class="screen">'+bar(done())+'<div class="meta"><span>Tu equipo</span><span>5 datos</span></div>'+
       '<h2>Tu equipo, en números</h2>'+
       '<div class="form" style="margin:0 auto">'+
+        '<div class="field"><label>¿En qué moneda prefieres poner las cifras?</label><div class="opts" id="c_mon" style="margin:0">'+
+          '<button class="opt'+(ctx.moneda==='EUR'?' sel':'')+'" data-v="EUR">Euros (€)</button>'+
+          '<button class="opt'+(ctx.moneda==='USD'?' sel':'')+'" data-v="USD">Dólares (US$)</button></div>'+
+          '<p class="fine" style="margin:8px 0 0">Si en tu país usáis otra moneda, convierte las cifras de forma aproximada a la que elijas.</p></div>'+
         '<div class="field"><label>¿A cuántas personas diriges?</label><input id="c_people" type="number" min="1" max="2000" placeholder="12" value="'+esc(ctx.personas)+'"></div>'+
         '<div class="field"><label>¿Tu área genera facturación directa?</label><div class="opts" id="c_fact" style="margin:0">'+
           '<button class="opt'+(ctx.factura==='si'?' sel':'')+'" data-v="si">Sí</button>'+
           '<button class="opt'+(ctx.factura==='no'?' sel':'')+'" data-v="no">No</button></div></div>'+
-        '<div class="field" id="c_revF" style="display:'+(ctx.factura==='si'?'block':'none')+'"><label>Facturación anual de tu área (€)</label><input id="c_rev" type="number" min="0" placeholder="1000000" value="'+esc(ctx.facturacion)+'"></div>'+
-        '<div class="field"><label>Sueldo medio bruto al mes por persona (€)</label><input id="c_sal" type="number" min="300" placeholder="2000" value="'+esc(ctx.sueldo||2000)+'"></div>'+
+        '<div class="field" id="c_revF" style="display:'+(ctx.factura==='si'?'block':'none')+'"><label>Facturación anual de tu área (<span class="c_sym">'+simb()+'</span>)</label><input id="c_rev" type="number" min="0" placeholder="1000000" value="'+esc(ctx.facturacion)+'"></div>'+
+        '<div class="field"><label>Sueldo medio bruto al mes por persona (<span class="c_sym">'+simb()+'</span>)</label><input id="c_sal" type="number" min="300" placeholder="2000" value="'+esc(ctx.sueldo||2000)+'"></div>'+
         '<div class="err" id="c_err"></div>'+
         '<button class="btn" id="c_next" style="margin-top:4px">Seguir</button>'+
         '<div class="nav center"><button class="back" id="c_back">&#8592; Anterior</button></div>'+
       '</div></div>';
+    var mb=app.querySelectorAll('#c_mon .opt');
+    for(var k=0;k<mb.length;k++)mb[k].onclick=function(){
+      ctx.moneda=this.getAttribute('data-v');
+      for(var j=0;j<mb.length;j++)mb[j].className='opt';
+      this.className='opt sel';
+      var sy=app.querySelectorAll('.c_sym');for(var q=0;q<sy.length;q++)sy[q].textContent=simb();
+    };
     var fb=app.querySelectorAll('#c_fact .opt');
     for(var i=0;i<fb.length;i++)fb[i].onclick=function(){
       ctx.factura=this.getAttribute('data-v');
@@ -573,13 +605,13 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       if(!ctx.factura){e.textContent='Dime si tu área factura.';return;}
       if(ctx.factura==='si'&&(!rv||+rv<10000)){e.textContent='Escribe la facturación anual aproximada.';return;}
       if(!s||+s<300){e.textContent='Revisa el sueldo medio mensual.';return;}
-      ctx.personas=+p;ctx.sueldo=+s;ctx.facturacion=ctx.factura==='si'?+rv:0;
+      ctx.personas=+p;ctx.sueldo=+s;ctx.facturacion=ctx.factura==='si'?+rv:0;paso('equipo-hecho',9);
       if(MODO_PRE){preSalto();}else{capture();}
     };
   }
 
   function setIntro(){
-    phase='setIntro';
+    phase='setIntro';paso('presetting-intro',15);
     if(MODO_PRE){
       slide('Antes de darte el resultado.','Y ahora, cuéntame sobre tu caso',
         'Ya sé cómo diriges hoy. Para que el informe te sirva de verdad —y para saber si puedo ayudarte— necesito entender dónde quieres llegar y qué te lo está impidiendo. Son siete preguntas y van con tus palabras.',
@@ -593,16 +625,17 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
 
   function renderS(){
     if(spage>=SPAGES.length){enviarSetting();return MODO_PRE?report(RES):gracias();}
-    phase='setQ';
+    phase='setQ';paso('presetting-pagina-'+(spage+1),16+spage);
     var from=SPAGES[spage][0],to=SPAGES[spage][1];
     var h='<div class="screen">'+bar(done())+'<div class="meta"><span>Dónde estás y dónde quieres llegar</span><span>'+(spage+1)+' / '+SPAGES.length+'</span></div>';
     for(var i=from;i<to;i++){
       h+='<div class="sitem"><label class="sq" for="s'+i+'">'+SET[i].q+'</label>';
       if(SET[i].opts){
+        var OP=SET[i].k==='inversion'?invOpts():SET[i].opts;
         h+='<div class="opts sopts" data-i="'+i+'">';
-        for(var z=0;z<SET[i].opts.length;z++){
-          var sl=sans[i]===SET[i].opts[z]?' sel':'';
-          h+='<button type="button" class="opt'+sl+'" data-v="'+esc(SET[i].opts[z])+'">'+SET[i].opts[z]+'</button>';
+        for(var z=0;z<OP.length;z++){
+          var sl=sans[i]===OP[z]?' sel':'';
+          h+='<button type="button" class="opt'+sl+'" data-v="'+esc(OP[z])+'">'+OP[z]+'</button>';
         }
         h+='</div>';
       }else{
@@ -638,13 +671,13 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   function construirLead(n,c,e,rt){
     var r=score();
     lead={source:'test-completo-lider-v2',nombre:n,ciudad:c,email:e,mayor_reto:rt,
-      personas:ctx.personas,factura:ctx.factura,facturacion:ctx.facturacion,sueldo_medio:ctx.sueldo,
+      personas:ctx.personas,factura:ctx.factura,facturacion:ctx.facturacion,sueldo_medio:ctx.sueldo,moneda:ctx.moneda,
       page:location.pathname,utm_source:(new URLSearchParams(location.search).get('utm_source')||''),
       respuestas:answers.slice(),trampas:tans.slice(),
       nivel_global:r.global,aplicacion:r.mad,capacidad:r.u,perdida_anual:Math.round(r.loss),
       setting_hecho:false,ts:new Date().toISOString()};
     for(var m=0;m<9;m++)lead['m'+(m+1)]=r.mods[m];
-    submitLead();RES=r;return r;
+    submitLead();paso('email-dejado',11);RES=r;return r;
   }
   // Camino de quien ya conocemos: nos saltamos pedirle nombre, email y reto.
   function preSalto(){
@@ -653,11 +686,11 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   }
   function enviarSetting(){
     var s={};for(var i=0;i<SET.length;i++)s[SET[i].k]=sans[i];
-    lead.setting=s;lead.setting_hecho=true;submitLead();
+    lead.setting=s;lead.setting_hecho=true;submitLead();paso('presetting-fin',30);
   }
 
   function capture(){
-    phase='capture';
+    phase='capture';paso('pide-email',10);
     app.innerHTML='<div class="screen">'+bar(100)+'<div class="meta"><span>Último paso</span><span>100%</span></div>'+
       '<div class="center"><div class="lock">✦</div><h2 style="text-align:center;margin-bottom:10px">Tu informe está listo</h2>'+
       '<p class="lead" style="margin:0 auto 28px">Dentro encontrarás tus resultados y propuestas de mejora para cada ámbito: cuál es el rendimiento económico de tu equipo según tu forma de liderazgo, y acciones que puedes implementar desde mañana para mejorar.</p></div>'+
@@ -711,7 +744,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   function dots(n){var s='';for(var i=1;i<=5;i++)s+='<i class="dot'+(i<=n?' on':'')+'"></i>';return s;}
 
   function report(r){
-    phase='report';
+    phase='report';paso('informe',12);
     var ord=[];for(var i=0;i<9;i++)ord.push(i);
     var flojo=0;for(var z=1;z<9;z++)if(r.raw[z]<r.raw[flojo])flojo=z;
 
@@ -736,8 +769,8 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
 
     var U=(r.u/100).toFixed(2).replace('.',',');
     var base=ctx.factura==='si'
-      ? 'Hoy tu área factura '+nfmt(ctx.facturacion)+' € al año con un rendimiento de '+U+' por persona. Con las mismas personas rindiendo a 1,97, facturaría '+nfmt(Math.round(ctx.facturacion/r.u*HIGH))+' €.'
-      : 'Tu equipo te cuesta '+nfmt(r.mass)+' € al año en sueldos ('+ctx.personas+(ctx.personas===1?' persona':' personas')+'). Con las mismas personas y el mismo coste, podrías generar 1,97 en vez de '+U+' por cada persona.';
+      ? 'Hoy tu área factura '+money(ctx.facturacion)+' al año con un rendimiento de '+U+' por persona. Con las mismas personas rindiendo a 1,97, facturaría '+money(Math.round(ctx.facturacion/r.u*HIGH))+'.'
+      : 'Tu equipo te cuesta '+money(r.mass)+' al año en sueldos ('+ctx.personas+(ctx.personas===1?' persona':' personas')+'). Con las mismas personas y el mismo coste, podrías generar 1,97 en vez de '+U+' por cada persona.';
     var eco='<div class="ecobox"><p class="eyebrow">El impacto económico de tu liderazgo</p>'+
       '<h2 class="ecoh">El precio de tu forma de liderar</h2>'+
       '<p class="ecolabel">Lo que rinde hoy cada persona de tu equipo</p>'+
@@ -745,7 +778,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<p class="ecofine">0,48 es un líder que resta y anula a su equipo · 1 es un líder medio, paga y recibe lo mismo · 1,97 es un líder PRO: su equipo se implica y da el doble</p>'+
       '<div class="ecosep"></div>'+
       '<p class="ecolabel">Si tu equipo rindiera como uno de alto rendimiento,<br>cada año generaría esto más de lo que genera actualmente</p>'+
-      '<p class="bignum">+'+nfmt(Math.round(r.loss))+' €</p>'+
+      '<p class="bignum">+'+money(Math.round(r.loss))+'</p>'+
       '<p class="ecofine">'+base+'</p>'+
       '<p class="ecosrc">Escala basada en la investigación <em>Multipliers</em> de Liz Wiseman.</p></div>';
 
@@ -771,12 +804,16 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
           '<p class="lead" style="margin:0 auto 20px">Este informe te dice dónde estás. Formarte te permite construir dónde quieres estar.</p>'+
           '<button class="btn" id="goCta">Sí, quiero saber más</button>')+'</div>'+
       '</div>';
-    document.getElementById('goCta').onclick=function(){if(MODO_PRE){gracias();}else{setIntro();}};
+    document.getElementById('goCta').onclick=function(){if(MODO_PRE){gracias();}else{paso('clic-saber-mas',14);setIntro();}};
+    // Llega a ver el boton final del informe (lo ha recorrido entero).
+    try{var ctaEl=app.querySelector('.cta');if(ctaEl&&'IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){for(var z=0;z<es.length;z++)if(es[z].isIntersecting){paso('informe-final',13);io.disconnect();}});
+      io.observe(ctaEl);}}catch(e){}
     window.scrollTo(0,0);
   }
 
   function gracias(){
-    phase='gracias';
+    phase='gracias';paso('gracias',31);
     app.innerHTML='<div class="screen center">'+
       '<div class="lock">✦</div>'+
       '<p class="eyebrow">Recibido</p>'+
