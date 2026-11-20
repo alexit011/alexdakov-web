@@ -92,6 +92,8 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   .lock{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;color:var(--gold);font-size:20px}
   .err{color:#e0a878;font-size:14px;display:none}
   .err a{color:#C9A961;font-weight:600}
+  /* 20-nov: los avisos existian pero nunca se veian (display:none sin nada que los mostrara). */
+  .err:not(:empty){display:block;margin:4px 0 12px}
   .badge{width:84px;height:84px;border-radius:50%;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;
     font-family:var(--serif);font-size:38px;color:var(--gold);margin:0 auto 8px;background:radial-gradient(circle,rgba(201,169,97,.12),transparent 70%)}
   .lvl-label{text-align:center;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
@@ -206,6 +208,9 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     padding:30px 26px;margin:22px 0 0;text-align:center}
   .cta .lead{margin-left:auto;margin-right:auto}
   .sitem{margin:0 0 24px}
+  .sarea.big{font-size:17px;min-height:132px}
+  .shint{font-size:12px;color:var(--muted);margin:10px 0 0;opacity:.8}
+  @media (hover:none){.shint{display:none}}
   .sq{display:block;font-family:var(--serif);font-size:19px;line-height:1.35;margin:0 0 10px;color:var(--cream)}
   .sarea{width:100%;background:linear-gradient(180deg,rgba(240,235,224,.045),rgba(240,235,224,.012));
     border:1px solid var(--line-soft);border-radius:13px;
@@ -332,7 +337,8 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
    {k:"cuando",q:"¿Cuándo estás dispuesto a empezar?",
     ph:"Define tu nivel de compromiso con tus objetivos."}
   ];
-  var SPAGES=[[0,4],[4,7]];
+  // Una pregunta por pantalla, estilo Typeform (20-nov): con 4 abiertas de golpe se iba la mitad.
+  var SPAGES=[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]];
   var sans=new Array(SET.length).fill(''), spage=0;
 
   /* Informe: por bloque y nivel, dónde estás y cómo subir. Siempre hay siguiente paso, también en el 5. */
@@ -625,11 +631,13 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
 
   function renderS(){
     if(spage>=SPAGES.length){enviarSetting();return MODO_PRE?report(RES):gracias();}
-    phase='setQ';paso('presetting-pagina-'+(spage+1),16+spage);
-    var from=SPAGES[spage][0],to=SPAGES[spage][1];
-    var h='<div class="screen">'+bar(done())+'<div class="meta"><span>Dónde estás y dónde quieres llegar</span><span>'+(spage+1)+' / '+SPAGES.length+'</span></div>';
+    phase='setQ';paso('presetting-pregunta-'+(spage+1),16+spage);
+    var from=SPAGES[spage][0],to=SPAGES[spage][1],uno=(to-from===1);
+    var h='<div class="screen">'+bar(done())+'<div class="meta"><span>'+(uno?'Pregunta '+(spage+1)+' / '+SPAGES.length:'Dónde estás y dónde quieres llegar')+'</span><span>'+(uno?'Tu caso':(spage+1)+' / '+SPAGES.length)+'</span></div>';
     for(var i=from;i<to;i++){
-      h+='<div class="sitem"><label class="sq" for="s'+i+'">'+SET[i].q+'</label>';
+      h+=uno
+        ? '<div class="sitem"><h2 class="qtitle" style="margin:0 0 22px"><label for="s'+i+'">'+SET[i].q+'</label></h2>'
+        : '<div class="sitem"><label class="sq" for="s'+i+'">'+SET[i].q+'</label>';
       if(SET[i].opts){
         var OP=SET[i].k==='inversion'?invOpts():SET[i].opts;
         h+='<div class="opts sopts" data-i="'+i+'">';
@@ -639,7 +647,8 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
         }
         h+='</div>';
       }else{
-        h+='<textarea id="s'+i+'" class="sarea" rows="3" placeholder="'+SET[i].ph+'">'+esc(sans[i]||'')+'</textarea>';
+        h+='<textarea id="s'+i+'" class="sarea'+(uno?' big':'')+'" rows="'+(uno?4:3)+'" placeholder="'+SET[i].ph+'">'+esc(sans[i]||'')+'</textarea>'+
+          (uno?'<p class="shint">Pulsa Enter para seguir · Mayús + Enter para un salto de línea</p>':'');
       }
       h+='</div>';
     }
@@ -653,6 +662,8 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
         sans[bi]=this.getAttribute('data-v');
         for(var w=0;w<bb.length;w++)bb[w].className='opt';
         this.className='opt sel';
+        // Con una sola pregunta, elegir ya avanza (como en las 18 del test).
+        if(uno){var sp=spage;setTimeout(function(){if(spage!==sp||phase!=='setQ')return;var n=document.getElementById('s_next');if(n)n.click();},250);}
       };
     })(boxes[x]);
     function grab(){for(var i=from;i<to;i++){var el=document.getElementById('s'+i);if(el)sans[i]=el.value.trim();}}
@@ -661,10 +672,18 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       grab();
       for(var i=from;i<to;i++){
         if(SET[i].opts){if(!sans[i]){document.getElementById('s_err').textContent='Elige una de las opciones.';return;}}
-        else if(!sans[i]||sans[i].length<3){document.getElementById('s_err').textContent='Te falta alguna. Con una frase basta.';return;}
+        else if(!sans[i]||sans[i].length<3){document.getElementById('s_err').textContent=uno?'Escribe tu respuesta para seguir.':'Te falta alguna respuesta.';return;}
       }
       spage++;renderS();
     };
+    if(uno){
+      var ta=app.querySelector('.sarea');
+      if(ta){
+        ta.onkeydown=function(ev){if(ev.key==='Enter'&&!ev.shiftKey&&!ev.isComposing){ev.preventDefault();document.getElementById('s_next').click();}};
+        try{ta.focus({preventScroll:true});var L=ta.value.length;ta.setSelectionRange(L,L);}catch(e){}
+      }
+      window.scrollTo(0,0);
+    }
   }
 
   // Calcula, arma el lead y manda el primer envio. Lo usan los dos caminos.
