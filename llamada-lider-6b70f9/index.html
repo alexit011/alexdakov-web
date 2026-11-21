@@ -98,10 +98,13 @@ a{color:inherit}
   font-size:clamp(26px,3.2vw,40px);line-height:1.1;letter-spacing:-.02em;
 }
 .cal-head h2 em{font-style:italic;color:var(--gold)}
+/* El iframe de GHL trae su propio fondo BLANCO con margen arriba y abajo.
+   La tarjeta de dentro sí es navy, así que recortamos esos márgenes. */
 .cal-frame{
   border:1px solid var(--border);
   background:var(--navy-base);
-  min-height:720px;
+  overflow:hidden;
+  min-height:660px;
 }
 .cal-frame iframe{width:100%;border:none;overflow:hidden;display:block;min-height:720px}
 .cal-fallback{
@@ -216,7 +219,19 @@ a{color:inherit}
   f.id = CAL_ID + "_" + Date.now();
   f.setAttribute("scrolling","no");
   f.title = "Calendario de reservas";
-  document.getElementById("calFrame").appendChild(f);
+  var frame = document.getElementById("calFrame");
+  frame.appendChild(f);
+
+  // Recorte de los márgenes blancos del iframe. form_embed.js le pone una
+  // altura exacta en línea; la seguimos y ajustamos el alto del contenedor.
+  var TOP = 60, BOT = 22;
+  f.style.marginTop = "-" + TOP + "px";
+  function ajustar(){
+    var h = parseInt(f.style.height, 10);
+    if (h > TOP + BOT + 200) frame.style.height = (h - TOP - BOT) + "px";
+  }
+  new MutationObserver(ajustar).observe(f, {attributes:true, attributeFilter:["style"]});
+  window.addEventListener("resize", ajustar);
 
   var s = document.createElement("script");
   s.src = "https://link.msgsndr.com/js/form_embed.js";
