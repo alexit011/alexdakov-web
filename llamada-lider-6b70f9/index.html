@@ -224,7 +224,9 @@ a{color:inherit}
 
   // Recorte de los márgenes blancos del iframe. form_embed.js le pone una
   // altura exacta en línea; la seguimos y ajustamos el alto del contenedor.
-  var TOP = 60, BOT = 22;
+  // TOP se come también la esquina redondeada de la tarjeta de GHL, que dejaba
+  // una línea blanca fina en el borde superior.
+  var TOP = 70, BOT = 26;
   f.style.marginTop = "-" + TOP + "px";
   function ajustar(){
     var h = parseInt(f.style.height, 10);
