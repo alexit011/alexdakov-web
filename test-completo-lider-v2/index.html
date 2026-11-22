@@ -58,9 +58,9 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   p.fine{color:var(--muted);font-size:13px;opacity:.8}
   .btn{font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:.02em;cursor:pointer;
     background:var(--gold);color:#1a1305;border:none;border-radius:2px;padding:16px 34px;transition:.25s;}
-  .btn:hover{background:var(--gold-soft);transform:translateY(-1px)}
+  @media (hover:hover) and (pointer:fine){.btn:hover{background:var(--gold-soft);transform:translateY(-1px)}}
   .btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--line)}
-  .btn.ghost:hover{background:rgba(201,169,97,.08);color:var(--gold-soft)}
+  @media (hover:hover) and (pointer:fine){.btn.ghost:hover{background:rgba(201,169,97,.08);color:var(--gold-soft)}}
   .progress{height:2px;background:var(--line-soft);border-radius:0;overflow:hidden;margin-bottom:14px}
   .progress > i{display:block;height:100%;background:var(--gold);transition:width .5s cubic-bezier(.4,0,.2,1)}
   .meta{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:30px}
@@ -69,19 +69,19 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   .opt{font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.45;text-align:left;color:var(--cream);
     background:var(--bg2);border:1px solid var(--line-soft);border-radius:3px;padding:18px 20px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:14px}
   .opt:before{content:"";flex:0 0 auto;width:9px;height:9px;border-radius:50%;border:1px solid var(--muted);transition:.2s}
-  .opt:hover{border-color:var(--gold);background:#121b30;transform:translateX(3px)}
-  .opt:hover:before{border-color:var(--gold);background:var(--gold);box-shadow:0 0 10px rgba(201,169,97,.5)}
+  @media (hover:hover) and (pointer:fine){.opt:hover{border-color:var(--gold);background:#121b30;transform:translateX(3px)}}
+  @media (hover:hover) and (pointer:fine){.opt:hover:before{border-color:var(--gold)}}
   .opt.sel{border-color:var(--gold);background:#121b30}
   .opt.sel:before{border-color:var(--gold);background:var(--gold);box-shadow:0 0 10px rgba(201,169,97,.5)}
   .nav{margin-top:24px}
   .back{background:none;border:none;color:var(--muted);font-family:var(--sans);font-weight:300;font-size:14px;letter-spacing:.02em;cursor:pointer;padding:8px 2px;transition:.2s}
-  .back:hover{color:var(--gold)}
+  @media (hover:hover) and (pointer:fine){.back:hover{color:var(--gold)}}
   .consent{position:fixed;left:0;right:0;bottom:0;background:rgba(9,12,23,.97);border-top:1px solid var(--line);padding:14px 20px;display:none;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;font-size:13px;color:var(--muted);z-index:50}
   .consent button{font-family:var(--sans);font-weight:400;font-size:13px;cursor:pointer;border-radius:2px;padding:8px 18px;border:1px solid var(--line);transition:.2s}
   .consent .acc{background:var(--gold);color:#1a1305;border:none}
-  .consent .acc:hover{background:var(--gold-soft)}
+  @media (hover:hover) and (pointer:fine){.consent .acc:hover{background:var(--gold-soft)}}
   .consent .rej{background:transparent;color:var(--muted)}
-  .consent .rej:hover{color:var(--cream)}
+  @media (hover:hover) and (pointer:fine){.consent .rej:hover{color:var(--cream)}}
   .field label{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
   .field input{width:100%;background:var(--bg2);border:1px solid var(--line-soft);border-radius:3px;color:var(--cream);
     font-family:var(--sans);font-size:16px;font-weight:300;padding:14px 16px;transition:.2s;outline:none}
@@ -117,7 +117,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   .results-body{max-width:480px;margin:0 auto}
   .socials{display:flex;gap:16px;justify-content:center;margin-top:8px}
   .social-ic{width:54px;height:54px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--gold);text-decoration:none;transition:.25s;background:linear-gradient(180deg,rgba(201,169,97,.05),transparent)}
-  .social-ic:hover{background:var(--gold);color:#1a1305;border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,169,97,.18)}
+  @media (hover:hover) and (pointer:fine){.social-ic:hover{background:var(--gold);color:#1a1305;border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,169,97,.18)}}
   .social-ic svg{width:22px;height:22px;fill:currentColor;display:block}
   @media(max-width:520px){.row{flex-direction:column}.wrap{padding:32px 18px 60px}.social-ic{width:50px;height:50px}}
 
@@ -156,7 +156,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     padding:15px 18px;color:var(--cream);font-family:var(--sans);font-weight:300;
     font-size:15.5px;line-height:1.45;
     transition:border-color .25s,background .25s,transform .12s}
-  .opt:hover{border-color:var(--line);background:linear-gradient(180deg,rgba(201,169,97,.085),rgba(201,169,97,.03))}
+  @media (hover:hover) and (pointer:fine){.opt:hover{border-color:var(--line);background:linear-gradient(180deg,rgba(201,169,97,.085),rgba(201,169,97,.03))}}
   .opt:active{transform:scale(.994)}
   .opt::before{content:"";flex:none;width:22px;height:22px;border-radius:7px;
     border:1.8px solid rgba(240,235,224,.22);background:rgba(255,255,255,.02);margin-top:1px;
@@ -227,7 +227,7 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     background:linear-gradient(180deg,rgba(240,235,224,.05),rgba(240,235,224,.015));
     border:1px solid var(--line-soft);border-radius:999px;padding:11px 18px;
     transition:border-color .2s,color .2s,transform .12s}
-  .sbtn:hover{border-color:var(--gold);color:var(--gold-soft);transform:translateY(-1px)}
+  @media (hover:hover) and (pointer:fine){.sbtn:hover{border-color:var(--gold);color:var(--gold-soft);transform:translateY(-1px)}}
   .sbtn svg{width:16px;height:16px;fill:currentColor;opacity:.85;flex:none}
 .prebox{max-width:560px;margin:0 auto 26px;padding:18px 20px;border:1px solid rgba(201,169,97,.45);
   border-left:3px solid #C9A961;border-radius:10px;background:rgba(201,169,97,.07);text-align:left}
@@ -236,6 +236,11 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
 .pre-quote{margin:8px 0 10px;padding-left:12px;border-left:2px solid rgba(201,169,97,.5);
   font-family:Georgia,serif;font-style:italic;font-size:15.5px;line-height:1.5}
 @media(max-width:560px){.prebox{margin-bottom:20px;padding:15px 16px}.pre-hi{font-size:16.5px}}
+
+  /* 22-nov: usabilidad movil */
+  button,.opt,.btn,.back{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  .back{padding:12px 18px;min-height:44px}
+  @media(max-width:560px){#go{width:100%;max-width:360px;padding:18px 24px;font-size:16px}}
 </style>
 </head>
 <body>
@@ -489,6 +494,18 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     if(r[0][1]>3){for(var i=1;i<r.length;i++){if(r[i][1]<=3){var t=r[0];r[0]=r[i];r[i]=t;break;}}}
     return r;
   }
+  // 22-nov: al cambiar de pantalla, quitar el foco del boton pulsado, subir arriba y
+  // anotar la hora: los toques en los 350 ms siguientes se ignoran (doble toque = respuesta fantasma).
+  var tPantalla=0;
+  function montar(h){app.innerHTML=h;tPantalla=Date.now();
+    try{var a=document.activeElement;if(a&&a!==document.body&&a.blur)a.blur();}catch(e){}
+    window.scrollTo(0,0);}
+  // "2.000" -> 2000, "1.000.000" -> 1000000, "1.500,50" -> 1500.5, "€ 2000" -> 2000.
+  // (Con type=number el navegador leia "2.000" como 2 y el test decia "Revisa el sueldo".)
+  function aNum(v){var t=String(v==null?'':v).replace(/\s/g,'');t=t.replace(/[.,](\d{1,2})$/,'#$1');
+    t=t.replace(/[^\d#]/g,'').replace('#','.');return t?parseFloat(t):NaN;}
+  function fallo(el,m){el.textContent=m;try{el.scrollIntoView({block:'center',behavior:'smooth'});}catch(x){}}
+  function rebote(){return Date.now()-tPantalla<350;}
   function bar(p){return '<div class="progress"><i style="width:'+p+'%"></i></div>';}
   function nfmt(n){return (n||0).toLocaleString('es-ES');}
 
@@ -525,20 +542,20 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     h+='</div>';
     if(idx>0)h+='<div class="nav"><button class="back" id="back">&#8592; Anterior</button></div>';
     h+='</div>';
-    app.innerHTML=h;
+    montar(h);
     var b=app.querySelectorAll('.opt');
-    for(var k=0;k<b.length;k++)b[k].onclick=function(){answers[idx]=+this.getAttribute('data-l');idx++;render();};
+    for(var k=0;k<b.length;k++)b[k].onclick=function(){if(rebote())return;answers[idx]=+this.getAttribute('data-l');idx++;render();};
     var bk=document.getElementById('back');if(bk)bk.onclick=function(){idx--;render();};
   }
 
   function slide(eyebrow,title,text,btn,onNext,onBack,ek){
-    app.innerHTML='<div class="screen center">'+bar(done())+
+    montar('<div class="screen center">'+bar(done())+
       '<p class="'+(ek||'eyebrow')+'">'+eyebrow+'</p>'+
       '<h2 style="text-align:center">'+title+'</h2>'+
       (text?'<p class="lead" style="margin-left:auto;margin-right:auto">'+text+'</p>':'')+
       '<button class="btn" id="slideNext" style="margin-top:14px">'+btn+'</button>'+
-      '<div class="nav center"><button class="back" id="slideBack">&#8592; Anterior</button></div></div>';
-    document.getElementById('slideNext').onclick=onNext;
+      '<div class="nav center"><button class="back" id="slideBack">&#8592; Anterior</button></div></div>');
+    document.getElementById('slideNext').onclick=function(){if(rebote())return;onNext();};
     document.getElementById('slideBack').onclick=onBack;
   }
 
@@ -557,9 +574,9 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<p class="qblock">En las últimas cuatro semanas</p><h2 class="qtitle">¿Cuántas veces '+T[tdx].q.replace('…','')+'?</h2></div></div><div class="opts">';
     for(var i=0;i<SCALE.length;i++){var sel=tans[tdx]===i?' sel':'';h+='<button class="opt'+sel+'" data-i="'+i+'">'+SCALE[i]+'</button>';}
     h+='</div><div class="nav"><button class="back" id="back">&#8592; Anterior</button></div></div>';
-    app.innerHTML=h;
+    montar(h);
     var b=app.querySelectorAll('.opt');
-    for(var k=0;k<b.length;k++)b[k].onclick=function(){tans[tdx]=+this.getAttribute('data-i');tdx++;renderT();};
+    for(var k=0;k<b.length;k++)b[k].onclick=function(){if(rebote())return;tans[tdx]=+this.getAttribute('data-i');tdx++;renderT();};
     document.getElementById('back').onclick=function(){if(tdx===0){bridge();}else{tdx--;renderT();}};
   }
 
@@ -578,16 +595,17 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
           '<button class="opt'+(ctx.moneda==='EUR'?' sel':'')+'" data-v="EUR">Euros (€)</button>'+
           '<button class="opt'+(ctx.moneda==='USD'?' sel':'')+'" data-v="USD">Dólares (US$)</button></div>'+
           '<p class="fine" style="margin:8px 0 0">Si en tu país usáis otra moneda, convierte las cifras de forma aproximada a la que elijas.</p></div>'+
-        '<div class="field"><label>¿A cuántas personas diriges?</label><input id="c_people" type="number" min="1" max="2000" placeholder="12" value="'+esc(ctx.personas)+'"></div>'+
+        '<div class="field"><label>¿A cuántas personas diriges?</label><input id="c_people" type="text" inputmode="numeric" autocomplete="off" min="1" max="2000" placeholder="12" value="'+esc(ctx.personas)+'"></div>'+
         '<div class="field"><label>¿Tu área genera facturación directa?</label><div class="opts" id="c_fact" style="margin:0">'+
           '<button class="opt'+(ctx.factura==='si'?' sel':'')+'" data-v="si">Sí</button>'+
           '<button class="opt'+(ctx.factura==='no'?' sel':'')+'" data-v="no">No</button></div></div>'+
-        '<div class="field" id="c_revF" style="display:'+(ctx.factura==='si'?'block':'none')+'"><label>Facturación anual de tu área (<span class="c_sym">'+simb()+'</span>)</label><input id="c_rev" type="number" min="0" placeholder="1000000" value="'+esc(ctx.facturacion)+'"></div>'+
-        '<div class="field"><label>Sueldo medio bruto al mes por persona (<span class="c_sym">'+simb()+'</span>)</label><input id="c_sal" type="number" min="300" placeholder="2000" value="'+esc(ctx.sueldo||2000)+'"></div>'+
+        '<div class="field" id="c_revF" style="display:'+(ctx.factura==='si'?'block':'none')+'"><label>Facturación anual de tu área (<span class="c_sym">'+simb()+'</span>)</label><input id="c_rev" type="text" inputmode="numeric" autocomplete="off" min="0" placeholder="1000000" value="'+esc(ctx.facturacion)+'"></div>'+
+        '<div class="field"><label>Sueldo medio bruto al mes por persona (<span class="c_sym">'+simb()+'</span>)</label><input id="c_sal" type="text" inputmode="numeric" autocomplete="off" min="300" placeholder="2000" value="'+esc(ctx.sueldo||2000)+'"></div>'+
         '<div class="err" id="c_err"></div>'+
         '<button class="btn" id="c_next" style="margin-top:4px">Seguir</button>'+
         '<div class="nav center"><button class="back" id="c_back">&#8592; Anterior</button></div>'+
       '</div></div>';
+    tPantalla=Date.now();window.scrollTo(0,0);
     var mb=app.querySelectorAll('#c_mon .opt');
     for(var k=0;k<mb.length;k++)mb[k].onclick=function(){
       ctx.moneda=this.getAttribute('data-v');
@@ -607,11 +625,12 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       var p=document.getElementById('c_people').value.trim(),s=document.getElementById('c_sal').value.trim();
       var rv=document.getElementById('c_rev')?document.getElementById('c_rev').value.trim():'';
       var e=document.getElementById('c_err');
-      if(!p||+p<1){e.textContent='Dime a cuántas personas diriges.';return;}
-      if(!ctx.factura){e.textContent='Dime si tu área factura.';return;}
-      if(ctx.factura==='si'&&(!rv||+rv<10000)){e.textContent='Escribe la facturación anual aproximada.';return;}
-      if(!s||+s<300){e.textContent='Revisa el sueldo medio mensual.';return;}
-      ctx.personas=+p;ctx.sueldo=+s;ctx.facturacion=ctx.factura==='si'?+rv:0;paso('equipo-hecho',9);
+      p=aNum(p);s=aNum(s);rv=aNum(rv);
+      if(!(p>=1)){return fallo(e,'Dime a cuántas personas diriges.');}
+      if(!ctx.factura){return fallo(e,'Dime si tu área factura.');}
+      if(ctx.factura==='si'&&!(rv>=10000)){return fallo(e,'Escribe la facturación anual aproximada.');}
+      if(!(s>=300)){return fallo(e,'Revisa el sueldo medio mensual.');}
+      ctx.personas=Math.round(p);ctx.sueldo=s;ctx.facturacion=ctx.factura==='si'?rv:0;paso('equipo-hecho',9);
       if(MODO_PRE){preSalto();}else{capture();}
     };
   }
@@ -654,11 +673,12 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     }
     h+='<div class="err" id="s_err"></div><button class="btn" id="s_next">Seguir</button>'+
       '<div class="nav center"><button class="back" id="s_back">&#8592; Anterior</button></div></div>';
-    app.innerHTML=h;
+    montar(h);
     var boxes=app.querySelectorAll('.sopts');
     for(var x=0;x<boxes.length;x++)(function(box){
       var bi=+box.getAttribute('data-i'),bb=box.querySelectorAll('.opt');
       for(var y=0;y<bb.length;y++)bb[y].onclick=function(){
+        if(rebote())return;
         sans[bi]=this.getAttribute('data-v');
         for(var w=0;w<bb.length;w++)bb[w].className='opt';
         this.className='opt sel';
@@ -682,7 +702,6 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
         ta.onkeydown=function(ev){if(ev.key==='Enter'&&!ev.shiftKey&&!ev.isComposing){ev.preventDefault();document.getElementById('s_next').click();}};
         try{ta.focus({preventScroll:true});var L=ta.value.length;ta.setSelectionRange(L,L);}catch(e){}
       }
-      window.scrollTo(0,0);
     }
   }
 
@@ -714,23 +733,24 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<div class="center"><div class="lock">✦</div><h2 style="text-align:center;margin-bottom:10px">Tu informe está listo</h2>'+
       '<p class="lead" style="margin:0 auto 28px">Dentro encontrarás tus resultados y propuestas de mejora para cada ámbito: cuál es el rendimiento económico de tu equipo según tu forma de liderazgo, y acciones que puedes implementar desde mañana para mejorar.</p></div>'+
       '<div class="form" style="margin:0 auto">'+
-        '<div class="field"><label>Nombre</label><input id="f_name" type="text" placeholder="Tu nombre" value="'+esc(PRE.n||'')+'"></div>'+
+        '<div class="field"><label>Nombre</label><input id="f_name" type="text" autocomplete="given-name" placeholder="Tu nombre" value="'+esc(PRE.n||'')+'"></div>'+
         '<div class="field"><label>Ciudad</label><input id="f_city" type="text" placeholder="Dónde vives o trabajas" value="'+esc(PRE.c||'')+'"></div>'+
         '<div class="field"><label>¿Cuál es tu mayor reto ahora mismo?</label><textarea id="f_reto" class="sarea" rows="3" placeholder="Defínelo con tus palabras. Me ayuda saber a qué te enfrentas para poder aportar más valor."></textarea></div>'+
-        '<div class="field"><label>Email</label><input id="f_email" type="email" placeholder="tu@email.com" value="'+esc(PRE.e||'')+'"></div>'+
+        '<div class="field"><label>Email</label><input id="f_email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="tu@email.com" value="'+esc(PRE.e||'')+'"></div>'+
         '<div class="err" id="f_err"></div>'+
         '<button class="btn" id="reveal" style="margin-top:4px">Ver mis resultados</button>'+
         '<div class="nav center"><button class="back" id="backc">&#8592; Volver</button></div>'+
       '</div></div>';
+    tPantalla=Date.now();window.scrollTo(0,0);
     document.getElementById('backc').onclick=function(){phase='calcCtx';calcCtx();};
     document.getElementById('reveal').onclick=function(){
       var n=document.getElementById('f_name').value.trim(),e=document.getElementById('f_email').value.trim(),
           c=document.getElementById('f_city').value.trim(),rt=document.getElementById('f_reto').value.trim();
       var err=document.getElementById('f_err');
-      if(!n){err.textContent='Dime tu nombre.';return;}
-      if(!c){err.textContent='Dime en qué ciudad trabajas.';return;}
-      if(rt.length<3){err.textContent='Cuéntame tu mayor reto, aunque sea en una frase.';return;}
-      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e)){err.textContent='Revisa el email.';return;}
+      if(!n){return fallo(err,'Dime tu nombre.');}
+      if(!c){return fallo(err,'Dime en qué ciudad trabajas.');}
+      if(rt.length<3){return fallo(err,'Cuéntame tu mayor reto, aunque sea en una frase.');}
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e)){return fallo(err,'Revisa el email.');}
       report(construirLead(n,c,e,rt));
     };
   }
