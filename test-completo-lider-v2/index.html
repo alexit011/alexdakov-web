@@ -436,6 +436,12 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   // Si el enlace trae nombre y email, es alguien que ya esta cualificado: no se le vuelve a
   // preguntar lo que ya sabemos, y el presetting va ANTES del resultado (ya pidio informacion).
   var MODO_PRE=!!(PRE.n&&PRE.e);
+  // Test A/B de portada (23-nov): A = la de siempre, B = corta. Al azar 50/50 por visita, solo en
+  // el test publico (el enlace personalizado tiene su propia bienvenida = "P"). No se guarda nada
+  // en el dispositivo: se decide al cargar. Se puede forzar con ?portada=A o ?portada=B para revisar.
+  var PORTADA=MODO_PRE?'P':(function(){var f=(new URLSearchParams(location.search).get('portada')||'').toUpperCase();
+    return (f==='A'||f==='B')?f:(Math.random()<0.5?'A':'B');})();
+  try{if(window.clarity)window.clarity('set','portada',PORTADA);}catch(e){}
   var LM_NOMBRE={'test-lider':'el Test del L\u00edder','lider-pro':'el checklist L\u00edder PRO',
     'diagnostico':'el Diagn\u00f3stico de problemas','calculadora':'la Calculadora del l\u00edder'};
   // Saluda SOLO con lo que sabemos de verdad. Sin datos no se pinta nada: mejor nada que fallar.
@@ -507,10 +513,10 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
   var SID=('v'+Math.random().toString(36).slice(2)+Date.now().toString(36)).slice(0,20),PASOS={};
   function paso(n,o){
     if(PASOS[n])return;PASOS[n]=1;
-    tlpTrack('tv2_'+n.replace(/-/g,'_'),{orden:o});
+    tlpTrack('tv2_'+n.replace(/-/g,'_'),{orden:o,portada:PORTADA});
     if(!LEAD_ENDPOINT)return;
     try{fetch(LEAD_ENDPOINT,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({source:'test-v2-paso',sid:SID,paso:n,orden:o,modo:MODO_PRE?'personalizado':'publico',
+      body:JSON.stringify({source:'test-v2-paso',sid:SID,paso:n,orden:o,modo:MODO_PRE?'personalizado':'publico',portada:PORTADA,
         utm_source:(new URLSearchParams(location.search).get('utm_source')||''),moneda:ctx.moneda})});}catch(e){}
   }
   function submitLead(){if(!LEAD_ENDPOINT)return;try{fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lead)});}catch(e){}}
@@ -538,6 +544,18 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
 
   function intro(){
     phase='intro';paso('abre',1);
+    if(PORTADA==='B'){
+      montar('<div class="screen hero">'+
+        '<p class="kicker">Descubre en qué nivel de líder estás.</p>'+
+        '<h1>Test Líder PRO</h1>'+
+        '<div class="rule"><i></i><span>✦</span><i></i></div>'+
+        '<p class="lead hero-lead">Los 9 bloques sobre los que se construyen los equipos de alto rendimiento. Qué te falta en cada uno y cuánto cuesta lo que hoy no funciona.</p>'+
+        '<button class="btn" id="go" style="margin-top:18px">Empezar el test</button>'+
+        '<p class="fine" style="margin-top:16px">24 preguntas · unos 8 minutos · responde lo que haces de verdad, no lo que te gustaría.</p>'+
+        '</div>');
+      document.getElementById('go').onclick=empezar;
+      return;
+    }
     app.innerHTML='<div class="screen hero">'+
       '<p class="kicker">Descubre en qué nivel de líder estás, y qué necesitas para ir al siguiente.</p>'+
       '<h1>Test Líder PRO</h1>'+
@@ -555,8 +573,9 @@ function tlpTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       '<button class="btn" id="go">Empezar</button>'+
       '<p class="fine" style="margin-top:16px;max-width:520px;margin-left:auto;margin-right:auto">Unos 8 minutos · aquí no hay respuestas buenas, solo la tuya. Cuanto más honesto seas, más afinado será tu plan de mejora. No se trata de acertar, sino de elegir la que más te representa hoy.</p>'+
       '</div>';
-    document.getElementById('go').onclick=function(){paso('empieza',2);idx=0;tdx=0;spage=0;answers=[];tans=[];sans=new Array(SET.length).fill('');lead={};phase='q';order=Q.map(function(x){return shufQ(x.o);});render();};
+    document.getElementById('go').onclick=empezar;
   }
+  function empezar(){paso('empieza',2);idx=0;tdx=0;spage=0;answers=[];tans=[];sans=new Array(SET.length).fill('');lead={};phase='q';order=Q.map(function(x){return shufQ(x.o);});render();}
 
   function render(){
     if(idx>=Q.length){phase='bridge';return bridge();}
