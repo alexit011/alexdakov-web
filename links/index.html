@@ -3,6 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script>/* Relevo de leads (23-nov-2026). En Espana las operadoras bloquean IPs de Cloudflare durante
+los partidos de LaLiga y con ellas el Worker: el lead se perdia sin aviso. Si el Worker no responde
+en 2,5 s, todo lo que iba a el sale por el VPS (vps.iaservernea.com/leads), que lo reenvia igual. */
+(function(){
+  var W='https://test-lider-beehiiv.alexdakov.workers.dev',R='https://vps.iaservernea.com/leads';
+  var f=window.fetch&&window.fetch.bind(window);if(!f)return;
+  var via=null,cuando=0;
+  function sondear(){
+    if(via&&Date.now()-cuando<120000)return via;   // la comprobacion vale 2 minutos
+    cuando=Date.now();
+    via=new Promise(function(res){
+      var hecho=false;function fin(v){if(!hecho){hecho=true;res(v);}}
+      setTimeout(function(){fin(false);},2500);
+      try{f(W+'/',{method:'GET',mode:'no-cors',cache:'no-store'}).then(function(){fin(true);},function(){fin(false);});}catch(e){fin(false);}
+    });
+    return via;
+  }
+  sondear();
+  window.fetch=function(u,o){
+    if(typeof u!=='string'||u.indexOf(W)!==0)return f(u,o);
+    var alt=R+u.slice(W.length);
+    return sondear().then(function(directo){
+      var a=directo?u:alt,b=directo?alt:u;
+      return f(a,o).catch(function(e){if(e&&e.name==='AbortError')throw e;return f(b,o);});
+    });
+  };
+})();</script>
   <title>Alex Dakov — Enlaces</title>
   <meta name="description" content="Newsletter Room Five, Test del Líder, conferencias y web de Alex Dakov — liderazgo y equipos de élite.">
   <meta name="robots" content="noindex, follow">
